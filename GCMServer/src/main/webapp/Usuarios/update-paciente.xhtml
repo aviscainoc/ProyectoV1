@@ -1,0 +1,35 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"> 
+
+<h:head></h:head> 
+<h:body>
+<center><h1>Actualizar Usuario</h1></center>
+<center>
+<h:form>
+	<h:panelGrid columns="2">
+		<h:outputLabel value="Codigo"></h:outputLabel>
+		<h:inputText id="txtCodigo" value= "#{gestionUsuariosBean.us_codigo}"></h:inputText>
+		
+		<h:outputLabel value="Nombre"></h:outputLabel>
+		<h:inputText id="txtNombre" value="#{gestionUsuariosBean.us_nombre}"></h:inputText>
+		
+		<h:outputLabel value="Nickname"></h:outputLabel>
+		<h:inputText id="txtNickname" value="#{gestionUsuariosBean.us_nickname}"></h:inputText>
+		
+		<h:outputLabel value="Fecha de Nacimiento"></h:outputLabel>
+		<h:inputText id="datFechaNacimiento" value="#{gestionUsuariosBean.us_fechaNacimiento}"></h:inputText>
+		
+		<h:outputLabel value="Password"></h:outputLabel>
+		<h:inputSecret id="txtPassword" value="#{gestionUsuariosBean.us_nombre}"></h:inputSecret>
+		
+		<h:commandButton  value="Actualizar" action="#{gestionUsuariosBean.update()}"></h:commandButton>
+		<h:commandButton action="Principal" value="Regresar"></h:commandButton>
+	</h:panelGrid>
+</h:form>
+</center>
+</h:body>
+
+</html>

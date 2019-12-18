@@ -1,0 +1,32 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"> 
+
+<h:head></h:head> 
+<body>
+<h1>Registrar un nuevo Usuario</h1>
+
+<h:form>
+	<h:panelGrid columns="2">
+		<h:outputLabel value="Código: " />
+		<h:inputText value="#{gestionUsuariosBean.us_codigo}" placeholder="Código" />
+		
+		<h:outputLabel value="Nombre: " />
+		<h:inputText value="#{gestionUsuariosBean.us_nombre}" placeholder="Nombre" />	
+		
+		<h:outputLabel value="Fecha de Nacimiento: " />
+		<h:inputText value="#{gestionUsuariosBean.us_fechaNacimiento}" placeholder="Fecha Nacimiento" />
+		
+		<h:outputLabel value="Nickname: " />
+		<h:inputText value="#{gestionUsuariosBean.us_nickname}" placeholder="Fecha Nacimiento" />
+		
+		<h:outputLabel value="Password: " />
+		<h:inputSecret value="#{gestionUsuariosBean.us_password}" placeholder="Password" />
+	</h:panelGrid>
+	<h:commandButton action="#{gestionUsuariosBean.guardarUsuario()}" value="Guardar" />
+	<h:commandButton action="Principal" value="Regresar"></h:commandButton>
+</h:form>
+</body>   
+</html>

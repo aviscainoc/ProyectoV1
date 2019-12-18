@@ -1,0 +1,35 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"> 
+
+<h:head></h:head> 
+<body> 
+
+<center><h1>Usuarios Registrados</h1></center>
+
+<center>
+<h:form>
+
+<h:dataTable value="#{gestionUsuariosBean.recuperarUsuarios()}" var="usuario">
+
+	<h:column>
+		#{usuario.us_codigo}
+		<f:facet name="header">Código</f:facet>
+	</h:column>
+	<h:column>
+		#{usuario.us_nombre}
+		<f:facet name="header">Nombre</f:facet>
+	</h:column>
+
+</h:dataTable>
+
+
+<h:commandButton action="Principal" value="Regresar"></h:commandButton>
+
+</h:form>
+</center>
+
+</body> 
+</html>
