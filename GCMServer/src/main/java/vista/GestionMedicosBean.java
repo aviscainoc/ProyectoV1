@@ -83,7 +83,7 @@ public class GestionMedicosBean {
 		System.out.println(us_codigo + " " + us_nombre + " ");
 		gl.guardarMedico(us_codigo, us_nombre, us_fechaNacimiento, us_nickname, us_password);
 		medicos = gl.getMedicos();
-		return "Registrado";
+		return "principal";
 	}
 	
 	public List<Medico> recuperarMedicos(){
