@@ -15,35 +15,49 @@ public class GestionPaciente implements GestionPacientesRemote, GestionPacientes
 	@Inject
 	private PacienteDAO dao;
 	
-	public void guardarUsuario(int us_codigo, String us_nombre, String us_fechaNacimiento, String us_nickname, String us_password) {
-		Paciente u = new Paciente();
-		u.setUs_codigo(us_codigo);
-		u.setUs_fechaNacimiento(us_fechaNacimiento);
-		u.setUs_nickname(us_nickname);
-		u.setUs_nombre(us_nombre);
-		u.setUs_password(us_password);
-		dao.insert(u);
+	public void guardarPaciente(int pa_codigo, String pa_estado_civil, String pa_nivel_estudio, String pa_ocupacion, 
+								String pa_etnia, String pa_religion, String pa_tipo_sangre, String pa_identidad_sexual, String pa_precedencia) {
+		
+		Paciente p = new Paciente();
+		p.setPa_codigo(pa_codigo);
+		p.setPa_estado_civil(pa_estado_civil);
+		p.setPa_nivel_estudio(pa_nivel_estudio);
+		p.setPa_ocupacion(pa_ocupacion);
+		p.setPa_etnia(pa_etnia);
+		p.setPa_religion(pa_religion);
+		p.setPa_tipo_sangre(pa_tipo_sangre);
+		p.setPa_identidad_sexual(pa_identidad_sexual);
+		p.setPa_precedencia(pa_precedencia);
+		dao.insert(p);
+		
+		p.toString();		
+		
 	}
 
-	public List<Paciente> getUsuarios() {
-		return dao.getUsuarios();
+	public List<Paciente> getPacientes() {
+		return dao.getPacientes();
 	}
 	
 
-	public void update(int us_codigo, String us_nombre, String us_fechaNacimiento, String us_nickname, String us_password) {
-		Paciente u = new Paciente();
-		u.setUs_codigo(us_codigo);
-		u.setUs_fechaNacimiento(us_fechaNacimiento);
-		u.setUs_nickname(us_nickname);
-		u.setUs_nombre(us_nombre);
-		u.setUs_password(us_password);
-		dao.update(u);
+	public void updatePaciente(int pa_codigo, String pa_estado_civil, String pa_nivel_estudio, String pa_ocupacion, 
+			String pa_etnia, String pa_religion, String pa_tipo_sangre, String pa_identidad_sexual, String pa_precedencia) {
+		Paciente p = new Paciente();
+		p.setPa_codigo(pa_codigo);
+		p.setPa_estado_civil(pa_estado_civil);
+		p.setPa_nivel_estudio(pa_nivel_estudio);
+		p.setPa_ocupacion(pa_ocupacion);
+		p.setPa_etnia(pa_etnia);
+		p.setPa_religion(pa_religion);
+		p.setPa_tipo_sangre(pa_tipo_sangre);
+		p.setPa_identidad_sexual(pa_identidad_sexual);
+		p.setPa_precedencia(pa_precedencia);
+		dao.update(p);
 	}
 
-	public Paciente login(String usuario, String contrasena) {
+	/*public Paciente login(String usuario, String contrasena) {
 		return dao.login(usuario, contrasena);
 
-	}
+	}*/
 
 	@Override
 	public void eliminar(int us_codigo) {
