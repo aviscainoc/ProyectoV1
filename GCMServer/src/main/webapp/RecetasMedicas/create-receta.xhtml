@@ -1,0 +1,48 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"> 
+
+<h:head></h:head> 
+<body>
+<h1>Registrar un nueva Receta</h1>
+
+<h:form>
+	<h:panelGrid columns="2">
+		<h:outputLabel value="Código: " />
+		<h:inputText value="#{gestionRecetaMedicaBean.rm_codigo}" placeholder="Código" />
+		
+		<h:outputLabel value="Codigo del Paciente: " />
+		<h:inputText value="#{gestionRecetaMedicaBean.pa_codigo}" placeholder="Paciente" />
+		
+		<h:outputLabel value="Codigo de la Cita" />
+		<h:inputText value="#{gestionRecetaMedicaBean.ci_codigo}" placeholder="Cita" />
+		
+		<h:outputLabel value="Medicamento" />
+		<h:inputText value="#{gestionRecetaMedicaBean.rm_medicamento}" placeholder="Medicamento" />
+		
+		<h:outputLabel value="Forma Farmaceutica" />
+		<h:inputText value="#{gestionRecetaMedicaBean.rm_forma_farmaceutica}" placeholder="Forma Farmaceutica" />
+		
+		<h:outputLabel value="Via Administración" />
+		<h:inputText value="#{gestionRecetaMedicaBean.rm_via_administracion}" placeholder="Via de Administración" />
+		
+		<h:outputLabel value="Presentación" />
+		<h:inputText value="#{gestionRecetaMedicaBean.rm_presentacion}" placeholder="Presentación" />
+		
+		<h:outputLabel value="Cantidad" />
+		<h:inputText value="#{gestionRecetaMedicaBean.rm_cantidad}" placeholder="Cantidad" />
+		
+		<h:outputLabel value="Horario" />
+		<h:inputText value="#{gestionRecetaMedicaBean.rm_horario}" placeholder="Horario" />
+		
+		<h:outputLabel value="Duración del Tratamiento" />
+		<h:inputText value="#{gestionRecetaMedicaBean.rm_duracion_tratamiento}" placeholder="Duración" />
+				
+	</h:panelGrid>
+	<h:commandButton action="#{gestionRecetaMedicaBean.guardarRecetas()}" value="Guardar" />
+	<h:commandButton action="principal" value="Regresar"></h:commandButton>
+</h:form>
+</body>   
+</html>
