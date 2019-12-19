@@ -25,6 +25,7 @@ public class MedicoDAO {
 		em.merge(medico);
 	}
 	
+	
 	public void remove(int codigo) {
 		Medico medico = this.read(codigo);
 		em.remove(medico);
@@ -36,7 +37,7 @@ public class MedicoDAO {
 	}
 	
 	public List<Medico> getMedicos(){
-		String jpql = "SELECT u FROM Usuario u";
+		String jpql = "SELECT u FROM Medico u";
 		Query q = em.createQuery(jpql, Medico.class);
 		
 		List<Medico> medicos = q.getResultList();
@@ -44,8 +45,8 @@ public class MedicoDAO {
 		return medicos;
 	}
 	
-	public Medico login(String usuario, String contrasena) {
-		String jpql = "SELECT u FROM Usuario u WHERE us_usuario = ?1 AND us_password = ?2";
+	/*public Medico login(String usuario, String contrasena) {
+		String jpql = "SELECT u FROM Medico u WHERE us_usuario = ?1 AND us_password = ?2";
 		Query q = em.createQuery(jpql, Medico.class);
 		q.setParameter(1, "%" + usuario + "%");
 		q.setParameter(2, "%" + contrasena + "%");
@@ -53,5 +54,5 @@ public class MedicoDAO {
 		List<Medico> med = q.getResultList();
 		Medico md = med.get(0);
 		return md;
-	}
+	}*/
 }

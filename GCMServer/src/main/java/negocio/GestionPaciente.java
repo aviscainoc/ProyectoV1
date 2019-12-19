@@ -63,6 +63,7 @@ public class GestionPaciente implements GestionPacientesRemote, GestionPacientes
 	public void eliminar(int us_codigo) {
 		dao.remove(us_codigo);
 	}
+	
 
 	
 }

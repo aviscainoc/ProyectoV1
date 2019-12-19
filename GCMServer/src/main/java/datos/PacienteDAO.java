@@ -38,10 +38,11 @@ public class PacienteDAO {
 		String jpql = "SELECT u FROM Paciente u";
 		Query q = em.createQuery(jpql, Paciente.class);
 		
-		List<Paciente> usuarios = q.getResultList();
+		List<Paciente> pacientes = q.getResultList();
 		
-		return usuarios;
+		return pacientes;
 	}
+	
 	
 	/*public Paciente login(String usuario, String contrasena) {
 		String jpql = "SELECT u FROM Paciente u WHERE us_usuario = ?1 AND us_password = ?2";

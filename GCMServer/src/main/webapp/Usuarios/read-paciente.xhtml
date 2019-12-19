@@ -12,21 +12,25 @@
 <center>
 <h:form>
 
-<h:dataTable value="#{gestionUsuariosBean.recuperarUsuarios()}" var="usuario">
+<h:dataTable value="#{gestionPacientesBean.recuperarPacientes()}" var="paciente">
 
 	<h:column>
-		#{usuario.us_codigo}
+		#{paciente.pa_codigo}
 		<f:facet name="header">Código</f:facet>
 	</h:column>
 	<h:column>
-		#{usuario.us_nombre}
-		<f:facet name="header">Nombre</f:facet>
+		#{paciente.pa_identidad_sexual}
+		<f:facet name="header">Identidad Sexual</f:facet>
+	</h:column>
+	<h:column>
+		#{paciente.pa_tipo_sangre}
+		<f:facet name="header">Tipo de Sangre</f:facet>
 	</h:column>
 
 </h:dataTable>
 
 
-<h:commandButton action="Principal" value="Regresar"></h:commandButton>
+<h:commandButton action="index" value="Regresar"></h:commandButton>
 
 </h:form>
 </center>
