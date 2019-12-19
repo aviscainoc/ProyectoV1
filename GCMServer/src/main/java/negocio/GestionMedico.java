@@ -15,6 +15,7 @@ public class GestionMedico implements GestionMedicosRemote, GestionMedicosLocal 
 	@Inject
 	private MedicoDAO dao;
 	
+	
 	public void guardarMedico(int us_codigo, String us_nombre, String us_fechaNacimiento, String us_nickname, String us_password) {
 		Medico u = new Medico();
 		u.setMd_id(us_codigo);
@@ -39,9 +40,9 @@ public class GestionMedico implements GestionMedicosRemote, GestionMedicosLocal 
 		dao.update(u);
 	}
 	
-	public Medico Login(String usuario, String contrasena) {
+	/*public Medico Login(String usuario, String contrasena) {
 		return dao.login(usuario, contrasena);
-	}
+	}*/
 
 	public void eliminar(int us_codigo) {
 		dao.remove(us_codigo);

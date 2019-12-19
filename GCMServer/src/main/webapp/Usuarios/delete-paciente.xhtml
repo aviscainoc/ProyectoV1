@@ -13,13 +13,13 @@
 
 <center>
 	<h:panelGrid columns="2">
-		<h:inputText value="#{gestionUsuariosBean.us_codigo}">
+		<h:inputText value="#{gestionPacientesBean.pa_codigo}">
 		</h:inputText>
 		
-		<h:commandButton action="#{gestionUsuariosBean.eliminar()}" value="Eliminar">
+		<h:commandButton action="#{gestionPacientesBean.eliminar()}" value="Eliminar">
 		</h:commandButton>
 	
-		<h:commandButton action="Principal" value="Regresar"></h:commandButton>
+		<h:commandButton action="index" value="Regresar"></h:commandButton>
 	</h:panelGrid>
 </center>
 </h:form>

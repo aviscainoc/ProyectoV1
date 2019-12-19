@@ -128,6 +128,10 @@ public String guardarPaciente() {
 	return "listar-pacientes";
 	}
 	
+public List<Paciente> recuperarPacientes() {
+	pacientes = gl.getPacientes();
+	return pacientes;
+}
 
 	public void eliminar() {
 		gl.eliminar(pa_codigo);

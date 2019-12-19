@@ -97,8 +97,8 @@ public class GestionMedicosBean {
 	public void update() {
 		gl.update(us_codigo, us_nombre, us_fechaNacimiento, us_nickname, us_password);
 	}
-	public Medico login(String usuario, String contrasena) {
+	/*public Medico login(String usuario, String contrasena) {
 		Medico md = gl.Login(usuario, contrasena);
 		return md;
-	}
+	}*/
 }
