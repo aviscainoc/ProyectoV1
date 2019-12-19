@@ -10,10 +10,10 @@ import modelo.Paciente;
 @Remote
 public interface GestionPacientesRemote {
 
-	public void guardarUsuario(int us_codigo, String us_nombre, String us_fechaNacimiento, String us_nickname, String us_password);
-	public List<Paciente> getUsuarios();
-	public void update(int us_codigo, String us_nombre, String us_fechaNacimiento, String us_nickname, String us_password);
-	public Paciente login(String usuario, String contrasena);
+	public void guardarPaciente(int pa_codigo, String pa_estado_civil, String pa_nivel_estudio, String pa_ocupacion, 
+			String pa_etnia, String pa_religion, String pa_tipo_sangre, String pa_identidad_sexual, String pa_precedencia);
+	public List<Paciente> getPacientes();
+	public void updatePaciente(int pa_codigo, String pa_estado_civil, String pa_nivel_estudio, String pa_ocupacion, 
+			String pa_etnia, String pa_religion, String pa_tipo_sangre, String pa_identidad_sexual, String pa_precedencia) ;
 	public void eliminar(int codigo);
-
 }

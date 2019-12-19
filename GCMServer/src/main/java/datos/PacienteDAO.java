@@ -34,8 +34,8 @@ public class PacienteDAO {
 		return u;
 	}
 	
-	public List<Paciente> getUsuarios(){
-		String jpql = "SELECT u FROM Usuario u";
+	public List<Paciente> getPacientes(){
+		String jpql = "SELECT u FROM Paciente u";
 		Query q = em.createQuery(jpql, Paciente.class);
 		
 		List<Paciente> usuarios = q.getResultList();
@@ -43,8 +43,8 @@ public class PacienteDAO {
 		return usuarios;
 	}
 	
-	public Paciente login(String usuario, String contrasena) {
-		String jpql = "SELECT u FROM Usuario u WHERE us_usuario = ?1 AND us_password = ?2";
+	/*public Paciente login(String usuario, String contrasena) {
+		String jpql = "SELECT u FROM Paciente u WHERE us_usuario = ?1 AND us_password = ?2";
 		Query q = em.createQuery(jpql, Paciente.class);
 		q.setParameter(1, "%" + usuario + "%");
 		q.setParameter(2, "%" + contrasena + "%");
@@ -52,6 +52,6 @@ public class PacienteDAO {
 		List<Paciente> user = q.getResultList();
 		Paciente us = user.get(0);
 		return us;
-	}
+	}*/
 	
 }
