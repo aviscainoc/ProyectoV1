@@ -1,0 +1,39 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"> 
+
+<h:head></h:head> 
+<body>
+<h1>Agendar Cita</h1>
+
+<h:form>
+	<h:panelGrid columns="2">
+		<h:outputLabel value="Código: " />
+		<h:inputText value="#{gestionCitasBean.ci_codigo}" placeholder="Código" />
+		
+		<h:outputLabel value="Codigo del medico" />
+		<h:inputText value="#{gestionCitasBean.me_codigo}" placeholder="Codigo del medico" />
+		
+		<h:outputLabel value="codigo del Paciente" />
+		<h:inputText value="#{gestionCitasBean.pa_codigo}" placeholder="Codigo del paciente " />
+		
+		<h:outputLabel value="Ocupacion" />
+		<h:inputText value="#{gestionPacientesBean.pa_ocupacion}" placeholder="Ocupacion" />
+		
+		<h:outputLabel value="Fecha de agendacion" />
+		<h:inputText value="#{gestionCitasBean.ci_fecha_agendacion}" placeholder="Fecha de agendacion" />
+		
+		<h:outputLabel value="Fecha de cita" />
+		<h:inputText value="#{gestionCitasBean.ci_fecha_cita}" placeholder="Fecha de cita" />
+		
+		
+		
+		
+	</h:panelGrid>
+	<h:commandButton action="#{gestionCitasBean.guardarCita()}" value="Guardar" />
+	<h:commandButton action="index" value="Regresar"></h:commandButton>
+</h:form>
+</body>   
+</html>

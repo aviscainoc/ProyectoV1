@@ -7,10 +7,15 @@ public class Cita {
 
 	@Id
 	private int ci_codigo;
+	
+	@ManyToOne
 	private Medico me_codigo;
+	
+	@ManyToOne
 	private Paciente pa_codigo;
 	private String ci_fecha_agendacion;
 	private String ci_fecha_cita;
+	
 	public int getCi_codigo() {
 		return ci_codigo;
 	}
