@@ -35,7 +35,7 @@ public class CitaDAO {
 	}
 	
 	public List<Cita> getCitas(){
-		String jpql = "SELECT u FROM Paciente u";
+		String jpql = "SELECT u FROM Cita u";
 		Query q = em.createQuery(jpql, Cita.class);
 		
 		List<Cita> citas = q.getResultList();

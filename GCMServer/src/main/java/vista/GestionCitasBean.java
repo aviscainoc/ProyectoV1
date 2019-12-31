@@ -17,8 +17,8 @@ public class GestionCitasBean {
 	private GestionCitaLocal gl;
 	
 	private int ci_codigo;
-	private Medico me_codigo;
-	private Paciente pa_codigo;
+	private int me_codigo;
+	private int pa_codigo;
 	private String ci_fecha_agendacion;
 	private String ci_fecha_cita;
 	
@@ -33,19 +33,19 @@ public class GestionCitasBean {
 		this.ci_codigo = ci_codigo;
 	}
 
-	public Medico getMe_codigo() {
+	public int getMe_codigo() {
 		return me_codigo;
 	}
 
-	public void setMe_codigo(Medico me_codigo) {
+	public void setMe_codigo(int me_codigo) {
 		this.me_codigo = me_codigo;
 	}
 
-	public Paciente getPa_codigo() {
+	public int getPa_codigo() {
 		return pa_codigo;
 	}
 
-	public void setPa_codigo(Paciente pa_codigo) {
+	public void setPa_codigo(int pa_codigo) {
 		this.pa_codigo = pa_codigo;
 	}
 

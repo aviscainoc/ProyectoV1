@@ -6,6 +6,8 @@ import javax.ejb.Stateless;
 import javax.inject.Inject;
 
 import datos.CitaDAO;
+import datos.MedicoDAO;
+import datos.PacienteDAO;
 import modelo.Cita;
 import modelo.Medico;
 import modelo.Paciente;
@@ -16,13 +18,16 @@ import modelo.Paciente;
 public class GestionCita implements GestionCitaLocal, GestionCitaRemote{
 	@Inject
 	private CitaDAO dao;
-	
+	@Inject
+	private MedicoDAO daoM;
+	@Inject
+	private PacienteDAO daoP;
 
-	public void guardarCita(int ci_codigo, Medico me_codigo, Paciente pa_codigo, String ci_fecha_agendacion, String ci_fecha_cita) {
+	public void guardarCita(int ci_codigo, int codigoM, int codigoPa, String ci_fecha_agendacion, String ci_fecha_cita) {
 		Cita c = new Cita();
 		c.setCi_codigo(ci_codigo);
-		c.setMe_codigo(me_codigo);
-		c.setPa_codigo(pa_codigo);
+		c.setMe_codigo(daoM.read(codigoM));
+		c.setPa_codigo(daoP.read(codigoPa));
 		c.setCi_fecha_agendacion(ci_fecha_agendacion);
 		c.setCi_fecha_cita(ci_fecha_cita);
 		dao.insert(c);
@@ -32,11 +37,11 @@ public class GestionCita implements GestionCitaLocal, GestionCitaRemote{
 		return dao.getCitas();
 	}
 	
-	public void updateCita(int ci_codigo, Medico me_codigo, Paciente pa_codigo, String ci_fecha_agendacion, String ci_fecha_cita) {
+	public void updateCita(int ci_codigo, int codigoM, int codigoPa, String ci_fecha_agendacion, String ci_fecha_cita) {
 		Cita c = new Cita();
 		c.setCi_codigo(ci_codigo);
-		c.setMe_codigo(me_codigo);
-		c.setPa_codigo(pa_codigo);
+		c.setMe_codigo(daoM.read(codigoM));
+		c.setPa_codigo(daoP.read(codigoPa));
 		c.setCi_fecha_agendacion(ci_fecha_agendacion);
 		c.setCi_fecha_cita(ci_fecha_cita);
 		dao.update(c);

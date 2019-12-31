@@ -13,6 +13,7 @@ public class Cita {
 	
 	@ManyToOne
 	private Paciente pa_codigo;
+	
 	private String ci_fecha_agendacion;
 	private String ci_fecha_cita;
 	

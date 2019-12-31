@@ -12,19 +12,23 @@
 <center>
 <h:form>
 
-<h:dataTable value="#{gestionPacientesBean.recuperarPacientes()}" var="paciente">
+<h:dataTable value="#{gestionCitasBean.recuperarCitas()}" var="cita">
 
 	<h:column>
-		#{paciente.pa_codigo}
+		#{cita.ci_codigo}
 		<f:facet name="header">Código</f:facet>
 	</h:column>
 	<h:column>
-		#{paciente.pa_identidad_sexual}
-		<f:facet name="header">Identidad Sexual</f:facet>
+		#{cita.ci_fecha_cita}
+		<f:facet name="header">Fecha</f:facet>
 	</h:column>
 	<h:column>
-		#{paciente.pa_tipo_sangre}
-		<f:facet name="header">Tipo de Sangre</f:facet>
+		#{cita.me_codigo}
+		<f:facet name="header">Medico</f:facet>
+	</h:column>
+	<h:column>
+		#{cita.pa_codigo}
+		<f:facet name="header">Paciente</f:facet>
 	</h:column>
 
 </h:dataTable>
