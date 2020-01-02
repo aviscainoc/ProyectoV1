@@ -1,18 +1,40 @@
 package modelo;
 
+import java.util.Date;
+import java.util.List;
+
 import javax.persistence.*;
 
+@Entity
 public class Usuario {
 	
+	@Id
 	private String us_cedula;
 	private String us_rol;
 	private String us_nombres;
 	private String us_apellidos;
 	private String us_sexo;
-	private String us_fecha_nacimiento;
+	private Date us_fecha_nacimiento;
 	private String us_correo;
-	private String us_usuario;
 	private String us_contrasena;
+
+	
+	private String us_md_area_especialidad;
+	private String us_md_descripcion;
+	
+	private String us_pa_estado_civil;
+	private String us_pa_nivel_estudio;
+	private String us_pa_ocupacion;
+	private String us_pa_etnia;
+	private String us_pa_religion;
+	private String us_pa_tipo_sangre;
+	private String us_pa_identidad_sexual;
+	private String us_pa_procedencia;
+	
+	@OneToMany
+	private List<HistoriaClinica> historias_clinica;
+	@OneToMany
+	private List<Cita> citas;
 	
 	public String getUs_cedula() {
 		return us_cedula;
@@ -44,10 +66,10 @@ public class Usuario {
 	public void setUs_sexo(String us_sexo) {
 		this.us_sexo = us_sexo;
 	}
-	public String getUs_fecha_nacimiento() {
+	public Date getUs_fecha_nacimiento() {
 		return us_fecha_nacimiento;
 	}
-	public void setUs_fecha_nacimiento(String us_fecha_nacimiento) {
+	public void setUs_fecha_nacimiento(Date us_fecha_nacimiento) {
 		this.us_fecha_nacimiento = us_fecha_nacimiento;
 	}
 	public String getUs_correo() {
@@ -56,24 +78,99 @@ public class Usuario {
 	public void setUs_correo(String us_correo) {
 		this.us_correo = us_correo;
 	}
-	public String getUs_usuario() {
-		return us_usuario;
-	}
-	public void setUs_usuario(String us_usuario) {
-		this.us_usuario = us_usuario;
-	}
 	public String getUs_contrasena() {
 		return us_contrasena;
 	}
 	public void setUs_contrasena(String us_contrasena) {
 		this.us_contrasena = us_contrasena;
 	}
-	
+	public String getUs_md_area_especialidad() {
+		return us_md_area_especialidad;
+	}
+	public void setUs_md_area_especialidad(String us_md_area_especialidad) {
+		this.us_md_area_especialidad = us_md_area_especialidad;
+	}
+	public String getUs_md_descripcion() {
+		return us_md_descripcion;
+	}
+	public void setUs_md_descripcion(String us_md_descripcion) {
+		this.us_md_descripcion = us_md_descripcion;
+	}
+	public String getUs_pa_estado_civil() {
+		return us_pa_estado_civil;
+	}
+	public void setUs_pa_estado_civil(String us_pa_estado_civil) {
+		this.us_pa_estado_civil = us_pa_estado_civil;
+	}
+	public String getUs_pa_nivel_estudio() {
+		return us_pa_nivel_estudio;
+	}
+	public void setUs_pa_nivel_estudio(String us_pa_nivel_estudio) {
+		this.us_pa_nivel_estudio = us_pa_nivel_estudio;
+	}
+	public String getUs_pa_ocupacion() {
+		return us_pa_ocupacion;
+	}
+	public void setUs_pa_ocupacion(String us_pa_ocupacion) {
+		this.us_pa_ocupacion = us_pa_ocupacion;
+	}
+	public String getUs_pa_etnia() {
+		return us_pa_etnia;
+	}
+	public void setUs_pa_etnia(String us_pa_etnia) {
+		this.us_pa_etnia = us_pa_etnia;
+	}
+	public String getUs_pa_religion() {
+		return us_pa_religion;
+	}
+	public void setUs_pa_religion(String us_pa_religion) {
+		this.us_pa_religion = us_pa_religion;
+	}
+	public String getUs_pa_tipo_sangre() {
+		return us_pa_tipo_sangre;
+	}
+	public void setUs_pa_tipo_sangre(String us_pa_tipo_sangre) {
+		this.us_pa_tipo_sangre = us_pa_tipo_sangre;
+	}
+	public String getUs_pa_identidad_sexual() {
+		return us_pa_identidad_sexual;
+	}
+	public void setUs_pa_identidad_sexual(String us_pa_identidad_sexual) {
+		this.us_pa_identidad_sexual = us_pa_identidad_sexual;
+	}
+	public String getUs_pa_procedencia() {
+		return us_pa_procedencia;
+	}
+	public void setUs_pa_procedencia(String us_pa_procedencia) {
+		this.us_pa_procedencia = us_pa_procedencia;
+	}
+	public List<HistoriaClinica> getHistorias_clinica() {
+		return historias_clinica;
+	}
+	public void setHistorias_clinica(List<HistoriaClinica> historias_clinica) {
+		this.historias_clinica = historias_clinica;
+	}
+	public List<Cita> getCitas() {
+		return citas;
+	}
+	public void setCitas(List<Cita> citas) {
+		this.citas = citas;
+	}
 	@Override
 	public String toString() {
 		return "Usuario [us_cedula=" + us_cedula + ", us_rol=" + us_rol + ", us_nombres=" + us_nombres
 				+ ", us_apellidos=" + us_apellidos + ", us_sexo=" + us_sexo + ", us_fecha_nacimiento="
-				+ us_fecha_nacimiento + ", us_correo=" + us_correo + ", us_usuario=" + us_usuario + ", us_contrasena="
-				+ us_contrasena + "]";
+				+ us_fecha_nacimiento + ", us_correo=" + us_correo + ", us_contrasena=" + us_contrasena
+				+ ", us_md_area_especialidad=" + us_md_area_especialidad + ", us_md_descripcion=" + us_md_descripcion
+				+ ", us_pa_estado_civil=" + us_pa_estado_civil + ", us_pa_nivel_estudio=" + us_pa_nivel_estudio
+				+ ", us_pa_ocupacion=" + us_pa_ocupacion + ", us_pa_etnia=" + us_pa_etnia + ", us_pa_religion="
+				+ us_pa_religion + ", us_pa_tipo_sangre=" + us_pa_tipo_sangre + ", us_pa_identidad_sexual="
+				+ us_pa_identidad_sexual + ", us_pa_procedencia=" + us_pa_procedencia + ", historias_clinica="
+				+ historias_clinica + ", citas=" + citas + "]";
 	}
+	
+	
+	
+	
+	
 }
