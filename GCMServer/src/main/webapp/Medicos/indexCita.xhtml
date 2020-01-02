@@ -7,12 +7,21 @@
 <ui:composition template="../Plantilla/plantilla.xhtml">
 	<ui:define name="tituloPagina">Citas Médicas - Inicio</ui:define>
 	<ui:define name="h1Titulo">Citas Médicas</ui:define>
-	<ui:define name="navegador">Inicio</ui:define>
 	<ui:define name="contenido">
-		<h:form>
-			<h:panelGrid >
-			</h:panelGrid>
-		</h:form>
+		<h:dataTable value="#{gestionCitasBean.recuperarCitas()}" var="cita">
+		<h:column>
+			#{cita.ci_codigo}
+			<f:facet name="header">Código</f:facet>
+		</h:column>
+		<h:column>
+			#{cita.ci_fecha_cita}
+			<f:facet name="header">Fecha</f:facet>
+		</h:column>
+		<h:column>
+			#{cita.us_usuario.us_nombres}
+			<f:facet name="header">Paciente</f:facet>
+		</h:column>
+</h:dataTable>
 	</ui:define>
 </ui:composition>
 </html>

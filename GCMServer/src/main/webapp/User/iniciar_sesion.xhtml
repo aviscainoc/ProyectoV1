@@ -11,7 +11,7 @@
 	<ui:define name="contenido">
 		<h:form>
 			<h:panelGrid columns="1">
-				<h:inputText value="#{gestionUsuariosBean.us_correo}" class="form-control form-control-navbar" placeholder="correo" aria-label="Search"></h:inputText>
+				<input value="#{gestionUsuariosBean.us_correo}" class="form-control form-control-navbar" placeholder="correo" aria-label="Search"></input>
 				<h:inputSecret value="#{gestionUsuariosBean.us_contrasena}" class="form-control form-control-navbar" placeholder="contraseña"></h:inputSecret>
 				<h:commandButton action="#{gestionUsuariosBean.login()}" class="btn btn-primary" value="Iniciar Sesión"></h:commandButton>
 			</h:panelGrid>

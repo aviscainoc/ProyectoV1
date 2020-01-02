@@ -1,0 +1,20 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"> 
+
+<ui:composition template="../Plantilla/plantilla.xhtml">
+	<ui:define name="tituloPagina">Citas Médicas - Perfil</ui:define>
+	<ui:define name="h1Titulo">Perfil</ui:define>
+	<ui:define name="contenido">
+		<h:form>
+			<h:panelGrid columns="2" border="1">
+				<f:facet name = "header"><img src="../Plantilla/dist/img/user2-2-160x160.jpg"></img></f:facet>
+				<h:outputLabel>Dr. David</h:outputLabel>
+				<h:outputLabel>Enriquez Mancheno</h:outputLabel>
+			</h:panelGrid>
+		</h:form>
+	</ui:define>
+</ui:composition>
+</html>
