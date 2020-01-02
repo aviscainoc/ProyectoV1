@@ -23,6 +23,10 @@ public class GestionMedicosBean {
 	
 	
 	
+	
+	
+	
+	
 	public GestionMedicosLocal getGl() {
 		return gl;
 	}
@@ -81,7 +85,7 @@ public class GestionMedicosBean {
 
 	public String guardarUsuarios() {
 		System.out.println(us_codigo + " " + us_nombre + " ");
-		gl.guardarMedico(us_codigo, us_nombre, us_fechaNacimiento, us_nickname, us_password);
+		gl.guardarMedico(1, us_nombre, us_fechaNacimiento, us_nickname, us_password);
 		medicos = gl.getMedicos();
 		return "principal";
 	}

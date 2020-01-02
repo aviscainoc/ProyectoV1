@@ -7,6 +7,7 @@ public class ExamenLaboratorio {
 
 	@Id
 	private int el_codigo;
+	
 	private Cita ci_codigo;
 	private String el_sangre;
 	private String el_plaquetas;
