@@ -1,0 +1,32 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"> 
+
+<h:head></h:head> 
+<h:body>
+<h:form>
+
+<center><h1>Inicia Sesion</h1></center>
+
+
+<center>
+	<h:panelGrid columns="2">
+		<h:outputLabel value="Correo " />
+		<h:inputText value="#{gestionUsuariosBean.us_correo}" placeholder="Correo electronico" />
+		
+		<h:outputLabel value="Contrasena " />
+		<h:inputText value="#{gestionUsuariosBean.us_contrasena}" placeholder="Contrasena" />
+		
+	
+		
+		<h:commandButton action="#{gestionUsuariosBean.login()}" value="Ingresar">
+		</h:commandButton>
+	
+		<h:commandButton action="index" value="Regresar"></h:commandButton>
+	</h:panelGrid>
+</center>
+</h:form>
+</h:body>
+</html>

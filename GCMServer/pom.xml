@@ -26,7 +26,7 @@
     <name>WildFly Quickstarts: GCMServer</name>
     <description>A starter Java EE 7 webapp project for use on JBoss WildFly / WildFly, generated from the jboss-javaee6-webapp archetype</description>
 
-    <url>http://wildfly.org</url>
+   <url>http://wildfly.org</url>
     <licenses>
         <license>
             <name>Apache License, Version 2.0</name>

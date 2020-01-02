@@ -5,8 +5,9 @@ import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.inject.Inject;
 
-import negocio.GestionMedicosLocal;
 import modelo.*;
+import negocio.GestionMedicosLocal;
+
 @ManagedBean
 public class GestionMedicosBean {
 	

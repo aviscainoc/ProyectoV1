@@ -1,0 +1,51 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"> 
+
+<h:head></h:head> 
+<h:body>
+<center><h1>Actualizar Usuario</h1></center>
+<center>
+<h:form>
+	<h:panelGrid columns="2">
+		<h:outputLabel value="Código: " />
+		<h:inputText value="#{gestionPacientesBean.pa_codigo}" placeholder="Código" />
+		
+		<h:outputLabel value="Estado Civil" />
+		<h:inputText value="#{gestionPacientesBean.pa_estado_civil}" placeholder="Estado civil" />
+		
+		<h:outputLabel value="Nivel de estudio" />
+		<h:inputText value="#{gestionPacientesBean.pa_nivel_estudio}" placeholder="Nivel de estudio" />
+		
+		<h:outputLabel value="Ocupacion" />
+		<h:inputText value="#{gestionPacientesBean.pa_ocupacion}" placeholder="Ocupacion" />
+		
+		<h:outputLabel value="Etnia" />
+		<h:inputText value="#{gestionPacientesBean.pa_etnia}" placeholder="Etnia" />
+		
+		<h:outputLabel value="Religion" />
+		<h:inputText value="#{gestionPacientesBean.pa_religion}" placeholder="Religion" />
+		
+		<h:outputLabel value="Tipo de Sangre" />
+		<h:inputText value="#{gestionPacientesBean.pa_tipo_sangre}" placeholder="Grupo sanguineo" />
+		
+		<h:outputLabel value="Orientacion Sexual" />
+		<h:inputText value="#{gestionPacientesBean.pa_identidad_sexual}" placeholder="Preferencia sexual" />
+		
+		<h:outputLabel value="Procedencia" />
+		<h:inputText value="#{gestionPacientesBean.pa_precedencia}" placeholder="Procedencia" />
+		
+		
+		<h:commandButton  value="Actualizar" action="#{gestionPacientesBean.update()}"></h:commandButton>
+		<h:commandButton action="index" value="Regresar"></h:commandButton>
+	</h:panelGrid>
+</h:form>
+</center>
+</h:body>
+
+</html>
+
+
+

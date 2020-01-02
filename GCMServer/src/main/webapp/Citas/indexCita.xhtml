@@ -4,19 +4,8 @@
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:h="http://java.sun.com/jsf/html"> 
 
-<h:head></h:head> 
-<h:body>
-
-<center><h1>Bienvenidos al Sistema de Gestión de Pacientes</h1></center>
-<center><h:form>
-	<h:panelGrid columns="2">
-		<h:commandButton style="width:150px;border-color:Blue;border-style:dotted;" action="create-cita" value="Insertar"></h:commandButton>
-		<h:commandButton style="width:150px;border-color:Blue;border-style:dotted;" action="update-cita" value ="Actualizar"></h:commandButton>
-		<h:commandButton style="width:150px;border-color:Blue;border-style:dotted;" action="delete-cita" value="Eliminar"></h:commandButton>
-		<h:commandButton style="width:150px;border-color:Blue;border-style:dotted;" action="read-cita" value="Listar"></h:commandButton>
-	</h:panelGrid>
-
-
-</h:form></center>
-</h:body>
+<ui:composition template="../Plantilla/plantilla.xhtml">
+	<ui:define name="h1Titulo">Citas Médicas</ui:define>
+	<ui:define name="navegador">Inicio</ui:define>
+</ui:composition>
 </html>
