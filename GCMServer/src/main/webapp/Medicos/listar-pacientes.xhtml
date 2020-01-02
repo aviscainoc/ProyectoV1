@@ -1,54 +1,52 @@
-<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:h="http://java.sun.com/jsf/html"
-       template="blank.xhtml">
+      xmlns:h="http://java.sun.com/jsf/html"> 
 	
 	<ui:define name = "titulo">Listar Pacientes</ui:define>
 	<ui:define name = "contenido"> 
 	
 		<h:form> 
-	<h:dataTable value="#{gestionPacientesBean.pacientes}" var="paciente">
+	<h:dataTable value="#{gestionUsuariosBean.usuarios}" var="paciente">
 
 		<h:column>
-			#{paciente.id}
+			#{paciente.us_cedula}
 			<f:facet name="header">Id</f:facet>
 		</h:column>
 	
 		<h:column>
-			#{paciente.nombre}
+			#{paciente.us_nombres}
 			<f:facet name="header">Nombre</f:facet>
 		</h:column>
 		<h:column>
-			#{paciente.apellido}
+			#{paciente.us_apellidos}
 			<f:facet name="header">apellido</f:facet>
 		</h:column>
 	
 		<h:column>
-			#{paciente.cedula}
-			<f:facet name="header">cedula</f:facet>
+			#{paciente.us_pa_estado_civil}
+			<f:facet name="header">Estado Civil</f:facet>
 		</h:column>
 		<h:column>
-			#{paciente.direccion}
-			<f:facet name="header">direccion</f:facet>
+			#{paciente.us_pa_etnia}
+			<f:facet name="header">Etnia</f:facet>
 		</h:column>
 	
 		<h:column>
-			#{paciente.telefono}
-			<f:facet name="header">Telefono</f:facet>
+			#{paciente.us_correo}
+			<f:facet name="header">Correo</f:facet>
 		</h:column>
 		<h:column>
-			#{paciente.email}
-			<f:facet name="header">email</f:facet>
+			#{paciente.us_pa_ocupacion}
+			<f:facet name="header">Ocupacion</f:facet>
 		</h:column>
 		
 		
 </h:dataTable>	
-<h:commandButton value="Regresar" action="guardar_paciente">
+<h:commandButton value="Regresar" action="principal">
 </h:commandButton>
 </h:form>
+</ui:define>
+</html>
 	
-	</ui:define>
-	
-	
-	</ui:composition>
