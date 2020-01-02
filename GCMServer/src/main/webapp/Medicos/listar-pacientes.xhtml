@@ -1,0 +1,54 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+       template="blank.xhtml">
+	
+	<ui:define name = "titulo">Listar Pacientes</ui:define>
+	<ui:define name = "contenido"> 
+	
+		<h:form> 
+	<h:dataTable value="#{gestionPacientesBean.pacientes}" var="paciente">
+
+		<h:column>
+			#{paciente.id}
+			<f:facet name="header">Id</f:facet>
+		</h:column>
+	
+		<h:column>
+			#{paciente.nombre}
+			<f:facet name="header">Nombre</f:facet>
+		</h:column>
+		<h:column>
+			#{paciente.apellido}
+			<f:facet name="header">apellido</f:facet>
+		</h:column>
+	
+		<h:column>
+			#{paciente.cedula}
+			<f:facet name="header">cedula</f:facet>
+		</h:column>
+		<h:column>
+			#{paciente.direccion}
+			<f:facet name="header">direccion</f:facet>
+		</h:column>
+	
+		<h:column>
+			#{paciente.telefono}
+			<f:facet name="header">Telefono</f:facet>
+		</h:column>
+		<h:column>
+			#{paciente.email}
+			<f:facet name="header">email</f:facet>
+		</h:column>
+		
+		
+</h:dataTable>	
+<h:commandButton value="Regresar" action="guardar_paciente">
+</h:commandButton>
+</h:form>
+	
+	</ui:define>
+	
+	
+	</ui:composition>

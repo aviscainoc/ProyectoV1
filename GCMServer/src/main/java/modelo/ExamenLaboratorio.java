@@ -7,8 +7,10 @@ public class ExamenLaboratorio {
 
 	@Id
 	private int el_codigo;
+	
 	@OneToOne
 	private Cita ci_codigo;
+	
 	private String el_sangre;
 	private String el_plaquetas;
 	private String el_grupo_sanguineo;
