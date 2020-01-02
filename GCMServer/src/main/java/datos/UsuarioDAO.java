@@ -23,12 +23,12 @@ public class UsuarioDAO {
 		em.merge(usuario);
 	}
 	
-	public void remove(int codigo) {
+	public void remove(String codigo) {
 		Usuario usuario = this.read(codigo);
 		em.remove(usuario);
 	}
 	
-	public Usuario read(int codigo) {
+	public Usuario read(String codigo) {
 		Usuario u = em.find(Usuario.class, codigo);
 		return u;
 	}
@@ -56,7 +56,7 @@ public class UsuarioDAO {
 			throw new Exception("Usuario no existe");
 		
 		us.getHistorias_clinica().size();
-		
+		us.getCitas().size();
 		return us;
 	}
 	

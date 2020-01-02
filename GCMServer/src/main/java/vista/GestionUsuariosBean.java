@@ -229,8 +229,9 @@ public class GestionUsuariosBean {
 	}
 
 	public String guardarUsuariosPaciente() {
+		String rol="pac";
 		System.out.println(us_cedula + " " + us_nombres + " ");
-		gl.guardarUsuarioPaciente( us_cedula, "pac",   us_nombres,   us_apellidos,  us_sexo,  us_fecha_nacimiento,
+		gl.guardarUsuarioPaciente( us_cedula, rol,   us_nombres,   us_apellidos,  us_sexo,  us_fecha_nacimiento,
 				 us_correo,  us_contrasena,  us_pa_estado_civil,  us_pa_nivel_estudio,  us_pa_ocupacion,  us_pa_etnia, 
 				 us_pa_religion,  us_pa_tipo_sangre,  us_pa_identidad_sexual,  us_pa_procedencia);
 		

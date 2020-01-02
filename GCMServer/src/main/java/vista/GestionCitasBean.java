@@ -1,5 +1,7 @@
 package vista;
 
+import java.sql.Timestamp;
+import java.util.Date;
 import java.util.List;
 
 import javax.faces.bean.ManagedBean;
@@ -17,10 +19,10 @@ public class GestionCitasBean {
 	private GestionCitaLocal gl;
 	
 	private int ci_codigo;
-	private int me_codigo;
-	private int pa_codigo;
-	private String ci_fecha_agendacion;
-	private String ci_fecha_cita;
+	private String us_codigo;
+	//private int pa_codigo;
+	private Date ci_fecha_agendacion ;
+	private Date ci_fecha_cita;
 	
 	private List<Cita> citas;
 	
@@ -33,35 +35,33 @@ public class GestionCitasBean {
 		this.ci_codigo = ci_codigo;
 	}
 
-	public int getMe_codigo() {
-		return me_codigo;
+	
+
+	public String getUs_codigo() {
+		return us_codigo;
 	}
 
-	public void setMe_codigo(int me_codigo) {
-		this.me_codigo = me_codigo;
+	public void setUs_codigo(String us_codigo) {
+		this.us_codigo = us_codigo;
 	}
 
-	public int getPa_codigo() {
-		return pa_codigo;
+	public GestionCitaLocal getGl() {
+		return gl;
 	}
 
-	public void setPa_codigo(int pa_codigo) {
-		this.pa_codigo = pa_codigo;
-	}
-
-	public String getCi_fecha_agendacion() {
+	public Date getCi_fecha_agendacion() {
 		return ci_fecha_agendacion;
 	}
 
-	public void setCi_fecha_agendacion(String ci_fecha_agendacion) {
+	public void setCi_fecha_agendacion(Date ci_fecha_agendacion) {
 		this.ci_fecha_agendacion = ci_fecha_agendacion;
 	}
 
-	public String getCi_fecha_cita() {
+	public Date getCi_fecha_cita() {
 		return ci_fecha_cita;
 	}
 
-	public void setCi_fecha_cita(String ci_fecha_cita) {
+	public void setCi_fecha_cita(Date ci_fecha_cita) {
 		this.ci_fecha_cita = ci_fecha_cita;
 	}
 
@@ -78,7 +78,12 @@ public class GestionCitasBean {
 	}
 	
 	public String guardarCita() {
-		gl.guardarCita(ci_codigo, me_codigo, pa_codigo, ci_fecha_agendacion, ci_fecha_cita);
+		ci_fecha_agendacion = new Date();
+		ci_fecha_cita = new Date();
+		
+		 System.out.println(ci_fecha_agendacion);
+		System.out.println(ci_fecha_agendacion.getTime());
+		gl.guardarCita(ci_codigo, us_codigo, ci_fecha_agendacion, ci_fecha_cita);
 		citas=gl.getCitas();
 		return "index-citas";
 	}
@@ -94,7 +99,7 @@ public class GestionCitasBean {
 	}
 	
 	public void update() {
-		gl.updateCita(ci_codigo, me_codigo, pa_codigo, ci_fecha_agendacion, ci_fecha_cita);
+		gl.updateCita(ci_codigo, us_codigo, ci_fecha_agendacion, ci_fecha_cita);
 		
 	}
 

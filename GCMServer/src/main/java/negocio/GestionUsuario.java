@@ -32,6 +32,7 @@ public class GestionUsuario implements GestionUsuariosLocal, GestionUsuariosRemo
 		
 		Usuario u = new Usuario();
 		u.setUs_cedula(us_cedula);
+		u.setUs_rol(us_rol);
 		u.setUs_nombres(us_nombres);
 		u.setUs_apellidos(us_apellidos);
 		u.setUs_sexo(us_sexo);
@@ -63,7 +64,7 @@ public class GestionUsuario implements GestionUsuariosLocal, GestionUsuariosRemo
 		u.setUs_md_area_especialidad(us_md_area_especialidad);
 		u.setUs_md_descripcion(us_md_descripcion);
 		daoU.insert(u);
-
+		//return index';
 		
 	}
 		
@@ -73,6 +74,8 @@ public class GestionUsuario implements GestionUsuariosLocal, GestionUsuariosRemo
 	
 	public Usuario login(String usuario, String contrasena) throws Exception {
 		Usuario usr= daoU.login(usuario, contrasena);
+		System.out.println(usr.getUs_rol());
+		
 		return usr;
 	}
 

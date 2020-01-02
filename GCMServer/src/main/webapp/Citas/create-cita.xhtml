@@ -13,21 +13,14 @@
 		<h:outputLabel value="Código: " />
 		<h:inputText value="#{gestionCitasBean.ci_codigo}" placeholder="Código" />
 		
-		<h:outputLabel value="Codigo del medico" />
-		<h:inputText value="#{gestionCitasBean.me_codigo}" placeholder="Codigo del medico" />
+		<h:outputLabel value="Codigo del usuario" />
+		<h:inputText value="#{gestionCitasBean.us_codigo}" placeholder="Codigo del usuario" />
 		
-		<h:outputLabel value="codigo del Paciente" />
-		<h:inputText value="#{gestionCitasBean.pa_codigo}" placeholder="Codigo del paciente " />
-		
-		<h:outputLabel value="Ocupacion" />
-		<h:inputText value="#{gestionPacientesBean.pa_ocupacion}" placeholder="Ocupacion" />
-		
-		<h:outputLabel value="Fecha de agendacion" />
-		<h:inputText value="#{gestionCitasBean.ci_fecha_agendacion}" placeholder="Fecha de agendacion" />
 		
 		<h:outputLabel value="Fecha de cita" />
-		<h:inputText value="#{gestionCitasBean.ci_fecha_cita}" placeholder="Fecha de cita" />
-		
+		<h:inputText value="#{gestionCitasBean.ci_fecha_cita}" placeholder="Fecha de cita" >
+			<f:convertDateTime pattern = "dd-mm-yyyy" />
+		</h:inputText>
 		
 		
 		
