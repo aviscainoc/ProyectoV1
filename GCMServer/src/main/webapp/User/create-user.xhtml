@@ -4,64 +4,39 @@
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:h="http://java.sun.com/jsf/html"> 
 
-<h:head></h:head> 
-<body>
-<h1>Registrar un nuevo Usuario</h1>
-
-<h:form>
-	<h:panelGrid columns="2">
-		<h:outputLabel value="Cedula " />
-		<h:inputText value="#{gestionUsuariosBean.us_cedula}" placeholder="Cedula" />
-		
-		<h:outputLabel value="Nombres" />
-		<h:inputText value="#{gestionUsuariosBean.us_nombres}" placeholder="Nombres" />
-		
-		<h:outputLabel value="Apellidos" />
-		<h:inputText value="#{gestionUsuariosBean.us_apellidos}" placeholder="Apellidos" />
-		
-		<h:outputLabel value="Sexo " />
-		<h:inputText value="#{gestionUsuariosBean.us_sexo}" placeholder="Sexo" />
-		
-		<h:outputLabel value=" Fecha de nacimiento" />
-		
-		<h:inputText value="#{gestionUsuariosBean.us_fecha_nacimiento}" placeholder="Fecha de nacimiento" >
-			<f:convertDateTime pattern = "dd-mm-yyyy" />
-		</h:inputText>
-		
-		<h:outputLabel value="Correo Electronico " />
-		<h:inputText value="#{gestionUsuariosBean.us_correo}" placeholder="Correo" />
-		
-		<h:outputLabel value="Contrasenia " />
-		<h:inputText value="#{gestionUsuariosBean.us_contrasena}" placeholder="Contrasena" />
-		
-		<h:outputLabel value="Estado Civil" />
-		<h:inputText value="#{gestionUsuariosBean.us_pa_estado_civil}" placeholder="Estado civil" />
-		
-		<h:outputLabel value="Nivel de estudio" />
-		<h:inputText value="#{gestionUsuariosBean.us_pa_nivel_estudio}" placeholder="Nivel de estudio" />
-		
-		<h:outputLabel value="Ocupacion" />
-		<h:inputText value="#{gestionUsuariosBean.us_pa_ocupacion}" placeholder="Ocupacion" />
-		
-		<h:outputLabel value="Etnia" />
-		<h:inputText value="#{gestionUsuariosBean.us_pa_etnia}" placeholder="Etnia" />
-		
-		<h:outputLabel value="Religion" />
-		<h:inputText value="#{gestionUsuariosBean.us_pa_religion}" placeholder="Religion" />
-		
-		<h:outputLabel value="Tipo de Sangre" />
-		<h:inputText value="#{gestionUsuariosBean.us_pa_tipo_sangre}" placeholder="Grupo sanguineo" />
-		
-		<h:outputLabel value="Orientacion Sexual" />
-		<h:inputText value="#{gestionUsuariosBean.us_pa_identidad_sexual}" placeholder="Preferencia sexual" />
-		
-		<h:outputLabel value="Procedencia" />
-		<h:inputText value="#{gestionUsuariosBean.us_pa_procedencia}" placeholder="Procedencia" />
-		
-		
-	</h:panelGrid>
-	<h:commandButton action="#{gestionUsuariosBean.guardarUsuariosPaciente()}" value="Guardar" />
-	<h:commandButton action="index" value="Regresar"></h:commandButton>
-</h:form>
-</body>   
+<ui:composition template="../Plantilla/plantilla2.xhtml">
+	<ui:define name="tituloPagina">Citas Médicas - Registrarse</ui:define>
+	<ui:define name="h1Titulo">Registrarse</ui:define>
+	<ui:define name="contenido">
+		<h:form>
+			<h:panelGrid columns="2">
+				<h:outputLabel value="Cedula " />
+				<h:inputText class="form-control form-control-navbar" value="#{gestionUsuariosBean.us_cedula}" placeholder="Cedula" />
+				
+				<h:outputLabel value="Nombres" />
+				<h:inputText class="form-control form-control-navbar" value="#{gestionUsuariosBean.us_nombres}" placeholder="Nombres" />
+				
+				<h:outputLabel value="Apellidos" />
+				<h:inputText class="form-control form-control-navbar" value="#{gestionUsuariosBean.us_apellidos}" placeholder="Apellidos" />
+				
+				<h:outputLabel value="Sexo " />
+				<h:inputText class="form-control form-control-navbar" value="#{gestionUsuariosBean.us_sexo}" placeholder="Sexo" />
+				
+				<h:outputLabel value=" Fecha de nacimiento" />
+				<h:inputText class="form-control form-control-navbar" value="#{gestionUsuariosBean.us_fecha_nacimiento}" placeholder="Fecha de nacimiento" >
+					<f:convertDateTime pattern = "dd-mm-yyyy" />
+				</h:inputText>
+				
+				<h:outputLabel value="Correo Electronico " />
+				<h:inputText class="form-control form-control-navbar" value="#{gestionUsuariosBean.us_correo}" placeholder="Correo" />
+				
+				<h:outputLabel value="Contrasenia " />
+				<h:inputText class="form-control form-control-navbar" value="#{gestionUsuariosBean.us_contrasena}" placeholder="Contrasena" />
+			</h:panelGrid>
+			<h:commandButton action="#{gestionUsuariosBean.guardarUsuariosPaciente()}" value="Guardar" />
+			<h:commandButton action="index" value="Regresar"></h:commandButton>
+		</h:form>
+	</ui:define>
+</ui:composition>
+  
 </html>

@@ -4,19 +4,22 @@
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:h="http://java.sun.com/jsf/html"> 
 
-<h:head></h:head> 
-<h:body>
-
-<center><h1>Bienvenidos al Sistema de Gestión de Pacientes</h1></center>
-<center><h:form>
-	<h:panelGrid columns="2">
-		<h:commandButton style="width:150px;border-color:Blue;border-style:dotted;" action="create-user" value="Insertar"></h:commandButton>
-		<h:commandButton style="width:150px;border-color:Blue;border-style:dotted;" action="update-user" value ="Actualizar"></h:commandButton>
-		<h:commandButton style="width:150px;border-color:Blue;border-style:dotted;" action="delete-user" value="Eliminar"></h:commandButton>
-		<h:commandButton style="width:150px;border-color:Blue;border-style:dotted;" action="read-user" value="Listar"></h:commandButton>
-	</h:panelGrid>
-
-
-</h:form></center>
-</h:body>
+<ui:composition template="../Plantilla/plantilla2.xhtml">
+	<ui:define name="h1Titulo"><a href="../Medicos/dr.xhtml">Dr. David Enriquez - Médico General</a></ui:define>
+	<ui:define name="contenido">
+		<center><h4>Por favor, ingresa los datos de la persona que va a ser atendida.</h4></center>
+		<br/>
+		<br></br>
+		<form class="form-inline ml-3">
+	      <div class="input-group input-group-sm">
+	      	<h:panelGrid columns="4">
+	      		<input class="form-control form-control-navbar" placeholder="Ingresar número de cédula" aria-label="Search"></input>
+	      		<input class="form-control form-control-navbar" placeholder="Ingresar fecha de la cita" aria-label="Search"></input>
+		    	<h:commandButton value="Generar Cita Médica"></h:commandButton>
+		    	<img src="../Plantilla/dist/img/personaje.png" class="img-circle elevation-2" alt="User Image"></img>
+	      	</h:panelGrid>
+	      </div>
+	    </form>
+	</ui:define>
+</ui:composition>
 </html>
