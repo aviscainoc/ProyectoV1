@@ -67,7 +67,15 @@ public class GestionUsuario implements GestionUsuariosLocal, GestionUsuariosRemo
 		
 	}
 		
+	public List<Usuario> getUsuarios(){
+		return daoU.getUsuarios();
+	}
 	
+	public Usuario login(String usuario, String contrasena) throws Exception {
+		Usuario usr= daoU.login(usuario, contrasena);
+		return usr;
+	}
+
 	
 	
 }

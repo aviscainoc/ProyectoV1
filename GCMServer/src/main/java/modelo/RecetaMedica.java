@@ -8,6 +8,7 @@ public class RecetaMedica {
 	@Id
 	private int rm_codigo;
 	private Paciente pa_codigo;
+	@OneToOne
 	private Cita ci_codigo;
 	private String rm_medicamento;
 	private String rm_forma_farmaceutica;

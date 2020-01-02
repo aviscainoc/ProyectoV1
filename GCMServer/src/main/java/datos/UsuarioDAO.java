@@ -43,14 +43,20 @@ public class UsuarioDAO {
 	}
 	
 	
-	public Usuario login(String usuario, String contrasena) {
-		String jpql = "SELECT u FROM Usuario u WHERE us_usuario = ?1 AND us_password = ?2";
+	public Usuario login(String correo, String contrasena) throws Exception {
+		String jpql = "SELECT u FROM Usuario u WHERE us_correo = ?1 AND us_contrasena = ?2";
 		Query q = em.createQuery(jpql, Usuario.class);
-		q.setParameter(1, "%" + usuario + "%");
-		q.setParameter(2, "%" + contrasena + "%");
+		q.setParameter(1, correo );
+		q.setParameter(2, contrasena );
 		
-		List<Usuario> user = q.getResultList();
-		Usuario us = user.get(0);
+		
+		Usuario us = (Usuario) q.getSingleResult();
+		
+		if(us==null)
+			throw new Exception("Usuario no existe");
+		
+		us.getHistorias_clinica().size();
+		
 		return us;
 	}
 	

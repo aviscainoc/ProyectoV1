@@ -5,9 +5,9 @@
       xmlns:h="http://java.sun.com/jsf/html"> 
 
 <h:head></h:head> 
-<body>
-<h1>Registrar un nuevo Paciente</h1>
-
+<h:body>
+<center><h1>Actualizar Usuario</h1></center>
+<center>
 <h:form>
 	<h:panelGrid columns="2">
 		<h:outputLabel value="Código: " />
@@ -15,7 +15,7 @@
 		
 		<h:outputLabel value="Estado Civil" />
 		<h:inputText value="#{gestionPacientesBean.pa_estado_civil}" placeholder="Estado civil" />
-			
+		
 		<h:outputLabel value="Nivel de estudio" />
 		<h:inputText value="#{gestionPacientesBean.pa_nivel_estudio}" placeholder="Nivel de estudio" />
 		
@@ -38,9 +38,14 @@
 		<h:inputText value="#{gestionPacientesBean.pa_precedencia}" placeholder="Procedencia" />
 		
 		
+		<h:commandButton  value="Actualizar" action="#{gestionPacientesBean.update()}"></h:commandButton>
+		<h:commandButton action="index" value="Regresar"></h:commandButton>
 	</h:panelGrid>
-	<h:commandButton action="#{gestionPacientesBean.guardarPaciente()}" value="Guardar" />
-	<h:commandButton action="index" value="Regresar"></h:commandButton>
 </h:form>
-</body>   
+</center>
+</h:body>
+
 </html>
+
+
+
