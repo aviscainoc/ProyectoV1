@@ -20,12 +20,27 @@ public class GestionCitasBean {
 	
 	private int ci_codigo;
 	private String us_codigo;
-	//private int pa_codigo;
+	private String ci_estado;
+	private String ci_diagnostico;
 	private Date ci_fecha_agendacion ;
 	private Date ci_fecha_cita;
-	
 	private List<Cita> citas;
 	
+	public String getCi_estado() {
+		return ci_estado;
+	}
+
+	public void setCi_estado(String ci_estado) {
+		this.ci_estado = ci_estado;
+	}
+
+	public String getCi_diagnostico() {
+		return ci_diagnostico;
+	}
+
+	public void setCi_diagnostico(String ci_diagnostico) {
+		this.ci_diagnostico = ci_diagnostico;
+	}
 	
 	public int getCi_codigo() {
 		return ci_codigo;
@@ -34,8 +49,6 @@ public class GestionCitasBean {
 	public void setCi_codigo(int ci_codigo) {
 		this.ci_codigo = ci_codigo;
 	}
-
-	
 
 	public String getUs_codigo() {
 		return us_codigo;
@@ -81,17 +94,16 @@ public class GestionCitasBean {
 		ci_fecha_agendacion = new Date();
 		ci_fecha_cita = new Date();
 		
-		 System.out.println(ci_fecha_agendacion);
+		System.out.println(ci_fecha_agendacion);
 		System.out.println(ci_fecha_agendacion.getTime());
-		gl.guardarCita(ci_codigo, us_codigo, ci_fecha_agendacion, ci_fecha_cita);
+		gl.guardarCita(ci_codigo, us_codigo, ci_fecha_agendacion, ci_fecha_cita, ci_estado, ci_diagnostico);
 		citas=gl.getCitas();
 		return "index-citas";
 	}
 	
 	public List<Cita> recuperarCitas(){
 		citas=gl.getCitas();
-		return citas;
-		
+		return citas;	
 	}
 	
 	public void eliminar() {
@@ -99,8 +111,7 @@ public class GestionCitasBean {
 	}
 	
 	public void update() {
-		gl.updateCita(ci_codigo, us_codigo, ci_fecha_agendacion, ci_fecha_cita);
-		
+		gl.updateCita(ci_codigo, us_codigo, ci_fecha_agendacion, ci_fecha_cita, ci_estado, ci_diagnostico);
 	}
 
 }

@@ -23,12 +23,14 @@ public class GestionCita implements GestionCitaLocal, GestionCitaRemote{
 	@Inject
 	private UsuarioDAO daoU;
 
-	public void guardarCita(int ci_codigo, String codigoU, Date ci_fecha_agendacion, Date ci_fecha_cita) {
+	public void guardarCita(int ci_codigo, String codigoU, Date ci_fecha_agendacion, Date ci_fecha_cita, String ci_estado, String ci_diagnostico) {
 		Cita c = new Cita();
 		c.setCi_codigo(ci_codigo);
 		c.setUs_usuario(daoU.read(codigoU));
 		c.setCi_fecha_agendacion(ci_fecha_agendacion);
 		c.setCi_fecha_cita(ci_fecha_cita);
+		c.setCi_estado(ci_estado);
+		c.setCi_diagnostico(ci_diagnostico);
 		dao.insert(c);
 	}
 	
@@ -36,7 +38,7 @@ public class GestionCita implements GestionCitaLocal, GestionCitaRemote{
 		return dao.getCitas();
 	}
 	
-	public void updateCita(int ci_codigo, String codigoU, Date ci_fecha_agendacion, Date ci_fecha_cita) {
+	public void updateCita(int ci_codigo, String codigoU, Date ci_fecha_agendacion, Date ci_fecha_cita, String ci_estado, String ci_diagnostico) {
 		Cita c = new Cita();
 		c.setCi_codigo(ci_codigo);
 		c.setUs_usuario(daoU.read(codigoU));
@@ -44,6 +46,8 @@ public class GestionCita implements GestionCitaLocal, GestionCitaRemote{
 		c.setPa_codigo(daoP.read(codigoPa));*/
 		c.setCi_fecha_agendacion(ci_fecha_agendacion);
 		c.setCi_fecha_cita(ci_fecha_cita);
+		c.setCi_estado(ci_estado);
+		c.setCi_diagnostico(ci_diagnostico);
 		dao.update(c);
 	}
 	
