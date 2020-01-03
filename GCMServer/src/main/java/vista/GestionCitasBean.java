@@ -10,14 +10,25 @@ import javax.inject.Inject;
 import modelo.Cita;
 import modelo.Medico;
 import modelo.Paciente;
+import modelo.Usuario;
 import negocio.GestionCitaLocal;
 import negocio.GestionMedicosLocal;
+import negocio.GestionUsuariosRemote;
 @ManagedBean
 public class GestionCitasBean {
 
 	@Inject
 	private GestionCitaLocal gl;
+	@Inject GestionUsuariosRemote gul;
 	
+	public GestionUsuariosRemote getGul() {
+		return gul;
+	}
+
+	public void setGul(GestionUsuariosRemote gul) {
+		this.gul = gul;
+	}
+
 	private int ci_codigo;
 	private String us_codigo;
 	private String ci_estado;
@@ -91,14 +102,23 @@ public class GestionCitasBean {
 	}
 	
 	public String guardarCita() {
+		String rol="pac";
+		int registro=0;
 		ci_fecha_agendacion = new Date();
-		ci_fecha_cita = new Date();
 		
-		System.out.println(ci_fecha_agendacion);
-		System.out.println(ci_fecha_agendacion.getTime());
+		
+	
+	
 		gl.guardarCita(us_codigo, ci_fecha_agendacion, ci_fecha_cita, ci_estado, ci_diagnostico);
+		
 		citas=gl.getCitas();
-		return "index-citas";
+		Usuario userRecuperado = gul.recuperarUsuario(us_codigo);
+		if(userRecuperado!=null) {
+			return "index-citas";
+		}else {
+		gul.guardarUsuarioPaciente(us_codigo, rol, registro, null, null, null, null, null, null, null, null, null, null, null, null, null, null);
+		return "LaPaginaPersuadisadora";
+		}
 	}
 	
 	public List<Cita> recuperarCitas(){

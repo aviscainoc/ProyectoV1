@@ -26,13 +26,14 @@ public class GestionUsuario implements GestionUsuariosLocal, GestionUsuariosRemo
 	@Inject
 	private CitaDAO daoC;
 	
-	public void guardarUsuarioPaciente(String us_cedula, String us_rol, String  us_nombres, String  us_apellidos, String us_sexo, Date us_fecha_nacimiento,
+	public void guardarUsuarioPaciente(String us_cedula, String us_rol, int us_pa_registro, String  us_nombres, String  us_apellidos, String us_sexo, Date us_fecha_nacimiento,
 			String us_correo, String us_contrasena, String us_pa_estado_civil, String us_pa_nivel_estudio, String us_pa_ocupacion, String us_pa_etnia, 
 			String us_pa_religion, String us_pa_tipo_sangre, String us_pa_identidad_sexual, String us_pa_procedencia) {
 		
 		Usuario u = new Usuario();
 		u.setUs_cedula(us_cedula);
 		u.setUs_rol(us_rol);
+		u.setUs_pa_registro(us_pa_registro);
 		u.setUs_nombres(us_nombres);
 		u.setUs_apellidos(us_apellidos);
 		u.setUs_sexo(us_sexo);
@@ -80,6 +81,13 @@ public class GestionUsuario implements GestionUsuariosLocal, GestionUsuariosRemo
 		
 		return usr;
 	}
+	
+	public Usuario recuperarUsuario(String cedula) {
+		System.out.println("mostrando a"+daoU.read(cedula));
+		
+		return daoU.read(cedula);
+	}
+
 
 	
 	
