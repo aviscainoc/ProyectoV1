@@ -5,9 +5,19 @@ import java.util.Date;
 import javax.persistence.*;
 
 @Entity
+
+@TableGenerator(
+	name = "Cita", 
+	initialValue = 1, 
+	pkColumnName = "ENTITY", 
+	pkColumnValue = "ci_codigo", 
+	allocationSize = 1, 
+	table = "ENTITY_GENERATOR"
+		)
 public class Cita {
 
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int ci_codigo;
 	
 	/*@ManyToOne
