@@ -11,9 +11,9 @@ import modelo.Paciente;
 
 @Local
 public interface GestionCitaLocal {
-	public void guardarCita(int ci_codigo, String codigoU, Date ci_fecha_agendacion, Date ci_fecha_cita);
+	public void guardarCita(int ci_codigo, String codigoU, Date ci_fecha_agendacion, Date ci_fecha_cita, String estado, String diagnostico);
 	public List<Cita> getCitas();
-	public void updateCita(int ci_codigo, String codigoU, Date ci_fecha_agendacion, Date ci_fecha_cita);
+	public void updateCita(int ci_codigo, String codigoU, Date ci_fecha_agendacion, Date ci_fecha_cita, String ci_estado, String ci_diagnostico);
 	public void eliminar(int ci_codigo);
 
 }
