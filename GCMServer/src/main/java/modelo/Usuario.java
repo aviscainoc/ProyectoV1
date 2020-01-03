@@ -33,6 +33,9 @@ public class Usuario {
 	private String us_pa_identidad_sexual;
 	private String us_pa_procedencia;
 	
+	//atributo para saber si se registro o no 
+	private int us_pa_registro;
+	
 	@OneToMany
 	private List<HistoriaClinica> historias_clinica;
 	@OneToMany
@@ -158,6 +161,12 @@ public class Usuario {
 	public void setCitas(List<Cita> citas) {
 		this.citas = citas;
 	}
+	public int getUs_pa_registro() {
+		return us_pa_registro;
+	}
+	public void setUs_pa_registro(int us_pa_registro) {
+		this.us_pa_registro = us_pa_registro;
+	}
 	@Override
 	public String toString() {
 		return "Usuario [us_cedula=" + us_cedula + ", us_rol=" + us_rol + ", us_nombres=" + us_nombres
@@ -167,9 +176,10 @@ public class Usuario {
 				+ ", us_pa_estado_civil=" + us_pa_estado_civil + ", us_pa_nivel_estudio=" + us_pa_nivel_estudio
 				+ ", us_pa_ocupacion=" + us_pa_ocupacion + ", us_pa_etnia=" + us_pa_etnia + ", us_pa_religion="
 				+ us_pa_religion + ", us_pa_tipo_sangre=" + us_pa_tipo_sangre + ", us_pa_identidad_sexual="
-				+ us_pa_identidad_sexual + ", us_pa_procedencia=" + us_pa_procedencia + ", historias_clinica="
-				+ historias_clinica + ", citas=" + citas + "]";
+				+ us_pa_identidad_sexual + ", us_pa_procedencia=" + us_pa_procedencia + ", registro=" + us_pa_registro
+				+ ", historias_clinica=" + historias_clinica + ", citas=" + citas + "]";
 	}
+	
 	
 	
 	

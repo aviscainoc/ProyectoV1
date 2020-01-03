@@ -34,8 +34,8 @@ public class HistoriaClinicaDAO {
 		return u;
 	}
 	
-	public List<HistoriaClinica> getCitas(){
-		String jpql = "SELECT u FROM Paciente u";
+	public List<HistoriaClinica> getHistoriasClinicas(){
+		String jpql = "SELECT u FROM HistoriaClinica u";
 		Query q = em.createQuery(jpql, HistoriaClinica.class);
 		
 		List<HistoriaClinica> hc = q.getResultList();

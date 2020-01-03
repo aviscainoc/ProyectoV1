@@ -230,8 +230,9 @@ public class GestionUsuariosBean {
 
 	public String guardarUsuariosPaciente() {
 		String rol="pac";
+		int registro=1;
 		System.out.println(us_cedula + " " + us_nombres + " ");
-		gl.guardarUsuarioPaciente( us_cedula, rol,   us_nombres,   us_apellidos,  us_sexo,  us_fecha_nacimiento,
+		gl.guardarUsuarioPaciente( us_cedula, rol,registro,   us_nombres,   us_apellidos,  us_sexo,  us_fecha_nacimiento,
 				 us_correo,  us_contrasena,  us_pa_estado_civil,  us_pa_nivel_estudio,  us_pa_ocupacion,  us_pa_etnia, 
 				 us_pa_religion,  us_pa_tipo_sangre,  us_pa_identidad_sexual,  us_pa_procedencia);
 		
@@ -265,11 +266,11 @@ public class GestionUsuariosBean {
 			System.out.println(user);
 			if(user.getUs_rol().equals("pac")) {
 				System.out.println("Tu eres paciente");
-				return "index";
+				return "/User/perfil";
 				
 			}else {
 				System.out.println("Tu eres medico");
-				return "../Medicos/indexCita";
+				return "/Medicos/indexCita";
 			}
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -278,7 +279,8 @@ public class GestionUsuariosBean {
 		return "null";
 		
 	}
-
+	
+	
 }
 
 

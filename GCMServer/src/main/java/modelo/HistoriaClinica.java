@@ -12,6 +12,7 @@ public class HistoriaClinica {
 	private String hc_movito_consulta;
 	private String hc_enfermedad_actual;
 	private Paciente pa_codigo;
+	
 	public int getHc_codigo() {
 		return hc_codigo;
 	}
