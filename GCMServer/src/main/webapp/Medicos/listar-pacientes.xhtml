@@ -3,50 +3,40 @@
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:h="http://java.sun.com/jsf/html"> 
-	
-	<ui:define name = "titulo">Listar Pacientes</ui:define>
-	<ui:define name = "contenido"> 
-	
-		<h:form> 
-	<h:dataTable value="#{gestionUsuariosBean.usuarios}" var="paciente">
 
-		<h:column>
-			#{paciente.us_cedula}
-			<f:facet name="header">Id</f:facet>
-		</h:column>
+<h:head></h:head> 
+<body> 
+
+<center><h1>Pacientes Registrados</h1></center>
+
+<center>
+<h:form>
+
+<h:dataTable value="#{gestionUsuariosBean.recuperarUsuarios()}" var="usuario">
+
+	<h:column>
+		#{usuario.us_cedula}
+		<f:facet name="header">Código</f:facet>
+	</h:column>
+	<h:column>
+		#{usuario.us_nombres}
+		<f:facet name="header">Nombres</f:facet>
+	</h:column>
+	<h:column>
+		#{usuario.us_apellidos}
+		<f:facet name="header">Apellidos</f:facet>
+	</h:column>
+	<h:column>
+		#{usuario.us_rol}
+		<f:facet name="header">Rol</f:facet>
+	</h:column>
 	
-		<h:column>
-			#{paciente.us_nombres}
-			<f:facet name="header">Nombre</f:facet>
-		</h:column>
-		<h:column>
-			#{paciente.us_apellidos}
-			<f:facet name="header">apellido</f:facet>
-		</h:column>
 	
-		<h:column>
-			#{paciente.us_pa_estado_civil}
-			<f:facet name="header">Estado Civil</f:facet>
-		</h:column>
-		<h:column>
-			#{paciente.us_pa_etnia}
-			<f:facet name="header">Etnia</f:facet>
-		</h:column>
-	
-		<h:column>
-			#{paciente.us_correo}
-			<f:facet name="header">Correo</f:facet>
-		</h:column>
-		<h:column>
-			#{paciente.us_pa_ocupacion}
-			<f:facet name="header">Ocupacion</f:facet>
-		</h:column>
-		
-		
-</h:dataTable>	
-<h:commandButton value="Regresar" action="principal">
-</h:commandButton>
+
+</h:dataTable>
+
 </h:form>
-</ui:define>
+</center>
+
+</body> 
 </html>
-	
