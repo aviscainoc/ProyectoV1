@@ -6,31 +6,25 @@
 
 <ui:composition template="../Plantilla/plantilla.xhtml">
 
-<center><h1>Pacientes Registrados</h1></center>
+<center><h1>Historias Clinicas Registradas</h1></center>
 <ui:define name="contenido">
 <center>
 <h:form>
 
-<h:dataTable value="#{gestionUsuariosBean.recuperarUsuarios()}" var="usuario">
+<h:dataTable value="#{gestionHistoriaClinicaBean.recuperarRecetas()}" var="usuario">
 
 	<h:column>
-		#{usuario.us_cedula}
+		#{usuario.hc_codigo}
 		<f:facet name="header">Código</f:facet>
 	</h:column>
 	<h:column>
-		#{usuario.us_nombres}
-		<f:facet name="header">Nombres</f:facet>
+		#{usuario.hc_enfermedad_actual}
+		<f:facet name="header">Enfermedad</f:facet>
 	</h:column>
 	<h:column>
-		#{usuario.us_apellidos}
-		<f:facet name="header">Apellidos</f:facet>
+		#{usuario.hc_movito_consulta}
+		<f:facet name="header">Motivo de la consulta</f:facet>
 	</h:column>
-	<h:column>
-		#{usuario.us_rol}
-		<f:facet name="header">Rol</f:facet>
-	</h:column>
-	
-	
 
 </h:dataTable>
 
