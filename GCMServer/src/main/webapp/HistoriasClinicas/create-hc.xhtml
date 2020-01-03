@@ -11,37 +11,19 @@
 		<h:form>
 			<h:panelGrid columns="2">
 				<h:outputLabel value="Codigo " />
-				<h:inputText class="form-control form-control-navbar" value="" placeholder="Cedula" />
+				<h:inputText class="form-control form-control-navbar" value="#{gestionHistoriaClinicaBean.hc_codigo}" placeholder="Codigo" />
 				
-				<h:outputLabel value="Nombres" />
-				<h:inputText class="form-control form-control-navbar" value="#{gestionUsuariosBean.us_nombres}" placeholder="Nombres" />
+				<h:outputLabel value="Enfermedad Actual" />
+				<h:inputText class="form-control form-control-navbar" value="#{gestionHistoriaClinicaBean.hc_enfermedad_actual}" placeholder="Enfermedad Actual" />
 				
-				<h:outputLabel value="Apellidos" />
-				<h:inputText class="form-control form-control-navbar" value="#{gestionUsuariosBean.us_apellidos}" placeholder="Apellidos" />
+				<h:outputLabel value="Fecha" />
+				<h:inputText class="form-control form-control-navbar" value="#{gestionHistoriaClinicaBean.hc_fecha}" placeholder="fecha" />
 				
-				<h:outputLabel value="Sexo " />
-				<h:inputText class="form-control form-control-navbar" value="#{gestionUsuariosBean.us_sexo}" placeholder="Sexo" />
-				
-				<h:outputLabel value=" Fecha de nacimiento" />
-				<h:inputText class="form-control form-control-navbar" value="#{gestionUsuariosBean.us_fecha_nacimiento}" placeholder="Fecha de nacimiento" >
-					<f:convertDateTime pattern = "dd-mm-yyyy" />
-				</h:inputText>
-				
-				<h:outputLabel value="Correo Electronico " />
-				<h:inputText class="form-control form-control-navbar" value="#{gestionUsuariosBean.us_correo}" placeholder="Correo" />
-				
-				
-				
-				<h:outputLabel value="Area de especialidad " />
-				<h:inputText class="form-control form-control-navbar" value="#{gestionUsuariosBean.us_md_area_especialidad}" placeholder="Area de especialidad" />
-				
-				<h:outputLabel value="Descripcion " />
-				<h:inputText class="form-control form-control-navbar" value="#{gestionUsuariosBean.us_md_descripcion}" placeholder="Descripcion" />
-				
-				<h:outputLabel value="Contrasenia " />
-				<h:inputText class="form-control form-control-navbar" value="#{gestionUsuariosBean.us_contrasena}" placeholder="Contrasena" />
+				<h:outputLabel value="Motivo" />
+				<h:inputText class="form-control form-control-navbar" value="#{gestionHistoriaClinicaBean.hc_movito_consulta}" placeholder="Motivo" />
+			
 			</h:panelGrid>
-			<h:commandButton action="#{gestionUsuariosBean.guardarUsuariosMedicos()}" value="Guardar" />
+			<h:commandButton action="#{gestionHistoriaClinicaBean.guardarHistoriasClinicas()}" value="Guardar" />
 			<h:commandButton action="index" value="Regresar"></h:commandButton>
 		</h:form>
 	</ui:define>
