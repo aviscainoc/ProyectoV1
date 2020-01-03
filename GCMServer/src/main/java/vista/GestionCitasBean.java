@@ -96,7 +96,7 @@ public class GestionCitasBean {
 		
 		System.out.println(ci_fecha_agendacion);
 		System.out.println(ci_fecha_agendacion.getTime());
-		gl.guardarCita(ci_codigo, us_codigo, ci_fecha_agendacion, ci_fecha_cita, ci_estado, ci_diagnostico);
+		gl.guardarCita(us_codigo, ci_fecha_agendacion, ci_fecha_cita, ci_estado, ci_diagnostico);
 		citas=gl.getCitas();
 		return "index-citas";
 	}
@@ -111,7 +111,7 @@ public class GestionCitasBean {
 	}
 	
 	public void update() {
-		gl.updateCita(ci_codigo, us_codigo, ci_fecha_agendacion, ci_fecha_cita, ci_estado, ci_diagnostico);
+		gl.updateCita(us_codigo, ci_fecha_agendacion, ci_fecha_cita, ci_estado, ci_diagnostico);
 	}
 
 }
