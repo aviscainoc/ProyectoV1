@@ -39,22 +39,32 @@
 		<br/>
 		<br/>
 		<h3>Actualizar Datos</h3>
+		<br/>
 		<h:form>
 			<h:panelGrid columns="2">
 				<h:outputLabel value="Código: " />
 				<h:inputText value="#{gestionMedicosBean.us_codigo}" placeholder="Código" />
 				
-				<h:outputLabel value="Nombre: " />
+				<h:outputLabel value="Nombres: " />
 				<h:inputText value="#{gestionMedicosBean.us_nombre}" placeholder="Nombre" />	
+				
+				<h:outputLabel value="Apellidos " />
+				<h:inputText value="#{gestionMedicosBean.us_apellidos}" placeholder="Nombre" />	
 				
 				<h:outputLabel value="Fecha de Nacimiento: " />
 				<h:inputText value="#{gestionMedicosBean.us_fechaNacimiento}" placeholder="Fecha Nacimiento" />
 				
-				<h:outputLabel value="Nickname: " />
+				<h:outputLabel value="Correo: " />
 				<h:inputText value="#{gestionMedicosBean.us_correo}" placeholder="Fecha Nacimiento" />
 				
-				<h:outputLabel value="Password: " />
-				<h:inputSecret value="#{gestionMedicosBean.us_password}" placeholder="Password" />
+				<h:outputLabel value="Contraseña: " />
+				<h:inputText value="#{gestionMedicosBean.us_password}" placeholder="Password" />
+				
+				<h:outputLabel value="Area de Especialidad: " />
+				<h:inputText value="#{gestionMedicosBean.us_area_especializacion}" placeholder="Password" />
+				
+				<h:outputLabel value="Descripción: " />
+				<h:inputText value="#{gestionMedicosBean.us_descripcion}" placeholder="Password" />
 			</h:panelGrid>
 			<h:commandButton action="#{gestionMedicosBean.update()}" value="Guardar" />
 		</h:form>
