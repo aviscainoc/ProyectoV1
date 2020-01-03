@@ -90,24 +90,24 @@ public class GestionHistoriaClinicaBean {
 		this.historias = historias;
 	}
 
-	public String guardarRecetas() {
+	public String guardarHistoriasClinicas() {
 		System.out.println(hc_codigo + " "+ pa_codigo);
-		gl.guardarRecetaMedica(rm_codigo, pa_codigo, ci_codigo, rm_medicamento, rm_forma_farmaceutica, rm_via_administracion, rm_presentacion, rm_cantidad, rm_horario, rm_duracion_tratamiento);
-		recetas = gl.listarRecetasMedicas();
-		return "principal";
+		gl.guardarHistoriaClinica(hc_codigo, hc_enfermedad_actual, hc_enfermedad_actual, hc_enfermedad_actual, hc_enfermedad_actual, pa_codigo);
+		historias = gl.getHistoriasClinicas();
+		return "index";
 	}
 	
-	public List<RecetaMedica> recuperarRecetas(){
-		recetas = gl.listarRecetasMedicas();
-		return recetas;
+	public List<HistoriaClinica> recuperarRecetas(){
+		historias = gl.getHistoriasClinicas();
+		return historias;
 	}
 	
 	public void eliminar() {
-		gl.eliminarRecetaMedica(rm_codigo);
+		gl.eliminar(hc_codigo);
 	}
 	
 	public void update() {
-		gl.actualizarRecetaMedica(rm_codigo, pa_codigo, ci_codigo, rm_medicamento, rm_forma_farmaceutica, rm_via_administracion, rm_presentacion, rm_cantidad, rm_horario, rm_duracion_tratamiento);
+		gl.update(hc_codigo, hc_enfermedad_actual, hc_enfermedad_actual, hc_enfermedad_actual, hc_enfermedad_actual, pa_codigo);
 	}
 	
 }
