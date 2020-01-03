@@ -34,10 +34,10 @@ public class UsuarioDAO {
 	}
 	
 	public List<Usuario> getUsuarios(){
-	
-		String jpql = "SELECT u FROM Usuario u WHERE us_rol = 1?";
+		String rol = "pac";
+		String jpql = "SELECT u FROM Usuario u WHERE us_rol = ?1";
 		Query q = em.createQuery(jpql, Usuario.class);
-		q.setParameter(1, "pac");
+		q.setParameter(1, rol);
 		
 		List<Usuario> usuarios = q.getResultList();
 		
