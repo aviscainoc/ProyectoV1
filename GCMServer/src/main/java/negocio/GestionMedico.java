@@ -16,13 +16,16 @@ public class GestionMedico implements GestionMedicosRemote, GestionMedicosLocal 
 	private MedicoDAO dao;
 	
 	
-	public void guardarMedico(int us_codigo, String us_nombre, String us_fechaNacimiento, String us_nickname, String us_password) {
+	public void guardarMedico(int us_codigo, String us_nombre, String us_apellidos, String us_fechaNacimiento, String us_correo, String us_password, String us_descripcion, String us_area_especializacion) {
 		Medico u = new Medico();
 		u.setMd_id(us_codigo);
-		u.setMd_fechaNacimiento(us_fechaNacimiento);
-		u.setMd_usuario(us_nickname);
 		u.setMd_nombre(us_nombre);
+		u.setMd_apellidos(us_apellidos);
+		u.setMd_fechaNacimiento(us_fechaNacimiento);
+		u.setMd_correo(us_correo);
 		u.setMd_password(us_password);
+		u.setMd_descripcion(us_descripcion);
+		u.setMd_area_especializacion(us_area_especializacion);
 		dao.insert(u);
 	}
 	
@@ -30,13 +33,16 @@ public class GestionMedico implements GestionMedicosRemote, GestionMedicosLocal 
 		return dao.getMedicos();
 	}
 	
-	public void update(int us_codigo, String us_nombre, String us_fechaNacimiento, String us_nickname, String us_password) {
+	public void update(int us_codigo, String us_nombre, String us_apellidos, String us_fechaNacimiento, String us_correo, String us_password, String us_descripcion, String us_area_especializacion) {
 		Medico u = new Medico();
 		u.setMd_id(us_codigo);
-		u.setMd_fechaNacimiento(us_fechaNacimiento);
-		u.setMd_usuario(us_nickname);
 		u.setMd_nombre(us_nombre);
+		u.setMd_apellidos(us_apellidos);
+		u.setMd_fechaNacimiento(us_fechaNacimiento);
+		u.setMd_correo(us_correo);
 		u.setMd_password(us_password);
+		u.setMd_descripcion(us_descripcion);
+		u.setMd_area_especializacion(us_area_especializacion);
 		dao.update(u);
 	}
 	

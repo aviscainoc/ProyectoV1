@@ -9,12 +9,30 @@ public class Medico {
 	@Id
 	private int md_id;
 	String md_nombre;
+	String md_apellidos;
 	String md_fechaNacimiento;
-	String md_usuario;
+	String md_correo;
 	String md_password;
-	
 	private String md_fecha_inicio;
 	private String md_area_especializacion;
+	private String md_descripcion;
+
+	public String getMd_descripcion() {
+		return md_descripcion;
+	}
+	
+	public void setMd_descripcion(String md_descripcion) {
+		this.md_descripcion = md_descripcion;
+	}
+	
+	public String getMd_apellidos() {
+		return md_apellidos;
+	}
+	
+	public void setMd_apellidos(String md_apellidos) {
+		this.md_apellidos = md_apellidos;
+	}
+	
 	public int getMd_id() {
 		return md_id;
 	}
@@ -33,11 +51,11 @@ public class Medico {
 	public void setMd_fechaNacimiento(String md_fechaNacimiento) {
 		this.md_fechaNacimiento = md_fechaNacimiento;
 	}
-	public String getMd_usuario() {
-		return md_usuario;
+	public String getMd_correo() {
+		return md_correo;
 	}
-	public void setMd_usuario(String md_usuario) {
-		this.md_usuario = md_usuario;
+	public void setMd_correo(String md_correo) {
+		this.md_correo = md_correo;
 	}
 	public String getMd_password() {
 		return md_password;
@@ -60,7 +78,7 @@ public class Medico {
 	@Override
 	public String toString() {
 		return "Medico [md_id=" + md_id + ", md_nombre=" + md_nombre + ", md_fechaNacimiento=" + md_fechaNacimiento
-				+ ", md_usuario=" + md_usuario + ", md_password=" + md_password + ", md_fecha_inicio=" + md_fecha_inicio
+				+ ", md_usuario=" + md_correo + ", md_password=" + md_password + ", md_fecha_inicio=" + md_fecha_inicio
 				+ ", md_area_especializacion=" + md_area_especializacion + "]";
 	}
 

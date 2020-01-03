@@ -13,7 +13,6 @@
 <h:form>
 
 <h:dataTable value="#{gestionMedicosBean.recuperarMedicos()}" var="medico">
-
 	<h:column>
 		#{medico.md_id}
 		<f:facet name="header">Código</f:facet>
@@ -22,8 +21,6 @@
 		#{medico.md_nombre}
 		<f:facet name="header">Nombre</f:facet>
 	</h:column>
-	
-
 </h:dataTable>
 
 

@@ -8,12 +8,55 @@
 	<ui:define name="tituloPagina">Citas Médicas - Perfil</ui:define>
 	<ui:define name="h1Titulo">Perfil</ui:define>
 	<ui:define name="contenido">
+		<h:dataTable value="#{gestionMedicosBean.recuperarMedicos()}" var="medico" columns="2">
+			<f:facet name = "header"><img src="../Plantilla/dist/img/user2-2-160x160.jpg"></img></f:facet>
+			<h:column>
+				#{medico.md_nombre}
+				<f:facet name="header">Nombres</f:facet>
+			</h:column>
+			<h:column>
+				#{medico.md_apellidos}
+				<f:facet name="header">Apellidos</f:facet>
+			</h:column>
+			<h:column>
+				#{medico.md_correo}
+				<f:facet name="header">Correo</f:facet>
+			</h:column>
+			<h:column>
+				#{medico.md_fechaNacimiento}
+				<f:facet name="header">Fecha Nacimiento</f:facet>
+			</h:column>
+			<h:column>
+				#{medico.md_area_especializacion}
+				<f:facet name="header">Especialidad</f:facet>
+			</h:column>
+			<h:column>
+				#{medico.md_descripcion}
+				<f:facet name="header">Descripción</f:facet>
+			</h:column>
+		</h:dataTable>
+		
+		<br/>
+		<br/>
+		<h3>Actualizar Datos</h3>
 		<h:form>
-			<h:panelGrid columns="2" border="1">
-				<f:facet name = "header"><img src="../Plantilla/dist/img/user2-2-160x160.jpg"></img></f:facet>
-				<h:outputLabel>Dr. David</h:outputLabel>
-				<h:outputLabel>Enriquez Mancheno</h:outputLabel>
+			<h:panelGrid columns="2">
+				<h:outputLabel value="Código: " />
+				<h:inputText value="#{gestionMedicosBean.us_codigo}" placeholder="Código" />
+				
+				<h:outputLabel value="Nombre: " />
+				<h:inputText value="#{gestionMedicosBean.us_nombre}" placeholder="Nombre" />	
+				
+				<h:outputLabel value="Fecha de Nacimiento: " />
+				<h:inputText value="#{gestionMedicosBean.us_fechaNacimiento}" placeholder="Fecha Nacimiento" />
+				
+				<h:outputLabel value="Nickname: " />
+				<h:inputText value="#{gestionMedicosBean.us_correo}" placeholder="Fecha Nacimiento" />
+				
+				<h:outputLabel value="Password: " />
+				<h:inputSecret value="#{gestionMedicosBean.us_password}" placeholder="Password" />
 			</h:panelGrid>
+			<h:commandButton action="#{gestionMedicosBean.update()}" value="Guardar" />
 		</h:form>
 	</ui:define>
 </ui:composition>
