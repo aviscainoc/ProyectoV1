@@ -8,6 +8,7 @@ import javax.persistence.*;
 public class Cita {
 
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int ci_codigo;
 	
 	/*@ManyToOne
