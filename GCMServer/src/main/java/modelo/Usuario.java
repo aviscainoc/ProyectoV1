@@ -14,6 +14,8 @@ public class Usuario {
 	private String us_nombres;
 	private String us_apellidos;
 	private String us_sexo;
+	
+	@Temporal(TemporalType.DATE)
 	private Date us_fecha_nacimiento;
 	private String us_correo;
 	private String us_contrasena;

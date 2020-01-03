@@ -30,10 +30,18 @@
 				<h:outputLabel value="Correo Electronico " />
 				<h:inputText class="form-control form-control-navbar" value="#{gestionUsuariosBean.us_correo}" placeholder="Correo" />
 				
+				
+				
+				<h:outputLabel value="Area de especialidad " />
+				<h:inputText class="form-control form-control-navbar" value="#{gestionUsuariosBean.us_md_area_especialidad}" placeholder="Area de especialidad" />
+				
+				<h:outputLabel value="Descripcion " />
+				<h:inputText class="form-control form-control-navbar" value="#{gestionUsuariosBean.us_md_descripcion}" placeholder="Descripcion" />
+				
 				<h:outputLabel value="Contrasenia " />
 				<h:inputText class="form-control form-control-navbar" value="#{gestionUsuariosBean.us_contrasena}" placeholder="Contrasena" />
 			</h:panelGrid>
-			<h:commandButton action="#{gestionUsuariosBean.guardarUsuariosPaciente()}" value="Guardar" />
+			<h:commandButton action="#{gestionUsuariosBean.guardarUsuariosMedicos()}" value="Guardar" />
 			<h:commandButton action="index" value="Regresar"></h:commandButton>
 		</h:form>
 	</ui:define>

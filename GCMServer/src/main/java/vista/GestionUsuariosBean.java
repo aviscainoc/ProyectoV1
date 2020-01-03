@@ -238,6 +238,15 @@ public class GestionUsuariosBean {
 		return "index";
 	}
 	
+	public String guardarUsuariosMedicos() {
+		String rol2="med";
+		System.out.println(us_cedula + " " + us_nombres + " "+rol2);
+		gl.guardarUsuarioMedico(us_cedula, rol2, us_nombres, us_apellidos, us_sexo, us_fecha_nacimiento,
+				us_correo, us_contrasena, us_md_area_especialidad, us_md_descripcion);
+		
+		return "index";
+	}
+	
 	public List<Usuario> recuperarUsuarios(){
 		usuarios = gl.getUsuarios();
 		return usuarios;
@@ -249,17 +258,25 @@ public class GestionUsuariosBean {
 	public void update() {
 		gl.update(us_codigo, us_nombre, us_fechaNacimiento, us_nickname, us_password);
 	}*/
-	public List<Usuario> login() {
+	public String login() {
 		Usuario user;
 		try {
 			user = gl.login(us_correo, us_contrasena);
 			System.out.println(user);
+			if(user.getUs_rol().equals("pac")) {
+				System.out.println("Tu eres paciente");
+				return "index";
+				
+			}else {
+				System.out.println("Tu eres medico");
+				return "../Medicos/indexCita";
+			}
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		return "null";
 		
-		return usuarios;
 	}
 
 }

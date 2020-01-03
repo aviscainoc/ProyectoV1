@@ -9,19 +9,24 @@
 	<ui:define name="h1Titulo">Citas Médicas</ui:define>
 	<ui:define name="contenido">
 		<h:dataTable value="#{gestionCitasBean.recuperarCitas()}" var="cita">
-		<h:column>
-			#{cita.ci_codigo}
-			<f:facet name="header">Código</f:facet>
-		</h:column>
-		<h:column>
-			#{cita.ci_fecha_cita}
-			<f:facet name="header">Fecha</f:facet>
-		</h:column>
-		<h:column>
-			#{cita.us_usuario.us_nombres}
-			<f:facet name="header">Paciente</f:facet>
-		</h:column>
-</h:dataTable>
+			<h:column>
+				#{cita.ci_codigo}
+				<f:facet name="header">Código</f:facet>
+			</h:column>
+			<h:column>
+				#{cita.ci_fecha_cita}
+				<f:facet name="header">Fecha de Registro</f:facet>
+			</h:column>
+			<h:column>
+				#{cita.ci_fecha_agendacion}
+				<f:facet name="header">Fecha de la cita</f:facet>
+			</h:column>
+			<h:column>
+				#{cita.us_usuario.us_nombres}
+				<f:facet name="header">Paciente</f:facet>
+			</h:column>
+			<h:column><a href="../RecetasMedicas/principal.xhtml">Recetas medicas</a></h:column>
+		</h:dataTable>
 	</ui:define>
 </ui:composition>
 </html>

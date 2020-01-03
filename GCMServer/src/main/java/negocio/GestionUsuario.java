@@ -47,6 +47,7 @@ public class GestionUsuario implements GestionUsuariosLocal, GestionUsuariosRemo
 		u.setUs_pa_tipo_sangre(us_pa_tipo_sangre);
 		u.setUs_pa_identidad_sexual(us_pa_identidad_sexual);
 		u.setUs_pa_procedencia(us_pa_procedencia);
+		System.out.println(u);
 		daoU.insert(u);
 		
 	}
@@ -55,6 +56,7 @@ public class GestionUsuario implements GestionUsuariosLocal, GestionUsuariosRemo
 		
 		Usuario u = new Usuario();
 		u.setUs_cedula(us_cedula);
+		u.setUs_rol(us_rol);
 		u.setUs_nombres(us_nombres);
 		u.setUs_apellidos(us_apellidos);
 		u.setUs_sexo(us_sexo);
