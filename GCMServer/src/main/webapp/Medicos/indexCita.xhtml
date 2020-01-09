@@ -22,7 +22,11 @@
 				<f:facet name="header">Fecha de la cita</f:facet>
 			</h:column>
 			
-			<h:column><a href="../RecetasMedicas/principal.xhtml">Recetas medicas</a></h:column>
+			<h:outputLabel value="Nombres: " />
+		<h:inputText value="#{gestionMedicosBean.us_nombre}" placeholder="Nombre" />	
+			
+			
+			<h:column > <a href="../RecetasMedicas/create-receta.xhtml" >#{cita.us_usuario.us_cedula}</a></h:column>
 		</h:dataTable>
 	</ui:define>
 </ui:composition>
