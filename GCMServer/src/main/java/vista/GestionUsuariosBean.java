@@ -25,7 +25,6 @@ public class GestionUsuariosBean {
 	private Date us_fecha_nacimiento;
 	private String us_correo;
 	private String us_contrasena;
-
 	
 	private String us_md_area_especialidad;
 	private String us_md_descripcion;
@@ -39,18 +38,9 @@ public class GestionUsuariosBean {
 	private String us_pa_identidad_sexual;
 	private String us_pa_procedencia;
 	
-	
 	private List<HistoriaClinica> historias_clinica;
-	
 	private List<Cita> citas;
-	
 	private List<Usuario> usuarios;
-	
-	
-		
-	
-	
-	
 	
 	public GestionUsuariosLocal getGl() {
 		return gl;

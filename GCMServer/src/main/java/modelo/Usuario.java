@@ -31,14 +31,15 @@ public class Usuario {
 	private String us_pa_religion;
 	private String us_pa_tipo_sangre;
 	private String us_pa_identidad_sexual;
-	private String us_pa_procedencia;
-	
+	private String us_pa_procedencia;	
 	//atributo para saber si se registro o no 
 	private int us_pa_registro;
 	
 	@OneToMany
 	private List<HistoriaClinica> historias_clinica;
-	@OneToMany
+	
+	@OneToMany(cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
+	@JoinColumn(referencedColumnName="us_cedula")
 	private List<Cita> citas;
 	
 	public String getUs_cedula() {
