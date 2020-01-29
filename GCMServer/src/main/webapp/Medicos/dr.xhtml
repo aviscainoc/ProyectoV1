@@ -4,12 +4,26 @@
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:h="http://java.sun.com/jsf/html"> 
 
+<h:head>
+	<f:metadata>
+        <f:viewParam id="username" name="username" value="#{gestionCitasBean.us_codigo}"/>
+        <f:viewAction action="#{gestionUsuariosBean.recuperarUsuario()}" />
+ 	</f:metadata>
+
+</h:head> 
+
+
 <ui:composition template="../Plantilla/plantilla2.xhtml">
 	<ui:define name="h1Titulo">Acerca del Dr. David Enriquez:</ui:define>
 	<ui:define name="contenido">
+	
 		<h:form>
-			<h:panelGrid >
+			<h:panelGrid columns="3">
+				<h:outputLabel value="Cédula" />
+				<h:inputText value="#{gestionCitasBean.us_codigo}" id="txtcedula" />
+				<h:message for="txtcedula"/>
 			</h:panelGrid>
+
 		</h:form>
 	</ui:define>
 </ui:composition>

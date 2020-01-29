@@ -3,7 +3,9 @@ package vista;
 import java.util.Date;
 import java.util.List;
 
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 
 import modelo.Cita;
@@ -16,6 +18,8 @@ public class GestionUsuariosBean {
 	
 	@Inject
 	private GestionUsuariosLocal gl;
+	
+	private Usuario usuario;
 	
 	private String us_cedula;
 	private String us_rol;
@@ -279,6 +283,25 @@ public class GestionUsuariosBean {
 		return "null";
 		
 	}
+	
+	public void recuperarUsuario() {
+		
+		System.out.println("load data " + us_cedula);
+		if(us_cedula==null)
+			return;
+		try {
+			usuario = gl.recuperarUsuario(us_cedula);
+			
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			FacesContext facesContext = FacesContext.getCurrentInstance();
+			FacesMessage m = new FacesMessage(FacesMessage.SEVERITY_ERROR, 
+					e.getMessage(), "Error");
+            facesContext.addMessage(null, m);
+		}
+	}
+
 	
 	
 }

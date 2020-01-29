@@ -8,9 +8,11 @@
 	<ui:define name="tituloPagina">Citas Médicas - Inicio</ui:define>
 	<ui:define name="h1Titulo">Citas Médicas</ui:define>
 	<ui:define name="contenido">
+	var cedula;
 		<h:dataTable value="#{gestionCitasBean.recuperarCitas()}" var="cita">
 			<h:column>
 				#{cita.us_usuario.us_cedula}
+			
 				<f:facet name="header">Código</f:facet>
 			</h:column>
 			<h:column>
@@ -21,6 +23,14 @@
 				#{cita.ci_fecha_cita}
 				<f:facet name="header">Fecha de la cita</f:facet>
 			</h:column>
+			
+			
+			<h:column>
+				<h:link value="Login page + Param " outcome="dr" >
+					<f:param name="username" value= " #{cita.us_usuario.us_cedula}" />
+				</h:link>
+			</h:column>
+
 			
 			<h:column><a href="../RecetasMedicas/principal.xhtml">Recetas medicas</a></h:column>
 		</h:dataTable>

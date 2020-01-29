@@ -7,9 +7,13 @@ public class RecetaMedica {
 
 	@Id
 	private int rm_codigo;
+	
+	@ManyToOne
 	private Paciente pa_codigo;
+	
 	@OneToOne
 	private Cita ci_codigo;
+	
 	private String rm_medicamento;
 	private String rm_forma_farmaceutica;
 	private String rm_via_administracion;
@@ -17,6 +21,7 @@ public class RecetaMedica {
 	private int rm_cantidad;
 	private String rm_horario;
 	private String rm_duracion_tratamiento;
+	
 	public int getRm_codigo() {
 		return rm_codigo;
 	}

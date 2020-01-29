@@ -19,19 +19,22 @@ public class Cita {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int ci_codigo;
-	
-	/*@ManyToOne
-	private Medico me_codigo;
-	
-	@ManyToOne
-	private Paciente pa_codigo;*/
+
 	@ManyToOne
 	private Usuario us_usuario;
 	
 	private Date ci_fecha_agendacion;
 	private Date ci_fecha_cita;
 	private String ci_estado;
-	private String ci_diagnostico;
+	
+	@OneToOne
+	private ExamenLaboratorio el_examenLaboratorio;
+	
+	@OneToOne
+	private CertificadoAusencia ca_certificadoAusencia;
+	
+	@OneToOne
+	private RecetaMedica rm_recetaMedica;
 	
 	public String getCi_estado() {
 		return ci_estado;

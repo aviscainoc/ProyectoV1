@@ -3,6 +3,7 @@ package negocio;
 import java.util.Date;
 import java.util.List;
 
+import javax.ejb.Stateful;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 
@@ -16,7 +17,7 @@ import modelo.Paciente;
 
 
 
-@Stateless
+@Stateful
 public class GestionCita implements GestionCitaLocal, GestionCitaRemote{
 	@Inject
 	private CitaDAO dao;
