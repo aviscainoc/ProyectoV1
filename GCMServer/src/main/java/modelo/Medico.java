@@ -8,11 +8,11 @@ public class Medico {
 
 	@Id
 	private int md_id;
-	String md_nombre;
-	String md_apellidos;
-	String md_fechaNacimiento;
-	String md_correo;
-	String md_password;
+	private String md_nombre;
+	private String md_apellidos;
+	private String md_fechaNacimiento;
+	private String md_correo;
+	private String md_password;
 	private String md_fecha_inicio;
 	private String md_area_especializacion;
 	private String md_descripcion;

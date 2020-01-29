@@ -37,6 +37,16 @@ public class GestionCitasBean {
 	private Date ci_fecha_cita;
 	private List<Cita> citas;
 	
+	private String codigoPasable;
+	
+	public String getCodigoPasable() {
+		return codigoPasable;
+	}
+
+	public void setCodigoPasable(String codigoPasable) {
+		this.codigoPasable = codigoPasable;
+	}
+
 	public String getCi_estado() {
 		return ci_estado;
 	}
@@ -133,6 +143,7 @@ public class GestionCitasBean {
 	public void update() {
 		gl.updateCita(us_codigo, ci_fecha_agendacion, ci_fecha_cita, ci_estado, ci_diagnostico);
 	}
+	
 
 }
 

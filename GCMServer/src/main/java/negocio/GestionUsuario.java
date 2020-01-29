@@ -28,8 +28,7 @@ public class GestionUsuario implements GestionUsuariosLocal, GestionUsuariosRemo
 	
 	public void guardarUsuarioPaciente(String us_cedula, String us_rol, int us_pa_registro, String  us_nombres, String  us_apellidos, String us_sexo, Date us_fecha_nacimiento,
 			String us_correo, String us_contrasena, String us_pa_estado_civil, String us_pa_nivel_estudio, String us_pa_ocupacion, String us_pa_etnia, 
-			String us_pa_religion, String us_pa_tipo_sangre, String us_pa_identidad_sexual, String us_pa_procedencia) {
-		
+			String us_pa_religion, String us_pa_tipo_sangre, String us_pa_identidad_sexual, String us_pa_procedencia) {		
 		Usuario u = new Usuario();
 		u.setUs_cedula(us_cedula);
 		u.setUs_rol(us_rol);
@@ -50,8 +49,8 @@ public class GestionUsuario implements GestionUsuariosLocal, GestionUsuariosRemo
 		u.setUs_pa_procedencia(us_pa_procedencia);
 		System.out.println(u);
 		daoU.insert(u);
-		
 	}
+	
 	public void guardarUsuarioMedico(String us_cedula, String us_rol, String  us_nombres, String  us_apellidos, String us_sexo, Date us_fecha_nacimiento,
 			String us_correo, String us_contrasena, String us_md_area_especialidad, String us_md_descripcion) {
 		
@@ -68,7 +67,6 @@ public class GestionUsuario implements GestionUsuariosLocal, GestionUsuariosRemo
 		u.setUs_md_descripcion(us_md_descripcion);
 		daoU.insert(u);
 		//return index';
-		
 	}
 		
 	public List<Usuario> getUsuarios(){
