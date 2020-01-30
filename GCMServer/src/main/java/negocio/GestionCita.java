@@ -31,7 +31,6 @@ public class GestionCita implements GestionCitaLocal, GestionCitaRemote{
 		c.setCi_fecha_agendacion(ci_fecha_agendacion);
 		c.setCi_fecha_cita(ci_fecha_cita);
 		c.setCi_estado(ci_estado);
-	
 		dao.insert(c);
 	}
 	

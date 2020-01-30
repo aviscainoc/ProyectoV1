@@ -1,0 +1,52 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"> 
+
+<h:head>
+	<f:metadata>
+        <f:viewParam id="username" name="username" value="#{gestionUsuariosBean.us_cedula}"/>
+        <f:viewAction action="#{gestionUsuariosBean.recuperarUsuario()}" />
+ 	</f:metadata>
+
+</h:head> 
+
+<ui:composition template="../Plantilla/plantilla.xhtml">
+	<ui:define name="tituloPagina">Citas Médicas - Agregar Diagnóstico</ui:define>
+	<ui:define name="h1Titulo">Agregar Diagnóstico</ui:define>
+	<ui:define name="contenido">
+	
+	<div class="card-body">
+		<h:panelGrid columns="4" class="table table-bordered">
+			<h:outputLabel>Cédula: </h:outputLabel>
+			<h:outputLabel>#{gestionUsuariosBean.us_cedula}</h:outputLabel>
+			<h:outputLabel>Nombres: </h:outputLabel>
+			<h:outputLabel>#{gestionUsuariosBean.usuario.us_nombres}</h:outputLabel>
+			<h:outputLabel>Apellidos: </h:outputLabel>
+			<h:outputLabel>#{gestionUsuariosBean.usuario.us_apellidos}</h:outputLabel>
+			<h:outputLabel>Fecha de nacimiento: </h:outputLabel>
+			<h:outputLabel>#{gestionUsuariosBean.usuario.us_fecha_nacimiento}</h:outputLabel>
+			<h:outputLabel>Estado Civil: </h:outputLabel>
+			<h:outputLabel>#{gestionUsuariosBean.usuario.us_pa_estado_civil}</h:outputLabel>
+			<h:outputLabel>Etnia: </h:outputLabel>
+			<h:outputLabel>#{gestionUsuariosBean.usuario.us_pa_etnia}</h:outputLabel>
+			<h:outputLabel>Identidad Sextual: </h:outputLabel>
+			<h:outputLabel>#{gestionUsuariosBean.usuario.us_pa_identidad_sexual}</h:outputLabel>
+			<h:outputLabel>Nivel de Estudio: </h:outputLabel>
+			<h:outputLabel>#{gestionUsuariosBean.usuario.us_pa_nivel_estudio}</h:outputLabel>
+			<h:outputLabel>Ocupación: </h:outputLabel>
+			<h:outputLabel>#{gestionUsuariosBean.usuario.us_pa_ocupacion}</h:outputLabel>
+			<h:outputLabel>Procedencia: </h:outputLabel>
+			<h:outputLabel>#{gestionUsuariosBean.usuario.us_pa_procedencia}</h:outputLabel>
+			<h:outputLabel>Religión: </h:outputLabel>
+			<h:outputLabel>#{gestionUsuariosBean.usuario.us_pa_religion}</h:outputLabel>
+			<h:outputLabel>Tipo de Sangre: </h:outputLabel>
+			<h:outputLabel>#{gestionUsuariosBean.usuario.us_pa_tipo_sangre}</h:outputLabel>
+		</h:panelGrid>
+	</div>
+		
+	</ui:define>
+</ui:composition>
+</html>
+	

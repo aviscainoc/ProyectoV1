@@ -8,39 +8,26 @@
 	<ui:define name="tituloPagina">Citas Médicas - Inicio</ui:define>
 	<ui:define name="h1Titulo">Citas Médicas</ui:define>
 	<ui:define name="contenido">
-	var cedula;
-		<h:dataTable value="#{gestionCitasBean.recuperarCitas()}" var="cita">
+
+		<h:dataTable value="#{gestionCitasBean.recuperarCitas()}" var="cita" class="table  table-hover">
 			<h:column>
 				#{cita.us_usuario.us_cedula}
 			
-				<f:facet name="header">Código</f:facet>
+				<f:facet name="header">Cédula</f:facet>
 			</h:column>
 			<h:column>
 				#{cita.us_usuario.us_nombres}
-				<f:facet name="header">Paciente(Si esta registrado)</f:facet>
+				<f:facet name="header">Paciente</f:facet>
 			</h:column>
 			<h:column>
 				#{cita.ci_fecha_cita}
 				<f:facet name="header">Fecha de la cita</f:facet>
 			</h:column>
-			
-
-			
 			<h:column>
-				<h:link value="Login page + Param " outcome="dr" >
+				<h:link value="Agregar diagnóstico" outcome="agregar_diagnostico" >
 					<f:param name="username" value= " #{cita.us_usuario.us_cedula}" />
 				</h:link>
 			</h:column>
-
-			
-			<h:column><a href="../RecetasMedicas/principal.xhtml">Recetas medicas</a></h:column>
-
-			<h:outputLabel value="Nombres: " />
-		<h:inputText value="#{gestionMedicosBean.us_nombre}" placeholder="Nombre" />	
-			
-			
-			<h:column > <a href="../RecetasMedicas/create-receta.xhtml" >#{cita.us_usuario.us_cedula}</a></h:column>
-
 		</h:dataTable>
 	</ui:define>
 </ui:composition>

@@ -44,7 +44,6 @@ public class Cita {
 	public void setCi_estado(String ci_estado) {
 		this.ci_estado = ci_estado;
 	}
-	
 	public int getCi_codigo() {
 		return ci_codigo;
 	}
