@@ -35,6 +35,8 @@ public class Cita {
 	
 	@OneToOne
 	private RecetaMedica rm_recetaMedica;
+
+	
 	
 	public String getCi_estado() {
 		return ci_estado;
@@ -42,12 +44,7 @@ public class Cita {
 	public void setCi_estado(String ci_estado) {
 		this.ci_estado = ci_estado;
 	}
-	public String getCi_diagnostico() {
-		return ci_diagnostico;
-	}
-	public void setCi_diagnostico(String ci_diagnostico) {
-		this.ci_diagnostico = ci_diagnostico;
-	}
+	
 	public int getCi_codigo() {
 		return ci_codigo;
 	}
