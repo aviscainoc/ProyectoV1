@@ -81,7 +81,7 @@ public class GestionUsuario implements GestionUsuariosLocal, GestionUsuariosRemo
 	}
 	
 	public Usuario recuperarUsuario(String cedula) {
-		System.out.println("mostrando a"+daoU.read(cedula));
+		System.out.println("mostrando a "+daoU.read(cedula));
 		
 		return daoU.read(cedula);
 	}

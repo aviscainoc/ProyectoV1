@@ -222,6 +222,14 @@ public class GestionUsuariosBean {
 		this.usuarios = usuarios;
 	}
 
+	public Usuario getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
+	}
+
 	public String guardarUsuariosPaciente() {
 		String rol="pac";
 		int registro=1;
@@ -276,12 +284,11 @@ public class GestionUsuariosBean {
 	
 	public void recuperarUsuario() {
 		
-		System.out.println("load data " + us_cedula);
 		if(us_cedula==null)
 			return;
 		try {
-			usuario = gl.recuperarUsuario(us_cedula);
-			
+			this.usuario = gl.recuperarUsuario(us_cedula);
+			System.out.println("load data " + usuario);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

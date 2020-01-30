@@ -19,15 +19,8 @@ public class GestionCitasBean {
 
 	@Inject
 	private GestionCitaLocal gl;
-	@Inject GestionUsuariosRemote gul;
-	
-	public GestionUsuariosRemote getGul() {
-		return gul;
-	}
-
-	public void setGul(GestionUsuariosRemote gul) {
-		this.gul = gul;
-	}
+	@Inject 
+	private GestionUsuariosRemote gul;
 
 	private int ci_codigo;
 	private String us_codigo;
@@ -36,8 +29,15 @@ public class GestionCitasBean {
 	private Date ci_fecha_agendacion ;
 	private Date ci_fecha_cita;
 	private List<Cita> citas;
-	
 	private String codigoPasable;
+	
+	public GestionUsuariosRemote getGul() {
+		return gul;
+	}
+
+	public void setGul(GestionUsuariosRemote gul) {
+		this.gul = gul;
+	}
 	
 	public String getCodigoPasable() {
 		return codigoPasable;
@@ -119,7 +119,7 @@ public class GestionCitasBean {
 		
 	
 	
-		gl.guardarCita(us_codigo, ci_fecha_agendacion, ci_fecha_cita, ci_estado, ci_diagnostico);
+		gl.guardarCita(us_codigo, ci_fecha_agendacion, ci_fecha_cita, ci_estado);
 		
 		citas=gl.getCitas();
 		Usuario userRecuperado = gul.recuperarUsuario(us_codigo);
@@ -141,7 +141,7 @@ public class GestionCitasBean {
 	}
 	
 	public void update() {
-		gl.updateCita(us_codigo, ci_fecha_agendacion, ci_fecha_cita, ci_estado, ci_diagnostico);
+		gl.updateCita(us_codigo, ci_fecha_agendacion, ci_fecha_cita, ci_estado);
 	}
 	
 
