@@ -43,5 +43,15 @@ public class CitaDAO {
 		return citas;
 	}
 	
+	public List<Cita> getCitasPendientes(){
+		String jpql = "SELECT u FROM Cita u WHERE ci_estado = ?1";
+		Query q = em.createQuery(jpql, Cita.class);
+		q.setParameter(1, "pendiente");
+		
+		List<Cita> citas = q.getResultList();
+		
+		return citas;
+	}
+	
 	
 }

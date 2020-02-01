@@ -9,7 +9,7 @@ public class ExamenLaboratorio {
 	private int el_codigo;
 	
 	@OneToOne
-	private Cita ci_codigo;
+	private Cita cita;
 	
 	private String el_sangre;
 	private String el_plaquetas;
@@ -20,11 +20,11 @@ public class ExamenLaboratorio {
 	public void setEl_codigo(int el_codigo) {
 		this.el_codigo = el_codigo;
 	}
-	public Cita getCi_codigo() {
-		return ci_codigo;
+	public Cita getCita() {
+		return cita;
 	}
-	public void setCi_codigo(Cita ci_codigo) {
-		this.ci_codigo = ci_codigo;
+	public void setCita(Cita cita) {
+		this.cita = cita;
 	}
 	public String getEl_sangre() {
 		return el_sangre;
@@ -46,7 +46,7 @@ public class ExamenLaboratorio {
 	}
 	@Override
 	public String toString() {
-		return "ExamenLaboratorio [el_codigo=" + el_codigo + ", ci_codigo=" + ci_codigo + ", el_sangre=" + el_sangre
+		return "ExamenLaboratorio [el_codigo=" + el_codigo + ", cita=" + cita + ", el_sangre=" + el_sangre
 				+ ", el_plaquetas=" + el_plaquetas + ", el_grupo_sanguineo=" + el_grupo_sanguineo + "]";
 	}
 	

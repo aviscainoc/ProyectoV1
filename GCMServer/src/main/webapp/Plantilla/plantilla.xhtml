@@ -77,7 +77,7 @@
           <img src="../Plantilla/dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image"></img>
         </div>
         <div class="info">
-          <a href="perfil.xhtml" class="d-block">Dr. David Enriquez</a>
+          <a href="perfil.xhtml" class="d-block"><ui:insert name="nombreUser">Dr. David Enriquez</ui:insert></a>
         </div>
       </div>
 
@@ -164,16 +164,6 @@
   </div>
   <!-- /.content-wrapper -->
 
-  <!-- Control Sidebar -->
-  <aside class="control-sidebar control-sidebar-dark">
-    <!-- Control sidebar content goes here -->
-    <div class="p-3">
-      <h5>Configuración</h5>
-      <p>Configuración de la cuenta</p>
-    </div>
-  </aside>
-  <!-- /.control-sidebar -->
-
   <!-- Main Footer -->
   <footer class="main-footer">
     <!-- To the right -->
@@ -183,6 +173,12 @@
     <!-- Default to the left -->
     <!-- strong>Copyright &copy; 2014-2019 <a href="https://adminlte.io">AdminLTE.io</a>.</strong> All rights reserved -->.
   </footer>
+
+  <!-- Control Sidebar -->
+  <aside class="control-sidebar control-sidebar-dark">
+    <!-- Control sidebar content goes here -->
+  </aside>
+  <!-- /.control-sidebar -->
 </div>
 <!-- ./wrapper -->
 
@@ -191,17 +187,7 @@
 <script src="../Plantilla/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- AdminLTE App -->
 <script src="../Plantilla/dist/js/adminlte.min.js"></script>
-
-<!--center><h1>Bienvenidos al Sistema de Gestión de Pacientes</h1></center>
-<center><h:form>
-	<h:panelGrid columns="2">
-		<h:commandButton style="width:150px;border-color:Blue;border-style:dotted;" action="create-cita" value="Insertar"></h:commandButton>
-		<h:commandButton style="width:150px;border-color:Blue;border-style:dotted;" action="update-cita" value ="Actualizar"></h:commandButton>
-		<h:commandButton style="width:150px;border-color:Blue;border-style:dotted;" action="delete-cita" value="Eliminar"></h:commandButton>
-		<h:commandButton style="width:150px;border-color:Blue;border-style:dotted;" action="read-cita" value="Listar"></h:commandButton>
-	</h:panelGrid>
-
-
-</h:form></center-->
+<!-- AdminLTE for demo purposes -->
+<script src="../Plantilla/dist/js/demo.js"></script>
 </h:body>
 </html>

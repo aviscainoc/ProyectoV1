@@ -7,6 +7,7 @@ import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
+import javax.servlet.http.HttpSession;
 
 import modelo.Cita;
 import modelo.HistoriaClinica;
@@ -268,9 +269,15 @@ public class GestionUsuariosBean {
 			System.out.println(user);
 			if(user.getUs_rol().equals("pac")) {
 				usuario = user;
+				FacesContext context = FacesContext.getCurrentInstance();
+		        HttpSession session = (HttpSession) context.getExternalContext().getSession(true);
+		        session.setAttribute("user", user);
 				return "/User/perfil";
 			}else {
 				usuario = user;
+				FacesContext context = FacesContext.getCurrentInstance();
+		        HttpSession session = (HttpSession) context.getExternalContext().getSession(true);
+		        session.setAttribute("user", user);
 				return "/Medicos/indexCita";
 			}
 		} catch (Exception e) {
@@ -292,8 +299,7 @@ public class GestionUsuariosBean {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			FacesContext facesContext = FacesContext.getCurrentInstance();
-			FacesMessage m = new FacesMessage(FacesMessage.SEVERITY_ERROR, 
-					e.getMessage(), "Error");
+			FacesMessage m = new FacesMessage(FacesMessage.SEVERITY_ERROR, e.getMessage(), "Error");
             facesContext.addMessage(null, m);
 		}
 	}

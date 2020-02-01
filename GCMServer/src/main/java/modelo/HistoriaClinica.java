@@ -20,7 +20,10 @@ public class HistoriaClinica {
 	private String hc_fecha;
 	private String hc_movito_consulta;
 	private String hc_enfermedad_actual;
-	private Paciente pa_codigo;
+	@OneToOne
+	private Usuario usuario;
+	@OneToOne
+	private Cita cita;
 	
 	public int getHc_codigo() {
 		return hc_codigo;
@@ -52,18 +55,22 @@ public class HistoriaClinica {
 	public void setHc_enfermedad_actual(String hc_enfermedad_actual) {
 		this.hc_enfermedad_actual = hc_enfermedad_actual;
 	}
-	public Paciente getPa_codigo() {
-		return pa_codigo;
+	public Usuario getUsuario() {
+		return usuario;
 	}
-	public void setPa_codigo(Paciente pa_codigo) {
-		this.pa_codigo = pa_codigo;
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
+	}
+	public Cita getCita() {
+		return cita;
+	}
+	public void setCita(Cita cita) {
+		this.cita = cita;
 	}
 	@Override
 	public String toString() {
 		return "HistoriaClinica [hc_codigo=" + hc_codigo + ", hc_residencia=" + hc_residencia + ", hc_fecha=" + hc_fecha
 				+ ", hc_movito_consulta=" + hc_movito_consulta + ", hc_enfermedad_actual=" + hc_enfermedad_actual
-				+ ", pa_codigo=" + pa_codigo + "]";
-	}
-	
-	
+				+ ", usuario=" + usuario + ", cita=" + cita + "]";
+	}	
 }

@@ -2,7 +2,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:h="http://java.sun.com/jsf/html"> 
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"> 
 
 <h:head>
 	<f:metadata>
@@ -15,6 +16,7 @@
 <ui:composition template="../Plantilla/plantilla.xhtml">
 	<ui:define name="tituloPagina">Citas Médicas - Agregar Diagnóstico</ui:define>
 	<ui:define name="h1Titulo">Agregar Diagnóstico</ui:define>
+	<ui:define name="nombreUser">Dr. #{user.us_nombres} <br></br>#{user.us_apellidos}</ui:define>
 	<ui:define name="contenido">
 	
 	<div class="card-body">
@@ -45,10 +47,11 @@
 			<h:inputText size="15" class="form-control" value="#{gestionUsuariosBean.usuario.us_pa_tipo_sangre}" disabled="true" style="color: black; border:none; background-color: #F1F4F6"></h:inputText>
 		</h:panelGrid>
 	</div>
-	<div class="float-right" style="margin-right: 20px;">
-		<h:panelGrid columns="2">
-			<h:commandButton action="#" value="Editar datos" class="btn btn-block btn-outline-secondary btn-xs float-right"/>
-			<h:commandButton action="#" value="Guardar" class="btn btn-block btn-outline-secondary btn-xs float-right disabled"/>
+	<div class="float-right" style="padding-right: 20px;">
+		<h:panelGrid columns="3">
+			<h:commandButton action="#" value="  Editar datos   " class="btn btn-block btn-outline-secondary btn-xs"/>
+			<h:commandButton action="#" value="    Guardar    " class="btn btn-block btn-outline-secondary btn-xs disabled"/>
+			<h:commandButton action="#" value="   Cancelar    " class="btn btn-block btn-outline-secondary btn-xs disabled"/>
 		</h:panelGrid>
 	</div>
 	<br></br>
@@ -56,11 +59,11 @@
 	<div class="card-body">
 		<h:panelGrid columns="2" class="table">
 			<h:outputLabel value="Lugar de residencia" />
-			<h:inputText value="#{gestionHistoriaClinicaBean.hc_residencia}" size="50"/>
+			<h:inputText value="#{gestionHistoriaClinicaBean.hc_residencia}" class="form-control" pt:placeholder="Ingresar ..." size="50"/>
 			<h:outputLabel value="Motivo de la consulta" />
-			<h:inputTextarea value="#{gestionHistoriaClinicaBean.hc_movito_consulta}" cols="52" rows="5"/>
+			<h:inputTextarea value="#{gestionHistoriaClinicaBean.hc_movito_consulta}" class="form-control" pt:placeholder="Ingresar ..." cols="52" rows="5"/>
 			<h:outputLabel value="Diagnóstico" />
-			<h:inputTextarea value="#{gestionHistoriaClinicaBean.hc_enfermedad_actual}" cols="52" rows="5"/>
+			<h:inputTextarea value="#{gestionHistoriaClinicaBean.hc_enfermedad_actual}" class="form-control" pt:placeholder="Ingresar ..." cols="52" rows="5"/>
 		</h:panelGrid>
 	</div>
 		

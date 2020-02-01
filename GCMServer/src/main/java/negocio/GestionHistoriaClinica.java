@@ -10,7 +10,7 @@ import datos.HistoriaClinicaDAO;
 import modelo.Cita;
 import modelo.ExamenLaboratorio;
 import modelo.HistoriaClinica;
-import modelo.Paciente;
+import modelo.Usuario;
 
 
 
@@ -22,14 +22,14 @@ public class GestionHistoriaClinica implements GestionHistoriaClinicaRemote, Ges
 
 	@Override
 	public void guardarHistoriaClinica(int hc_codigo, String hc_residencia, String hc_fecha, String hc_motivo_consulta,
-			String hc_enfermedad_actual, Paciente pa_codigo) {
+			String hc_enfermedad_actual, Usuario usuario) {
 		HistoriaClinica hc = new HistoriaClinica();
 		hc.setHc_codigo(hc_codigo);
 		hc.setHc_residencia(hc_residencia);
 		hc.setHc_fecha(hc_fecha);
 		hc.setHc_movito_consulta(hc_motivo_consulta);
 		hc.setHc_enfermedad_actual(hc_enfermedad_actual);
-		hc.setPa_codigo(pa_codigo);
+		hc.setUsuario(usuario);
 		dao.insert(hc);
 	}
 
@@ -41,7 +41,7 @@ public class GestionHistoriaClinica implements GestionHistoriaClinicaRemote, Ges
 
 	@Override
 	public void update(int hc_codigo, String hc_residencia, String hc_fecha, String hc_motivo_consulta,
-			String hc_enfermedad_actual, Paciente pa_codigo) {
+			String hc_enfermedad_actual, Usuario usuario) {
 		
 		HistoriaClinica hc = new HistoriaClinica();
 		hc.setHc_codigo(hc_codigo);
@@ -49,7 +49,7 @@ public class GestionHistoriaClinica implements GestionHistoriaClinicaRemote, Ges
 		hc.setHc_fecha(hc_fecha);
 		hc.setHc_movito_consulta(hc_motivo_consulta);
 		hc.setHc_enfermedad_actual(hc_enfermedad_actual);
-		hc.setPa_codigo(pa_codigo);
+		hc.setUsuario(usuario);
 		dao.update(hc);
 		
 	}

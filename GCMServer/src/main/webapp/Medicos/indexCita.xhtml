@@ -7,15 +7,16 @@
 <ui:composition template="../Plantilla/plantilla.xhtml">
 	<ui:define name="tituloPagina">Citas Médicas - Inicio</ui:define>
 	<ui:define name="h1Titulo">Citas Médicas</ui:define>
+	<ui:define name="nombreUser">Dr. #{user.us_nombres} <br></br>#{user.us_apellidos}</ui:define>
 	<ui:define name="contenido">
 
-		<h:dataTable value="#{gestionCitasBean.recuperarCitas()}" var="cita" class="table  table-hover">
+		<h:dataTable value="#{gestionCitasBean.recuperarCitasPendientes()}" var="cita" class="table  table-hover">
 			<h:column>
-				#{cita.us_usuario.us_cedula}
+				#{cita.usuario.us_cedula}
 				<f:facet name="header">Cédula</f:facet>
 			</h:column>
 			<h:column>
-				#{cita.us_usuario.us_nombres} #{cita.us_usuario.us_apellidos}
+				#{cita.usuario.us_nombres} #{cita.usuario.us_apellidos}
 				<f:facet name="header">Paciente</f:facet>
 			</h:column>
 			<h:column>
@@ -24,7 +25,7 @@
 			</h:column>
 			<h:column>
 				<h:link value="Agregar diagnóstico" outcome="agregar_diagnostico" >
-					<f:param name="username" value= " #{cita.us_usuario.us_cedula}" />
+					<f:param name="username" value= " #{cita.usuario.us_cedula}" />
 				</h:link>
 			</h:column>
 		</h:dataTable>
