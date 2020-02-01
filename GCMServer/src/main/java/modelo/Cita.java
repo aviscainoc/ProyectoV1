@@ -35,6 +35,8 @@ public class Cita {
 	
 	@OneToOne
 	private RecetaMedica rm_recetaMedica;
+
+	
 	
 	public String getCi_estado() {
 		return ci_estado;
