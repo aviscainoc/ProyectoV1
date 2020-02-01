@@ -12,17 +12,115 @@
 
 </h:head> 
 
-<ui:composition template="../Plantilla/plantilla3.xhtml">
+<ui:composition template="../Plantilla/plantilla6.xhtml">
 	<ui:define name="tituloPagina">Citas Médicas - Perfil</ui:define>
 	<ui:define name="h1Titulo">Perfil</ui:define>
 	<ui:define name="nombreUser">#{gestionUsuariosBean.usuario.us_nombres}</ui:define>
-	<ui:define name="contenido">
-		<h:form>
-			<h:panelGrid columns="2" border="1">
-				<h:outputLabel>Nombres del usuario</h:outputLabel>
-				<h:outputLabel>Apellidos del usuario</h:outputLabel>
-			</h:panelGrid>
-		</h:form>
+	
+	<ui:define name="datos">
+		<!-- div class="text-center">
+		 	<img class="profile-user-img img-fluid img-circle" src="../../dist/img/user4-128x128.jpg" alt="User profile picture"></img>
+		</div -->
+		<h3 class="profile-username text-center">#{gestionUsuariosBean.usuario.us_nombres}</h3>
+		<p class="text-muted text-center">#{gestionUsuariosBean.usuario.us_apellidos}</p>
+		<ul class="list-group list-group-unbordered mb-3">
+			<li class="list-group-item">
+				<b>Edad</b> <a class="float-right">#{gestionUsuariosBean.usuario.us_fecha_nacimiento}</a>
+			</li>
+			<li class="list-group-item">
+				<b>Sexo</b> <a class="float-right">#{gestionUsuariosBean.usuario.us_pa_identidad_sexual}</a>
+			</li>
+			<li class="list-group-item">
+				<b>Estado civil</b> <a class="float-right">#{gestionUsuariosBean.usuario.us_pa_estado_civil}</a>
+			</li>
+		</ul>
+		<a href="#" class="btn btn-primary btn-block"><b>Agendar Cita</b></a>
+	</ui:define>
+	
+	<ui:define name="acerca">
+		<div class="card-header">
+			<h3 class="card-title">Datos Personales</h3>
+		</div>
+		<!-- /.card-header -->
+		
+		<div class="card-body">
+			<strong>Cédula</strong>
+			<p class="text-muted">
+				#{gestionUsuariosBean.usuario.us_cedula}
+			</p>
+			<hr></hr>
+			<strong>Correo</strong>
+			<p class="text-muted">#{gestionUsuariosBean.usuario.us_correo}</p>
+			<hr></hr>
+			<strong>Procedencia</strong>
+			<p class="text-muted">#{gestionUsuariosBean.usuario.us_pa_procedencia}</p>
+			<hr></hr>
+			<strong>Ocupación</strong>
+			<p class="text-muted">#{gestionUsuariosBean.usuario.us_pa_ocupacion}</p>
+			<hr></hr>
+			<strong>Nivel de estudio</strong>
+			<p class="text-muted">#{gestionUsuariosBean.usuario.us_pa_nivel_estudio}</p>
+			<hr></hr>
+			<strong>Etnia</strong>
+			<p class="text-muted">#{gestionUsuariosBean.usuario.us_pa_etnia}</p>
+			<hr></hr>
+			<strong>Religión</strong>
+			<p class="text-muted">#{gestionUsuariosBean.usuario.us_pa_religion}</p>
+			<hr></hr>
+			<strong>Tipo de sangre</strong>
+			<p class="text-muted">#{gestionUsuariosBean.usuario.us_pa_tipo_sangre}</p>
+		</div>
+	</ui:define>
+	
+	<ui:define name="actividad"></ui:define>
+	<ui:define name="timeline"></ui:define>
+	<ui:define name="configuracion">
+		<form class="form-horizontal">
+			<div class="form-group row">
+			  <label for="inputName" class="col-sm-2 col-form-label">Name</label>
+			  <div class="col-sm-10">
+			    <input type="email" class="form-control" id="inputName" placeholder="Name"></input>
+			  </div>
+			</div>
+			<div class="form-group row">
+			  <label for="inputEmail" class="col-sm-2 col-form-label">Email</label>
+			  <div class="col-sm-10">
+			    <input type="email" class="form-control" id="inputEmail" placeholder="Email"></input>
+			  </div>
+			</div>
+			<div class="form-group row">
+			  <label for="inputName2" class="col-sm-2 col-form-label">Name</label>
+			  <div class="col-sm-10">
+			    <input type="text" class="form-control" id="inputName2" placeholder="Name"></input>
+			  </div>
+			</div>
+			<div class="form-group row">
+			  <label for="inputExperience" class="col-sm-2 col-form-label">Experience</label>
+			  <div class="col-sm-10">
+			    <textarea class="form-control" id="inputExperience" placeholder="Experience"></textarea>
+			  </div>
+			</div>
+			<div class="form-group row">
+			  <label for="inputSkills" class="col-sm-2 col-form-label">Skills</label>
+			  <div class="col-sm-10">
+			    <input type="text" class="form-control" id="inputSkills" placeholder="Skills"></input>
+			  </div>
+			</div>
+			<div class="form-group row">
+			  <div class="offset-sm-2 col-sm-10">
+			    <div class="checkbox">
+			      <label>
+			        <input type="checkbox"> I agree to the <a href="#">terms and conditions</a></input>
+			      </label>
+			    </div>
+			  </div>
+			</div>
+			<div class="form-group row">
+			  <div class="offset-sm-2 col-sm-10">
+			    <button type="submit" class="btn btn-danger">Submit</button>
+			  </div>
+			</div>
+		</form>
 	</ui:define>
 </ui:composition>
 </html>

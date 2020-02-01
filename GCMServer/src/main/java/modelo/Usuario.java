@@ -1,5 +1,6 @@
 package modelo;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -168,6 +169,19 @@ public class Usuario {
 	public void setUs_pa_registro(int us_pa_registro) {
 		this.us_pa_registro = us_pa_registro;
 	}
+	
+	public void addHistoriaClinica(HistoriaClinica hc) {
+		if (historias_clinica == null)
+			historias_clinica = new ArrayList<HistoriaClinica>();
+		this.historias_clinica.add(hc);
+	}
+	
+	public void addCita(Cita c) {
+		if (citas == null)
+			citas = new ArrayList<Cita>();
+		this.citas.add(c);
+	}
+	
 	@Override
 	public String toString() {
 		return "Usuario [us_cedula=" + us_cedula + ", us_rol=" + us_rol + ", us_nombres=" + us_nombres

@@ -2,22 +2,49 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:h="http://java.sun.com/jsf/html"> 
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"> 
 
-<ui:composition template="../Plantilla/plantilla2.xhtml">
-	<ui:define name="tituloPagina">Citas Médicas - Iniciar Sesión</ui:define>
-	<ui:define name="h1Titulo"><a href="../Medicos/dr.xhtml">Dr. David Enriquez - Médico General</a></ui:define>
-	<ui:define name="h1Titulo">Iniciar Sesión</ui:define>
+<ui:composition template="../Plantilla/plantilla5.xhtml">
+	<ui:define name="titulo">Inicia sesión para acceder a tu información</ui:define>
 	<ui:define name="contenido">
+	<div>
 		<h:form>
-			<h:panelGrid columns="1">
-				<h:inputText value="#{gestionUsuariosBean.us_correo}" class="form-control form-control-navbar" placeholder="correo" aria-label="Search"></h:inputText>
-				<h:inputSecret value="#{gestionUsuariosBean.us_contrasena}" class="form-control form-control-navbar" placeholder="contraseña"></h:inputSecret>
-				<h:commandButton action="#{gestionUsuariosBean.login()}" class="btn btn-primary" value="Iniciar Sesión">
+			<div class="input-group mb-3">
+				<h:inputText pt:placeholder="ejemplo@gmail.com" value="#{gestionUsuariosBean.us_correo}" class="form-control form-control-navbar" aria-label="Search"></h:inputText>
+					<div class="input-group-append">
+				    	<div class="input-group-text">
+				    		<span class="fas fa-envelope"></span>
+						</div>
+					</div>
+			</div>
+			<div class="input-group mb-3">
+				<h:inputSecret value="#{gestionUsuariosBean.us_contrasena}" class="form-control form-control-navbar" pt:placeholder="contraseña"></h:inputSecret>
+				<div class="input-group-append">
+					<div class="input-group-text">
+					    <span class="fas fa-lock"></span>
+					</div>
+				</div>
+			</div>
+				<h:commandButton class="btn btn-primary btn-block" action="#{gestionUsuariosBean.login()}" value="Iniciar Sesión">
 					<f:param name="username" value= " #{gestionUsuariosBean.usuario.us_cedula}"/>
 				</h:commandButton>
-			</h:panelGrid>
 		</h:form>
+	</div>
+		
+	<br></br>
+	<br></br>
+	<p class="mb-1">
+		<a href="#">Olvidé mi contraseña</a>
+	</p>
+	<p class="mb-0">
+		<a href="create-user.xhtml" class="text-center">Registrarme</a>
+	</p>
+	<br></br>
+	<p class="mb-0">
+		<a href="index.xhtml" class="text-center">Cancelar</a>
+	</p>
+	
 	</ui:define>
 </ui:composition>
 </html>

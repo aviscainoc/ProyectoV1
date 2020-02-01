@@ -20,29 +20,47 @@
 	<div class="card-body">
 		<h:panelGrid columns="6" class="table table-bordered">
 			<h:outputLabel>Cédula: </h:outputLabel>
-			<h:outputLabel>#{gestionUsuariosBean.us_cedula}</h:outputLabel>
+			<h:inputText size="8" class="form-control" value="#{gestionUsuariosBean.us_cedula}" disabled="true" style="color: black; border:none; background-color: #F1F4F6"></h:inputText>
 			<h:outputLabel>Nombres: </h:outputLabel>
-			<h:outputLabel>#{gestionUsuariosBean.usuario.us_nombres}</h:outputLabel>
+			<h:inputText size="15" class="form-control" value="#{gestionUsuariosBean.usuario.us_nombres}" disabled="true" style="color: black; border:none; background-color: #F1F4F6"></h:inputText>
 			<h:outputLabel>Apellidos: </h:outputLabel>
-			<h:outputLabel>#{gestionUsuariosBean.usuario.us_apellidos}</h:outputLabel>
+			<h:inputText size="15" class="form-control" value="#{gestionUsuariosBean.usuario.us_apellidos}" disabled="true" style="color: black; border:none; background-color: #F1F4F6"></h:inputText>
 			<h:outputLabel>Fecha de nacimiento: </h:outputLabel>
-			<h:outputLabel>#{gestionUsuariosBean.usuario.us_fecha_nacimiento}</h:outputLabel>
-			<h:outputLabel>Estado Civil: </h:outputLabel>
-			<h:outputLabel>#{gestionUsuariosBean.usuario.us_pa_estado_civil}</h:outputLabel>
+			<h:inputText size="8" class="form-control" value="#{gestionUsuariosBean.usuario.us_fecha_nacimiento}" disabled="true" style="color: black; border:none; background-color: #F1F4F6"></h:inputText>
 			<h:outputLabel>Etnia: </h:outputLabel>
-			<h:outputLabel>#{gestionUsuariosBean.usuario.us_pa_etnia}</h:outputLabel>
+			<h:inputText size="15" class="form-control" value="#{gestionUsuariosBean.usuario.us_pa_etnia}" disabled="true" style="color: black; border:none; background-color: #F1F4F6"></h:inputText>
 			<h:outputLabel>Identidad Sexual: </h:outputLabel>
-			<h:outputLabel>#{gestionUsuariosBean.usuario.us_pa_identidad_sexual}</h:outputLabel>
+			<h:inputText size="15" class="form-control" value="#{gestionUsuariosBean.usuario.us_pa_identidad_sexual}" disabled="true" style="color: black; border:none; background-color: #F1F4F6"></h:inputText>
 			<h:outputLabel>Nivel de Estudio: </h:outputLabel>
-			<h:outputLabel>#{gestionUsuariosBean.usuario.us_pa_nivel_estudio}</h:outputLabel>
+			<h:inputText size="8" class="form-control" value="#{gestionUsuariosBean.usuario.us_pa_nivel_estudio}" disabled="true" style="color: black; border:none; background-color: #F1F4F6"></h:inputText>
 			<h:outputLabel>Ocupación: </h:outputLabel>
-			<h:outputLabel>#{gestionUsuariosBean.usuario.us_pa_ocupacion}</h:outputLabel>
+			<h:inputText size="15" class="form-control" value="#{gestionUsuariosBean.usuario.us_pa_ocupacion}" disabled="true" style="color: black; border:none; background-color: #F1F4F6"></h:inputText>
 			<h:outputLabel>Procedencia: </h:outputLabel>
-			<h:outputLabel>#{gestionUsuariosBean.usuario.us_pa_procedencia}</h:outputLabel>
+			<h:inputText size="15" class="form-control" value="#{gestionUsuariosBean.usuario.us_pa_procedencia}" disabled="true" style="color: black; border:none; background-color: #F1F4F6"></h:inputText>
+			<h:outputLabel>Estado Civil: </h:outputLabel>
+			<h:inputText size="8" class="form-control" value="#{gestionUsuariosBean.usuario.us_pa_estado_civil}" disabled="true" style="color: black; border:none; background-color: #F1F4F6"></h:inputText>
 			<h:outputLabel>Religión: </h:outputLabel>
-			<h:outputLabel>#{gestionUsuariosBean.usuario.us_pa_religion}</h:outputLabel>
+			<h:inputText size="15" class="form-control" value="#{gestionUsuariosBean.usuario.us_pa_religion}" disabled="true" style="color: black; border:none; background-color: #F1F4F6"></h:inputText>
 			<h:outputLabel>Tipo de Sangre: </h:outputLabel>
-			<h:outputLabel>#{gestionUsuariosBean.usuario.us_pa_tipo_sangre}</h:outputLabel>
+			<h:inputText size="15" class="form-control" value="#{gestionUsuariosBean.usuario.us_pa_tipo_sangre}" disabled="true" style="color: black; border:none; background-color: #F1F4F6"></h:inputText>
+		</h:panelGrid>
+	</div>
+	<div class="float-right" style="margin-right: 20px;">
+		<h:panelGrid columns="2">
+			<h:commandButton action="#" value="Editar datos" class="btn btn-block btn-outline-secondary btn-xs float-right"/>
+			<h:commandButton action="#" value="Guardar" class="btn btn-block btn-outline-secondary btn-xs float-right disabled"/>
+		</h:panelGrid>
+	</div>
+	<br></br>
+	<br></br>
+	<div class="card-body">
+		<h:panelGrid columns="2" class="table">
+			<h:outputLabel value="Lugar de residencia" />
+			<h:inputText value="#{gestionHistoriaClinicaBean.hc_residencia}" size="50"/>
+			<h:outputLabel value="Motivo de la consulta" />
+			<h:inputTextarea value="#{gestionHistoriaClinicaBean.hc_movito_consulta}" cols="52" rows="5"/>
+			<h:outputLabel value="Diagnóstico" />
+			<h:inputTextarea value="#{gestionHistoriaClinicaBean.hc_enfermedad_actual}" cols="52" rows="5"/>
 		</h:panelGrid>
 	</div>
 		

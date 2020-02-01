@@ -2,7 +2,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:h="http://java.sun.com/jsf/html"> 
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"> 
 
 <ui:composition template="../Plantilla/plantilla4.xhtml">
 	<ui:define name="h1Titulo"><a href="../Medicos/dr.xhtml">Dr. David Enriquez - Médico General</a></ui:define>
@@ -14,9 +15,9 @@
 	      <div class="input-group input-group-sm">
 	      	<h:panelGrid columns="6" class="table">
 	      		<h:outputLabel>Número de cédula: </h:outputLabel>
-	      		<h:inputText value="#{gestionCitasBean.us_codigo}" class="form-control form-control-navbar" f:placeholder="Ingresar número de cédula" aria-label="Search"></h:inputText>
+	      		<h:inputText pt:placeholder="9999999999" value="#{gestionCitasBean.us_codigo}" class="form-control form-control-navbar" f:placeholder="Ingresar número de cédula" aria-label="Search" required="true"></h:inputText>
 	      		<h:outputLabel>Fecha de la cita: </h:outputLabel>
-	      		<h:inputText value="#{gestionCitasBean.ci_fecha_cita}" class="form-control form-control-navbar" placeholder="Fecha de cita" >
+	      		<h:inputText pt:placeholder="01-01-2020" value="#{gestionCitasBean.ci_fecha_cita}" class="form-control form-control-navbar" placeholder="Fecha de cita" required="true">
 					<f:convertDateTime pattern = "dd-mm-yyyy" />
 				</h:inputText>
 		    	<h:commandButton action="#{gestionCitasBean.guardarCita()}" value="Generar Cita Médica"></h:commandButton>

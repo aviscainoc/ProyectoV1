@@ -2,40 +2,54 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:h="http://java.sun.com/jsf/html"> 
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"> 
 
-<ui:composition template="../Plantilla/plantilla2.xhtml">
-	<ui:define name="tituloPagina">Citas Médicas - Registrarse</ui:define>
-	<ui:define name="h1Titulo">Registrarse</ui:define>
+<ui:composition template="../Plantilla/plantilla5.xhtml">
+	<ui:define name="titulo">Registrarme</ui:define>
 	<ui:define name="contenido">
 		<h:form>
-			<h:panelGrid columns="2">
-				<h:outputLabel value="Cedula " />
-				<h:inputText class="form-control form-control-navbar" value="#{gestionUsuariosBean.us_cedula}" placeholder="Cedula" />
+			<div class="input-group mb-3">
+				<h:inputText pt:placeholder="Cédula" class="form-control form-control-navbar" value="#{gestionUsuariosBean.us_cedula}" placeholder="Cedula" />
+			</div>
+			<div class="input-group mb-3">
+				<h:inputText pt:placeholder="Nombres" class="form-control form-control-navbar" value="#{gestionUsuariosBean.us_nombres}" placeholder="Nombres" />
+			</div>
 				
-				<h:outputLabel value="Nombres" />
-				<h:inputText class="form-control form-control-navbar" value="#{gestionUsuariosBean.us_nombres}" placeholder="Nombres" />
+			<div class="input-group mb-3">
+				<h:inputText pt:placeholder="Apellidos" class="form-control form-control-navbar" value="#{gestionUsuariosBean.us_apellidos}" placeholder="Apellidos" />
+			</div>
 				
-				<h:outputLabel value="Apellidos" />
-				<h:inputText class="form-control form-control-navbar" value="#{gestionUsuariosBean.us_apellidos}" placeholder="Apellidos" />
+			<div class="input-group mb-3">
+				<h:inputText pt:placeholder="Sexo" class="form-control form-control-navbar" value="#{gestionUsuariosBean.us_sexo}" placeholder="Sexo" />
+			</div>
 				
-				<h:outputLabel value="Sexo " />
-				<h:inputText class="form-control form-control-navbar" value="#{gestionUsuariosBean.us_sexo}" placeholder="Sexo" />
-				
-				<h:outputLabel value=" Fecha de nacimiento" />
-				<h:inputText class="form-control form-control-navbar" value="#{gestionUsuariosBean.us_fecha_nacimiento}" placeholder="Fecha de nacimiento" >
+			<div class="input-group mb-3">
+				<h:inputText pt:placeholder="Fecha de nacimiento" class="form-control form-control-navbar" value="#{gestionUsuariosBean.us_fecha_nacimiento}" placeholder="Fecha de nacimiento" >
 					<f:convertDateTime pattern = "dd-mm-yyyy" />
 				</h:inputText>
+			</div>
 				
-				<h:outputLabel value="Correo Electronico " />
-				<h:inputText class="form-control form-control-navbar" value="#{gestionUsuariosBean.us_correo}" placeholder="Correo" />
+			<div class="input-group mb-3">
+				<h:inputText pt:placeholder="ejemplo@gmail.com" class="form-control form-control-navbar" value="#{gestionUsuariosBean.us_correo}" placeholder="Correo" />
+			</div>
 				
-				<h:outputLabel value="Contrasenia " />
-				<h:inputText class="form-control form-control-navbar" value="#{gestionUsuariosBean.us_contrasena}" placeholder="Contrasena" />
-			</h:panelGrid>
-			<h:commandButton action="#{gestionUsuariosBean.guardarUsuariosPaciente()}" value="Guardar" />
-			<h:commandButton action="index" value="Regresar"></h:commandButton>
+			<div class="input-group mb-3">
+				<h:inputText pt:placeholder="Contraseña" class="form-control form-control-navbar" value="#{gestionUsuariosBean.us_contrasena}" placeholder="Contrasena" />
+			</div>
+	
+			<div class="input-group mb-3">
+				<h:commandButton class="btn btn-primary btn-block" action="#{gestionUsuariosBean.guardarUsuariosPaciente()}" value="Guardar" />
+			</div>
 		</h:form>
+		
+		
+		<p class="mb-1">
+			<a href="iniciar_sesion.xhtml">Ya tengo una cuenta</a>
+		</p>
+		<p class="mb-0">
+			<a href="index.xhtml" class="text-center">Cancelar</a>
+		</p>
 	</ui:define>
 </ui:composition>
   

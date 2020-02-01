@@ -3,9 +3,18 @@ package modelo;
 import javax.persistence.*;
 
 @Entity
+@TableGenerator(
+		name = "HistoriaClinica", 
+		initialValue = 1, 
+		pkColumnName = "ENTITY", 
+		pkColumnValue = "hc_codigo", 
+		allocationSize = 1, 
+		table = "ENTITY_GENERATOR"
+			)
 public class HistoriaClinica {
 
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int hc_codigo;
 	private String hc_residencia;
 	private String hc_fecha;
