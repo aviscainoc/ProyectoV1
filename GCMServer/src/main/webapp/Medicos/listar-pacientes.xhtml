@@ -11,23 +11,23 @@
 <center>
 <h:form>
 
-<h:dataTable value="#{gestionUsuariosBean.recuperarUsuarios()}" var="usuario">
+<h:dataTable value="#{gestionUsuariosBean.recuperarUsuarios()}" var="usuario" class="table  table-hover">
 
 	<h:column>
 		#{usuario.us_cedula}
-		<f:facet name="header">Código</f:facet>
+		<f:facet name="header">Cédula</f:facet>
 	</h:column>
 	<h:column>
-		#{usuario.us_nombres}
-		<f:facet name="header">Nombres</f:facet>
+		#{usuario.us_nombres} #{usuario.us_apellidos}
+		<f:facet name="header">Paciente</f:facet>
 	</h:column>
 	<h:column>
-		#{usuario.us_apellidos}
-		<f:facet name="header">Apellidos</f:facet>
+		#{usuario.us_fecha_nacimiento}
+		<f:facet name="header">Nacimiento</f:facet>
 	</h:column>
 	<h:column>
-		<a href="../HistoriasClinicas/create-hc.xhtml" >Agregar historia clinica</a>
-		<f:facet name="header">Historial Clinico</f:facet>
+		<a href="../HistoriasClinicas/perfil.xhtml" >Editar</a>
+		<f:facet name="header">Datos paciente</f:facet>
 	</h:column>
 	
 	

@@ -116,18 +116,15 @@ public class GestionCitasBean {
 		int registro=0;
 		ci_fecha_agendacion = new Date();
 		
-		
-	
-	
-		gl.guardarCita(us_codigo, ci_fecha_agendacion, ci_fecha_cita, ci_estado);
-		
-		citas=gl.getCitas();
-		Usuario userRecuperado = gul.recuperarUsuario(us_codigo);
-		if(userRecuperado!=null) {
-			return "index-citas";
-		}else {
-		gul.guardarUsuarioPaciente(us_codigo, rol, registro, null, null, null, null, null, null, null, null, null, null, null, null, null, null);
-		return "LaPaginaPersuadisadora";
+		if (gul.recuperarUsuario(us_codigo)!=null) {
+			gl.guardarCita(us_codigo, ci_fecha_agendacion, ci_fecha_cita, ci_estado);
+			citas=gl.getCitas();
+			return "index";
+		} else {
+			gul.guardarUsuarioPaciente(us_codigo, rol, registro, null, null, null, null, null, null, null, null, null, null, null, null, null, null);
+			gl.guardarCita(us_codigo, ci_fecha_agendacion, ci_fecha_cita, ci_estado);
+			citas=gl.getCitas();
+			return "persuasiva";
 		}
 	}
 	

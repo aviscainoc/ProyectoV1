@@ -29,6 +29,7 @@ public class UsuarioDAO {
 	}
 	
 	public Usuario read(String codigo) {
+		codigo = codigo.trim();
 		Usuario u = em.find(Usuario.class, codigo);
 		return u;
 	}

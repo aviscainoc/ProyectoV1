@@ -75,7 +75,6 @@ public class GestionUsuario implements GestionUsuariosLocal, GestionUsuariosRemo
 	
 	public Usuario login(String usuario, String contrasena) throws Exception {
 		Usuario usr= daoU.login(usuario, contrasena);
-		System.out.println(usr.getUs_rol());
 		
 		return usr;
 	}

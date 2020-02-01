@@ -4,7 +4,7 @@
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:h="http://java.sun.com/jsf/html"> 
 
-<ui:composition template="../Plantilla/plantilla2.xhtml">
+<ui:composition template="../Plantilla/plantilla4.xhtml">
 	<ui:define name="h1Titulo"><a href="../Medicos/dr.xhtml">Dr. David Enriquez - Médico General</a></ui:define>
 	<ui:define name="contenido">
 		<center><h4>Por favor, ingresa los datos de la persona que va a ser atendida.</h4></center>
@@ -12,20 +12,19 @@
 		<br></br>
 		<h:form class="form-inline ml-3">
 	      <div class="input-group input-group-sm">
-	      	<h:panelGrid columns="2">
-	      		
+	      	<h:panelGrid columns="6" class="table">
+	      		<h:outputLabel>Número de cédula: </h:outputLabel>
 	      		<h:inputText value="#{gestionCitasBean.us_codigo}" class="form-control form-control-navbar" f:placeholder="Ingresar número de cédula" aria-label="Search"></h:inputText>
-	      		<h:outputLabel>Fecha cita: </h:outputLabel>
+	      		<h:outputLabel>Fecha de la cita: </h:outputLabel>
 	      		<h:inputText value="#{gestionCitasBean.ci_fecha_cita}" class="form-control form-control-navbar" placeholder="Fecha de cita" >
 					<f:convertDateTime pattern = "dd-mm-yyyy" />
 				</h:inputText>
-	      		<h:outputLabel></h:outputLabel>
 		    	<h:commandButton action="#{gestionCitasBean.guardarCita()}" value="Generar Cita Médica"></h:commandButton>
-		    	
+		    	<img src="../Plantilla/dist/img/personaje.png" style="size: width: 250px; height: 250px;" alt="User Image"></img>
 	      	</h:panelGrid>
 	      </div>
 	    </h:form>
-	    <img src="../Plantilla/dist/img/personaje.png" style="size: width: 250px; height: 250px;" alt="User Image"></img>
+	    
 	</ui:define>
 </ui:composition>
 </html>

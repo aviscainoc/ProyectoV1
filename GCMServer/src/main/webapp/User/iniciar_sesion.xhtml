@@ -13,7 +13,9 @@
 			<h:panelGrid columns="1">
 				<h:inputText value="#{gestionUsuariosBean.us_correo}" class="form-control form-control-navbar" placeholder="correo" aria-label="Search"></h:inputText>
 				<h:inputSecret value="#{gestionUsuariosBean.us_contrasena}" class="form-control form-control-navbar" placeholder="contraseña"></h:inputSecret>
-				<h:commandButton action="#{gestionUsuariosBean.login()}" class="btn btn-primary" value="Iniciar Sesión"></h:commandButton>
+				<h:commandButton action="#{gestionUsuariosBean.login()}" class="btn btn-primary" value="Iniciar Sesión">
+					<f:param name="username" value= " #{gestionUsuariosBean.usuario.us_cedula}"/>
+				</h:commandButton>
 			</h:panelGrid>
 		</h:form>
 	</ui:define>

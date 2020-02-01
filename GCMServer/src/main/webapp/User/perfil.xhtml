@@ -4,10 +4,18 @@
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:h="http://java.sun.com/jsf/html"> 
 
+<h:head>
+	<f:metadata>
+        <f:viewParam id="username" name="username" value="#{gestionUsuariosBean.us_cedula}"/>
+        <f:viewAction action="#{gestionUsuariosBean.recuperarUsuario()}" />
+ 	</f:metadata>
+
+</h:head> 
+
 <ui:composition template="../Plantilla/plantilla3.xhtml">
 	<ui:define name="tituloPagina">Citas Médicas - Perfil</ui:define>
 	<ui:define name="h1Titulo">Perfil</ui:define>
-	<ui:define name="nombreUser">Nombres del usuario</ui:define>
+	<ui:define name="nombreUser">#{gestionUsuariosBean.usuario.us_nombres}</ui:define>
 	<ui:define name="contenido">
 		<h:form>
 			<h:panelGrid columns="2" border="1">

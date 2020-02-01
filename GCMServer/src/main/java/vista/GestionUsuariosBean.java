@@ -267,11 +267,10 @@ public class GestionUsuariosBean {
 			user = gl.login(us_correo, us_contrasena);
 			System.out.println(user);
 			if(user.getUs_rol().equals("pac")) {
-				System.out.println("Tu eres paciente");
+				usuario = user;
 				return "/User/perfil";
-				
 			}else {
-				System.out.println("Tu eres medico");
+				usuario = user;
 				return "/Medicos/indexCita";
 			}
 		} catch (Exception e) {
