@@ -29,8 +29,16 @@ public class GestionFacturaCabecera implements GestionFacturaCabeceraLocal{
 	public void guardarFacturaCabecera(String us_id) {
 		FacturaCabecera fc = new FacturaCabecera();
 		Usuario u = daoU.read(us_id);
-		fc.setUs_id(u);	
-		daoFc.insert(fc);
+		if (u != null) {
+			fc.setUs_id(u);	
+			daoFc.insert(fc);
+		}else {
+			Usuario u1 = new Usuario();
+			u1.setUs_cedula("999999999");
+			u1.setUs_nombres("Consumidor Final");
+			fc.setUs_id(u1);	
+			daoFc.insert(fc);
+		}
 	}
 
 	@Override
