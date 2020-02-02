@@ -43,6 +43,11 @@ public class Usuario {
 	@JoinColumn(referencedColumnName="us_cedula")
 	private List<Cita> citas;
 	
+	@OneToMany(cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
+	private List<FacturaCabecera> facs_cab;
+	
+	
+	
 	public String getUs_cedula() {
 		return us_cedula;
 	}
@@ -181,7 +186,18 @@ public class Usuario {
 			citas = new ArrayList<Cita>();
 		this.citas.add(c);
 	}
+	public void addFactura(FacturaCabecera fc) {
+		if (facs_cab == null)
+			facs_cab = new ArrayList<FacturaCabecera>();
+		this.facs_cab.add(fc);
+	}
 	
+	public List<FacturaCabecera> getFacs_cab() {
+		return facs_cab;
+	}
+	public void setFacs_cab(List<FacturaCabecera> facs_cab) {
+		this.facs_cab = facs_cab;
+	}
 	@Override
 	public String toString() {
 		return "Usuario [us_cedula=" + us_cedula + ", us_rol=" + us_rol + ", us_nombres=" + us_nombres
@@ -191,9 +207,12 @@ public class Usuario {
 				+ ", us_pa_estado_civil=" + us_pa_estado_civil + ", us_pa_nivel_estudio=" + us_pa_nivel_estudio
 				+ ", us_pa_ocupacion=" + us_pa_ocupacion + ", us_pa_etnia=" + us_pa_etnia + ", us_pa_religion="
 				+ us_pa_religion + ", us_pa_tipo_sangre=" + us_pa_tipo_sangre + ", us_pa_identidad_sexual="
-				+ us_pa_identidad_sexual + ", us_pa_procedencia=" + us_pa_procedencia + ", registro=" + us_pa_registro
-				+ ", historias_clinica=" + historias_clinica + ", citas=" + citas + "]";
+				+ us_pa_identidad_sexual + ", us_pa_procedencia=" + us_pa_procedencia + ", us_pa_registro="
+				+ us_pa_registro + ", historias_clinica=" + historias_clinica + ", citas=" + citas + ", facs_cab="
+				+ facs_cab + "]";
 	}
+
+	
 	
 	
 	

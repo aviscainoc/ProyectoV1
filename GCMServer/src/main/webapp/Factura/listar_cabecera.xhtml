@@ -1,0 +1,41 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"> 
+
+<h:head></h:head> 
+<body> 
+
+<center><h1>Facturas Cabecera Registradas</h1></center>
+
+<center>
+<h:form>
+
+<h:dataTable value="#{gestionFacturaCabeceraBean.recuperarCabeceras()}" var="cabecera">
+
+	<h:column>
+		#{cabecera.fac_cab_id}
+		<f:facet name="header">Código</f:facet>
+	</h:column>
+	<h:column>
+		#{cabecera.facs_det}
+		<f:facet name="header">Detalles</f:facet>
+	</h:column>
+	<h:column>
+		#{cabecera.us_id.us_cedula}
+		<f:facet name="header">Cedula usuario</f:facet>
+	</h:column>
+	<h:column>
+		#{cabecera.us_id.us_nombres}
+		<f:facet name="header">Nombre del usuario</f:facet>
+	</h:column>
+	
+</h:dataTable>
+<h:commandButton action="crear_cabecera" value="Regresar"></h:commandButton>
+
+</h:form>
+</center>
+
+</body> 
+</html>

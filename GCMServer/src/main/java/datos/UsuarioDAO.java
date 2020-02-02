@@ -52,7 +52,6 @@ public class UsuarioDAO {
 		q.setParameter(1, correo );
 		q.setParameter(2, contrasena );
 		
-		
 		Usuario us = (Usuario) q.getSingleResult();
 		
 		if(us==null)
@@ -61,13 +60,7 @@ public class UsuarioDAO {
 		us.getHistorias_clinica().size();
 		us.getCitas().size();
 		return us;
-	}
-	
-	
-
-
-	
-	
+	}	
 }
 
 
