@@ -9,6 +9,7 @@ import modelo.Cita;
 import modelo.HistoriaClinica;
 import modelo.Paciente;
 import modelo.RecetaMedica;
+import modelo.Usuario;
 import negocio.GestionHistoriaClinicaLocal;
 import negocio.GestionRecetaMedicaLocal;
 
@@ -22,7 +23,8 @@ public class GestionHistoriaClinicaBean {
 	private String hc_fecha;
 	private String hc_movito_consulta;
 	private String hc_enfermedad_actual;
-	private Paciente pa_codigo;
+	private Usuario usuario;
+	private Cita cita;
 	
 	private List<HistoriaClinica> historias;
 	
@@ -74,14 +76,6 @@ public class GestionHistoriaClinicaBean {
 		this.hc_enfermedad_actual = hc_enfermedad_actual;
 	}
 
-	public Paciente getPa_codigo() {
-		return pa_codigo;
-	}
-
-	public void setPa_codigo(Paciente pa_codigo) {
-		this.pa_codigo = pa_codigo;
-	}
-
 	public List<HistoriaClinica> getHistorias() {
 		return historias;
 	}
@@ -90,9 +84,25 @@ public class GestionHistoriaClinicaBean {
 		this.historias = historias;
 	}
 
+	public Usuario getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
+	}
+
+	public Cita getCita() {
+		return cita;
+	}
+
+	public void setCita(Cita cita) {
+		this.cita = cita;
+	}
+
 	public String guardarHistoriasClinicas() {
-		System.out.println(hc_codigo + " "+ pa_codigo);
-		gl.guardarHistoriaClinica(hc_codigo, hc_enfermedad_actual, hc_enfermedad_actual, hc_enfermedad_actual, hc_enfermedad_actual, pa_codigo);
+		System.out.println(hc_codigo + " "+ usuario);
+		gl.guardarHistoriaClinica(hc_codigo, hc_enfermedad_actual, hc_enfermedad_actual, hc_enfermedad_actual, hc_enfermedad_actual, usuario);
 		historias = gl.getHistoriasClinicas();
 		return "index";
 	}
@@ -107,7 +117,7 @@ public class GestionHistoriaClinicaBean {
 	}
 	
 	public void update() {
-		gl.update(hc_codigo, hc_enfermedad_actual, hc_enfermedad_actual, hc_enfermedad_actual, hc_enfermedad_actual, pa_codigo);
+		gl.update(hc_codigo, hc_enfermedad_actual, hc_enfermedad_actual, hc_enfermedad_actual, hc_enfermedad_actual, usuario);
 	}
 	
 }

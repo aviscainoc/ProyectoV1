@@ -15,7 +15,6 @@ public class Usuario {
 	private String us_nombres;
 	private String us_apellidos;
 	private String us_sexo;
-	
 	@Temporal(TemporalType.DATE)
 	private Date us_fecha_nacimiento;
 	private String us_correo;
@@ -35,7 +34,7 @@ public class Usuario {
 	private String us_pa_procedencia;	
 	//atributo para saber si se registro o no 
 	private int us_pa_registro;
-	
+	/*
 	@OneToMany
 	private List<HistoriaClinica> historias_clinica;
 	
@@ -156,7 +155,7 @@ public class Usuario {
 	public void setUs_pa_procedencia(String us_pa_procedencia) {
 		this.us_pa_procedencia = us_pa_procedencia;
 	}
-	public List<HistoriaClinica> getHistorias_clinica() {
+	/*public List<HistoriaClinica> getHistorias_clinica() {
 		return historias_clinica;
 	}
 	public void setHistorias_clinica(List<HistoriaClinica> historias_clinica) {
@@ -167,14 +166,14 @@ public class Usuario {
 	}
 	public void setCitas(List<Cita> citas) {
 		this.citas = citas;
-	}
+	}*/
 	public int getUs_pa_registro() {
 		return us_pa_registro;
 	}
 	public void setUs_pa_registro(int us_pa_registro) {
 		this.us_pa_registro = us_pa_registro;
 	}
-	
+	/*
 	public void addHistoriaClinica(HistoriaClinica hc) {
 		if (historias_clinica == null)
 			historias_clinica = new ArrayList<HistoriaClinica>();

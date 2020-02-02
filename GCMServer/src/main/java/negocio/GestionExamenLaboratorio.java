@@ -24,7 +24,7 @@ public class GestionExamenLaboratorio implements GestionExamenLaboratorioRemote,
 		u.setEl_sangre(el_sangre);
 		u.setEl_plaquetas(el_plaquetas);
 		u.setEl_grupo_sanguineo(el_grupo_sanguineo);
-		u.setCi_codigo(ci_codigo);
+		u.setCita(ci_codigo);
 		dao.insert(u);
 	}
 	
@@ -38,7 +38,7 @@ public class GestionExamenLaboratorio implements GestionExamenLaboratorioRemote,
 		u.setEl_sangre(el_sangre);
 		u.setEl_plaquetas(el_plaquetas);
 		u.setEl_grupo_sanguineo(el_grupo_sanguineo);
-		u.setCi_codigo(ci_codigo);
+		u.setCita(ci_codigo);
 		dao.update(u);
 	}
 	

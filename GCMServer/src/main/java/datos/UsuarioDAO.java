@@ -56,9 +56,9 @@ public class UsuarioDAO {
 		
 		if(us==null)
 			throw new Exception("Usuario no existe");
-		
+		/*
 		us.getHistorias_clinica().size();
-		us.getCitas().size();
+		us.getCitas().size();*/
 		return us;
 	}	
 }

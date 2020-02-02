@@ -7,35 +7,38 @@
 <ui:composition template="../Plantilla/plantilla.xhtml">
 
 <center><h1>Pacientes Registrados</h1></center>
-<ui:define name="contenido">
-<center>
-<h:form>
-
-<h:dataTable value="#{gestionUsuariosBean.recuperarUsuarios()}" var="usuario" class="table  table-hover">
-
-	<h:column>
-		#{usuario.us_cedula}
-		<f:facet name="header">Cédula</f:facet>
-	</h:column>
-	<h:column>
-		#{usuario.us_nombres} #{usuario.us_apellidos}
-		<f:facet name="header">Paciente</f:facet>
-	</h:column>
-	<h:column>
-		#{usuario.us_fecha_nacimiento}
-		<f:facet name="header">Nacimiento</f:facet>
-	</h:column>
-	<h:column>
-		<a href="../HistoriasClinicas/perfil.xhtml" >Editar</a>
-		<f:facet name="header">Datos paciente</f:facet>
-	</h:column>
+	<ui:define name="nombreUser">Dr. #{user.us_nombres} <br></br>#{user.us_apellidos}</ui:define>
+	<ui:define name="contenido">
+	<center>
+	<h:form>
 	
+	<h:dataTable value="#{gestionUsuariosBean.recuperarUsuarios()}" var="usuario" class="table  table-hover">
 	
-
-</h:dataTable>
-
-</h:form>
-</center>
-</ui:define>
+		<h:column>
+			#{usuario.us_cedula}
+			<f:facet name="header">Cédula</f:facet>
+		</h:column>
+		<h:column>
+			#{usuario.us_nombres} #{usuario.us_apellidos}
+			<f:facet name="header">Paciente</f:facet>
+		</h:column>
+		<h:column>
+			#{usuario.us_fecha_nacimiento}
+			<f:facet name="header">Nacimiento</f:facet>
+		</h:column>
+		<h:column>
+			<h:link value="Editar" outcome="perfilPaciente" >
+				<f:param name="username" value= " #{usuario.us_cedula}" />
+			</h:link>
+			<f:facet name="header">Datos paciente</f:facet>
+		</h:column>
+		
+		
+	
+	</h:dataTable>
+	
+	</h:form>
+	</center>
+	</ui:define>
 </ui:composition>
 </html>

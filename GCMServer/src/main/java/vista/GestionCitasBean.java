@@ -115,6 +115,7 @@ public class GestionCitasBean {
 		String rol="pac";
 		int registro=0;
 		ci_fecha_agendacion = new Date();
+		ci_estado = "pendiente";
 		
 		if (gul.recuperarUsuario(us_codigo)!=null) {
 			gl.guardarCita(us_codigo, ci_fecha_agendacion, ci_fecha_cita, ci_estado);
@@ -130,6 +131,11 @@ public class GestionCitasBean {
 	
 	public List<Cita> recuperarCitas(){
 		citas=gl.getCitas();
+		return citas;	
+	}
+	
+	public List<Cita> recuperarCitasPendientes(){
+		citas=gl.getCitasPendientes();
 		return citas;	
 	}
 	
