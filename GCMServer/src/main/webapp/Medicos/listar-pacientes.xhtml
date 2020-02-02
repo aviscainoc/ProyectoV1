@@ -27,7 +27,9 @@
 			<f:facet name="header">Nacimiento</f:facet>
 		</h:column>
 		<h:column>
-			<a href="../HistoriasClinicas/perfil.xhtml" >Editar</a>
+			<h:link value="Editar" outcome="perfilPaciente" >
+				<f:param name="username" value= " #{usuario.us_cedula}" />
+			</h:link>
 			<f:facet name="header">Datos paciente</f:facet>
 		</h:column>
 		
