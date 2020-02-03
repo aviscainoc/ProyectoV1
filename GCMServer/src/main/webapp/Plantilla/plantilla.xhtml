@@ -7,16 +7,36 @@
 <h:head>
 	<meta charset="utf-8"></meta>
 	<meta name="viewport" content="width=device-width, initial-scale=1"></meta>
-	<meta http-equiv="x-ua-compatible" content="ie=edge"></meta>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"></meta>
 	
 	<title><ui:insert name="tituloPagina">Citas Médicas</ui:insert></title>
 	
 	<!-- Font Awesome Icons -->
 	<link rel="stylesheet" href="../Plantilla/plugins/fontawesome-free/css/all.min.css"></link>
+	<!-- Ionicons -->
+	<link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css"></link>
 	<!-- Theme style -->
 	<link rel="stylesheet" href="../Plantilla/dist/css/adminlte.min.css"></link>
+    <!-- summernote -->
+    <link rel="stylesheet" href="../Plantilla/plugins/summernote/summernote-bs4.css"></link>
 	<!-- Google Font: Source Sans Pro -->
 	<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet"></link>
+	
+	<script src="../Plantilla/plugins/jquery/jquery.min.js"></script>
+	<!-- Bootstrap 4 -->
+	<script src="../Plantilla/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+	<!-- AdminLTE App -->
+	<script src="../Plantilla/dist/js/adminlte.min.js"></script>
+	<!-- AdminLTE for demo purposes -->
+	<script src="../Plantilla/dist/js/demo.js"></script>
+	<!-- Summernote -->
+	<script src="../Plantilla/plugins/summernote/summernote-bs4.min.js"></script>
+	<script>
+	  $(function () {
+	    // Summernote
+	    $('.textarea').summernote()
+	  })
+</script>
 </h:head> 
 
 <h:body>
@@ -182,12 +202,5 @@
 </div>
 <!-- ./wrapper -->
 
-<script src="../Plantilla/plugins/jquery/jquery.min.js"></script>
-<!-- Bootstrap 4 -->
-<script src="../Plantilla/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-<!-- AdminLTE App -->
-<script src="../Plantilla/dist/js/adminlte.min.js"></script>
-<!-- AdminLTE for demo purposes -->
-<script src="../Plantilla/dist/js/demo.js"></script>
 </h:body>
 </html>

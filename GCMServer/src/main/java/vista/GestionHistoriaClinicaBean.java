@@ -100,11 +100,16 @@ public class GestionHistoriaClinicaBean {
 		this.cita = cita;
 	}
 
-	public String guardarHistoriasClinicas() {
-		System.out.println(hc_codigo + " "+ usuario);
-		gl.guardarHistoriaClinica(hc_codigo, hc_enfermedad_actual, hc_enfermedad_actual, hc_enfermedad_actual, hc_enfermedad_actual, usuario);
-		historias = gl.getHistoriasClinicas();
-		return "index";
+	public boolean guardarHistoriasClinicas() {
+		try {
+			System.out.println(hc_codigo + " "+ usuario);
+			hc_codigo = gl.guardarHistoriaClinica(hc_residencia, hc_fecha, hc_movito_consulta, hc_enfermedad_actual, usuario);
+			historias = gl.getHistoriasClinicas();
+			return true;	
+		} catch (Exception e) {
+			System.out.println(e);
+			return false;
+		}
 	}
 	
 	public List<HistoriaClinica> recuperarRecetas(){
@@ -118,6 +123,17 @@ public class GestionHistoriaClinicaBean {
 	
 	public void update() {
 		gl.update(hc_codigo, hc_enfermedad_actual, hc_enfermedad_actual, hc_enfermedad_actual, hc_enfermedad_actual, usuario);
+	}
+	
+	public HistoriaClinica getHistoria(int codigo) {
+		return gl.getHistoria(codigo);
+	}
+
+	@Override
+	public String toString() {
+		return "GestionHistoriaClinicaBean [hc_codigo=" + hc_codigo + ", hc_residencia=" + hc_residencia + ", hc_fecha="
+				+ hc_fecha + ", hc_movito_consulta=" + hc_movito_consulta + ", hc_enfermedad_actual="
+				+ hc_enfermedad_actual + ", usuario=" + usuario + ", cita=" + cita + ", historias=" + historias + "]";
 	}
 	
 }

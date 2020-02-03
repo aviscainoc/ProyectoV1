@@ -19,87 +19,51 @@ public class GestionCertificadoAusenciaBean {
 	
 	
 	private int ca_codigo;
-	
-	
-	private Cita ci_codigo;
-	
 	private String ca_descripcion;
-	
 	private List<CertificadoAusencia> CertificadoAusencias;
 
 	public GestionCertificadoAusenciaLocal getGl() {
 		return gl;
 	}
 
-	
-
-	public List<CertificadoAusencia> getCertificadoAusencias() {
-		return CertificadoAusencias;
-	}
-
-
-
-	public void setCertificadoAusencias(List<CertificadoAusencia> certificadoAusencias) {
-		CertificadoAusencias = certificadoAusencias;
-	}
-
-
-
 	public void setGl(GestionCertificadoAusenciaLocal gl) {
 		this.gl = gl;
 	}
-
-
 
 	public int getCa_codigo() {
 		return ca_codigo;
 	}
 
-
-
 	public void setCa_codigo(int ca_codigo) {
 		this.ca_codigo = ca_codigo;
 	}
-
-
-
-	public Cita getCi_codigo() {
-		return ci_codigo;
-	}
-
-
-
-	public void setCi_codigo(Cita ci_codigo) {
-		this.ci_codigo = ci_codigo;
-	}
-
-
 
 	public String getCa_descripcion() {
 		return ca_descripcion;
 	}
 
-
-
 	public void setCa_descripcion(String ca_descripcion) {
 		this.ca_descripcion = ca_descripcion;
 	}
 
-
-
-	public List<CertificadoAusencia> getCertificadoAusencia() {
+	public List<CertificadoAusencia> getCertificadoAusencias() {
 		return CertificadoAusencias;
 	}
 
-	public void setCertificadoAusencia(List<CertificadoAusencia> CertificadoAusencias) {
-		this.CertificadoAusencias = CertificadoAusencias;
+	public void setCertificadoAusencias(List<CertificadoAusencia> certificadoAusencias) {
+		CertificadoAusencias = certificadoAusencias;
 	}
 
-	public String guardarExamenLaboratorios() {
-		System.out.println(ca_codigo + " " );
-		gl.guardarCertificadoAusencia(1, ci_codigo, ca_descripcion);
-		CertificadoAusencias = gl.getCertificadoAusencias();
-		return "principal";
+	public boolean guardarCertificado() {
+		try {
+			gl.guardarCertificadoAusencia(ca_descripcion);
+			CertificadoAusencias = gl.getCertificadoAusencias();
+			return true;	
+		} catch (Exception e) {
+			System.out.println(e);
+			return false;
+		}
+		
 	}
 	
 	public List<CertificadoAusencia> recuperarCertificadoAusencias(){
@@ -111,7 +75,17 @@ public class GestionCertificadoAusenciaBean {
 	}
 	
 	public void update() {
-		gl.update(ca_codigo, ci_codigo, ca_descripcion);
+		gl.update(ca_codigo, ca_descripcion);
+	}
+	
+	public CertificadoAusencia getCertificado(int codigo) {
+		return gl.getCertificado(codigo);
+	}
+
+	@Override
+	public String toString() {
+		return "GestionCertificadoAusenciaBean [ca_codigo=" + ca_codigo + ", ca_descripcion=" + ca_descripcion
+				+ ", CertificadoAusencias=" + CertificadoAusencias + "]";
 	}
 
 }

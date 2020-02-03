@@ -71,6 +71,6 @@ public class HistoriaClinica {
 	public String toString() {
 		return "HistoriaClinica [hc_codigo=" + hc_codigo + ", hc_residencia=" + hc_residencia + ", hc_fecha=" + hc_fecha
 				+ ", hc_movito_consulta=" + hc_movito_consulta + ", hc_enfermedad_actual=" + hc_enfermedad_actual
-				+ ", usuario=" + usuario + ", cita=" + cita + "]";
+				+ ", usuario=" + usuario + "]";
 	}	
 }

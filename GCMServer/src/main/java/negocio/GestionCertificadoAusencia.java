@@ -19,22 +19,21 @@ public class GestionCertificadoAusencia implements GestionCertificadoAusenciaRem
 	private CertificadoAusenciaDAO dao;
 	
 	
-	public void guardarCertificadoAusencia(int ca_codigo,  Cita ci_codigo, String ca_descripcion) {
+	public int guardarCertificadoAusencia(String ca_descripcion) {
 		CertificadoAusencia u = new CertificadoAusencia();
-		u.setCa_codigo(ca_codigo);
-		u.setCi_codigo(ci_codigo);
 		u.setCa_descripcion(ca_descripcion);
 		dao.insert(u);
+		System.out.println(u);
+		return u.getca_codigo();
 	}
 	
 	public List<CertificadoAusencia> getCertificadoAusencias(){
-		return dao.getCitas();
+		return dao.getCertificados();
 	}
 	
-	public void update(int ca_codigo,  Cita ci_codigo, String ca_descripcion) {
+	public void update(int ca_codigo, String ca_descripcion) {
 		CertificadoAusencia u = new CertificadoAusencia();
 		u.setCa_codigo(ca_codigo);
-		u.setCi_codigo(ci_codigo);
 		u.setCa_descripcion(ca_descripcion);
 		dao.update(u);
 	}
@@ -42,5 +41,9 @@ public class GestionCertificadoAusencia implements GestionCertificadoAusenciaRem
 
 	public void eliminar(int ca_codigo) {
 		dao.remove(ca_codigo);
+	}
+	
+	public CertificadoAusencia getCertificado(int codigo) {
+		return dao.read(codigo);
 	}
 }

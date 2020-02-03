@@ -36,7 +36,7 @@ public class RecetaMedicaDAO {
 	}
 	
 	public List<RecetaMedica> getRecetasMedicas(){
-		String jpql = "SELECT u FROM Paciente u";
+		String jpql = "SELECT u FROM RecetaMedica u";
 		Query q = em.createQuery(jpql, RecetaMedica.class);
 		
 		List<RecetaMedica> receta = q.getResultList();

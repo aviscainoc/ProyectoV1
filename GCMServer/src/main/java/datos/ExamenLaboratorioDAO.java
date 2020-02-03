@@ -35,8 +35,8 @@ public class ExamenLaboratorioDAO {
 		return u;
 	}
 	
-	public List<ExamenLaboratorio> getCitas(){
-		String jpql = "SELECT u FROM Paciente u";
+	public List<ExamenLaboratorio> getExamenes(){
+		String jpql = "SELECT u FROM ExamenLaboratorio u";
 		Query q = em.createQuery(jpql, ExamenLaboratorio.class);
 		
 		List<ExamenLaboratorio> examen = q.getResultList();

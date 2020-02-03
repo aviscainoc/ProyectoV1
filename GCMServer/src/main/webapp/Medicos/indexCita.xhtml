@@ -26,6 +26,7 @@
 			<h:column>
 				<h:link value="Agregar diagnóstico" outcome="agregar_diagnostico" >
 					<f:param name="username" value= " #{cita.usuario.us_cedula}" />
+					<f:param name="cita" value= "#{cita.ci_codigo}" />
 				</h:link>
 			</h:column>
 		</h:dataTable>

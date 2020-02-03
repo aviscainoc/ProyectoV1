@@ -19,22 +19,24 @@ public class Cita {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int ci_codigo;
-
-	
 	private Date ci_fecha_agendacion;
 	private Date ci_fecha_cita;
 	private String ci_estado;
 	
 	@ManyToOne
 	private Usuario usuario;
-	@OneToOne
-	private Cita cita;
-	@OneToOne
-	private ExamenLaboratorio el_examenLaboratorio;
-	@OneToOne
-	private CertificadoAusencia ca_certificadoAusencia;
-	@OneToOne
-	private RecetaMedica rm_recetaMedica;
+	@OneToOne(cascade= {CascadeType.REMOVE}, fetch=FetchType.EAGER)
+	@JoinColumn(referencedColumnName="hc_codigo")
+	private HistoriaClinica historia;
+	@OneToOne(cascade= {CascadeType.REMOVE}, fetch=FetchType.EAGER)
+	@JoinColumn(referencedColumnName="el_codigo")
+	private ExamenLaboratorio examen;
+	@OneToOne(cascade= {CascadeType.REMOVE}, fetch=FetchType.EAGER)
+	@JoinColumn(referencedColumnName="rm_codigo")
+	private RecetaMedica receta;
+	@OneToOne(cascade= {CascadeType.REMOVE}, fetch=FetchType.EAGER)
+	@JoinColumn(referencedColumnName="ca_codigo")
+	private CertificadoAusencia certificado;
 
 	
 	
@@ -50,7 +52,24 @@ public class Cita {
 	public void setCi_codigo(int ci_codigo) {
 		this.ci_codigo = ci_codigo;
 	}
-	
+	public HistoriaClinica getHistoria() {
+		return historia;
+	}
+	public void setHistoria(HistoriaClinica historia) {
+		this.historia = historia;
+	}
+	public RecetaMedica getReceta() {
+		return receta;
+	}
+	public void setReceta(RecetaMedica receta) {
+		this.receta = receta;
+	}
+	public CertificadoAusencia getCertificado() {
+		return certificado;
+	}
+	public void setCertificado(CertificadoAusencia certificado) {
+		this.certificado = certificado;
+	}
 	public Usuario getUsuario() {
 		return usuario;
 	}
@@ -69,36 +88,29 @@ public class Cita {
 	public void setCi_fecha_cita(Date ci_fecha_cita) {
 		this.ci_fecha_cita = ci_fecha_cita;
 	}
-	public Cita getCita() {
-		return cita;
+	public ExamenLaboratorio getExamen() {
+		return examen;
 	}
-	public void setCita(Cita cita) {
-		this.cita = cita;
-	}
-	public ExamenLaboratorio getEl_examenLaboratorio() {
-		return el_examenLaboratorio;
-	}
-	public void setEl_examenLaboratorio(ExamenLaboratorio el_examenLaboratorio) {
-		this.el_examenLaboratorio = el_examenLaboratorio;
+	public void setExamen(ExamenLaboratorio examen) {
+		this.examen = examen;
 	}
 	public CertificadoAusencia getCa_certificadoAusencia() {
-		return ca_certificadoAusencia;
+		return certificado;
 	}
 	public void setCa_certificadoAusencia(CertificadoAusencia ca_certificadoAusencia) {
-		this.ca_certificadoAusencia = ca_certificadoAusencia;
+		this.certificado = ca_certificadoAusencia;
 	}
 	public RecetaMedica getRm_recetaMedica() {
-		return rm_recetaMedica;
+		return receta;
 	}
 	public void setRm_recetaMedica(RecetaMedica rm_recetaMedica) {
-		this.rm_recetaMedica = rm_recetaMedica;
+		this.receta = rm_recetaMedica;
 	}
 	@Override
 	public String toString() {
 		return "Cita [ci_codigo=" + ci_codigo + ", ci_fecha_agendacion=" + ci_fecha_agendacion + ", ci_fecha_cita="
-				+ ci_fecha_cita + ", ci_estado=" + ci_estado + ", usuario=" + usuario + ", cita=" + cita
-				+ ", el_examenLaboratorio=" + el_examenLaboratorio + ", ca_certificadoAusencia="
-				+ ca_certificadoAusencia + ", rm_recetaMedica=" + rm_recetaMedica + "]";
+				+ ci_fecha_cita + ", ci_estado=" + ci_estado + ", usuario=" + usuario + ", historia=" + historia
+				+ ", examen=" + examen + ", receta=" + receta + ", certificado=" + certificado + "]";
 	}
 	
 	

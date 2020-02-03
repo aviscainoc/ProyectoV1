@@ -21,16 +21,17 @@ public class GestionHistoriaClinica implements GestionHistoriaClinicaRemote, Ges
 	private HistoriaClinicaDAO dao;
 
 	@Override
-	public void guardarHistoriaClinica(int hc_codigo, String hc_residencia, String hc_fecha, String hc_motivo_consulta,
+	public int guardarHistoriaClinica(String hc_residencia, String hc_fecha, String hc_motivo_consulta,
 			String hc_enfermedad_actual, Usuario usuario) {
 		HistoriaClinica hc = new HistoriaClinica();
-		hc.setHc_codigo(hc_codigo);
 		hc.setHc_residencia(hc_residencia);
 		hc.setHc_fecha(hc_fecha);
 		hc.setHc_movito_consulta(hc_motivo_consulta);
 		hc.setHc_enfermedad_actual(hc_enfermedad_actual);
 		hc.setUsuario(usuario);
 		dao.insert(hc);
+		System.out.println(hc);
+		return hc.getHc_codigo();
 	}
 
 	@Override
@@ -58,6 +59,10 @@ public class GestionHistoriaClinica implements GestionHistoriaClinicaRemote, Ges
 	public void eliminar(int codigo) {
 		// TODO Auto-generated method stub
 		dao.remove(codigo);
+	}
+	
+	public HistoriaClinica getHistoria(int codigo) {
+		return dao.read(codigo);
 	}
 	
 	
