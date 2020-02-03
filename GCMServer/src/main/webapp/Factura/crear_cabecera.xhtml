@@ -1,0 +1,24 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"> 
+
+<h:head></h:head> 
+<body>
+<h1>Guardar Factura Cabecera</h1>
+
+<h:form>
+	<h:panelGrid columns="2">
+		<!-- <h:outputLabel value="Código: " />
+		<h:inputText value="#{gestionCitasBean.ci_codigo}" placeholder="Código" /> -->
+		
+		<h:outputLabel value="Codigo del usuario" />
+		<h:inputText value="#{gestionFacturaCabeceraBean.us_usuario.us_cedula}" placeholder="Cédula del usuario" />
+				
+	</h:panelGrid>
+	<h:commandButton action="#{gestionFacturaCabeceraBean.guardarFacturaCabecera()}" value="Guardar" />
+	<h:commandButton action="listar_cabecera" value="Regresar"></h:commandButton>
+</h:form>
+</body>   
+</html>

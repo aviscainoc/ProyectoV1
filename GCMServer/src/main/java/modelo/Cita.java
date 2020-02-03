@@ -39,7 +39,6 @@ public class Cita {
 	private CertificadoAusencia certificado;
 
 	
-	
 	public String getCi_estado() {
 		return ci_estado;
 	}
