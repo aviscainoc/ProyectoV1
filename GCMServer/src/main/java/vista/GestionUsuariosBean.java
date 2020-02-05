@@ -20,7 +20,7 @@ public class GestionUsuariosBean {
 	@Inject
 	private GestionUsuariosLocal gl;
 	
-	private Usuario usuario;
+	private Usuario usuario = getUser();
 	
 	private String us_cedula;
 	private String us_rol;
@@ -257,27 +257,24 @@ public class GestionUsuariosBean {
 	}
 	/*public void eliminar() {
 		gl.eliminar(us_cedula);
-	}
-	
-	public void update() {
-		gl.update(us_codigo, us_nombre, us_fechaNacimiento, us_nickname, us_password);
 	}*/
+	
 	public String login() {
 		Usuario user;
 		try {
-			user = gl.login(us_correo, us_contrasena);
-			System.out.println(user);
-			if(user.getUs_rol().equals("pac")) {
-				usuario = user;
+			usuario = gl.login(us_correo, us_contrasena);
+			System.out.println(usuario);
+			if(usuario.getUs_rol().equals("pac")) {
+				//usuario = user;
 				FacesContext context = FacesContext.getCurrentInstance();
 		        HttpSession session = (HttpSession) context.getExternalContext().getSession(true);
-		        session.setAttribute("user", user);
+		        session.setAttribute("user", usuario);
 				return "/User/perfil";
 			}else {
-				usuario = user;
+				//usuario = user;
 				FacesContext context = FacesContext.getCurrentInstance();
 		        HttpSession session = (HttpSession) context.getExternalContext().getSession(true);
-		        session.setAttribute("user", user);
+		        session.setAttribute("user", usuario);
 				return "/Medicos/indexCita";
 			}
 		} catch (Exception e) {
@@ -285,16 +282,58 @@ public class GestionUsuariosBean {
 			e.printStackTrace();
 		}
 		return "null";
+	}
+	
+	public void recuperarUsuario(String us_cedula) {
+		Usuario u = gl.recuperarUsuario(us_cedula);
+		this.us_cedula = us_cedula;
+		us_nombres = u.getUs_nombres();
+		us_apellidos = u.getUs_apellidos();
+		us_sexo = u.getUs_sexo();
+		us_fecha_nacimiento = u.getUs_fecha_nacimiento();
+		us_pa_procedencia = u.getUs_pa_procedencia();
+		us_correo = u.getUs_correo();
+		us_pa_estado_civil = u.getUs_pa_estado_civil();
+		us_pa_nivel_estudio = u.getUs_pa_nivel_estudio();
+		us_pa_ocupacion = u.getUs_pa_ocupacion();
+		us_pa_etnia = u.getUs_pa_etnia();
+		us_pa_religion = u.getUs_pa_religion();
+		us_pa_identidad_sexual = u.getUs_pa_identidad_sexual();
+		us_pa_tipo_sangre = u.getUs_pa_tipo_sangre();
+		us_md_area_especialidad =  u.getUs_md_area_especialidad();
+		us_md_descripcion = u.getUs_md_descripcion();
 		
+		System.out.println("load data " + u);
+	}
+	
+	private Usuario getUser() {
+		FacesContext context = FacesContext.getCurrentInstance();
+        HttpSession session = (HttpSession) context.getExternalContext().getSession(true);
+        return (Usuario) session.getAttribute("user");
 	}
 	
 	public void recuperarUsuario() {
-		
 		if(us_cedula==null)
 			return;
 		try {
-			this.usuario = gl.recuperarUsuario(us_cedula);
-			System.out.println("load data " + usuario);
+			Usuario u = gl.recuperarUsuario(us_cedula);
+			us_nombres = u.getUs_nombres();
+			us_apellidos = u.getUs_apellidos();
+			us_sexo = u.getUs_sexo();
+			us_fecha_nacimiento = u.getUs_fecha_nacimiento();
+			us_pa_procedencia = u.getUs_pa_procedencia();
+			us_correo = u.getUs_correo();
+			us_pa_estado_civil = u.getUs_pa_estado_civil();
+			us_pa_nivel_estudio = u.getUs_pa_nivel_estudio();
+			us_pa_ocupacion = u.getUs_pa_ocupacion();
+			us_pa_etnia = u.getUs_pa_etnia();
+			us_pa_religion = u.getUs_pa_religion();
+			us_pa_identidad_sexual = u.getUs_pa_identidad_sexual();
+			us_pa_tipo_sangre = u.getUs_pa_tipo_sangre();
+			us_md_area_especialidad =  u.getUs_md_area_especialidad();
+			us_md_descripcion = u.getUs_md_descripcion();
+			
+			System.out.println("load data " + u);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -304,7 +343,42 @@ public class GestionUsuariosBean {
 		}
 	}
 
-	
+	public String actualizarDatos() {
+		Usuario u = gl.recuperarUsuario(us_cedula);
+		if (us_nombres != null)
+			u.setUs_nombres(us_nombres);
+		if (us_apellidos != null)
+			u.setUs_apellidos(us_apellidos);
+		if (us_sexo != null)
+			u.setUs_sexo(us_sexo);
+		if (us_fecha_nacimiento != null)
+			u.setUs_fecha_nacimiento(us_fecha_nacimiento);
+		u.setUs_pa_procedencia(us_pa_procedencia);
+		if (us_correo != null)
+			u.setUs_correo(us_correo);
+		u.setUs_pa_estado_civil(us_pa_estado_civil);
+		u.setUs_pa_nivel_estudio(us_pa_nivel_estudio);
+		u.setUs_pa_ocupacion(us_pa_ocupacion);
+		u.setUs_pa_etnia(us_pa_etnia);
+		u.setUs_pa_religion(us_pa_religion);
+		u.setUs_pa_identidad_sexual(us_pa_identidad_sexual);
+		if (us_pa_tipo_sangre != null)
+			u.setUs_pa_tipo_sangre(us_pa_tipo_sangre);
+		if (us_md_area_especialidad != null)
+			u.setUs_md_area_especialidad(us_md_area_especialidad);
+		if (us_md_descripcion != null)
+			u.setUs_md_descripcion(us_md_descripcion);
+		System.out.println("actualizarDatos " + u);
+		gl.actualizarDatos(u);
+		return "listar-pacientes";
+	}
+
+	public String actualizarDatos2() {
+		System.out.println("actualizar2 " + usuario);
+		System.out.println("actualizar2 " + usuario.getUs_cedula());
+		gl.actualizarDatos(usuario);
+		return "perfil";
+	}
 	
 }
 
