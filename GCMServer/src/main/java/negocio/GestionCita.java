@@ -12,10 +12,17 @@ import datos.CitaDAO;
 import datos.MedicoDAO;
 import datos.PacienteDAO;
 import datos.UsuarioDAO;
+import modelo.CertificadoAusencia;
 import modelo.Cita;
+
 import modelo.ConteoCitas;
+
+import modelo.ExamenLaboratorio;
+import modelo.HistoriaClinica;
+
 import modelo.Medico;
 import modelo.Paciente;
+import modelo.RecetaMedica;
 
 
 
@@ -26,14 +33,29 @@ public class GestionCita implements GestionCitaLocal, GestionCitaRemote{
 	@Inject
 	private UsuarioDAO daoU;
 
+	public void guardarCita(String codigoU, Date ci_fecha_agendacion, Date ci_fecha_cita, 
+			String ci_estado, HistoriaClinica historia, ExamenLaboratorio examen, RecetaMedica receta, CertificadoAusencia certificado) {
+		Cita c = new Cita();
+		c.setUsuario(daoU.read(codigoU));
+		c.setCi_fecha_agendacion(ci_fecha_agendacion);
+		c.setCi_fecha_cita(ci_fecha_cita);
+		c.setCi_estado(ci_estado);
+		c.setHistoria(historia);
+		c.setExamen(examen);
+		c.setReceta(receta);
+		c.setCertificado(certificado);
+		dao.insert(c);
+		System.out.println(c);
+	}
+
 	public void guardarCita(String codigoU, Date ci_fecha_agendacion, Date ci_fecha_cita, String ci_estado) {
 		Cita c = new Cita();
-		//c.setCi_codigo(ci_codigo);
 		c.setUsuario(daoU.read(codigoU));
 		c.setCi_fecha_agendacion(ci_fecha_agendacion);
 		c.setCi_fecha_cita(ci_fecha_cita);
 		c.setCi_estado(ci_estado);
 		dao.insert(c);
+		System.out.println(c);
 	}
 	
 	public List<Cita> getCitas(){
@@ -47,11 +69,19 @@ public class GestionCita implements GestionCitaLocal, GestionCitaRemote{
 		return dao.getCitasPendientes();
 	}
 	
+
 	public List<Cita> getCitasTerminadas(){
 		return dao.getCitasTerminadas();
 	}
 	
-	public void updateCita(String codigoU, Date ci_fecha_agendacion, Date ci_fecha_cita, String ci_estado) {
+	
+	public Cita getCita(int codigo) {
+		return dao.read(codigo);
+	}
+	
+	public void updateCita(int ci_codigo, String codigoU, Date ci_fecha_agendacion, Date ci_fecha_cita, 
+			String ci_estado, HistoriaClinica historia, ExamenLaboratorio examen, RecetaMedica receta, CertificadoAusencia certificado) {
+
 		Cita c = new Cita();
 		//c.setCi_codigo(ci_codigo);
 		c.setUsuario(daoU.read(codigoU));
@@ -60,6 +90,10 @@ public class GestionCita implements GestionCitaLocal, GestionCitaRemote{
 		c.setCi_fecha_agendacion(ci_fecha_agendacion);
 		c.setCi_fecha_cita(ci_fecha_cita);
 		c.setCi_estado(ci_estado);
+		dao.update(c);
+	}
+	
+	public void updateCita(Cita c) {
 		dao.update(c);
 	}
 	
