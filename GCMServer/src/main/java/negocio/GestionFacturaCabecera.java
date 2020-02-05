@@ -26,33 +26,41 @@ public class GestionFacturaCabecera implements GestionFacturaCabeceraLocal{
 	
 	
 	@Override
-	public boolean guardarFacturaCabecera(String us_id) {
+	public int guardarFacturaCabecera(String fac_cab_nombre, String fac_cab_direccion, String fac_cab_telefono, String fac_cab_cedula, String fac_cab_correo) {
 		FacturaCabecera fc = new FacturaCabecera();
-		Usuario u = daoU.read(us_id);
-		if (u != null) {
-			fc.setUs_usuario(u);
-			fc.setFac_cab_precio(0.0);
-			fc.setFac_cab_iva(0.0);
-			daoFc.insert(fc);
-			System.out.println("Usuario existente "+ u);
-			return true;
-		}else {
-			Usuario u1 = new Usuario();
-			u1.setUs_cedula("999999999");
-			u1.setUs_nombres("Consumidor Final");
-			daoU.insert(u1);
-			fc.setFac_cab_precio(0.0);
-			fc.setUs_usuario(u1);
-			fc.setFac_cab_iva(0.0);
-			daoFc.insert(fc);
-			System.out.println("Consumidor final: " + u1);
-			return true;
-		}
+		fc.setFac_cab_cedula(fac_cab_cedula);
+		fc.setFac_cab_nombre(fac_cab_nombre);
+		fc.setFac_cab_direccion(fac_cab_direccion);
+		fc.setFac_cab_telefono(fac_cab_telefono);
+		fc.setFac_cab_telefono(fac_cab_telefono);
+		fc.setFac_cab_precio(0.0);
+		fc.setFac_cab_iva(0.0);
+		daoFc.insert(fc);
+		return fc.getFac_cab_id();
 	}
 
 	@Override
 	public List<FacturaCabecera> getFacturas() {
 		return daoFc.getFacturasCab();
+	}
+
+	@Override
+	public int guardarFacturaCabeceraConsumidorFinal() {
+		FacturaCabecera fc = new FacturaCabecera();
+		fc.setFac_cab_cedula("9999999999");
+		fc.setFac_cab_nombre("Consumidor Final");
+		fc.setFac_cab_direccion("Null");
+		fc.setFac_cab_telefono("Null");
+		fc.setFac_cab_telefono("Null");
+		fc.setFac_cab_precio(0.0);
+		fc.setFac_cab_iva(0.0);
+		daoFc.insert(fc);
+		return fc.getFac_cab_id();
+	}
+
+	@Override
+	public FacturaCabecera getFacturaCabecera(int codigo) {
+		return daoFc.read(codigo);
 	}
 
 	
