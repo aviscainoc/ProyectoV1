@@ -503,32 +503,37 @@ public class GestionCitasBean {
 		}
 	}
 	
-	public boolean guardarFacturaCabeceraDatos() {
+	public String guardarFacturaCabeceraDatos() {
 		try {
 			fac_cab_codigo = glf.guardarFacturaCabecera(fac_cab_nombre, fac_cab_direccion, fac_cab_telefono, fac_cab_cedula, fac_cab_correo);
 			facturasCabecera = glf.getFacturas();
 			FacturaCabecera fc = glf.getFacturaCabecera(fac_cab_codigo);
+			cita = recuperarCita(ci_codigo);
 			cita.setFac_cab_factura(fc);
-			return true;
+			System.out.println("### Cita ### " + cita.getCi_codigo());
+			return "/Factura/listar_cabecera";
 		}catch(Exception e) {
-			System.out.println("### Error Guardando Cabecera ### " + e);
-			return false;
+			System.out.println("### Error Guardando Cabecera ### " + e + " " + cita);
+			return "Error";
 		}
 	}
 	
-	public boolean guardarFacturaCabeceraConsumidorFinal() {
+	public String guardarFacturaCabeceraConsumidorFinal() {
 		try {
 			fac_cab_codigo = glf.guardarFacturaCabeceraConsumidorFinal();
 			facturasCabecera = glf.getFacturas();
 			FacturaCabecera fc = glf.getFacturaCabecera(fac_cab_codigo);
 			cita.setFac_cab_factura(fc);
-			return true;
+			return "/Factura/listar_cabecera";
 		}catch(Exception e) {
 			System.out.println("### Error Guardando Cabecera ### " + e);
-			return false;
+			return "error";
 		}
 	}
 
+	public List<FacturaCabecera> recuperarFacturasCabecera(){
+		return glf.getFacturas();
+	}
 }
 
 
