@@ -19,7 +19,13 @@ public class Cita {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int ci_codigo;
+
+
+	@Temporal(javax.persistence.TemporalType.DATE)
+
+
 	private Date ci_fecha_agendacion;
+	@Temporal(javax.persistence.TemporalType.DATE)
 	private Date ci_fecha_cita;
 	private String ci_estado;
 	
@@ -38,7 +44,18 @@ public class Cita {
 	@JoinColumn(referencedColumnName="ca_codigo")
 	private CertificadoAusencia certificado;
 
+	@OneToOne(cascade= {CascadeType.REMOVE}, fetch=FetchType.EAGER)
+	@JoinColumn(referencedColumnName="fac_cab_id")
+	private FacturaCabecera fac_cab_factura;
 	
+	private int contador;
+	
+	public int getContador() {
+		return contador;
+	}
+	public void setContador(int contador) {
+		this.contador = contador;
+	}
 	public String getCi_estado() {
 		return ci_estado;
 	}
@@ -105,12 +122,17 @@ public class Cita {
 	public void setRm_recetaMedica(RecetaMedica rm_recetaMedica) {
 		this.receta = rm_recetaMedica;
 	}
+	public FacturaCabecera getFac_cab_factura() {
+		return fac_cab_factura;
+	}
+	public void setFac_cab_factura(FacturaCabecera fac_cab_factura) {
+		this.fac_cab_factura = fac_cab_factura;
+	}
 	@Override
 	public String toString() {
 		return "Cita [ci_codigo=" + ci_codigo + ", ci_fecha_agendacion=" + ci_fecha_agendacion + ", ci_fecha_cita="
 				+ ci_fecha_cita + ", ci_estado=" + ci_estado + ", usuario=" + usuario + ", historia=" + historia
-				+ ", examen=" + examen + ", receta=" + receta + ", certificado=" + certificado + "]";
-	}
-	
-	
+				+ ", examen=" + examen + ", receta=" + receta + ", certificado=" + certificado + ", fac_cab_factura="
+				+ fac_cab_factura + "]";
+	}	
 }

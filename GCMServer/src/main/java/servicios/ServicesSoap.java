@@ -22,7 +22,7 @@ public class ServicesSoap {
 	@Inject
 	private GestionEstadoLocal gle;
 	
-	@WebMethod
+	/*@WebMethod
 	public Respuesta CrearCabecera(String cedula){
 		Respuesta res = new Respuesta();
 		try {
@@ -34,7 +34,7 @@ public class ServicesSoap {
 			res.setMensaje("Error creando cabecera");
 		}
 		return res;
-	}
+	}*/
 	
 	@WebMethod
 	public Respuesta CrearDetalle (String fac_det_descripcion, double fac_det_precio, int fac_det_cantidad, int fac_cab_id) {
