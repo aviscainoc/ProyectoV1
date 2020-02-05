@@ -519,7 +519,7 @@ public class GestionCitasBean {
 			fac_cab_codigo = glf.guardarFacturaCabecera(fac_cab_nombre, fac_cab_direccion, fac_cab_telefono, fac_cab_cedula, fac_cab_correo);
 			facturasCabecera = glf.getFacturas();
 			FacturaCabecera fc = glf.getFacturaCabecera(fac_cab_codigo);
-			cita = recuperarCita(ci_codigo);
+			cita = recuperarCita(cita.getCi_codigo());
 			cita.setFac_cab_factura(fc);
 			System.out.println("### Cita ### " + cita.getCi_codigo());
 			return "/Factura/listar_cabecera";

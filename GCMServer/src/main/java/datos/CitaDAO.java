@@ -85,7 +85,7 @@ public class CitaDAO {
 	
 	
 	public List<Cita> getProximasCitas(Date fecha){
-		String jpql = "SELECT u FROM Cita u WHERE ci_fecha_cita => ?1";
+		String jpql = "SELECT u FROM Cita u WHERE ci_fecha_cita > ?1";
 		Query q = em.createQuery(jpql, Cita.class);
 		q.setParameter(1, fecha);
 		
