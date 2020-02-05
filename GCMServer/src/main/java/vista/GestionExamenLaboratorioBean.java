@@ -1,5 +1,6 @@
 package vista;
 
+import java.util.Arrays;
 import java.util.List;
 
 import javax.faces.bean.ManagedBean;
@@ -17,93 +18,73 @@ public class GestionExamenLaboratorioBean {
 	@Inject
 	private GestionExamenLaboratorioLocal gl;
 	
-	@Id
 	private int el_codigo;
-	@OneToOne
-	private Cita ci_codigo;
-	private String el_sangre;
-	private String el_plaquetas;
-	private String el_grupo_sanguineo;
-	
+	private String[] el_quimica;
+	private String[] el_heces;
+	private String[] el_microbiologia;
+	private String[] el_hematologia;
+	private String[] el_orina;
 	private List<ExamenLaboratorio> ExamenLaboratorios;
-
+	
 	public GestionExamenLaboratorioLocal getGl() {
 		return gl;
 	}
-
 	public void setGl(GestionExamenLaboratorioLocal gl) {
 		this.gl = gl;
 	}
-
 	public int getEl_codigo() {
 		return el_codigo;
 	}
-
 	public void setEl_codigo(int el_codigo) {
 		this.el_codigo = el_codigo;
 	}
-	
-
-	public String getEl_sangre() {
-		return el_sangre;
+	public String[] getEl_quimica() {
+		return el_quimica;
 	}
-
-	public void setEl_sangre(String el_sangre) {
-		this.el_sangre = el_sangre;
+	public void setEl_quimica(String[] el_quimica) {
+		this.el_quimica = el_quimica;
 	}
-
-	public String getEl_plaquetas() {
-		return el_plaquetas;
+	public String[] getEl_heces() {
+		return el_heces;
 	}
-
-	public void setEl_plaquetas(String el_plaquetas) {
-		this.el_plaquetas = el_plaquetas;
+	public void setEl_heces(String[] el_heces) {
+		this.el_heces = el_heces;
 	}
-
-	public String getEl_grupo_sanguineo() {
-		return el_grupo_sanguineo;
+	public String[] getEl_microbiologia() {
+		return el_microbiologia;
 	}
-
-	public void setEl_grupo_sanguineo(String el_grupo_sanguineo) {
-		this.el_grupo_sanguineo = el_grupo_sanguineo;
+	public void setEl_microbiologia(String[] el_microbiologia) {
+		this.el_microbiologia = el_microbiologia;
 	}
-
+	public String[] getEl_hematologia() {
+		return el_hematologia;
+	}
+	public void setEl_hematologia(String[] el_hematologia) {
+		this.el_hematologia = el_hematologia;
+	}
+	public String[] getEl_orina() {
+		return el_orina;
+	}
+	public void setEl_orina(String[] el_orina) {
+		this.el_orina = el_orina;
+	}
 	public List<ExamenLaboratorio> getExamenLaboratorios() {
 		return ExamenLaboratorios;
 	}
-
 	public void setExamenLaboratorios(List<ExamenLaboratorio> examenLaboratorios) {
 		ExamenLaboratorios = examenLaboratorios;
 	}
 	
-
-	public Cita getCi_codigo() {
-		return ci_codigo;
+	public boolean guardarExamenLaboratorios() {
+		try {
+			gl.guardarExamenLaboratorio(Arrays.toString(el_quimica), Arrays.toString(el_heces), Arrays.toString(el_microbiologia), Arrays.toString(el_hematologia), Arrays.toString(el_orina));
+			ExamenLaboratorios = gl.getExamenLaboratorios();
+			return true;
+		} catch (Exception e) {
+			System.out.println(e);
+			return false;
+		}
 	}
-
-	public void setCi_codigo(Cita ci_codigo) {
-		this.ci_codigo = ci_codigo;
-	}
-	
-	
-	
-	
-
-	public List<ExamenLaboratorio> getExamenLaboratorio() {
-		return ExamenLaboratorios;
-	}
-
-	public void setExamenLaboratorio(List<ExamenLaboratorio> ExamenLaboratorios) {
-		this.ExamenLaboratorios = ExamenLaboratorios;
-	}
-
-	public String guardarExamenLaboratorios() {
-		System.out.println(el_codigo + " " );
-		gl.guardarExamenLaboratorio(1, el_sangre, el_plaquetas, el_grupo_sanguineo, ci_codigo);
-		ExamenLaboratorios = gl.getExamenLaboratorios();
-		return "principal";
-	}
-	
 	public List<ExamenLaboratorio> recuperarExamenLaboratorios(){
 		ExamenLaboratorios = gl.getExamenLaboratorios();
 		return ExamenLaboratorios;
@@ -111,9 +92,22 @@ public class GestionExamenLaboratorioBean {
 	public void eliminar() {
 		gl.eliminar(el_codigo);
 	}
-	
+	/*
 	public void update() {
 		gl.update(el_codigo, el_sangre, el_plaquetas, el_grupo_sanguineo, ci_codigo);
+	}*/
+	
+	public ExamenLaboratorio getExamen(int codigo) {
+		return gl.getExamen(codigo);
 	}
-
+	
+	@Override
+	public String toString() {
+		String str = "GestionExamenLaboratorioBean [el_codigo=" + el_codigo + ", el_quimica="
+				+ Arrays.toString(el_quimica) + ", el_heces=" + Arrays.toString(el_heces) + ", el_microbiologia="
+				+ Arrays.toString(el_microbiologia) + ", el_hematologia=" + Arrays.toString(el_hematologia)
+				+ ", el_orina=" + Arrays.toString(el_orina) + ", ExamenLaboratorios=" + ExamenLaboratorios + "]";
+		System.out.println(str);
+		return str;
+	}
 }

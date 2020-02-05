@@ -8,8 +8,9 @@ import modelo.Cita;
 
 @Remote
 public interface GestionCertificadoAusenciaRemote {
-	public void guardarCertificadoAusencia(int ca_codigo, Cita ci_codigo, String ca_descripcion);
+	public int guardarCertificadoAusencia(String ca_descripcion);
 	public List<CertificadoAusencia> getCertificadoAusencias();
-	public void update(int ca_codigo, Cita ci_codigo, String ca_descripcion);
+	public void update(int ca_codigo, String ca_descripcion);
 	public void eliminar(int codigo);
+	public CertificadoAusencia getCertificado(int codigo);
 }

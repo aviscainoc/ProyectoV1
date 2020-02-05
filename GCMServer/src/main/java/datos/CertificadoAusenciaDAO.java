@@ -36,8 +36,8 @@ public class CertificadoAusenciaDAO {
 		return u;
 	}
 	
-	public List<CertificadoAusencia> getCitas(){
-		String jpql = "SELECT u FROM Paciente u";
+	public List<CertificadoAusencia> getCertificados(){
+		String jpql = "SELECT u FROM CertificadoAusencia u";
 		Query q = em.createQuery(jpql, CertificadoAusencia.class);
 		
 		List<CertificadoAusencia> certificadoAusencia = q.getResultList();
