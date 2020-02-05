@@ -9,6 +9,6 @@ import modelo.FacturaDetalle;
 
 @Local
 public interface GestionFacturaCabeceraLocal {
-	public void guardarFacturaCabecera(String us_id);
-	public List<FacturaCabecera> getFactura();	
+	public boolean guardarFacturaCabecera(String us_id);
+	public List<FacturaCabecera> getFacturas();	
 }

@@ -42,7 +42,7 @@ public class Usuario {
 	@JoinColumn(name="us_cedula")
 	private List<Cita> citas;*/
 	
-	@OneToMany(cascade = {CascadeType.ALL}, fetch = FetchType.LAZY)
+	@OneToMany
 	private List<FacturaCabecera> facs_cab;
 	
 	

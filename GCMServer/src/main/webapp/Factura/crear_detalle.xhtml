@@ -1,0 +1,31 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"> 
+
+<h:head></h:head> 
+<body>
+<h1>Guardar Factura Detalle</h1>
+
+<h:form>
+	<h:panelGrid columns="2">
+		
+		<h:outputLabel value="Descripcion" />
+		<h:inputText value="#{gestionFacturaCabeceraBean.fac_det_descripcion}" placeholder="Descripcion" />
+		
+		<h:outputLabel value="Precio" />
+		<h:inputText value="#{gestionFacturaCabeceraBean.fac_det_precio}" placeholder="Precio" />
+		
+		<h:outputLabel value="Cantidad" />
+		<h:inputText value="#{gestionFacturaCabeceraBean.fac_det_cantidad}" placeholder="Cantidad" />
+		
+		<h:outputLabel value="Cabecera" />
+		<h:inputText value="#{gestionFacturaCabeceraBean.fac_cab_id}" placeholder="Cabecera" />
+				
+	</h:panelGrid>
+	<h:commandButton action="#{gestionFacturaCabeceraBean.guardarDetalle()}" value="Guardar" />
+	<h:commandButton action="listar_cabecera" value="Regresar"></h:commandButton>
+</h:form>
+</body>   
+</html>

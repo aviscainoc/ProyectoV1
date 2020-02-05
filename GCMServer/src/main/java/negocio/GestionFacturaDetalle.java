@@ -25,29 +25,40 @@ public class GestionFacturaDetalle implements GestionFacturaDetalleLocal{
 	private UsuarioDAO daoU;
 
 	@Override
-	public void guardarFacturaDetalle(String fac_det_descripcion, double fac_det_precio, int fac_det_cantidad, int fac_cab_id) {
+	public boolean guardarFacturaDetalle(String fac_det_descripcion, double fac_det_precio, int fac_det_cantidad, int fac_cab_id) {
 		FacturaDetalle fd = new FacturaDetalle();
 		FacturaCabecera fc = daoFc.read(fac_cab_id);
 		if(fc != null) {	
+			double precio = Math.round(fc.getFac_cab_precio() * 100) / 100d;
+			precio = precio + (fac_det_precio * fac_det_cantidad);
 			fd.setFac_det_descripcion(fac_det_descripcion);
 			fd.setFac_det_precio(fac_det_precio);
 			fd.setFac_det_cantidad(fac_det_cantidad);
-			fd.setFac_cab_id(fc);
+			fd.setFac_cabecera(fc);
+			fc.setFac_cab_precio(precio);
+			fc.setFac_cab_iva(Math.round((precio * 1.12) * 100) / 100d);
 			fc.addFacturasDetalle(fd);
 			daoFd.insert(fd);
-			System.out.println("Cabecera encontrada, " + fc); 
-		}else {
+			System.out.println("Cabecera encontrada, " + fc.getUs_usuario()); 
+			return true;
+		}else{
+			double precio = Math.round(fc.getFac_cab_precio() * 100) / 100d;
+			precio = precio + (fac_det_precio * fac_det_cantidad);
 			FacturaCabecera fc1 = new FacturaCabecera();
 			Usuario u = new Usuario();
 			u.setUs_cedula("9999999999");
 			u.setUs_nombres("Consumidor Final");
-			fc1.setUs_id(u);
+			fc1.setUs_usuario(u);
 			fd.setFac_det_descripcion(fac_det_descripcion);
 			fd.setFac_det_precio(fac_det_precio);
 			fd.setFac_det_cantidad(fac_det_cantidad);
-			fd.setFac_cab_id(fc);
+			fd.setFac_cabecera(fc);
+			fc1.setFac_cab_precio(precio);
+			fc1.setFac_cab_iva(Math.round((precio * 1.12) * 100) / 100d);
 			fc1.addFacturasDetalle(fd);
 			daoFd.insert(fd);
+			System.out.println("Cabecera encontrada, " + fc1.getUs_usuario()); 
+			return true;
 		}
 	}
 
