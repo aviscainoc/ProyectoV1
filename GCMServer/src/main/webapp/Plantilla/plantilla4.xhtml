@@ -13,10 +13,17 @@
 
 	<!-- Font Awesome Icons -->
 	<link rel="stylesheet" href="../Plantilla/plugins/fontawesome-free/css/all.min.css"></link>
+  	<!-- Ionicons -->
+  	<link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css"></link>
+  	<!-- daterange picker -->
+  	<link rel="stylesheet" href="../Plantilla/plugins/daterangepicker/daterangepicker.css"></link>
+  	<!-- Tempusdominus Bbootstrap 4 -->
+  	<link rel="stylesheet" href="../Plantilla/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css"></link>
 	<!-- Theme style -->
 	<link rel="stylesheet" href="../Plantilla/dist/css/adminlte.min.css"></link>
 	<!-- Google Font: Source Sans Pro -->
 	<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet"></link>
+	<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" />
 </h:head>
 
 <h:body class="hold-transition layout-top-nav">
@@ -90,7 +97,36 @@
 <script src="../Plantilla/plugins/jquery/jquery.min.js"></script>
 <!-- Bootstrap 4 -->
 <script src="../Plantilla/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- Select2 -->
+<script src="../Plantilla/plugins/select2/js/select2.full.min.js"></script>
+<!-- Bootstrap4 Duallistbox -->
+<script src="../Plantilla/plugins/bootstrap4-duallistbox/jquery.bootstrap-duallistbox.min.js"></script>
+<!-- InputMask -->
+<script src="../Plantilla/plugins/moment/moment.min.js"></script>
+<script src="../Plantilla/plugins/inputmask/min/jquery.inputmask.bundle.min.js"></script>
+<!-- date-range-picker -->
+<script src="../Plantilla/plugins/daterangepicker/daterangepicker.js"></script>
+<!-- bootstrap color picker -->
+<script src="../Plantilla/plugins/bootstrap-colorpicker/js/bootstrap-colorpicker.min.js"></script>
+<!-- Tempusdominus Bootstrap 4 -->
+<script src="../Plantilla/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
+<!-- Bootstrap Switch -->
+<script src="../Plantilla/plugins/bootstrap-switch/js/bootstrap-switch.min.js"></script>
 <!-- AdminLTE App -->
 <script src="../Plantilla/dist/js/adminlte.min.js"></script>
+<!-- AdminLTE for demo purposes -->
+<script src="../Plantilla/dist/js/demo.js"></script>
+	<script>
+	$(document).ready(function() {
+		   $(".datepicker").datepicker({
+		      dateFormat: 'dd MM, yy',
+		      changeMonth: true,
+		      changeYear: true,
+		      yearRange: "1960:2017"
+		   });
+		});
+	</script>
+	<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.js" />
+	<script type="text/javascript" src="https://code.jquery.com/ui/1.12.1/jquery-ui.js" />
 </h:body>
 </html>
