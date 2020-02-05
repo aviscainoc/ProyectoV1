@@ -1,9 +1,12 @@
 package modelo;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.TableGenerator;
 
@@ -23,7 +26,7 @@ public class FacturaDetalle {
 	private int fac_det_id;
 	
 	@ManyToOne
-	private FacturaCabecera fac_cab_id;
+	private FacturaCabecera fac_cabecera;
 	
 	private String fac_det_descripcion;
 	private double fac_det_precio;
@@ -35,11 +38,11 @@ public class FacturaDetalle {
 	public void setFac_det_id(int fac_det_id) {
 		this.fac_det_id = fac_det_id;
 	}
-	public FacturaCabecera getFac_cab_id() {
-		return fac_cab_id;
+	public FacturaCabecera getFac_cabecera() {
+		return fac_cabecera;
 	}
-	public void setFac_cab_id(FacturaCabecera fac_cab_id) {
-		this.fac_cab_id = fac_cab_id;
+	public void setFac_cabecera(FacturaCabecera fac_cabecera) {
+		this.fac_cabecera = fac_cabecera;
 	}
 	public String getFac_det_descripcion() {
 		return fac_det_descripcion;
@@ -61,7 +64,7 @@ public class FacturaDetalle {
 	}
 	@Override
 	public String toString() {
-		return "FacturaDetalle [fac_det_id=" + fac_det_id + ", fac_cab_id=" + fac_cab_id + ", fac_det_descripcion="
+		return "FacturaDetalle [fac_det_id=" + fac_det_id + ", fac_cabecera=" + fac_cabecera.getFac_cab_id() + ", fac_det_descripcion="
 				+ fac_det_descripcion + ", fac_det_precio=" + fac_det_precio + ", fac_det_cantidad=" + fac_det_cantidad
 				+ "]";
 	}

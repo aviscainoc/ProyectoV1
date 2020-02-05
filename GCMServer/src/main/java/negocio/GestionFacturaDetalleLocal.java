@@ -9,6 +9,6 @@ import modelo.FacturaDetalle;
 
 @Local
 public interface GestionFacturaDetalleLocal {
-	public void guardarFacturaDetalle(String fac_det_descripcion, double fac_det_precio, int fac_det_cantidad, int fac_cab_id);
+	public boolean guardarFacturaDetalle(String fac_det_descripcion, double fac_det_precio, int fac_det_cantidad, int fac_cab_id);
 	public List<FacturaDetalle> getFacturaDetalle();	
 }

@@ -10,11 +10,9 @@
 
 <h:form>
 	<h:panelGrid columns="2">
-		<!-- <h:outputLabel value="Código: " />
-		<h:inputText value="#{gestionCitasBean.ci_codigo}" placeholder="Código" /> -->
 		
 		<h:outputLabel value="Codigo del usuario" />
-		<h:inputText value="#{gestionFacturaCabeceraBean.us_usuario.us_cedula}" placeholder="Cédula del usuario" />
+		<h:inputText value="#{gestionFacturaCabeceraBean.us_cedula}" placeholder="Cédula del usuario" />
 				
 	</h:panelGrid>
 	<h:commandButton action="#{gestionFacturaCabeceraBean.guardarFacturaCabecera()}" value="Guardar" />
