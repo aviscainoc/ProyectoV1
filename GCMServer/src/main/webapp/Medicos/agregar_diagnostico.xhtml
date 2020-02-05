@@ -74,7 +74,6 @@
 		<h:form>
 		 	<div class="tab-content">
 		 	
-	<h:outputLabel value="#{gestionCitasBean.ci_codigo}" />
 		 		<!-- ============================================ DIAGNÓSTICO ============================================ -->
 				<div class="active tab-pane" id="diagnostico">
 					<div class="card-body">
@@ -94,7 +93,7 @@
 					<div class="card-body">
 						<div class="form-group float-left" style="width: 300px;">
 							<h4>Química</h4>
-							<p:selectManyCheckbox id="quimica" value="#{gestionCitasBean.el_quimica}" layout="pageDirection" columns="1" style="font-size: 12px; font-weight: lighter!important">
+							<p:selectManyCheckbox id="quimica" value="#{gestionCitasBean.el_quimica}" layout="pageDirection" columns="1" style="font-size: 12px;">
 								<f:selectItem itemValue="Glicemia" itemLabel="Glicemia"/>
 								<f:selectItem itemValue="Colesterol" itemLabel="Colesterol"/>
 								<f:selectItem itemValue="Triglicéridos" itemLabel="Triglicéridos"/>

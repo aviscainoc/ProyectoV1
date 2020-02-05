@@ -6,11 +6,6 @@
       xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"> 
 
 <h:head>
-	<f:metadata>
-        <f:viewParam id="username" name="username" value="#{gestionUsuariosBean.us_cedula}"/>
-        <f:viewAction action="#{gestionUsuariosBean.recuperarUsuario()}" />
- 	</f:metadata>
-
 </h:head> 
 
 <ui:composition template="../Plantilla/plantilla6.xhtml">
@@ -26,10 +21,10 @@
 		<p class="text-muted text-center">#{user.us_apellidos}</p>
 		<ul class="list-group list-group-unbordered mb-3">
 			<li class="list-group-item">
-				<b>Edad</b> <a class="float-right">#{user.us_fecha_nacimiento}</a>
+				<b>Edad</b> <a class="float-right"><h:outputLabel value="#{user.us_fecha_nacimiento}" style="font-weight: normal;"><f:convertDateTime pattern = "dd-mm-yyyy" /></h:outputLabel></a>
 			</li>
 			<li class="list-group-item">
-				<b>Sexo</b> <a class="float-right">#{user.us_pa_identidad_sexual}</a>
+				<b>Sexo</b> <a class="float-right">#{user.us_sexo}</a>
 			</li>
 			<li class="list-group-item">
 				<b>Estado civil</b> <a class="float-right">#{user.us_pa_estado_civil}</a>
@@ -68,6 +63,9 @@
 			<strong>Religión</strong>
 			<p class="text-muted">#{user.us_pa_religion}</p>
 			<hr></hr>
+			<strong>Identidad sexual</strong>
+			<p class="text-muted">#{user.us_pa_identidad_sexual}</p>
+			<hr></hr>
 			<strong>Tipo de sangre</strong>
 			<p class="text-muted">#{user.us_pa_tipo_sangre}</p>
 		</div>
@@ -76,52 +74,144 @@
 	<ui:define name="actividad"></ui:define>
 	<ui:define name="timeline"></ui:define>
 	<ui:define name="configuracion">
-		<form class="form-horizontal">
+		
+		<h:form class="form-horizontal">
 			<div class="form-group row">
-			  <label for="inputName" class="col-sm-2 col-form-label">Name</label>
+			  <h:outputLabel for="nombres" class="col-sm-2 col-form-label">Nombres</h:outputLabel>
 			  <div class="col-sm-10">
-			    <input type="email" class="form-control" id="inputName" placeholder="Name"></input>
+			    <h:inputText value="#{gestionUsuariosBean.usuario.us_nombres}" type="text" class="form-control" id="nombres" pt:placeholder="Juan Carlos"></h:inputText>
 			  </div>
 			</div>
 			<div class="form-group row">
-			  <label for="inputEmail" class="col-sm-2 col-form-label">Email</label>
+			  <h:outputLabel for="apellidos" class="col-sm-2 col-form-label">Apellidos</h:outputLabel>
 			  <div class="col-sm-10">
-			    <input type="email" class="form-control" id="inputEmail" placeholder="Email"></input>
+			    <h:inputText value="#{gestionUsuariosBean.usuario.us_apellidos}" type="text" class="form-control" id="apellidos" pt:placeholder="Pérez Andrade"></h:inputText>
 			  </div>
 			</div>
 			<div class="form-group row">
-			  <label for="inputName2" class="col-sm-2 col-form-label">Name</label>
+			  <h:outputLabel for="sexo" class="col-sm-2 col-form-label">Sexo</h:outputLabel>
 			  <div class="col-sm-10">
-			    <input type="text" class="form-control" id="inputName2" placeholder="Name"></input>
+			  	<h:selectOneMenu value="#{gestionUsuariosBean.usuario.us_sexo}" class="form-control" id="sexo">
+			  	    <f:selectItem itemValue="#{null}" itemLabel="--seleccionar--" />
+				  	<f:selectItem itemValue="Masculino" itemLabel="Masculino" />
+				  	<f:selectItem itemValue="Femenino" itemLabel="Femenino" />
+			  	</h:selectOneMenu>
 			  </div>
 			</div>
 			<div class="form-group row">
-			  <label for="inputExperience" class="col-sm-2 col-form-label">Experience</label>
+				<h:outputLabel for="fecha" class="col-sm-2 col-form-label">Fecha de nacimiento</h:outputLabel>
+				<div class="col-sm-10">
+					<h:inputText value="#{gestionUsuariosBean.usuario.us_fecha_nacimiento}" id="fecha" pt:placeholder="dd-mm-yyyy" class="form-control" placeholder="Fecha de nacimiento" >
+						<f:convertDateTime pattern = "dd-mm-yyyy" />
+					</h:inputText>
+				</div>
+			</div>
+			<div class="form-group row">
+			  <h:outputLabel for="procedencia" class="col-sm-2 col-form-label">Lugar de procedencia</h:outputLabel>
 			  <div class="col-sm-10">
-			    <textarea class="form-control" id="inputExperience" placeholder="Experience"></textarea>
+			    <h:inputText value="#{gestionUsuariosBean.usuario.us_pa_procedencia}" type="text" class="form-control" id="procedencia" pt:placeholder="Cuenca"></h:inputText>
 			  </div>
 			</div>
 			<div class="form-group row">
-			  <label for="inputSkills" class="col-sm-2 col-form-label">Skills</label>
+			  <h:outputLabel for="inputEmail" class="col-sm-2 col-form-label">Correo</h:outputLabel>
 			  <div class="col-sm-10">
-			    <input type="text" class="form-control" id="inputSkills" placeholder="Skills"></input>
+			    <h:inputText value="#{gestionUsuariosBean.usuario.us_correo}" type="email" class="form-control" id="inputEmail" pt:placeholder="ejemplo@gmail.com"></h:inputText>
 			  </div>
 			</div>
+			<div class="form-group row">
+			  <h:outputLabel for="civil" class="col-sm-2 col-form-label">Estado civil</h:outputLabel>
+			  <div class="col-sm-10">
+			    <h:selectOneMenu value="#{gestionUsuariosBean.usuario.us_pa_estado_civil}" class="form-control" id="civil">
+			  	    <f:selectItem itemValue="#{null}" itemLabel="--seleccionar--" />
+				  	<f:selectItem itemValue="Soltero/a" itemLabel="Soltero/a" />
+				  	<f:selectItem itemValue="Casado/a" itemLabel="Casado/a" />
+				  	<f:selectItem itemValue="Divorciado/a" itemLabel="Divorciado/a" />
+				  	<f:selectItem itemValue="Viudo/a" itemLabel="Viudo/a" />
+			  	</h:selectOneMenu>
+			  </div>
+			</div>
+			<div class="form-group row">
+			  <h:outputLabel for="nivel" class="col-sm-2 col-form-label">Nivel de estudio</h:outputLabel>
+			  <div class="col-sm-10">
+			    <h:selectOneMenu value="#{gestionUsuariosBean.usuario.us_pa_nivel_estudio}" class="form-control" id="nivel">
+			  	    <f:selectItem itemValue="#{null}" itemLabel="--seleccionar--" />
+				  	<f:selectItem itemValue="primer" itemLabel="Primer nivel (escuela)" />
+				  	<f:selectItem itemValue="segundo" itemLabel="Segundo nivel (colegio)" />
+				  	<f:selectItem itemValue="tercer" itemLabel="Tercer nivel (universidad)" />
+				  	<f:selectItem itemValue="cuarto" itemLabel="Cuarto nivel (posgrado/master)" />
+			  	</h:selectOneMenu>
+			  </div>
+			</div>
+			<div class="form-group row">
+			  <h:outputLabel for="ocupacion" class="col-sm-2 col-form-label">Ocupación</h:outputLabel>
+			  <div class="col-sm-10">
+			    <h:inputTextarea value="#{gestionUsuariosBean.usuario.us_pa_ocupacion}" class="form-control" id="ocupacion" pt:placeholder="Ocupación"></h:inputTextarea>
+			  </div>
+			</div>
+			<div class="form-group row">
+			  <h:outputLabel for="etnia" class="col-sm-2 col-form-label">Etnia</h:outputLabel>
+			  <div class="col-sm-10">
+			    <h:selectOneMenu value="#{gestionUsuariosBean.usuario.us_pa_etnia}" class="form-control" id="etnia">
+			  	    <f:selectItem itemValue="#{null}" itemLabel="--seleccionar--" />
+				  	<f:selectItem itemValue="Blanco" itemLabel="Blanco" />
+				  	<f:selectItem itemValue="Indígena" itemLabel="Indígena" />
+				  	<f:selectItem itemValue="Mestizo" itemLabel="Mestizo" />
+				  	<f:selectItem itemValue="Mulato" itemLabel="Mulato" />
+				  	<f:selectItem itemValue="Negro" itemLabel="Negro" />
+				  	<f:selectItem itemValue="Otra" itemLabel="Otra" />
+			  	</h:selectOneMenu>
+			  </div>
+			</div>
+			<div class="form-group row">
+			  <h:outputLabel for="religion" class="col-sm-2 col-form-label">Religión</h:outputLabel>
+			  <div class="col-sm-10">
+			    <h:selectOneMenu value="#{gestionUsuariosBean.usuario.us_pa_religion}" class="form-control" id="religion">
+			  	    <f:selectItem itemValue="#{null}" itemLabel="--seleccionar--" />
+				  	<f:selectItem itemValue="Budista" itemLabel="Budista" />
+				  	<f:selectItem itemValue="Católico" itemLabel="Católico" />
+				  	<f:selectItem itemValue="Cristiano" itemLabel="Cristiano" />
+				  	<f:selectItem itemValue="Judío" itemLabel="Judío" />
+				  	<f:selectItem itemValue="Irreligión" itemLabel="Irreligión" />
+				  	<f:selectItem itemValue="Otra" itemLabel="Otra" />
+			  	</h:selectOneMenu>
+			  </div>
+			</div>
+			<div class="form-group row">
+			  <h:outputLabel for="identidad" class="col-sm-2 col-form-label">Identidad sexual</h:outputLabel>
+			  <div class="col-sm-10">
+			    <h:selectOneMenu value="#{gestionUsuariosBean.usuario.us_pa_identidad_sexual}" class="form-control" id="identidad">
+			  	    <f:selectItem itemValue="#{null}" itemLabel="--seleccionar--" />
+				  	<f:selectItem itemValue="Heterosexual" itemLabel="Heterosexual" />
+				  	<f:selectItem itemValue="Homosexual" itemLabel="Homosexual" />
+				  	<f:selectItem itemValue="Bisexual" itemLabel="Bisexual" />
+				  	<f:selectItem itemValue="Otro" itemLabel="Otro" />
+			  	</h:selectOneMenu>
+			  </div>
+			</div>
+			<div class="form-group row">
+			  <h:outputLabel for="tipo" class="col-sm-2 col-form-label">Tipo de sangre</h:outputLabel>
+			  <div class="col-sm-10">
+			    <h:selectOneMenu value="#{gestionUsuariosBean.usuario.us_pa_tipo_sangre}" class="form-control" id="tipo">
+			  	    <f:selectItem itemValue="#{null}" itemLabel="--seleccionar--" />
+				  	<f:selectItem itemValue="O Rh+" itemLabel="O Rh+" />
+				  	<f:selectItem itemValue="O Rh-" itemLabel="O Rh-" />
+				  	<f:selectItem itemValue="A Rh+" itemLabel="A Rh+" />
+				  	<f:selectItem itemValue="A Rh-" itemLabel="A Rh-" />
+				  	<f:selectItem itemValue="B Rh+" itemLabel="B Rh+" />
+				  	<f:selectItem itemValue="B Rh-" itemLabel="B Rh-" />
+				  	<f:selectItem itemValue="AB Rh+" itemLabel="AB Rh+" />
+				  	<f:selectItem itemValue="AB Rh-" itemLabel="AB Rh-" />
+			  	</h:selectOneMenu>
+			  </div>
+			</div>
+			
 			<div class="form-group row">
 			  <div class="offset-sm-2 col-sm-10">
-			    <div class="checkbox">
-			      <label>
-			        <input type="checkbox"> I agree to the <a href="#">terms and conditions</a></input>
-			      </label>
-			    </div>
+			    <h:commandButton class="btn btn-primary btn-block" action="#{gestionUsuariosBean.actualizarDatos2()}" value="Guardar" />
 			  </div>
 			</div>
-			<div class="form-group row">
-			  <div class="offset-sm-2 col-sm-10">
-			    <button type="submit" class="btn btn-danger">Submit</button>
-			  </div>
-			</div>
-		</form>
+		</h:form>
+		
 	</ui:define>
 </ui:composition>
 </html>

@@ -23,7 +23,7 @@
 			<f:facet name="header">Paciente</f:facet>
 		</h:column>
 		<h:column>
-			#{usuario.us_fecha_nacimiento}
+			<h:outputLabel value="#{usuario.us_fecha_nacimiento}" style="font-weight: normal;"><f:convertDateTime pattern = "dd-mm-yyyy" /></h:outputLabel>
 			<f:facet name="header">Nacimiento</f:facet>
 		</h:column>
 		<h:column>

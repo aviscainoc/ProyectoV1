@@ -10,8 +10,9 @@
 	<ui:define name="contenido">
 	<div>
 		<h:form>
+			<h:message for="mail" errorStyle="color:red; display:block"/>
 			<div class="input-group mb-3">
-				<h:inputText pt:placeholder="ejemplo@gmail.com" value="#{gestionUsuariosBean.us_correo}" class="form-control form-control-navbar" aria-label="Search"></h:inputText>
+				<h:inputText id="mail" pt:placeholder="ejemplo@gmail.com" value="#{gestionUsuariosBean.us_correo}" class="form-control form-control-navbar" aria-label="Search" required="true" requiredMessage="Ingresar correo"></h:inputText>
 					<div class="input-group-append">
 				    	<div class="input-group-text">
 				    		<span class="fas fa-envelope"></span>

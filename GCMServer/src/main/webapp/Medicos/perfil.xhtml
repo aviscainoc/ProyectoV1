@@ -2,72 +2,67 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:h="http://java.sun.com/jsf/html"> 
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"> 
 
-<ui:composition template="../Plantilla/plantilla.xhtml">
+<h:head>
+</h:head> 
+
+<ui:composition template="../Plantilla/plantilla7.xhtml">
 	<ui:define name="tituloPagina">Citas Médicas - Perfil</ui:define>
 	<ui:define name="h1Titulo">Perfil</ui:define>
-	<ui:define name="contenido">
-		<h:dataTable value="#{gestionMedicosBean.recuperarMedicos()}" var="medico" columns="2">
-			<f:facet name = "header"><img src="../Plantilla/dist/img/user2-2-160x160.jpg"></img></f:facet>
-			<h:column>
-				#{medico.md_nombre}
-				<f:facet name="header">Nombres</f:facet>
-			</h:column>
-			<h:column>
-				#{medico.md_apellidos}
-				<f:facet name="header">Apellidos</f:facet>
-			</h:column>
-			<h:column>
-				#{medico.md_correo}
-				<f:facet name="header">Correo</f:facet>
-			</h:column>
-			<h:column>
-				#{medico.md_fechaNacimiento}
-				<f:facet name="header">Fecha Nacimiento</f:facet>
-			</h:column>
-			<h:column>
-				#{medico.md_area_especializacion}
-				<f:facet name="header">Especialidad</f:facet>
-			</h:column>
-			<h:column>
-				#{medico.md_descripcion}
-				<f:facet name="header">Descripción</f:facet>
-			</h:column>
-		</h:dataTable>
-		
-		<br/>
-		<br/>
-		<h3>Actualizar Datos</h3>
-		<br/>
-		<h:form>
-			<h:panelGrid columns="2">
-				<h:outputLabel value="Código: " />
-				<h:inputText value="#{gestionMedicosBean.us_codigo}" placeholder="Código" />
-				
-				<h:outputLabel value="Nombres: " />
-				<h:inputText value="#{gestionMedicosBean.us_nombre}" placeholder="Nombre" />	
-				
-				<h:outputLabel value="Apellidos " />
-				<h:inputText value="#{gestionMedicosBean.us_apellidos}" placeholder="Nombre" />	
-				
-				<h:outputLabel value="Fecha de Nacimiento: " />
-				<h:inputText value="#{gestionMedicosBean.us_fechaNacimiento}" placeholder="Fecha Nacimiento" />
-				
-				<h:outputLabel value="Correo: " />
-				<h:inputText value="#{gestionMedicosBean.us_correo}" placeholder="Fecha Nacimiento" />
-				
-				<h:outputLabel value="Contraseña: " />
-				<h:inputText value="#{gestionMedicosBean.us_password}" placeholder="Password" />
-				
-				<h:outputLabel value="Area de Especialidad: " />
-				<h:inputText value="#{gestionMedicosBean.us_area_especializacion}" placeholder="Password" />
-				
-				<h:outputLabel value="Descripción: " />
-				<h:inputText value="#{gestionMedicosBean.us_descripcion}" placeholder="Password" />
-			</h:panelGrid>
-			<h:commandButton action="#{gestionMedicosBean.update()}" value="Guardar" />
+	<ui:define name="nombreUser">Dr. #{user.us_nombres} <br></br>#{user.us_apellidos}</ui:define>
+	
+	<ui:define name="configuracion">
+
+		<h:form class="form-horizontal">
+			<div class="form-group row">
+			  <h:outputLabel for="nombres" class="col-sm-2 col-form-label">Nombres</h:outputLabel>
+			  <div class="col-sm-10">
+			    <h:inputText value="#{gestionUsuariosBean.usuario.us_nombres}" type="text" class="form-control" id="nombres" pt:placeholder="Juan Carlos" required="true" requiredMessage="Ingresar sus nombres"></h:inputText>
+			  </div>
+			</div>
+			<div class="form-group row">
+			  <h:outputLabel for="apellidos" class="col-sm-2 col-form-label">Apellidos</h:outputLabel>
+			  <div class="col-sm-10">
+			    <h:inputText value="#{gestionUsuariosBean.usuario.us_apellidos}" type="text" class="form-control" id="apellidos" pt:placeholder="Pérez Andrade" required="true" requiredMessage="Ingresar sus apellidos"></h:inputText>
+			  </div>
+			</div>
+			<div class="form-group row">
+			  <h:outputLabel for="sexo" class="col-sm-2 col-form-label">Sexo</h:outputLabel>
+			  <div class="col-sm-10">
+			  	<h:selectOneMenu value="#{gestionUsuariosBean.usuario.us_sexo}" class="form-control" id="sexo">
+			  	    <f:selectItem itemValue="#{null}" itemLabel="--seleccionar--" />
+				  	<f:selectItem itemValue="Masculino" itemLabel="Masculino" />
+				  	<f:selectItem itemValue="Femenino" itemLabel="Femenino" />
+			  	</h:selectOneMenu>
+			  </div>
+			</div>
+			<div class="form-group row">
+			  <h:outputLabel for="inputEmail" class="col-sm-2 col-form-label">Correo</h:outputLabel>
+			  <div class="col-sm-10">
+			    <h:inputText value="#{gestionUsuariosBean.usuario.us_correo}" type="email" class="form-control" id="inputEmail" pt:placeholder="ejemplo@gmail.com" required="true" requiredMessage="Ingresar un correo"></h:inputText>
+			  </div>
+			</div>
+			<div class="form-group row">
+			  <h:outputLabel for="especialidad" class="col-sm-2 col-form-label">Area de especialidad</h:outputLabel>
+			  <div class="col-sm-10">
+			    <h:inputText value="#{gestionUsuariosBean.usuario.us_md_area_especialidad}" type="text" class="form-control" id="especialidad" pt:placeholder="Médico general"></h:inputText>
+			  </div>
+			</div>
+			<div class="form-group row">
+			  <h:outputLabel for="descripcion" class="col-sm-2 col-form-label">Descripción</h:outputLabel>
+			  <div class="col-sm-10">
+			    <h:inputTextarea value="#{gestionUsuariosBean.usuario.us_md_descripcion}" class="form-control" id="descripcion" pt:placeholder="Descripción de su formación académica"></h:inputTextarea>
+			  </div>
+			</div>
+			<div class="form-group row">
+			  <div class="offset-sm-2 col-sm-10">
+			    <h:commandButton class="btn btn-primary btn-block" action="#{gestionUsuariosBean.actualizarDatos2()}" value="Guardar" />
+			  </div>
+			</div>
 		</h:form>
+				
 	</ui:define>
 </ui:composition>
 </html>

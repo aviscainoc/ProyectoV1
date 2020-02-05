@@ -14,5 +14,7 @@ public interface GestionUsuariosLocal {
 	 public List<Usuario> getUsuarios(); 
 	 public Usuario login(String usuario, String contrasena) throws Exception;
 	 public Usuario recuperarUsuario(String cedula);
-
+	 public void actualizarDatos(String cedula, String nombres, String apellidos, String sexo, Date nacimiento, String correo, 
+				String civil, String estudio, String ocupacion, String etnia, String religion, String sangre, String identidad, String procedencia);
+	 public void actualizarDatos(Usuario u);
 }

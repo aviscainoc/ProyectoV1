@@ -85,7 +85,33 @@ public class GestionUsuario implements GestionUsuariosLocal, GestionUsuariosRemo
 		return daoU.read(cedula);
 	}
 
+	public void actualizarDatos(String cedula, String nombres, String apellidos, String sexo, Date nacimiento, String correo, 
+			String civil, String estudio, String ocupacion, String etnia, String religion, String sangre, String identidad, String procedencia) {
+		Usuario u = new Usuario();
+		u.setUs_cedula(cedula);
+		u.setUs_nombres(nombres);
+		u.setUs_apellidos(apellidos);
+		u.setUs_sexo(sexo);
+		u.setUs_fecha_nacimiento(nacimiento);
+		u.setUs_correo(correo);
+		u.setUs_pa_estado_civil(civil);
+		u.setUs_pa_nivel_estudio(estudio);
+		u.setUs_pa_ocupacion(ocupacion);
+		u.setUs_pa_etnia(etnia);
+		u.setUs_pa_religion(religion);
+		u.setUs_pa_tipo_sangre(sangre);
+		u.setUs_pa_identidad_sexual(identidad);
+		u.setUs_pa_procedencia(procedencia);
+		daoU.update(u);
+		System.out.println(u);
+	}
 
+	public void actualizarDatos(Usuario u) {
+		System.out.println("GestionUsuario antes" + u);
+		daoU.update(u);
+		u = recuperarUsuario(u.getUs_cedula());
+		System.out.println("GestionUsuario " + u);
+	}
 	
 	
 }
