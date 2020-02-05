@@ -442,12 +442,8 @@ public class GestionCitasBean {
 	public void terminarCita() {
 		if (guardarHistoriasClinicas() && guardarExamenLaboratorios() && guardarRecetas() && guardarCertificado()) {
 			HistoriaClinica hc = gh.getHistoria(hc_codigo);
-			System.out.println(el_codigo);
 			ExamenLaboratorio el = ge.getExamen(el_codigo);
-			System.out.println(el);
-			System.out.println(rm_codigo);
 			RecetaMedica rm = gr.getReceta(rm_codigo);
-			System.out.println(rm);
 			CertificadoAusencia ca = gc.getCertificado(ca_codigo);
 			Cita c = recuperarCita(ci_codigo);
 			//FacturaCabecera fc = glf.getFacturaCabecera(fac_cab_codigo);

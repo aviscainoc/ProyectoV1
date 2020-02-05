@@ -13,5 +13,7 @@ public interface GestionUsuariosRemote {
 			String us_correo, String us_contrasena, String us_md_area_especialidad, String us_md_descripcion) ;
 	public List<Usuario> getUsuarios();
 	public Usuario recuperarUsuario(String cedula);
-
+	public void actualizarDatos(String cedula, String nombres, String apellidos, String sexo, Date nacimiento, String correo, 
+			String civil, String estudio, String ocupacion, String etnia, String religion, String sangre, String identidad, String procedencia);
+	public void actualizarDatos(Usuario u);
 }
