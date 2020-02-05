@@ -37,27 +37,25 @@ public class GestionFacturaDetalle implements GestionFacturaDetalleLocal{
 			fd.setFac_cabecera(fc);
 			fc.setFac_cab_precio(precio);
 			fc.setFac_cab_iva(Math.round((precio * 1.12) * 100) / 100d);
-			fc.addFacturasDetalle(fd);
+			fc.addDetalle(fd);
 			daoFd.insert(fd);
-			System.out.println("Cabecera encontrada, " + fc.getUs_usuario()); 
+			System.out.println("Cabecera encontrada, " + fc.getFac_cab_nombre()); 
 			return true;
 		}else{
 			double precio = Math.round(fc.getFac_cab_precio() * 100) / 100d;
 			precio = precio + (fac_det_precio * fac_det_cantidad);
 			FacturaCabecera fc1 = new FacturaCabecera();
-			Usuario u = new Usuario();
-			u.setUs_cedula("9999999999");
-			u.setUs_nombres("Consumidor Final");
-			fc1.setUs_usuario(u);
+			fc1.setFac_cab_cedula("9999999999");
+			fc1.setFac_cab_nombre("Consumidor Final");
 			fd.setFac_det_descripcion(fac_det_descripcion);
 			fd.setFac_det_precio(fac_det_precio);
 			fd.setFac_det_cantidad(fac_det_cantidad);
 			fd.setFac_cabecera(fc);
 			fc1.setFac_cab_precio(precio);
 			fc1.setFac_cab_iva(Math.round((precio * 1.12) * 100) / 100d);
-			fc1.addFacturasDetalle(fd);
+			fc1.addDetalle(fd);
 			daoFd.insert(fd);
-			System.out.println("Cabecera encontrada, " + fc1.getUs_usuario()); 
+			System.out.println("Cabecera encontrada, " + fc1.getFac_cab_nombre()); 
 			return true;
 		}
 	}

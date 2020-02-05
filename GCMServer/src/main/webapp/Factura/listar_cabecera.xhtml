@@ -12,17 +12,17 @@
 
 <center>
 <h:form>
-<h:dataTable value="#{gestionFacturaCabeceraBean.recuperarCabeceras()}" var="cabecera" border="2" cellspacing="1" cellpadding="1">
+<h:dataTable value="#{gestionCitasBean.recuperarFacturasCabecera()}" var="cabecera" border="2" cellspacing="1" cellpadding="1">
 	<h:column>
 		#{cabecera.fac_cab_id}
 		<f:facet name="header">Código</f:facet>
 	</h:column>
 	<h:column>
-		#{cabecera.us_usuario.us_cedula}
+		#{cabecera.fac_cab_cedula}
 		<f:facet name="header">Cedula</f:facet>
 	</h:column>
 	<h:column>
-		#{cabecera.us_usuario.us_nombres}
+		#{cabecera.fac_cab_nombre}
 		<f:facet name="header">Nombre</f:facet>
 	</h:column>
 	<!-- <h:column>

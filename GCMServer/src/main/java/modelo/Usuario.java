@@ -41,12 +41,7 @@ public class Usuario {
 	@OneToMany(cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
 	@JoinColumn(name="us_cedula")
 	private List<Cita> citas;*/
-	
-	@OneToMany
-	private List<FacturaCabecera> facs_cab;
-	
-	
-	
+		
 	public String getUs_cedula() {
 		return us_cedula;
 	}
@@ -197,14 +192,6 @@ public class Usuario {
 	public void setFacs_cab(List<FacturaCabecera> facs_cab) {
 		this.facs_cab = facs_cab;
 	}*/
-	
-	public List<FacturaCabecera> getFacs_cab() {
-		return facs_cab;
-	}
-	public void setFacs_cab(List<FacturaCabecera> facs_cab) {
-		this.facs_cab = facs_cab;
-	}
-	
 	@Override
 	public String toString() {
 		return "Usuario [us_cedula=" + us_cedula + ", us_rol=" + us_rol + ", us_nombres=" + us_nombres
@@ -215,16 +202,6 @@ public class Usuario {
 				+ ", us_pa_ocupacion=" + us_pa_ocupacion + ", us_pa_etnia=" + us_pa_etnia + ", us_pa_religion="
 				+ us_pa_religion + ", us_pa_tipo_sangre=" + us_pa_tipo_sangre + ", us_pa_identidad_sexual="
 				+ us_pa_identidad_sexual + ", us_pa_procedencia=" + us_pa_procedencia + ", us_pa_registro="
-				+ us_pa_registro + ", historias_clinica=" + /*historias_clinica + ", citas=" + citas + ", facs_cab="
-				+ */"]";
-	}
-	
-
-	
-	
-	
-	
-	
-	
-	
+				+ us_pa_registro + "]";
+	}	
 }

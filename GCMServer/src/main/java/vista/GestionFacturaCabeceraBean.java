@@ -92,14 +92,14 @@ public class GestionFacturaCabeceraBean {
 	}
 	
 	
-	public String guardarFacturaCabecera() {
+	/*public String guardarFacturaCabecera() {
 		if(glc.guardarFacturaCabecera(us_cedula)) {
 			System.out.println("Insertado correctamente Cabecera " + us_cedula);
 			return "listar_cabecera";
 		}else {
 			return "Error";
 		}
-	}
+	}*/
 	public List<FacturaCabecera> recuperarCabeceras(){
 		return glc.getFacturas();
 	}

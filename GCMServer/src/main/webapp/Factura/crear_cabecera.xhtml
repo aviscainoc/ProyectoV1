@@ -11,12 +11,25 @@
 <h:form>
 	<h:panelGrid columns="2">
 		
-		<h:outputLabel value="Codigo del usuario" />
-		<h:inputText value="#{gestionFacturaCabeceraBean.us_cedula}" placeholder="Cédula del usuario" />
-				
+		<h:outputLabel value="Cédula del usuario" />
+		<h:inputText value="#{gestionCitasBean.fac_cab_cedula}" placeholder="Cédula del usuario" />
+		
+		<h:outputLabel value="Nombre del usuario" />
+		<h:inputText value="#{gestionCitasBean.fac_cab_nombre}" placeholder="Nombre del usuario" />
+		
+		<h:outputLabel value="Dirección del usuario" />
+		<h:inputText value="#{gestionCitasBean.fac_cab_direccion}" placeholder="Direccion del usuario" />
+		
+		<h:outputLabel value="Telefono del usuario" />
+		<h:inputText value="#{gestionCitasBean.fac_cab_telefono}" placeholder="Telefono del usuario" />
+		
+		<h:outputLabel value="Correo del usuario" />
+		<h:inputText value="#{gestionCitasBean.fac_cab_correo}" placeholder="Correo del usuario" />
+		
 	</h:panelGrid>
-	<h:commandButton action="#{gestionFacturaCabeceraBean.guardarFacturaCabecera()}" value="Guardar" />
-	<h:commandButton action="listar_cabecera" value="Regresar"></h:commandButton>
+	<h:commandButton action="#{gestionCitasBean.guardarFacturaCabeceraDatos()}" value="Guardar Datos" />
+	<h:commandButton action="#{gestionCitasBean.guardarFacturaCabeceraConsumidorFinal()}" value="Guardar Consumidor Final" />
+	<h:commandButton action="../Factura/listar_cabecera" value="Regresar"></h:commandButton>
 </h:form>
 </body>   
 </html>
