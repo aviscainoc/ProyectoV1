@@ -1,5 +1,6 @@
 package modelo;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import javax.persistence.*;
@@ -25,7 +26,7 @@ public class Cita {
 
 
 	private Date ci_fecha_agendacion;
-	@Temporal(javax.persistence.TemporalType.DATE)
+	@Temporal(javax.persistence.TemporalType.TIMESTAMP)
 	private Date ci_fecha_cita;
 	private String ci_estado;
 	
@@ -128,6 +129,15 @@ public class Cita {
 	public void setFac_cab_factura(FacturaCabecera fac_cab_factura) {
 		this.fac_cab_factura = fac_cab_factura;
 	}
+	
+	@Transient
+	public String getHora() {
+		SimpleDateFormat localDateFormat = new SimpleDateFormat("HH:mm:ss");
+		String time = localDateFormat.format(ci_fecha_cita);
+		System.out.println(time);
+		return time;
+	}
+	
 	@Override
 	public String toString() {
 		return "Cita [ci_codigo=" + ci_codigo + ", ci_fecha_agendacion=" + ci_fecha_agendacion + ", ci_fecha_cita="

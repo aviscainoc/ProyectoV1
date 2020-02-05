@@ -20,8 +20,16 @@
 				<f:facet name="header">Paciente</f:facet>
 			</h:column>
 			<h:column>
-				#{cita.ci_fecha_cita}
+				<h:outputLabel value="#{cita.ci_fecha_cita}" style="font-weight: normal">
+					<f:convertDateTime type="date" dateStyle="full"/>
+				</h:outputLabel>
 				<f:facet name="header">Fecha de la cita</f:facet>
+			</h:column>
+			<h:column>
+				<h:outputLabel value="#{cita.getHora()}" style="font-weight: normal">
+					<f:convertDateTime type="time" dateStyle="full"/>
+				</h:outputLabel>
+				<f:facet name="header">Hora de la cita</f:facet>
 			</h:column>
 			<h:column>
 				<h:link value="Agregar diagnóstico" outcome="agregar_diagnostico">
