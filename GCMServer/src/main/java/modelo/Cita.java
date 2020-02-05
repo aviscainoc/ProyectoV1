@@ -19,7 +19,13 @@ public class Cita {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int ci_codigo;
+
+
+	@Temporal(javax.persistence.TemporalType.DATE)
+
+
 	private Date ci_fecha_agendacion;
+	@Temporal(javax.persistence.TemporalType.DATE)
 	private Date ci_fecha_cita;
 	private String ci_estado;
 	
@@ -42,6 +48,14 @@ public class Cita {
 	@JoinColumn(referencedColumnName="fac_cab_id")
 	private FacturaCabecera fac_cab_factura;
 	
+	private int contador;
+	
+	public int getContador() {
+		return contador;
+	}
+	public void setContador(int contador) {
+		this.contador = contador;
+	}
 	public String getCi_estado() {
 		return ci_estado;
 	}

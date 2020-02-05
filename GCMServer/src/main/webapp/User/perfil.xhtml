@@ -71,7 +71,20 @@
 		</div>
 	</ui:define>
 	
-	<ui:define name="actividad"></ui:define>
+	<ui:define name="actividad">
+		<h:dataTable value="#{gestionCitasBean.recuperarProximasCitas()}" var="cita">
+	
+			<h:column>
+			
+				#{cita.ci_fecha_cita}
+				<f:facet name="header">Fecha de su cita</f:facet>
+			</h:column>
+			
+	
+		</h:dataTable>
+	
+	
+	</ui:define>
 	<ui:define name="timeline"></ui:define>
 	<ui:define name="configuracion">
 		

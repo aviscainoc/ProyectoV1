@@ -7,6 +7,7 @@ import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 
+import modelo.Cita;
 import modelo.Usuario;
 
 @Stateless
@@ -61,6 +62,8 @@ public class UsuarioDAO {
 		us.getCitas().size();*/
 		return us;
 	}	
+	
+	
 }
 
 

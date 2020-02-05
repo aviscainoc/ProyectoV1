@@ -24,5 +24,9 @@ public interface GestionCitaLocal {
 			String ci_estado, HistoriaClinica historia, ExamenLaboratorio examen, RecetaMedica receta, CertificadoAusencia certificado);
 	public void updateCita(Cita c);
 	public void eliminar(int ci_codigo);
+	
+	
+	public List<Cita> recuperarProximasCitas(Date fecha);
+
 	public Cita getCita(int codigo);
 }
