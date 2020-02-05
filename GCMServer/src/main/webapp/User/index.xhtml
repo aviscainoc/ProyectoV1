@@ -21,7 +21,9 @@
 					<f:convertDateTime pattern = "dd-mm-yyyy" />
 				</h:inputText-->
 				
-					<h:inputText value="#{registrationBean.dateOfBirth}" styleClass="form-control datepicker" />
+					<h:inputText value="#{gestionCitasBean.ci_fecha_cita}" styleClass="form-control datepicker">
+						<f:convertDateTime pattern = "dd-mm-yyyy" />
+					</h:inputText>
 
 				
 					<div class="input-group date" id="timepicker" data-target-input="nearest">
