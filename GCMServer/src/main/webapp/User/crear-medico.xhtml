@@ -1,0 +1,50 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"> 
+
+<ui:composition template="../Plantilla/plantilla2.xhtml">
+	<ui:define name="tituloPagina">Citas Médicas - Registrarse</ui:define>
+	<ui:define name="h1Titulo">Registrarse</ui:define>
+	<ui:define name="contenido">
+		<h:form>
+			<h:panelGrid columns="2">
+				<h:outputLabel value="Cedula " />
+				<h:inputText class="form-control form-control-navbar" value="#{gestionUsuariosBean.us_cedula}" placeholder="Cedula" />
+				
+				<h:outputLabel value="Nombres" />
+				<h:inputText class="form-control form-control-navbar" value="#{gestionUsuariosBean.us_nombres}" placeholder="Nombres" />
+				
+				<h:outputLabel value="Apellidos" />
+				<h:inputText class="form-control form-control-navbar" value="#{gestionUsuariosBean.us_apellidos}" placeholder="Apellidos" />
+				
+				<h:outputLabel value="Sexo " />
+				<h:inputText class="form-control form-control-navbar" value="#{gestionUsuariosBean.us_sexo}" placeholder="Sexo" />
+				
+				<h:outputLabel value=" Fecha de nacimiento" />
+				<h:inputText class="form-control form-control-navbar" value="#{gestionUsuariosBean.us_fecha_nacimiento}" placeholder="Fecha de nacimiento" >
+					<f:convertDateTime pattern = "dd-mm-yyyy" />
+				</h:inputText>
+				
+				<h:outputLabel value="Correo Electronico " />
+				<h:inputText class="form-control form-control-navbar" value="#{gestionUsuariosBean.us_correo}" placeholder="Correo" />
+				
+				
+				
+				<h:outputLabel value="Area de especialidad " />
+				<h:inputText class="form-control form-control-navbar" value="#{gestionUsuariosBean.us_md_area_especialidad}" placeholder="Area de especialidad" />
+				
+				<h:outputLabel value="Descripcion " />
+				<h:inputText class="form-control form-control-navbar" value="#{gestionUsuariosBean.us_md_descripcion}" placeholder="Descripcion" />
+				
+				<h:outputLabel value="Contrasenia " />
+				<h:inputText class="form-control form-control-navbar" value="#{gestionUsuariosBean.us_contrasena}" placeholder="Contrasena" />
+			</h:panelGrid>
+			<h:commandButton action="#{gestionUsuariosBean.guardarUsuariosMedicos()}" value="Guardar" />
+			<h:commandButton action="index" value="Regresar"></h:commandButton>
+		</h:form>
+	</ui:define>
+</ui:composition>
+  
+</html>
