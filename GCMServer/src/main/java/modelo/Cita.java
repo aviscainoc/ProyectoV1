@@ -20,8 +20,9 @@ public class Cita {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int ci_codigo;
 
-	
+	@Temporal(javax.persistence.TemporalType.DATE)
 	private Date ci_fecha_agendacion;
+	@Temporal(javax.persistence.TemporalType.DATE)
 	private Date ci_fecha_cita;
 	private String ci_estado;
 	
@@ -36,6 +37,14 @@ public class Cita {
 	@OneToOne
 	private RecetaMedica rm_recetaMedica;
 	
+	private int contador;
+	
+	public int getContador() {
+		return contador;
+	}
+	public void setContador(int contador) {
+		this.contador = contador;
+	}
 	public String getCi_estado() {
 		return ci_estado;
 	}

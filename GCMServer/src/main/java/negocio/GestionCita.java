@@ -1,6 +1,7 @@
 package negocio;
 
 import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
 
 import javax.ejb.Stateful;
@@ -12,12 +13,13 @@ import datos.MedicoDAO;
 import datos.PacienteDAO;
 import datos.UsuarioDAO;
 import modelo.Cita;
+import modelo.ConteoCitas;
 import modelo.Medico;
 import modelo.Paciente;
 
 
 
-@Stateful
+@Stateless
 public class GestionCita implements GestionCitaLocal, GestionCitaRemote{
 	@Inject
 	private CitaDAO dao;
@@ -35,11 +37,18 @@ public class GestionCita implements GestionCitaLocal, GestionCitaRemote{
 	}
 	
 	public List<Cita> getCitas(){
+		System.out.println("Impresion de las citas");
+		System.out.println(dao.contarCitasPorMesUsuario("0106171325").toString());
+		
 		return dao.getCitas();
 	}
 	
 	public List<Cita> getCitasPendientes(){
 		return dao.getCitasPendientes();
+	}
+	
+	public List<Cita> getCitasTerminadas(){
+		return dao.getCitasTerminadas();
 	}
 	
 	public void updateCita(String codigoU, Date ci_fecha_agendacion, Date ci_fecha_cita, String ci_estado) {
@@ -60,6 +69,22 @@ public class GestionCita implements GestionCitaLocal, GestionCitaRemote{
 
 	public void eliminar(int ci_codigo) {
 		dao.remove(ci_codigo);
+	}
+	
+	public List<ConteoCitas> contarCitasUsuario(String cedula){
+		
+		return dao.contarCitasPorMesUsuario(cedula);
+	}
+	
+	public List<ConteoCitas> contarCitasGeneral(){
+		
+		return dao.contarCitasPorMesGeneral();
+	}
+	
+	public List<Cita> recuperarProximasCitas(Date fecha){
+		
+		return dao.getProximasCitas(fecha);
+		
 	}
 
 }

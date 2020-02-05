@@ -16,5 +16,8 @@ public interface GestionCitaLocal {
 	public List<Cita> getCitasPendientes();
 	public void updateCita(String codigoU, Date ci_fecha_agendacion, Date ci_fecha_cita, String ci_estado);
 	public void eliminar(int ci_codigo);
+	
+	
+	public List<Cita> recuperarProximasCitas(Date fecha);
 
 }

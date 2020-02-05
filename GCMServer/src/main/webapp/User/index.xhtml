@@ -18,7 +18,7 @@
 	      		<h:inputText pt:placeholder="9999999999" value="#{gestionCitasBean.us_codigo}" class="form-control form-control-navbar" f:placeholder="Ingresar número de cédula" aria-label="Search" required="true"></h:inputText>
 	      		<h:outputLabel>Fecha de la cita: </h:outputLabel>
 	      		<h:inputText pt:placeholder="01-01-2020" value="#{gestionCitasBean.ci_fecha_cita}" class="form-control form-control-navbar" placeholder="Fecha de cita" required="true">
-					<f:convertDateTime pattern = "dd-mm-yyyy" />
+					<f:convertDateTime pattern = "dd-mm-yyyy" timeZone="-05:00" />
 				</h:inputText>
 		    	<h:commandButton action="#{gestionCitasBean.guardarCita()}" value="Generar Cita Médica"></h:commandButton>
 		    	<img src="../Plantilla/dist/img/personaje.png" style="size: width: 250px; height: 250px;" alt="User Image"></img>

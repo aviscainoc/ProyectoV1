@@ -119,11 +119,15 @@ public class GestionCitasBean {
 		
 		if (gul.recuperarUsuario(us_codigo)!=null) {
 			gl.guardarCita(us_codigo, ci_fecha_agendacion, ci_fecha_cita, ci_estado);
+			System.out.println("aqui va la fecha");
+			System.out.println(ci_fecha_cita.getDate());
 			citas=gl.getCitas();
 			return "index";
 		} else {
 			gul.guardarUsuarioPaciente(us_codigo, rol, registro, null, null, null, null, null, null, null, null, null, null, null, null, null, null);
 			gl.guardarCita(us_codigo, ci_fecha_agendacion, ci_fecha_cita, ci_estado);
+			System.out.println("aqui va la fecha");
+			System.out.println(ci_fecha_cita.getDate());
 			citas=gl.getCitas();
 			return "persuasiva";
 		}
@@ -131,6 +135,7 @@ public class GestionCitasBean {
 	
 	public List<Cita> recuperarCitas(){
 		citas=gl.getCitas();
+		
 		return citas;	
 	}
 	
@@ -145,6 +150,12 @@ public class GestionCitasBean {
 	
 	public void update() {
 		gl.updateCita(us_codigo, ci_fecha_agendacion, ci_fecha_cita, ci_estado);
+	}
+	
+	public List<Cita> recuperarProximasCitas(){
+		Date fecha = new Date();
+		//citas=gl.getCitasPendientes();
+		return gl.recuperarProximasCitas(fecha);	
 	}
 	
 
