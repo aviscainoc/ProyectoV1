@@ -2,6 +2,7 @@ package vista;
 
 import java.sql.Timestamp;
 import java.util.Arrays;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -53,7 +54,9 @@ public class GestionCitasBean {
 	private String ci_estado;
 	private String ci_diagnostico;
 	private Date ci_fecha_agendacion ;
-	private Date ci_fecha_cita;
+	private String ci_fecha_cita;
+	private int hora;
+	private int minuto;
 	private List<Cita> citas;
 	private String codigoPasable;
 	private Cita cita;
@@ -99,6 +102,18 @@ public class GestionCitasBean {
 	private List<FacturaCabecera> facturasCabecera;
 	
 	
+	public int getHora() {
+		return hora;
+	}
+	public void setHora(int hora) {
+		this.hora = hora;
+	}
+	public int getMinuto() {
+		return minuto;
+	}
+	public void setMinuto(int minuto) {
+		this.minuto = minuto;
+	}
 	public GestionCitaLocal getGl() {
 		return gl;
 	}
@@ -165,10 +180,10 @@ public class GestionCitasBean {
 	public void setCi_fecha_agendacion(Date ci_fecha_agendacion) {
 		this.ci_fecha_agendacion = ci_fecha_agendacion;
 	}
-	public Date getCi_fecha_cita() {
+	public String getCi_fecha_cita() {
 		return ci_fecha_cita;
 	}
-	public void setCi_fecha_cita(Date ci_fecha_cita) {
+	public void setCi_fecha_cita(String ci_fecha_cita) {
 		this.ci_fecha_cita = ci_fecha_cita;
 	}
 	public List<Cita> getCitas() {
@@ -381,18 +396,32 @@ public class GestionCitasBean {
 		int registro=0;
 		ci_fecha_agendacion = new Date();
 		ci_estado = "pendiente";
+		String[] fecha = ci_fecha_cita.split("-");
+		int dia = Integer.parseInt(fecha[0]);
+		int mes = Integer.parseInt(fecha[1]) - 1;
+		int anio = Integer.parseInt(fecha[2]);
+		
+		Calendar cal = Calendar.getInstance();
+		cal.set(Calendar.HOUR_OF_DAY, hora);
+		cal.set(Calendar.MINUTE, minuto);
+		cal.set(Calendar.SECOND, 00);
+		cal.set(Calendar.DATE, dia);
+		cal.set(Calendar.MONTH, mes);
+		cal.set(Calendar.YEAR, anio);
+		
+		Date fecha_cita = cal.getTime();
 		
 		if (gul.recuperarUsuario(us_codigo)!=null) {
-			gl.guardarCita(us_codigo, ci_fecha_agendacion, ci_fecha_cita, ci_estado);
+			gl.guardarCita(us_codigo, ci_fecha_agendacion, fecha_cita, ci_estado);
 			System.out.println("aqui va la fecha");
-			System.out.println(ci_fecha_cita.getDate());
+			System.out.println(fecha_cita);
 			citas=gl.getCitas();
 			return "index";
 		} else {
 			gul.guardarUsuarioPaciente(us_codigo, rol, registro, null, null, null, null, null, null, null, null, null, null, null, null, null, null);
-			gl.guardarCita(us_codigo, ci_fecha_agendacion, ci_fecha_cita, ci_estado);
+			gl.guardarCita(us_codigo, ci_fecha_agendacion, fecha_cita, ci_estado);
 			System.out.println("aqui va la fecha");
-			System.out.println(ci_fecha_cita.getDate());
+			System.out.println(fecha_cita);
 			citas=gl.getCitas();
 			return "persuasiva";
 		}
@@ -408,6 +437,7 @@ public class GestionCitasBean {
 		citas=gl.getCitasPendientes();
 		
 		gul.guardarPdfUsuario();
+		System.out.println(citas);
 		return citas;	
 	}
 	
