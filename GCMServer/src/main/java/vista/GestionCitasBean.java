@@ -27,6 +27,7 @@ import negocio.GestionHistoriaClinicaLocal;
 import negocio.GestionMedicosLocal;
 import negocio.GestionRecetaMedicaLocal;
 import negocio.GestionUsuariosLocal;
+import net.sf.jasperreports.engine.JRException;
 @ManagedBean
 public class GestionCitasBean {
 
@@ -403,8 +404,10 @@ public class GestionCitasBean {
 		return citas;	
 	}
 	
-	public List<Cita> recuperarCitasPendientes(){
+	public List<Cita> recuperarCitasPendientes() throws JRException{
 		citas=gl.getCitasPendientes();
+		
+		gul.guardarPdfUsuario();
 		return citas;	
 	}
 	
@@ -480,6 +483,14 @@ public class GestionCitasBean {
 		//citas=gl.getCitasPendientes();
 		return gl.recuperarProximasCitas(fecha);	
 	}
+	
+	public List<Cita> recuperarCitasPasadas(){
+		Date fecha = new Date();
+		//citas=gl.getCitasPendientes();
+		return gl.recuperarCitasPasadas(fecha);	
+	} 
+	
+	
 	
 	public boolean guardarExamenLaboratorios() {
 		try {

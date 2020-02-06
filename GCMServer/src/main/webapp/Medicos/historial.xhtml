@@ -9,9 +9,19 @@
 	<ui:define name="h1Titulo">Historial</ui:define>
 	<ui:define name="nombreUser">Dr. #{user.us_nombres} <br></br>#{user.us_apellidos}</ui:define>
 	<ui:define name="contenido">
-
 	
-
+		<h:form>
+			<h:dataTable value="#{gestionCitasBean.recuperarCitasPasadas()}" var="cita">
+		
+				<h:column>
+				
+					#{cita.ci_fecha_cita}
+					<f:facet name="header">Fecha de su cita</f:facet>
+				</h:column>
+				
+		
+			</h:dataTable>
+		</h:form>
 
 
 

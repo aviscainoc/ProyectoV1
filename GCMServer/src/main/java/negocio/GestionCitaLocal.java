@@ -29,4 +29,6 @@ public interface GestionCitaLocal {
 	public List<Cita> recuperarProximasCitas(Date fecha);
 
 	public Cita getCita(int codigo);
+	
+	public List<Cita> recuperarCitasPasadas(Date fecha);
 }

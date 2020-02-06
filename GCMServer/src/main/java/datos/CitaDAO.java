@@ -93,4 +93,14 @@ public class CitaDAO {
 		
 		return citas;
 	}
+	
+	public List<Cita> getCitasPasadas(Date fecha){
+		String jpql = "SELECT u FROM Cita u WHERE ci_fecha_cita < ?1";
+		Query q = em.createQuery(jpql, Cita.class);
+		q.setParameter(1, fecha);
+		
+		List<Cita> citas = q.getResultList();
+		
+		return citas;
+	}
 }

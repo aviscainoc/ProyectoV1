@@ -13,8 +13,16 @@ import datos.MedicoDAO;
 import datos.PacienteDAO;
 import datos.UsuarioDAO;
 import modelo.Cita;
+import modelo.Conexion;
 import modelo.HistoriaClinica;
 import modelo.Usuario;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.export.JRPdfExporter;
+import net.sf.jasperreports.export.SimpleExporterInput;
+import net.sf.jasperreports.export.SimpleOutputStreamExporterOutput;
+import net.sf.jasperreports.export.SimplePdfExporterConfiguration;
 
 @Stateless
 public class GestionUsuario implements GestionUsuariosLocal, GestionUsuariosRemote {
@@ -111,6 +119,21 @@ public class GestionUsuario implements GestionUsuariosLocal, GestionUsuariosRemo
 		daoU.update(u);
 		u = recuperarUsuario(u.getUs_cedula());
 		System.out.println("GestionUsuario " + u);
+	}
+	
+	public void guardarPdfUsuario() throws JRException {
+		JasperPrint jasperPrint = JasperFillManager.fillReport(
+				"C:\\Users\\PCX\\JaspersoftWorkspace\\Reportes\\Cherry.jasper", null,
+				Conexion.conectar());
+		JRPdfExporter exp = new JRPdfExporter();
+		exp.setExporterInput(new SimpleExporterInput(jasperPrint));
+		exp.setExporterOutput(new SimpleOutputStreamExporterOutput("ReporteAlumnos.pdf"));
+		System.out.println("El archivo ya se genero");
+		SimplePdfExporterConfiguration conf = new SimplePdfExporterConfiguration();
+		exp.setConfiguration(conf);
+		exp.exportReport();
+		System.out.println("El archivo ya se guardo");
+		
 	}
 	
 	
