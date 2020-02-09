@@ -1,0 +1,211 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough" 
+      xmlns:p="http://primefaces.org/ui"> 
+
+<h:head>
+	<f:metadata>
+        <f:viewParam id="username" name="username" value="#{gestionUsuariosBean.us_cedula}"/>
+        <f:viewAction action="#{gestionUsuariosBean.recuperarUsuario()}" />
+        <f:viewParam id="cita" name="cita" value="#{gestionCitasBean.ci_codigo}"/>
+        <f:viewAction action="#{gestionCitasBean.recuperarCita()}" />
+    </f:metadata>
+</h:head> 
+
+<ui:composition template="../Plantilla/plantilla.xhtml">
+	<ui:define name="tituloPagina">Citas Médicas - Agregar Diagnóstico</ui:define>
+	<ui:define name="h1Titulo">Agregar Diagnóstico</ui:define>
+	<ui:define name="nombreUser">Dr. #{user.us_nombres} <br></br>#{user.us_apellidos}</ui:define>
+	<ui:define name="contenido">
+		<h:form>
+			<div class="card-body">
+				<h:panelGrid columns="6" class="table table-bordered" style="font-size: 14px;">
+					<h:outputLabel>Cédula: </h:outputLabel>
+					<h:inputText size="8" class="form-control" value="#{gestionUsuariosBean.us_cedula}" disabled="true" style="color: black; border:none; background-color: #F1F4F6; font-size: 14px;"></h:inputText>
+					<h:outputLabel>Nombres: </h:outputLabel>
+					<h:inputText size="15" class="form-control" value="#{gestionUsuariosBean.usuario.us_nombres}" disabled="true" style="color: black; border:none; background-color: #F1F4F6; font-size: 14px;"></h:inputText>
+					<h:outputLabel>Apellidos: </h:outputLabel>
+					<h:inputText size="15" class="form-control" value="#{gestionUsuariosBean.usuario.us_apellidos}" disabled="true" style="color: black; border:none; background-color: #F1F4F6; font-size: 14px;"></h:inputText>
+					<h:outputLabel>Fecha de nacimiento: </h:outputLabel>
+					<h:inputText size="8" class="form-control" value="#{gestionUsuariosBean.usuario.us_fecha_nacimiento}" disabled="true" style="color: black; border:none; background-color: #F1F4F6; font-size: 14px;"></h:inputText>
+					<h:outputLabel>Etnia: </h:outputLabel>
+					<h:inputText size="15" class="form-control" value="#{gestionUsuariosBean.usuario.us_pa_etnia}" disabled="true" style="color: black; border:none; background-color: #F1F4F6; font-size: 14px;"></h:inputText>
+					<h:outputLabel>Identidad Sexual: </h:outputLabel>
+					<h:inputText size="15" class="form-control" value="#{gestionUsuariosBean.usuario.us_pa_identidad_sexual}" disabled="true" style="color: black; border:none; background-color: #F1F4F6; font-size: 14px;"></h:inputText>
+					<h:outputLabel>Nivel de Estudio: </h:outputLabel>
+					<h:inputText size="8" class="form-control" value="#{gestionUsuariosBean.usuario.us_pa_nivel_estudio}" disabled="true" style="color: black; border:none; background-color: #F1F4F6; font-size: 14px;"></h:inputText>
+					<h:outputLabel>Ocupación: </h:outputLabel>
+					<h:inputText size="15" class="form-control" value="#{gestionUsuariosBean.usuario.us_pa_ocupacion}" disabled="true" style="color: black; border:none; background-color: #F1F4F6; font-size: 14px;"></h:inputText>
+					<h:outputLabel>Procedencia: </h:outputLabel>
+					<h:inputText size="15" class="form-control" value="#{gestionUsuariosBean.usuario.us_pa_procedencia}" disabled="true" style="color: black; border:none; background-color: #F1F4F6; font-size: 14px;"></h:inputText>
+					<h:outputLabel>Estado Civil: </h:outputLabel>
+					<h:inputText size="8" class="form-control" value="#{gestionUsuariosBean.usuario.us_pa_estado_civil}" disabled="true" style="color: black; border:none; background-color: #F1F4F6; font-size: 14px;"></h:inputText>
+					<h:outputLabel>Religión: </h:outputLabel>
+					<h:inputText size="15" class="form-control" value="#{gestionUsuariosBean.usuario.us_pa_religion}" disabled="true" style="color: black; border:none; background-color: #F1F4F6; font-size: 14px;"></h:inputText>
+					<h:outputLabel>Tipo de Sangre: </h:outputLabel>
+					<h:inputText size="15" class="form-control" value="#{gestionUsuariosBean.usuario.us_pa_tipo_sangre}" disabled="true" style="color: black; border:none; background-color: #F1F4F6; font-size: 14px;"></h:inputText>
+				</h:panelGrid>
+			</div>
+			
+			<div class="float-right" style="padding-right: 20px;">
+				<h:panelGrid columns="3">
+					<h:commandButton action="#" value="  Editar datos   " class="btn btn-block btn-outline-secondary btn-xs"/>
+					<h:commandButton action="#" value="    Guardar    " class="btn btn-block btn-outline-secondary btn-xs disabled"/>
+					<h:commandButton action="#" value="   Cancelar    " class="btn btn-block btn-outline-secondary btn-xs disabled"/>
+				</h:panelGrid>
+			</div>
+		</h:form>
+		
+		<br></br>
+		<br></br>
+		
+		<div class="card-header p-2">
+			<ul class="nav nav-pills">
+				<li class="nav-item"><a class="nav-link btn-xs active" href="#diagnostico" data-toggle="tab" style="padding-left: 10px; padding-right: 10px;">Diagnóstico</a></li>
+				<li class="nav-item"><a class="nav-link btn-xs" href="#examen" data-toggle="tab" style="padding-left: 10px; padding-right: 10px;">Enviar exámenes de laboratorio</a></li>
+				<li class="nav-item"><a class="nav-link btn-xs" href="#receta" data-toggle="tab" style="padding-left: 10px; padding-right: 10px;">Crear receta médica</a></li>
+				<li class="nav-item"><a class="nav-link btn-xs" href="#permiso" data-toggle="tab" style="padding-left: 10px; padding-right: 10px;">Redactar permiso médico</a></li>
+			</ul>
+		</div>
+		
+		<h:form>
+		 	<div class="tab-content">
+		 	
+		 		<!-- ============================================ DIAGNÓSTICO ============================================ -->
+				<div class="active tab-pane" id="diagnostico">
+					<div class="card-body">
+						<h:panelGrid columns="2" class="table" style="font-size: 14px;">
+							<h:outputLabel value="Lugar de residencia" />
+							<h:inputText value="#{gestionCitasBean.hc_residencia}" class="form-control" pt:placeholder="Ingresar ..." size="50"/>
+							<h:outputLabel value="Motivo de la consulta" />
+							<h:inputTextarea value="#{gestionCitasBean.hc_movito_consulta}" class="form-control" pt:placeholder="Ingresar ..." cols="52" rows="5"/>
+							<h:outputLabel value="Diagnóstico" />
+							<h:inputTextarea value="#{gestionCitasBean.hc_enfermedad_actual}" class="form-control" pt:placeholder="Ingresar ..." cols="52" rows="5"/>
+						</h:panelGrid>
+					</div>
+				</div>
+				
+				<!-- ======================================= EXAMENES DE LABORATORIO ======================================= -->
+				<div class="tab-pane" id="examen">
+					<div class="card-body">
+						<div class="form-group float-left" style="width: 300px;">
+							<h4>Química</h4>
+							<p:selectManyCheckbox id="quimica" value="#{gestionCitasBean.el_quimica}" layout="pageDirection" columns="1" style="font-size: 12px;">
+								<f:selectItem itemValue="Glicemia" itemLabel="Glicemia"/>
+								<f:selectItem itemValue="Colesterol" itemLabel="Colesterol"/>
+								<f:selectItem itemValue="Triglicéridos" itemLabel="Triglicéridos"/>
+								<f:selectItem itemValue="Proteínas Totales" itemLabel="Proteínas Totales"/>
+								<f:selectItem itemValue="Albumina" itemLabel="Albumina"/>
+								<f:selectItem itemValue="Fosfatasa Alcalina" itemLabel="Fosfatasa Alcalina"/>
+								<f:selectItem itemValue="GGT" itemLabel="GGT"/>
+								<f:selectItem itemValue="Bilirrubina Total" itemLabel="Bilirrubina Total"/>
+								<f:selectItem itemValue="Bilirrubina Directa" itemLabel="Bilirrubina Directa"/>
+								<f:selectItem itemValue="Proteína C Reactiva (Cualitativa) " itemLabel="Proteína C Reactiva (Cualitativa) "/>
+								<f:selectItem itemValue="Factor Reumatoideo" itemLabel="Factor Reumatoideo"/>
+								<f:selectItem itemValue="Ácido Úrico" itemLabel="Ácido Úrico"/>
+								<f:selectItem itemValue="Urea" itemLabel="Urea"/>
+							</p:selectManyCheckbox>
+						</div>
+						
+						
+						<div class="form-group float-left" style="width: 300px;">
+							<h4>Heces Fecales</h4>
+							<p:selectManyCheckbox id="heces" value="#{gestionCitasBean.el_heces}" layout="pageDirection" columns="1" style="font-size: 12px; font-weight: lighter!important">
+								<f:selectItem itemValue="Directo Heces Fecales" itemLabel="Directo Heces Fecales"/>
+								<f:selectItem itemValue="Sangre Oculta" itemLabel="Sangre Oculta"/>
+							</p:selectManyCheckbox>
+						</div>
+						
+						
+						<div class="form-group float-left" style="width: 300px;">
+							<h4>Microbiología</h4>
+							<p:selectManyCheckbox id="microbiologia" value="#{gestionCitasBean.el_microbiologia}" layout="pageDirection" columns="1" style="font-size: 12px; font-weight: lighter!important">
+								<f:selectItem itemValue="Esputo BAAR" itemLabel="Esputo BAAR"/>
+								<f:selectItem itemValue="Serología" itemLabel="Serología"/>
+								<f:selectItem itemValue="Exudados Vaginales" itemLabel="Exudados Vaginales"/>
+								<f:selectItem itemValue="Exudados Endocervicales" itemLabel="Exudados Endocervicales"/>
+							</p:selectManyCheckbox>
+						</div>
+						
+						
+						<div class="form-group float-left" style="width: 300px;">
+							<h4>Hematología</h4>
+							<p:selectManyCheckbox id="hematologia" value="#{gestionCitasBean.el_hematologia}" layout="pageDirection" columns="1" style="font-size: 12px; font-weight: lighter!important">
+								<f:selectItem itemValue="Hemoglobina" itemLabel="Hemoglobina"/>
+								<f:selectItem itemValue="Hematocrito" itemLabel="Hematocrito"/>
+								<f:selectItem itemValue="Erito Sedimentación" itemLabel="Erito Sedimentación"/>
+								<f:selectItem itemValue="Coagulagrama Mínimo" itemLabel="Coagulagrama Mínimo"/>
+								<f:selectItem itemValue="Conteo de Plaquetas" itemLabel="Conteo de Plaquetas"/>
+								<f:selectItem itemValue="Leucograma con Diferencial" itemLabel="Leucograma con Diferencial"/>
+								<f:selectItem itemValue="Conteo de Eosinófilos" itemLabel="Conteo de Eosinófilos"/>
+								<f:selectItem itemValue="Conteo de Reticulocitos" itemLabel="Conteo de Reticulocitos"/>
+								<f:selectItem itemValue="Grupo y Factor" itemLabel="Grupo y Factor"/>
+							</p:selectManyCheckbox>
+						</div>
+						
+						
+						<div class="form-group float-left" style="width: 300px;">
+							<h4>Orina</h4>
+							<p:selectManyCheckbox id="orina" value="#{gestionCitasBean.el_orina}" layout="pageDirection" columns="1" style="font-size: 12px; font-weight: lighter!important">
+								<f:selectItem itemValue="Parcial de Orina" itemLabel="Parcial de Orina"/>
+								<f:selectItem itemValue="Cituria" itemLabel="Cituria"/>
+								<f:selectItem itemValue="Proteínas 24h" itemLabel="Proteínas 24h"/>
+								<f:selectItem itemValue="Conteo de Addis" itemLabel="Conteo de Addis"/>
+								<f:selectItem itemValue="Filtrado Glomenular" itemLabel="Filtrado Glomenular"/>
+							</p:selectManyCheckbox>
+						</div>
+					</div>
+				</div>
+				
+				<!-- ======================================== RECETAS MÉDICAS ======================================== -->
+				<div class="tab-pane" id="receta">
+					<div class="card-body">
+						<h:panelGrid columns="8" class="table" style="font-size: 14px;">
+							<h:outputLabel value="Peso:" />
+							<h:inputText value="#{gestionCitasBean.rm_peso}" class="form-control" size="5"/>
+							<h:outputLabel value="Talla:" />
+							<h:inputText value="#{gestionCitasBean.rm_talla}" class="form-control" size="5"/>
+							<h:outputLabel value="Edad:" />
+							<h:inputText value="#{gestionCitasBean.rm_edad}" class="form-control" size="5"/>
+							<h:outputLabel value="TA:" />
+							<h:inputText value="#{gestionCitasBean.rm_TA}" class="form-control" size="5"/>
+						</h:panelGrid>
+					</div>
+					<div class="card-body">
+						<h:panelGrid columns="2" class="table" style="font-size: 14px;">
+							<h:outputLabel value="RX: " />
+							<h:inputTextarea value="#{gestionCitasBean.rm_rx}" class="form-control" pt:placeholder="Ingresar ..." cols="52" rows="7"/>
+						</h:panelGrid>
+					</div>
+				</div>
+				
+				<!-- ============================================ PERMISOS ============================================ -->
+				<div class="tab-pane" id="permiso">
+					<div class="card-body pad">
+						<div class="mb-3">
+							<h:inputTextarea value="#{gestionCitasBean.ca_descripcion}" class="textarea" pt:placeholder="Place some text here" style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></h:inputTextarea>
+						</div>
+					</div>
+				</div>
+				
+				
+			</div>
+			<center><span style="color: #F58C08; font-size: 14px;">**Al guardar la cita médica no podrá editar el diagnóstico, ni agregar exámenes médicos, recetas o permisos**</span></center>
+			<br></br>
+			<div class="float-right" style="padding-right: 20px;">
+				<h:panelGrid columns="2">
+					<h:commandButton action="#{gestionCitasBean.terminarCita()}" value="    Guardar cita médica    " class="btn btn-block btn-outline-secondary btn-xs"/>
+					<h:commandButton action="#" value="   Cancelar    " class="btn btn-block btn-outline-secondary btn-xs"/>
+				</h:panelGrid>
+			</div>
+			<br></br>
+			<br></br>
+			<br></br>
+		</h:form>
+	</ui:define>
+</ui:composition>
+</html>
+	

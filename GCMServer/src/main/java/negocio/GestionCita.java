@@ -120,5 +120,12 @@ public class GestionCita implements GestionCitaLocal, GestionCitaRemote{
 		return dao.getProximasCitas(fecha);
 		
 	}
+	
+	public List<Cita> recuperarCitasPasadas(Date fecha){
+		
+		return dao.getCitasPasadas(fecha);
+		
+	}
+	
 
 }
