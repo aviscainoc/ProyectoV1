@@ -456,6 +456,15 @@ public class GestionCitasBean {
             facesContext.addMessage(null, m);
 		}
 	}
+	
+	public String cancelarCita(int ci_codigo) {
+		System.out.println(ci_codigo);
+		Cita c = recuperarCita(ci_codigo);
+		c.setCi_estado("cancelada");
+		gl.updateCita(c);
+		System.out.println("cita cancelada " + c);
+		return "indexCita";
+	}
 
 	public Cita recuperarCita(int codigo) {
 		System.out.println(codigo);
