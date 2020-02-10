@@ -435,8 +435,7 @@ public class GestionCitasBean {
 	
 	public List<Cita> recuperarCitasPendientes() throws JRException{
 		citas=gl.getCitasPendientes();
-		
-		gul.guardarPdfUsuario();
+//		gul.guardarPdfUsuario();
 		System.out.println(citas);
 		return citas;	
 	}
@@ -517,10 +516,12 @@ public class GestionCitasBean {
 		}
 	}
 	
-	public List<Cita> recuperarProximasCitas(){
+	public List<Cita> recuperarProximasCitas(String cedula){
+		System.out.println("recuperar proximas citas " + cedula);
 		Date fecha = new Date();
-		//citas=gl.getCitasPendientes();
-		return gl.recuperarProximasCitas(fecha);	
+		citas = gl.recuperarProximasCitas(cedula, fecha);
+		System.out.println("recuperar proximas citas " + citas);
+		return 	citas;
 	}
 	
 	public List<Cita> recuperarCitasPasadas(){

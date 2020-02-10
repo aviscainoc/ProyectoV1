@@ -72,21 +72,55 @@
 	</ui:define>
 	
 	<ui:define name="actividad">
-		<h:dataTable value="#{gestionCitasBean.recuperarProximasCitas()}" var="cita">
-	
-			<h:column>
-			
-				#{cita.ci_fecha_cita}
-				<f:facet name="header">Fecha de su cita</f:facet>
-			</h:column>
-			
-			
-	
-		</h:dataTable>
-	
+		
+		<h:form>
+			<h:dataTable value="#{gestionCitasBean.recuperarProximasCitas(user.us_cedula)}" var="cita" class="table  table-hover">
+				<h:column>
+					<h:outputLabel value="#{cita.ci_fecha_cita}" style="font-weight: normal">
+						<f:convertDateTime type="date" dateStyle="full"/>
+					</h:outputLabel>
+					<f:facet name="header">Fecha de la cita</f:facet>
+				</h:column>
+				<h:column>
+						<h:outputLabel value="#{cita.getHora()}" style="font-weight: normal">
+							<f:convertDateTime type="time" dateStyle="full"/>
+						</h:outputLabel>
+						<f:facet name="header">Hora de la cita</f:facet>
+				</h:column>
+				<h:column>
+					<h:commandLink action="#{gestionCitasBean.cancelarCita(cita.ci_codigo)}" value="Cancelar cita" />
+				</h:column>
+			</h:dataTable>
+		</h:form>
 	
 	</ui:define>
-	<ui:define name="timeline"></ui:define>
+	
+	<ui:define name="timeline">
+
+    <!-- Main content -->
+    <section class="content">
+            <!-- AREA CHART -->
+            <div class="card card-primary">
+              <div class="card-header">
+                <h3 class="card-title">Area Chart</h3>
+
+                <div class="card-tools">
+                  <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>
+                  </button>
+                  <button type="button" class="btn btn-tool" data-card-widget="remove"><i class="fas fa-times"></i></button>
+                </div>
+              </div>
+              <div class="card-body">
+                <div class="chart">
+                  <canvas id="barChart" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
+                </div>
+              </div>
+              <!-- /.card-body -->
+            </div>
+    </section>
+	
+	</ui:define>
+	
 	<ui:define name="configuracion">
 		
 		<h:form class="form-horizontal">
