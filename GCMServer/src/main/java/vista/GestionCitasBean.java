@@ -601,7 +601,7 @@ public class GestionCitasBean {
 			System.out.println("FACTURA CABECERA: " + fc.toString());
 			gl.updateCita(c);
 		}
-		return "Factura/listar_cabecera";
+		return "/Factura/listar_cabecera";
 	}
 	
 	public boolean guardarHistoriasClinicas() {
@@ -742,9 +742,9 @@ public class GestionCitasBean {
 		
 	public boolean guardarIngreso() {
 		try {
-			ie_codigo = glie.guardarIngresosEgresos(ie_descripcion, ie_dinero, md_codigo);
+			ie_codigo = glie.guardarIngresosEgresos(ie_descripcion, ie_dinero, usuario.getUs_cedula());
 			ingresosEgresos = glie.getIngresosEgresos();
-			Usuario usu = gul.recuperarUsuario(md_codigo); 
+			Usuario usu = gul.recuperarUsuario(usuario.getUs_cedula()); 
 			us_dinero = usu.getUs_dinero();
 			IngresosEgresos ie = glie.getIngresoEgreso(ie_codigo);
 			System.out.println("### Ingreso ### " + ie);
@@ -774,7 +774,3 @@ public class GestionCitasBean {
 		return glie.getIngresosEgresos();
 	}
 }
-
-
-
-	

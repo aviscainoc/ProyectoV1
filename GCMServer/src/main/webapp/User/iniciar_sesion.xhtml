@@ -12,15 +12,16 @@
 		<h:form>
 			<h:message for="mail" errorStyle="color:red; display:block"/>
 			<div class="input-group mb-3">
-				<h:inputText id="mail" pt:placeholder="ejemplo@gmail.com" value="#{gestionUsuariosBean.us_correo}" class="form-control form-control-navbar" aria-label="Search" required="true" requiredMessage="Ingresar correo"></h:inputText>
+				<h:inputText id="mail" pt:placeholder="ejemplo@gmail.com" value="#{gestionUsuariosBean.us_correo}" class="form-control form-control-navbar" aria-label="Search" required="true" requiredMessage="Ingrese su correo electrónico"></h:inputText>
 					<div class="input-group-append">
 				    	<div class="input-group-text">
 				    		<span class="fas fa-envelope"></span>
 						</div>
 					</div>
 			</div>
+			<h:message for="con" errorStyle="color:red; display:block"/>
 			<div class="input-group mb-3">
-				<h:inputSecret value="#{gestionUsuariosBean.us_contrasena}" class="form-control form-control-navbar" pt:placeholder="contraseña"></h:inputSecret>
+				<h:inputSecret id="con" value="#{gestionUsuariosBean.us_contrasena}" class="form-control form-control-navbar" pt:placeholder="contraseña" required="true" requiredMessage="Ingrese su contraseña"></h:inputSecret>
 				<div class="input-group-append">
 					<div class="input-group-text">
 					    <span class="fas fa-lock"></span>

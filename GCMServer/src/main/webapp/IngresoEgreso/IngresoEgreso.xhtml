@@ -5,14 +5,14 @@
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:c="http://java.sun.com/jsp/jstl/core"> 
 
-<h:head></h:head> 
-<body> 
-
-<center><h1>Ingresos/Egresos</h1></center>
-
-<center>
-<h:form>
-<h:dataTable width="40%" value="#{gestionCitasBean.recuperarIngresosEgresos()}" var="ingresosEgresos" border="2" cellspacing="1" cellpadding="1">
+<ui:composition template="../Plantilla/plantilla.xhtml">
+	<ui:define name="tituloPagina">Facturar</ui:define>
+	<ui:define name="h1Titulo">Factura</ui:define>
+	<ui:define name="nombreUser">Dr. #{user.us_nombres} <br></br>#{user.us_apellidos}</ui:define>
+	<ui:define name="contenido">
+	<center>
+	<h:form>
+<h:dataTable width="50%" value="#{gestionCitasBean.recuperarIngresosEgresos()}" var="ingresosEgresos" border="4" cellspacing="1" cellpadding="1">
 	<h:column>
 		#{ingresosEgresos.ie_descripcion}
 		<f:facet name="header">Descripción</f:facet>
@@ -22,7 +22,7 @@
 		<f:facet name="header">Monto</f:facet>
 	</h:column>	
 </h:dataTable>
-<h:dataTable width="40%" value="#{gestionCitasBean.us_dinero}" var="ingresosEgresos" border="2" cellspacing="1" cellpadding="1">
+<h:dataTable width="50%" value="#{gestionCitasBean.us_dinero}" var="ingresosEgresos" border="4" cellspacing="1" cellpadding="1">
 	<h:column>
 		<h:outputLabel value="#{gestionCitasBean.us_dinero}"/>
 		<f:facet name="header">Total</f:facet>
@@ -47,6 +47,6 @@
 </h:panelGrid>
 </h:form>
 </center>
-
-</body> 
+</ui:define>
+</ui:composition>
 </html>
