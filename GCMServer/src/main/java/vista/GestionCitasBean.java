@@ -73,6 +73,7 @@ public class GestionCitasBean {
 	private List<Cita> citas;
 	private String codigoPasable;
 	private Cita cita;
+	String cantidad;
 	
 	
 	private int hc_codigo;
@@ -106,19 +107,23 @@ public class GestionCitasBean {
 	private String rm_rx;
 	private List<RecetaMedica> recetas;
 	
+	
 	private int fac_cab_codigo;
 	private String fac_cab_nombre;
 	private String fac_cab_direccion;
 	private String fac_cab_telefono;
 	private String fac_cab_cedula;
 	private String fac_cab_correo;
+	private FacturaCabecera factura;
 	private List<FacturaCabecera> facturasCabecera;
+	
 	
 	private int fac_det_codigo;
 	private String fac_det_descripcion;
 	private double fac_det_precio;
 	private int fac_det_cantidad;
 	private List<FacturaDetalle> facturasDetalle;
+	
 	
 	private int ie_codigo;
 	private String ie_descripcion;
@@ -195,6 +200,12 @@ public class GestionCitasBean {
 	}
 	public void setUs_codigo(String us_codigo) {
 		this.us_codigo = us_codigo;
+	}
+	public String getCantidad() {
+		return cantidad;
+	}
+	public void setCantidad(String cantidad) {
+		this.cantidad = cantidad;
 	}
 	public String getCi_estado() {
 		return ci_estado;
@@ -589,10 +600,6 @@ public class GestionCitasBean {
 	}
 	
 	public String terminarCita(int cod) {
-		guardarHistoriasClinicas();
-		guardarExamenLaboratorios();
-		guardarRecetas();
-		guardarCertificado();
 		if (guardarHistoriasClinicas() && guardarExamenLaboratorios() && guardarRecetas() && guardarCertificado()) {
 			if(cod == 1) {
 				guardarFacturaCabeceraDatos();
@@ -603,8 +610,8 @@ public class GestionCitasBean {
 			ExamenLaboratorio el = ge.getExamen(el_codigo);
 			RecetaMedica rm = gr.getReceta(rm_codigo);
 			CertificadoAusencia ca = gc.getCertificado(ca_codigo);
-			Cita c = recuperarCita(ci_codigo);
 			FacturaCabecera fc = glf.getFacturaCabecera(fac_cab_codigo);
+			Cita c = recuperarCita(ci_codigo);
 			c.setHistoria(hc);
 			c.setExamen(el);
 			c.setReceta(rm);
@@ -615,14 +622,16 @@ public class GestionCitasBean {
 			System.out.println("FACTURA CABECERA: " + fc.toString());
 			gl.updateCita(c);
 		}
+		recuperarFacturaCabecera();
 		return "/Factura/listar_cabecera";
 	}
 	
 	public boolean guardarHistoriasClinicas() {
 		try {
 			System.out.println("Llama a guardarBean");
-			gh.guardarHistoriaClinica(hc_residencia, hc_fecha, hc_movito_consulta, hc_enfermedad_actual, usuario);
-			hc_codigo = gh.guardarHistoriaClinica(hc_residencia, hc_fecha, hc_movito_consulta, hc_enfermedad_actual, usuario);
+			gh.guardarHistoriaClinica(hc_residencia, hc_fecha, hc_movito_consulta, hc_enfermedad_actual);
+			//gh.guardarHistoriaClinica(hc_residencia, hc_fecha, hc_movito_consulta, hc_enfermedad_actual, usuario);
+			hc_codigo = getHc_codigo();
 			historias = gh.getHistoriasClinicas();
 			return true;	
 		} catch (Exception e) {
@@ -684,11 +693,6 @@ public class GestionCitasBean {
 		try {
 			fac_cab_codigo = glf.guardarFacturaCabecera(fac_cab_nombre, fac_cab_direccion, fac_cab_telefono, fac_cab_cedula, fac_cab_correo);
 			facturasCabecera = glf.getFacturas();
-			FacturaCabecera fc = glf.getFacturaCabecera(fac_cab_codigo);
-			cita = recuperarCita(cita.getCi_codigo());
-			cita.setFac_cab_factura(fc);
-			fac_cab_codigo = fc.getFac_cab_id();
-			System.out.println("### Cita ### " + cita.getCi_codigo());
 			return true;
 		}catch(Exception e) {
 			System.out.println("### Error Guardando Cabecera ### " + e + " " + cita + " " + ci_codigo);
@@ -700,10 +704,6 @@ public class GestionCitasBean {
 		try {
 			fac_cab_codigo = glf.guardarFacturaCabeceraConsumidorFinal();
 			facturasCabecera = glf.getFacturas();
-			FacturaCabecera fc = glf.getFacturaCabecera(fac_cab_codigo);
-			cita = recuperarCita(cita.getCi_codigo());
-			cita.setFac_cab_factura(fc);
-			fac_cab_codigo = fc.getFac_cab_id();
 			return true;
 		}catch(Exception e) {
 			System.out.println("### Error Guardando Cabecera ### " + e);
@@ -714,21 +714,32 @@ public class GestionCitasBean {
 	public List<FacturaCabecera> recuperarFacturasCabecera(){
 		return glf.getFacturas();
 	}
+
+	public FacturaCabecera recuperarFacturaCabecera(){
+		factura = glf.getFactura(fac_cab_codigo);
+		System.out.println("fac cabecera " + factura);
+		return factura;
+	}
 	
-	  
+	public FacturaCabecera getFactura() {
+		return factura;
+	}
+	public void setFactura(FacturaCabecera factura) {
+		this.factura = factura;
+	}
+	public List<FacturaDetalle> recuperarFacturasDetalle(){
+		facturasDetalle = gld.getFacturaDetalleCabecera(fac_cab_codigo);
+		System.out.println("fac detalle " + facturasDetalle);
+		return facturasDetalle;
+	}
 	 
-	public List<ConteoCitas> contarCitasUsuario(String cedula){
-		
+	public String contarCitasUsuario(String cedula){
 		System.out.println("Impresion de las citas con toString");
 		System.out.println(gl.contarCitasUsuario(cedula).toString());
-		System.out.println("Impresion de las citas solo");
-		System.out.println(gl.contarCitasUsuario(cedula));
-		//System.out.println("Impresion de las citas getters and setters");
-	//	System.out.println(gl.contarCitasUsuario(cedula).get(1));
-		System.out.println("tamano"+gl.contarCitasGeneral().size());
-		List<ConteoCitas> cantidad = gl.contarCitasUsuario(cedula); 
+		cantidad = gl.contarCitasUsuario(cedula); 
 		return cantidad;
 	}
+	
 	public FacturaCabecera recuperarFactura(int codigo) {
 		System.out.println(codigo);
 		if(codigo==0)
@@ -753,14 +764,12 @@ public class GestionCitasBean {
 			setIe_descripcion(fac_det_descripcion);
 			setIe_dinero(fac_det_precio);
 			guardarIngreso();
+			recuperarFacturaCabecera();
 			return "listar_cabecera";
 		}else {
 			System.out.println("########################## ! ! ! ERROR ! ! ! ############################");
 			return "error";
 		}
-	}
-	public List<FacturaDetalle> recuperarFacturasDetalle(){
-		return gld.getFacturaDetalleCabecera(fac_cab_codigo);
 	}
 	
 	public boolean guardarIngreso() {
@@ -801,5 +810,9 @@ public class GestionCitasBean {
 	public List<IngresosEgresos> recuperarIngresosEgresos(){
 		return glie.getIngresosEgresos();
 	}
-		
+	
+	
+	public void imprimirCertificado() throws IOException {
+		gul.descargarCertificadoMedico("hola");
+	}
 }

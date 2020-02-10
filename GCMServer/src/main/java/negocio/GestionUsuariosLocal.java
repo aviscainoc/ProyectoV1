@@ -1,8 +1,20 @@
 package negocio;
 
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Date;
 import java.util.List;
+
+import javax.faces.context.FacesContext;
+import javax.servlet.http.HttpServletResponse;
+
+import com.itextpdf.kernel.pdf.PdfDocument;
+import com.itextpdf.kernel.pdf.PdfWriter;
+import com.itextpdf.layout.Document;
+import com.itextpdf.layout.element.Paragraph;
 
 import modelo.Usuario;
 import net.sf.jasperreports.engine.JRException;
@@ -19,6 +31,8 @@ public interface GestionUsuariosLocal {
 	 public void actualizarDatos(String cedula, String nombres, String apellidos, String sexo, Date nacimiento, String correo, 
 				String civil, String estudio, String ocupacion, String etnia, String religion, String sangre, String identidad, String procedencia);
 	 public void actualizarDatos(Usuario u);
-	 //public void guardarPdfUsuario() throws JRException;
-	 public void downloadFile() throws IOException;
+	 public void descargarCertificadoMedico(String texto) throws IOException;
+	 public void descargarRecetaMedica(String texto) throws IOException;
+	 public void descargarExamenes(String texto) throws IOException;
+	 public void descargarFactura(String texto) throws IOException;
 }

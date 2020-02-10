@@ -33,5 +33,5 @@ public interface GestionCitaLocal {
 	
 	public List<Cita> recuperarCitasPasadas(Date fecha);
 	public List<ConteoCitas> contarCitasGeneral();
-	public List<ConteoCitas> contarCitasUsuario(String cedula);
+	public String contarCitasUsuario(String cedula);
 }

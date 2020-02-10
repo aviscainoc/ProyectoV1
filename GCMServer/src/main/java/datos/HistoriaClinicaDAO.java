@@ -20,6 +20,7 @@ public class HistoriaClinicaDAO {
 		em.persist(hc);
 	}
 	
+	
 	public void update(HistoriaClinica hc) {
 		em.merge(hc);
 	}
