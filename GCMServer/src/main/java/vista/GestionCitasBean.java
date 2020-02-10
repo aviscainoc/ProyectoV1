@@ -699,7 +699,8 @@ public class GestionCitasBean {
 		return glf.getFacturas();
 	}
 	
-	
+	  
+	 
 	public List<ConteoCitas> contarCitasUsuario(String cedula){
 		
 		System.out.println("Impresion de las citas con toString");
@@ -711,6 +712,7 @@ public class GestionCitasBean {
 		System.out.println("tamano"+gl.contarCitasGeneral().size());
 		List<ConteoCitas> cantidad = gl.contarCitasUsuario(cedula); 
 		return cantidad;
+	}
 	public FacturaCabecera recuperarFactura(int codigo) {
 		System.out.println(codigo);
 		if(codigo==0)
@@ -727,6 +729,9 @@ public class GestionCitasBean {
             return null;
 		}
 	}
+	
+	
+	
 	public String guardarDetalle() {
 		if(gld.guardarFacturaDetalle(fac_det_descripcion, fac_det_precio, fac_det_cantidad, fac_cab_codigo)) {
 			setIe_descripcion(fac_det_descripcion);
@@ -738,7 +743,10 @@ public class GestionCitasBean {
 			return "error";
 		}
 	}
-		
+	public List<FacturaDetalle> recuperarFacturasDetalle(){
+		return gld.getFacturaDetalleCabecera(fac_cab_codigo);
+	}
+	
 	public boolean guardarIngreso() {
 		try {
 			ie_codigo = glie.guardarIngresosEgresos(ie_descripcion, ie_dinero, usuario.getUs_cedula());

@@ -35,4 +35,12 @@ public class FacturaDetalleDAO {
 		return facturasDet;
 	}
 	
+	public List<FacturaDetalle> getFacturasDetCabecera(int cod_cabecera){
+		String jpql = "SELECT u FROM FacturaDetalle u WHERE fac_cab_id = ?1";
+		Query q = em.createQuery(jpql, FacturaDetalle.class);
+		q.setParameter(1, cod_cabecera);
+		List<FacturaDetalle> facturasDet = q.getResultList();
+		return facturasDet;
+	}
+	
 }
