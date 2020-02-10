@@ -75,12 +75,12 @@ public class CitaDAO {
 		q.setParameter(1, cedula);
 		
 		
-		//List conteos =  q.getResultList();
+		List<ConteoCitas> conteos =  q.getResultList();
 		//Aqui intento convertir la lista de object[] a la lista de ConteoCita pero no mismo funciona ayudaaaaa :(
-		List<Object[]> res = q.getResultList(); 
+		/*List<Object[]> res = q.getResultList(); 
 		List<ConteoCitas> list= new ArrayList<ConteoCitas>(); 
 		System.out.println("Lleg 1");
-		Iterator<Object[]> it = res.iterator();
+		Iterator it = res.iterator();
 		System.out.println("Llega 2");
 		while(it.hasNext()){
 			System.out.println("Llega 3");
@@ -96,8 +96,8 @@ public class CitaDAO {
 		
 		
 		}
-		
-		return list	;				
+		*/
+		return conteos	;				
 	}
 	
 	public List<ConteoCitas> contarCitasPorMesGeneral() {
