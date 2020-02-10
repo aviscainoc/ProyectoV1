@@ -767,9 +767,9 @@ public class GestionCitasBean {
 	
 	public boolean guardarEgreso() {
 		try {
-			ie_codigo = glie.guardarIngresosEgresos(ie_descripcion, (ie_dinero*-1), md_codigo);
+			ie_codigo = glie.guardarIngresosEgresos(ie_descripcion, (ie_dinero*-1), usuario.getUs_cedula());
 			ingresosEgresos = glie.getIngresosEgresos();
-			Usuario usu = gul.recuperarUsuario(md_codigo); 
+			Usuario usu = gul.recuperarUsuario(usuario.getUs_cedula()); 
 			us_dinero = usu.getUs_dinero();
 			IngresosEgresos ie = glie.getIngresoEgreso(ie_codigo);
 			System.out.println("### Ingreso ### " + ie);
