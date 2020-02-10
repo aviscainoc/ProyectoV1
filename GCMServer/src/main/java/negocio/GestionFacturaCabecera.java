@@ -28,6 +28,7 @@ public class GestionFacturaCabecera implements GestionFacturaCabeceraLocal{
 	@Override
 	public int guardarFacturaCabecera(String fac_cab_nombre, String fac_cab_direccion, String fac_cab_telefono, String fac_cab_cedula, String fac_cab_correo) {
 		FacturaCabecera fc = new FacturaCabecera();
+		
 		fc.setFac_cab_cedula(fac_cab_cedula);
 		fc.setFac_cab_nombre(fac_cab_nombre);
 		fc.setFac_cab_direccion(fac_cab_direccion);

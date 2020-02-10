@@ -28,7 +28,7 @@ public class GestionFacturaDetalle implements GestionFacturaDetalleLocal{
 	public boolean guardarFacturaDetalle(String fac_det_descripcion, double fac_det_precio, int fac_det_cantidad, int fac_cab_id) {
 		FacturaDetalle fd = new FacturaDetalle();
 		FacturaCabecera fc = daoFc.read(fac_cab_id);
-		if(fc != null) {	
+		if(fc != null) {
 			double precio = Math.round(fc.getFac_cab_precio() * 100) / 100d;
 			precio = precio + (fac_det_precio * fac_det_cantidad);
 			fd.setFac_det_descripcion(fac_det_descripcion);
@@ -42,15 +42,15 @@ public class GestionFacturaDetalle implements GestionFacturaDetalleLocal{
 			System.out.println("Cabecera encontrada, " + fc.getFac_cab_nombre()); 
 			return true;
 		}else{
-			double precio = Math.round(fc.getFac_cab_precio() * 100) / 100d;
-			precio = precio + (fac_det_precio * fac_det_cantidad);
 			FacturaCabecera fc1 = new FacturaCabecera();
+			double precio = Math.round(fc1.getFac_cab_precio() * 100) / 100d;
+			precio = precio + (fac_det_precio * fac_det_cantidad);
 			fc1.setFac_cab_cedula("9999999999");
 			fc1.setFac_cab_nombre("Consumidor Final");
 			fd.setFac_det_descripcion(fac_det_descripcion);
 			fd.setFac_det_precio(fac_det_precio);
 			fd.setFac_det_cantidad(fac_det_cantidad);
-			fd.setFac_cabecera(fc);
+			fd.setFac_cabecera(fc1);
 			fc1.setFac_cab_precio(precio);
 			fc1.setFac_cab_iva(Math.round((precio * 1.12) * 100) / 100d);
 			fc1.addDetalle(fd);

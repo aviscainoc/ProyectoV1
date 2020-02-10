@@ -1,0 +1,52 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:c="http://java.sun.com/jsp/jstl/core"> 
+
+<h:head></h:head> 
+<body> 
+
+<center><h1>Ingresos/Egresos</h1></center>
+
+<center>
+<h:form>
+<h:dataTable width="40%" value="#{gestionCitasBean.recuperarIngresosEgresos()}" var="ingresosEgresos" border="2" cellspacing="1" cellpadding="1">
+	<h:column>
+		#{ingresosEgresos.ie_descripcion}
+		<f:facet name="header">Descripción</f:facet>
+	</h:column>
+	<h:column>
+		#{ingresosEgresos.ie_dinero}
+		<f:facet name="header">Monto</f:facet>
+	</h:column>	
+</h:dataTable>
+<h:dataTable width="40%" value="#{gestionCitasBean.us_dinero}" var="ingresosEgresos" border="2" cellspacing="1" cellpadding="1">
+	<h:column>
+		<h:outputLabel value="#{gestionCitasBean.us_dinero}"/>
+		<f:facet name="header">Total</f:facet>
+	</h:column>	
+</h:dataTable>
+
+
+<h:panelGrid columns="2" rows="2">
+	<h:outputLabel value="Descripcion" />
+	<h:inputText value="#{gestionCitasBean.ie_descripcion}" placeholder="Descripcion" />
+	
+	<h:outputLabel value="Monto" />
+	<h:inputText value="#{gestionCitasBean.ie_dinero}" placeholder="Monto" />
+		
+	<h:outputLabel value="Medico" />
+	<h:inputText value="#{gestionCitasBean.md_codigo}" placeholder="Medico" />
+		
+	<h:commandButton action="#{gestionCitasBean.guardarIngreso()}" value="Ingreso"/>
+	<h:commandButton action="#{gestionCitasBean.guardarEgreso()}" value="Egreso"/>
+	
+	<h:commandButton action="/User/index" value="Regresar"></h:commandButton>
+</h:panelGrid>
+</h:form>
+</center>
+
+</body> 
+</html>

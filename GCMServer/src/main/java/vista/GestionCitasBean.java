@@ -7,14 +7,18 @@ import java.util.List;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 
+import datos.UsuarioDAO;
 import modelo.CertificadoAusencia;
 import modelo.Cita;
 import modelo.ExamenLaboratorio;
 import modelo.FacturaCabecera;
+import modelo.FacturaDetalle;
 import modelo.HistoriaClinica;
+import modelo.IngresosEgresos;
 import modelo.Medico;
 import modelo.Paciente;
 import modelo.RecetaMedica;
@@ -23,11 +27,14 @@ import negocio.GestionCertificadoAusenciaLocal;
 import negocio.GestionCitaLocal;
 import negocio.GestionExamenLaboratorioLocal;
 import negocio.GestionFacturaCabeceraLocal;
+import negocio.GestionFacturaDetalleLocal;
 import negocio.GestionHistoriaClinicaLocal;
+import negocio.GestionIngresosEgresosLocal;
 import negocio.GestionMedicosLocal;
 import negocio.GestionRecetaMedicaLocal;
 import negocio.GestionUsuariosLocal;
 @ManagedBean
+@SessionScoped
 public class GestionCitasBean {
 
 	@Inject
@@ -43,9 +50,12 @@ public class GestionCitasBean {
 	private GestionExamenLaboratorioLocal ge;
 	@Inject
 	private GestionRecetaMedicaLocal gr;
-	
 	@Inject
 	private GestionFacturaCabeceraLocal glf;
+	@Inject
+	private GestionFacturaDetalleLocal gld;
+	@Inject
+	private GestionIngresosEgresosLocal glie;
 	
 	private int ci_codigo;
 	private String us_codigo;
@@ -97,7 +107,19 @@ public class GestionCitasBean {
 	private String fac_cab_correo;
 	private List<FacturaCabecera> facturasCabecera;
 	
+	private int fac_det_codigo;
+	private String fac_det_descripcion;
+	private double fac_det_precio;
+	private int fac_det_cantidad;
+	private List<FacturaDetalle> facturasDetalle;
 	
+	private int ie_codigo;
+	private String ie_descripcion;
+	private double ie_dinero;
+	private String md_codigo;
+	public double us_dinero;
+	private List<IngresosEgresos> ingresosEgresos;
+		
 	public GestionCitaLocal getGl() {
 		return gl;
 	}
@@ -375,6 +397,72 @@ public class GestionCitasBean {
 	public void setFacturasCabecera(List<FacturaCabecera> facturasCabecera) {
 		this.facturasCabecera = facturasCabecera;
 	}
+	public int getFac_det_codigo() {
+		return fac_det_codigo;
+	}
+	public void setFac_det_codigo(int fac_det_codigo) {
+		this.fac_det_codigo = fac_det_codigo;
+	}
+	public String getFac_det_descripcion() {
+		return fac_det_descripcion;
+	}
+	public void setFac_det_descripcion(String fac_det_descripcion) {
+		this.fac_det_descripcion = fac_det_descripcion;
+	}
+	public double getFac_det_precio() {
+		return fac_det_precio;
+	}
+	public void setFac_det_precio(double fac_det_precio) {
+		this.fac_det_precio = fac_det_precio;
+	}
+	public int getFac_det_cantidad() {
+		return fac_det_cantidad;
+	}
+	public void setFac_det_cantidad(int fac_det_cantidad) {
+		this.fac_det_cantidad = fac_det_cantidad;
+	}
+	public List<FacturaDetalle> getFacturasDetalle() {
+		return facturasDetalle;
+	}
+	public void setFacturasDetalle(List<FacturaDetalle> facturasDetalle) {
+		this.facturasDetalle = facturasDetalle;
+	}
+	public int getIe_codigo() {
+		return ie_codigo;
+	}
+	public void setIe_codigo(int ie_codigo) {
+		this.ie_codigo = ie_codigo;
+	}
+	public String getIe_descripcion() {
+		return ie_descripcion;
+	}
+	public void setIe_descripcion(String ie_descripcion) {
+		this.ie_descripcion = ie_descripcion;
+	}
+	public double getIe_dinero() {
+		return ie_dinero;
+	}
+	public void setIe_dinero(double ie_dinero) {
+		this.ie_dinero = ie_dinero;
+	}	
+	public String getMd_codigo() {
+		return md_codigo;
+	}
+	public void setMd_codigo(String md_codigo) {
+		this.md_codigo = md_codigo;
+	}
+	public List<IngresosEgresos> getIngresosEgresos() {
+		return ingresosEgresos;
+	}
+	public void setIngresosEgresos(List<IngresosEgresos> ingresosEgresos) {
+		this.ingresosEgresos = ingresosEgresos;
+	}	
+	public double getUs_dinero() {
+		return us_dinero;
+	}
+	public void setUs_dinero(double us_dinero) {
+		this.us_dinero = us_dinero;
+	}
 	public String guardarCita() {
 		String rol="pac";
 		int registro=0;
@@ -399,7 +487,6 @@ public class GestionCitasBean {
 		
 	public List<Cita> recuperarCitas(){
 		citas=gl.getCitas();
-		
 		return citas;	
 	}
 	
@@ -418,6 +505,10 @@ public class GestionCitasBean {
 			return;
 		try {
 			this.cita = gl.getCita(ci_codigo);
+			usuario = cita.getUsuario();
+			fac_cab_cedula = usuario.getUs_cedula();
+			fac_cab_nombre = usuario.getUs_nombres();
+			fac_cab_correo = usuario.getUs_correo();
 		} catch (Exception e) {
 			System.out.println("error recuperarCita: " + e);
 			e.printStackTrace();
@@ -444,24 +535,30 @@ public class GestionCitasBean {
 		}
 	}
 	
-	public void terminarCita() {
+	public String terminarCita(int cod) {
 		if (guardarHistoriasClinicas() && guardarExamenLaboratorios() && guardarRecetas() && guardarCertificado()) {
+			if(cod == 1) {
+				guardarFacturaCabeceraDatos();
+			}else if(cod ==2) {
+				guardarFacturaCabeceraConsumidorFinal();
+			}
 			HistoriaClinica hc = gh.getHistoria(hc_codigo);
 			ExamenLaboratorio el = ge.getExamen(el_codigo);
 			RecetaMedica rm = gr.getReceta(rm_codigo);
 			CertificadoAusencia ca = gc.getCertificado(ca_codigo);
 			Cita c = recuperarCita(ci_codigo);
-			//FacturaCabecera fc = glf.getFacturaCabecera(fac_cab_codigo);
+			FacturaCabecera fc = glf.getFacturaCabecera(fac_cab_codigo);
 			c.setHistoria(hc);
 			c.setExamen(el);
 			c.setReceta(rm);
 			c.setCertificado(ca);
-			//c.setFac_cab_factura(fc);
+			c.setFac_cab_factura(fc);
 			c.setCi_estado("terminada");
-			//c.setFac_cab_factura(fc);
 			System.out.println(c);
+			System.out.println("FACTURA CABECERA: " + fc.toString());
 			gl.updateCita(c);
 		}
+		return "Factura/listar_cabecera";
 	}
 	
 	public boolean guardarHistoriasClinicas() {
@@ -514,36 +611,101 @@ public class GestionCitasBean {
 		}
 	}
 	
-	public String guardarFacturaCabeceraDatos() {
+	public boolean guardarFacturaCabeceraDatos() {
 		try {
 			fac_cab_codigo = glf.guardarFacturaCabecera(fac_cab_nombre, fac_cab_direccion, fac_cab_telefono, fac_cab_cedula, fac_cab_correo);
 			facturasCabecera = glf.getFacturas();
 			FacturaCabecera fc = glf.getFacturaCabecera(fac_cab_codigo);
 			cita = recuperarCita(cita.getCi_codigo());
 			cita.setFac_cab_factura(fc);
+			fac_cab_codigo = fc.getFac_cab_id();
 			System.out.println("### Cita ### " + cita.getCi_codigo());
-			return "/Factura/listar_cabecera";
+			return true;
 		}catch(Exception e) {
-			System.out.println("### Error Guardando Cabecera ### " + e + " " + cita);
-			return "Error";
+			System.out.println("### Error Guardando Cabecera ### " + e + " " + cita + " " + ci_codigo);
+			return false;
 		}
 	}
 	
-	public String guardarFacturaCabeceraConsumidorFinal() {
+	public boolean guardarFacturaCabeceraConsumidorFinal() {
 		try {
 			fac_cab_codigo = glf.guardarFacturaCabeceraConsumidorFinal();
 			facturasCabecera = glf.getFacturas();
 			FacturaCabecera fc = glf.getFacturaCabecera(fac_cab_codigo);
+			cita = recuperarCita(cita.getCi_codigo());
 			cita.setFac_cab_factura(fc);
-			return "/Factura/listar_cabecera";
+			fac_cab_codigo = fc.getFac_cab_id();
+			return true;
 		}catch(Exception e) {
 			System.out.println("### Error Guardando Cabecera ### " + e);
-			return "error";
+			return false;
 		}
 	}
 
 	public List<FacturaCabecera> recuperarFacturasCabecera(){
 		return glf.getFacturas();
+	}
+	
+	public FacturaCabecera recuperarFactura(int codigo) {
+		System.out.println(codigo);
+		if(codigo==0)
+			return null;
+		try {
+			FacturaCabecera fc = glf.getFacturaCabecera(codigo);
+			return fc;
+		} catch (Exception e) {
+			System.out.println("error recuperarFactura: " + e);
+			e.printStackTrace();
+			FacesContext facesContext = FacesContext.getCurrentInstance();
+			FacesMessage m = new FacesMessage(FacesMessage.SEVERITY_ERROR, e.getMessage(), "Error");
+            facesContext.addMessage(null, m);
+            return null;
+		}
+	}
+	public String guardarDetalle() {
+		if(gld.guardarFacturaDetalle(fac_det_descripcion, fac_det_precio, fac_det_cantidad, fac_cab_codigo)) {
+			setIe_descripcion(fac_det_descripcion);
+			setIe_dinero(fac_det_precio);
+			guardarIngreso();
+			return "listar_cabecera";
+		}else {
+			System.out.println("########################## ! ! ! ERROR ! ! ! ############################");
+			return "error";
+		}
+	}
+		
+	public boolean guardarIngreso() {
+		try {
+			ie_codigo = glie.guardarIngresosEgresos(ie_descripcion, ie_dinero, md_codigo);
+			ingresosEgresos = glie.getIngresosEgresos();
+			Usuario usu = gul.recuperarUsuario(md_codigo); 
+			us_dinero = usu.getUs_dinero();
+			IngresosEgresos ie = glie.getIngresoEgreso(ie_codigo);
+			System.out.println("### Ingreso ### " + ie);
+			return true;
+		}catch(Exception e) {
+			System.out.println("### Error Guardando Ingreso ### " + e);
+			return false;
+		}
+	}
+	
+	public boolean guardarEgreso() {
+		try {
+			ie_codigo = glie.guardarIngresosEgresos(ie_descripcion, (ie_dinero*-1), md_codigo);
+			ingresosEgresos = glie.getIngresosEgresos();
+			Usuario usu = gul.recuperarUsuario(md_codigo); 
+			us_dinero = usu.getUs_dinero();
+			IngresosEgresos ie = glie.getIngresoEgreso(ie_codigo);
+			System.out.println("### Ingreso ### " + ie);
+			return true;
+		}catch(Exception e) {
+			System.out.println("### Error Guardando Ingreso ### " + e);
+			return false;
+		}
+	}
+	
+	public List<IngresosEgresos> recuperarIngresosEgresos(){
+		return glie.getIngresosEgresos();
 	}
 }
 
