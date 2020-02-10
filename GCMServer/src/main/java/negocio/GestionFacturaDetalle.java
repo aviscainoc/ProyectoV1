@@ -64,6 +64,12 @@ public class GestionFacturaDetalle implements GestionFacturaDetalleLocal{
 	public List<FacturaDetalle> getFacturaDetalle() {
 		return daoFd.getFacturasDet();
 	}
+
+	@Override
+	public List<FacturaDetalle> getFacturaDetalleCabecera(int cod_cabecera) {
+		return daoFd.getFacturasDetCabecera(cod_cabecera);
+	}
+	
 	
 
 	
