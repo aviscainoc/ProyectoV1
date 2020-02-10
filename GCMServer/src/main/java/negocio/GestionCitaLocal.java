@@ -26,7 +26,9 @@ public interface GestionCitaLocal {
 	public void eliminar(int ci_codigo);
 	
 	
-	public List<Cita> recuperarProximasCitas(Date fecha);
+	public List<Cita> recuperarProximasCitas(String cedula, Date fecha);
 
 	public Cita getCita(int codigo);
+	
+	public List<Cita> recuperarCitasPasadas(Date fecha);
 }

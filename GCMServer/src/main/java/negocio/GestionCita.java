@@ -115,10 +115,15 @@ public class GestionCita implements GestionCitaLocal, GestionCitaRemote{
 		return dao.contarCitasPorMesGeneral();
 	}
 	
-	public List<Cita> recuperarProximasCitas(Date fecha){
+	public List<Cita> recuperarProximasCitas(String cedula, Date fecha){
+		return dao.getProximasCitas(cedula, fecha);
+	}
+	
+	public List<Cita> recuperarCitasPasadas(Date fecha){
 		
-		return dao.getProximasCitas(fecha);
+		return dao.getCitasPasadas(fecha);
 		
 	}
+	
 
 }

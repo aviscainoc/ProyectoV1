@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.List;
 
 import modelo.Usuario;
+import net.sf.jasperreports.engine.JRException;
 
 public interface GestionUsuariosLocal {
 	 public void guardarUsuarioPaciente(String us_cedula, String us_rol,int us_pa_registro, String  us_nombres, String  us_apellidos, String us_sexo, Date us_fecha_nacimiento,
@@ -17,4 +18,5 @@ public interface GestionUsuariosLocal {
 	 public void actualizarDatos(String cedula, String nombres, String apellidos, String sexo, Date nacimiento, String correo, 
 				String civil, String estudio, String ocupacion, String etnia, String religion, String sangre, String identidad, String procedencia);
 	 public void actualizarDatos(Usuario u);
+	 public void guardarPdfUsuario() throws JRException;
 }

@@ -188,6 +188,22 @@
             <artifactId>junit</artifactId>
             <scope>test</scope>
         </dependency>
+        
+        
+        
+       
+		
+		
+				<!-- https://mvnrepository.com/artifact/net.sf.jasperreports/jasperreports -->
+		<dependency>
+		    <groupId>net.sf.jasperreports</groupId>
+		    <artifactId>jasperreports</artifactId>
+		    <version>6.5.0</version>
+		</dependency>
+		
+        
+        
+        
 
         <!-- Optional, but highly recommended -->
         <!-- Arquillian allows you to test enterprise code such as EJBs and Transactional(JTA) 

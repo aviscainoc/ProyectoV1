@@ -211,9 +211,62 @@
 <script src="../Plantilla/plugins/jquery/jquery.min.js"></script>
 <!-- Bootstrap 4 -->
 <script src="../Plantilla/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- ChartJS -->
+<script src="../Plantilla/plugins/chart.js/Chart.min.js"></script>
 <!-- AdminLTE App -->
 <script src="../Plantilla/dist/js/adminlte.min.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="../Plantilla/dist/js/demo.js"></script>
+
+<script>
+  $(function () {
+    var barChartCanvas = $('#barChart').get(0).getContext('2d')
+
+    var barChartData = {
+      labels  : ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+      datasets: [
+        {
+          label               : 'Digital Goods',
+          backgroundColor     : 'rgba(60,141,188,0.9)',
+          borderColor         : 'rgba(60,141,188,0.8)',
+          pointRadius          : false,
+          pointColor          : '#3b8bba',
+          pointStrokeColor    : 'rgba(60,141,188,1)',
+          pointHighlightFill  : '#fff',
+          pointHighlightStroke: 'rgba(60,141,188,1)',
+          data                : [28, 48, 40, 19, 86, 27, 90, 40, 19, 86, 27, 90]
+        },
+      ]
+    }
+
+    var barChartOptions = {
+  	      maintainAspectRatio : false,
+	      responsive : true,
+	      legend: {
+	        display: false
+	      },
+	      scales: {
+	        xAxes: [{
+	          gridLines : {
+	            display : false,
+	          }
+	        }],
+	        yAxes: [{
+	          gridLines : {
+	            display : false,
+	          }
+	        }]
+	      }
+	    }
+
+    var barChart = new Chart(barChartCanvas, { 
+      type: 'bar',
+      data: barChartData, 
+      options: barChartOptions
+    })
+
+    
+  })
+</script>
 </h:body>
 </html>
