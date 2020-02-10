@@ -1,0 +1,6 @@
+Cambio que puede dañar el sistema completo 
+<<<<<<< HEAD
+[[{"location":"C:\\Program Files\\Java\\jdk1.8.0_241","type":"JRE","hints":{}},"jre:jre:1.8.0"]]
+=======
+[[{"location":"C:\\Program Files\\Java\\jdk1.8.0_211","type":"JRE","hints":{"EXECUTION_ENVIRONMENT":"JavaSE-1.7"}},"jre:jre:1.7.0"]]
+>>>>>>> 352f94e9f6973a9336e2850d012fbd97c848f830

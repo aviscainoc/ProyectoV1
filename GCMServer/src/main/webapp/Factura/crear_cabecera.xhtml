@@ -4,7 +4,11 @@
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:h="http://java.sun.com/jsf/html"> 
 
-<h:head></h:head> 
+<h:head>
+	<f:metadata>
+		<f:viewParam id="cita" name="cita" value="#{gestionCitasBean.ci_codigo}"/>
+	</f:metadata>
+</h:head> 
 <body>
 <h1>Guardar Factura Cabecera</h1>
 

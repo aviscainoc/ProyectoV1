@@ -1,12 +1,16 @@
 package datos;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
 
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
+
+import org.primefaces.json.JSONObject;
 
 import modelo.Cita;
 import modelo.ConteoCitas;
@@ -67,11 +71,33 @@ public class CitaDAO {
 	
 	public List<ConteoCitas> contarCitasPorMesUsuario(String cedula) {
 		
-		Query q = em.createNativeQuery("select count(*) AS contador FROM Cita WHERE cita.usuario_us_cedula like ?1 GROUP BY MONTH(ci_fecha_cita) ORDER BY YEAR(ci_fecha_cita), MONTH(ci_fecha_cita) ASC");
+		Query q = em.createNativeQuery("select count(*) AS contador FROM Cita u WHERE u.usuario_us_cedula like ?1 GROUP BY MONTH(ci_fecha_cita) ORDER BY YEAR(ci_fecha_cita), MONTH(ci_fecha_cita) ASC");
 		q.setParameter(1, cedula);
-		List<ConteoCitas> conteos =  q.getResultList();
-	
-		return conteos	;				
+		
+		
+		//List conteos =  q.getResultList();
+		//Aqui intento convertir la lista de object[] a la lista de ConteoCita pero no mismo funciona ayudaaaaa :(
+		List<Object[]> res = q.getResultList(); 
+		List<ConteoCitas> list= new ArrayList<ConteoCitas>(); 
+		System.out.println("Lleg 1");
+		Iterator<Object[]> it = res.iterator();
+		System.out.println("Llega 2");
+		while(it.hasNext()){
+			System.out.println("Llega 3");
+		     Object[] line =  it.next();
+		     System.out.println("valor "+line[0]);
+		     System.out.println("Llega");
+		     ConteoCitas eq = new ConteoCitas();
+		     //eq.setContador(contador);;
+		     //eq.setMes((int)line[1]);
+		    // eq.setDescription(line[2]);
+
+		     list.add(eq);
+		
+		
+		}
+		
+		return list	;				
 	}
 	
 	public List<ConteoCitas> contarCitasPorMesGeneral() {
@@ -91,10 +117,8 @@ public class CitaDAO {
 		q.setParameter(2, cedula);
 		q.setParameter(3, "pendiente");
 		List<Cita> citas = q.getResultList();
-		
 		return citas;
 	}
-	
 	public List<Cita> getCitasPasadas(Date fecha){
 		String jpql = "SELECT u FROM Cita u WHERE ci_fecha_cita < ?1";
 		Query q = em.createQuery(jpql, Cita.class);

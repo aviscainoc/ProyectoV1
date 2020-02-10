@@ -1,7 +1,11 @@
 package modelo;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Medico {
@@ -16,6 +20,9 @@ public class Medico {
 	private String md_fecha_inicio;
 	private String md_area_especializacion;
 	private String md_descripcion;
+	
+	@OneToMany
+	private List<IngresosEgresos> ingresosEgresos;
 
 	public String getMd_descripcion() {
 		return md_descripcion;
@@ -75,12 +82,24 @@ public class Medico {
 	public void setMd_area_especializacion(String md_area_especializacion) {
 		this.md_area_especializacion = md_area_especializacion;
 	}
+	public List<IngresosEgresos> getIngresosEgresos() {
+		return ingresosEgresos;
+	}
+
+	public void setIngresosEgresos(List<IngresosEgresos> ingresosEgresos) {
+		this.ingresosEgresos = ingresosEgresos;
+	}
+
+	public void addIngresoEgreso(IngresosEgresos ie) {
+		if(ingresosEgresos == null) 
+			ingresosEgresos = new ArrayList<IngresosEgresos>();
+		ingresosEgresos.add(ie);
+	}
+	
 	@Override
 	public String toString() {
 		return "Medico [md_id=" + md_id + ", md_nombre=" + md_nombre + ", md_fechaNacimiento=" + md_fechaNacimiento
 				+ ", md_usuario=" + md_correo + ", md_password=" + md_password + ", md_fecha_inicio=" + md_fecha_inicio
 				+ ", md_area_especializacion=" + md_area_especializacion + "]";
 	}
-
-	
 }

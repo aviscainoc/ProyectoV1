@@ -120,6 +120,20 @@
     </section>
 	
 	</ui:define>
+		<ui:define name="timeline">
+			<h:dataTable  value="#{gestionCitasBean.contarCitasUsuario(user.us_cedula)}" var="valor">
+		
+				<h:column>
+					
+					
+					<f:facet name="header">cuenta</f:facet>
+					#{valor}
+				</h:column>
+				
+			</h:dataTable>
+		
+		
+		</ui:define>
 	
 	<ui:define name="configuracion">
 		

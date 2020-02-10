@@ -35,6 +35,10 @@ public class Usuario {
 	//atributo para saber si se registro o no 
 	private int us_pa_registro;
 	
+	@OneToMany
+	private List<IngresosEgresos> ingresosEgresos;
+	
+	double us_dinero;
 	/*@OneToMany
 	private List<HistoriaClinica> historias_clinica;
 	
@@ -192,6 +196,25 @@ public class Usuario {
 	public void setFacs_cab(List<FacturaCabecera> facs_cab) {
 		this.facs_cab = facs_cab;
 	}*/
+	public List<IngresosEgresos> getIngresosEgresos() {
+		return ingresosEgresos;
+	}
+
+	public void setIngresosEgresos(List<IngresosEgresos> ingresosEgresos) {
+		this.ingresosEgresos = ingresosEgresos;
+	}
+
+	public void addIngresoEgreso(IngresosEgresos ie) {
+		if(ingresosEgresos == null) 
+			ingresosEgresos = new ArrayList<IngresosEgresos>();
+		ingresosEgresos.add(ie);
+	}	
+	public double getUs_dinero() {
+		return us_dinero;
+	}
+	public void setUs_dinero(double us_dinero) {
+		this.us_dinero = us_dinero;
+	}
 	@Override
 	public String toString() {
 		return "Usuario [us_cedula=" + us_cedula + ", us_rol=" + us_rol + ", us_nombres=" + us_nombres

@@ -91,12 +91,9 @@ public class FacturaCabecera {
 	}
 	
 	public void addDetalle(FacturaDetalle fd) {
-		if(fd == null) {
+		if(facs_det == null)
 			facs_det = new ArrayList<FacturaDetalle>();
-			facs_det.add(fd);
-		}else {
-			facs_det.add(fd);
-		}
+		facs_det.add(fd);
 	}
 	
 	@Override

@@ -5,82 +5,86 @@
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:c="http://java.sun.com/jsp/jstl/core"> 
 
-<h:head></h:head> 
-<body> 
-
-<center><h1>Facturas Registradas</h1></center>
-
-<center>
-<h:form>
-<h:dataTable value="#{gestionCitasBean.recuperarFacturasCabecera()}" var="cabecera" border="2" cellspacing="1" cellpadding="1">
-	<h:column>
-		#{cabecera.fac_cab_id}
-		<f:facet name="header">Código</f:facet>
-	</h:column>
-	<h:column>
-		#{cabecera.fac_cab_cedula}
-		<f:facet name="header">Cedula</f:facet>
-	</h:column>
-	<h:column>
-		#{cabecera.fac_cab_nombre}
-		<f:facet name="header">Nombre</f:facet>
-	</h:column>
-	<!-- <h:column>
-		#{cabecera.facs_det}
-		<f:facet name="header">Detalles</f:facet>
-	</h:column> -->
-	<h:column>
-		#{cabecera.fac_cab_precio}
-		<f:facet name="header">Subtotal</f:facet>
-	</h:column>
-	<h:column>
-		#{cabecera.fac_cab_iva}
-		<f:facet name="header">Precio Total(+12%)</f:facet>
-	</h:column>
-
-	<h:column>
-		<h:dataTable value="#{cabecera.facs_det}" var="detalle" border="2" cellspacing="1" cellpadding="1">
-			<h:column>
-				#{detalle.fac_det_descripcion}
-				<f:facet name="header">Descripción</f:facet>
-			</h:column>
-			<h:column>
-				#{detalle.fac_det_precio}
-				<f:facet name="header">Precio</f:facet>
-			</h:column>
-			<h:column>
-				#{detalle.fac_det_cantidad}
-				<f:facet name="header">Cantidad</f:facet>
-			</h:column>
-			<h:column>
-				#{detalle.fac_cabecera.fac_cab_id}
-				<f:facet name="header">Cabecera</f:facet>
-			</h:column>
-
-		</h:dataTable>
-	</h:column>
-	<h:column>
-		<h:panelGrid columns="4" rows="2">
-			<h:outputLabel value="Descripcion" />
-			<h:inputText value="#{gestionFacturaCabeceraBean.fac_det_descripcion}" placeholder="Descripcion" />
-			
-			<h:outputLabel value="Precio" />
-			<h:inputText value="#{gestionFacturaCabeceraBean.fac_det_precio}" placeholder="Precio" />
-			
-			<h:outputLabel value="Cantidad" />
-			<h:inputText value="#{gestionFacturaCabeceraBean.fac_det_cantidad}" placeholder="Cantidad" />
-			
-			<h:outputLabel value="Cabecera" />
-			<h:inputText value="#{gestionFacturaCabeceraBean.fac_cab_id}" placeholder="Cabecera" />
+<ui:composition template="../Plantilla/plantilla.xhtml">
+	<ui:define name="tituloPagina">Facturar</ui:define>
+	<ui:define name="h1Titulo">Factura</ui:define>
+	<ui:define name="nombreUser">Dr. #{user.us_nombres} <br></br>#{user.us_apellidos}</ui:define>
+	<ui:define name="contenido">
+	<center>
+	<h:form>
+	<h:dataTable value="#{gestionCitasBean.recuperarFacturasCabecera()}"  width="80%" var="cabecera" border="3" cellspacing="1" cellpadding="1">
+		<h:column>
+			#{cabecera.fac_cab_id}
+			<f:facet name="header">Código</f:facet>
+		</h:column>
+		<h:column>
+			#{cabecera.fac_cab_cedula}
+			<f:facet name="header">Cedula</f:facet>
+		</h:column>
+		<h:column>
+			#{cabecera.fac_cab_nombre}
+			<f:facet name="header">Nombre</f:facet>
+		</h:column>
+		<!-- <h:column>
+			#{cabecera.facs_det}
+			<f:facet name="header">Detalles</f:facet>
+		</h:column> -->
+		<h:column>
+			#{cabecera.fac_cab_precio}
+			<f:facet name="header">Subtotal</f:facet>
+		</h:column>
+		<h:column>
+			#{cabecera.fac_cab_iva}
+			<f:facet name="header">Precio Total(+12%)</f:facet>
+		</h:column>
+	
+		<h:column>
+			<h:dataTable value="#{cabecera.facs_det}" width="100%"  var="detalle" border="2" cellspacing="1" cellpadding="1">
+				<h:column>
+					#{detalle.fac_det_descripcion}
+					<f:facet name="header">Descripción</f:facet>
+				</h:column>
+				<h:column>
+					#{detalle.fac_det_precio}
+					<f:facet name="header">Precio</f:facet>
+				</h:column>
+				<h:column>
+					#{detalle.fac_det_cantidad}
+					<f:facet name="header">Cantidad</f:facet>
+				</h:column>
+				<h:column>
+					#{detalle.fac_cabecera.fac_cab_id}
+					<f:facet name="header">Cabecera</f:facet>
+				</h:column>
+	
+			</h:dataTable>
+		</h:column>
+	</h:dataTable>
+	<h:dataTable value="#{gestionCitasBean.recuperarFacturasCabecera()}" width="80%" var="detalle" border="3" cellspacing="1" cellpadding="1">
+		<h:column>
+			<center>
+			<h:panelGrid columns="4" rows="2">
+				<h:outputLabel value="Descripcion" />
+				<h:inputText value="#{gestionCitasBean.fac_det_descripcion}" placeholder="Descripcion" />
 				
-			<h:commandButton action="#{gestionFacturaCabeceraBean.guardarDetalle()}" value="Insertar Detalle" />
-			<h:commandButton action="crear_cabecera" value="Regresar"></h:commandButton>
-		</h:panelGrid>
-	</h:column>	
-</h:dataTable>
-</h:form>
-
+				<h:outputLabel value="Precio" />
+				<h:inputText value="#{gestionCitasBean.fac_det_precio}" placeholder="Precio" />
+				
+				<h:outputLabel value="Cantidad" />
+				<h:inputText value="#{gestionCitasBean.fac_det_cantidad}" placeholder="Cantidad" />
+				
+				<h:outputLabel value="Cabecera" />
+				<h:inputText value="#{gestionCitasBean.fac_cab_codigo}" placeholder="Cabecera" />
+					
+				<h:commandButton action="#{gestionCitasBean.guardarDetalle()}" value="Insertar Detalle" />
+				<h:commandButton action="crear_cabecera" value="Regresar"></h:commandButton>
+			</h:panelGrid>
+			</center>
+		</h:column>
+	</h:dataTable>
+	</h:form>
 </center>
+</ui:define>
+</ui:composition>
 
-</body> 
 </html>
