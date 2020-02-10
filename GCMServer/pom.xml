@@ -131,6 +131,10 @@
 		    <version>3.1.0</version>
 		    <scope>provided</scope>
 		</dependency>
+		
+		
+		
+		
         
 
         <!-- Import the EJB API, we use provided scope as the API is included in 
@@ -200,6 +204,25 @@
 		    <artifactId>jasperreports</artifactId>
 		    <version>6.5.0</version>
 		</dependency>
+		
+		
+		<!-- https://mvnrepository.com/artifact/com.itextpdf/kernel -->
+		<dependency>
+		    <groupId>com.itextpdf</groupId>
+		    <artifactId>kernel</artifactId>
+		    <version>7.0.0</version>
+		</dependency>
+		
+		<!-- https://mvnrepository.com/artifact/com.itextpdf/layout -->
+		<dependency>
+		    <groupId>com.itextpdf</groupId>
+		    <artifactId>layout</artifactId>
+		    <version>7.0.0</version>
+		</dependency>
+		
+		
+		
+		
 		
         
         

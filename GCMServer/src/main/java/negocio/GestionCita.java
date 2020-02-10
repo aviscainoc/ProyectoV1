@@ -1,5 +1,6 @@
 package negocio;
 
+import java.util.Arrays;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
@@ -59,8 +60,6 @@ public class GestionCita implements GestionCitaLocal, GestionCitaRemote{
 	}
 	
 	public List<Cita> getCitas(){
-		System.out.println("Impresion de las citas");
-		System.out.println(dao.contarCitasPorMesUsuario("0106171325").toString());
 		
 		return dao.getCitas();
 	}
@@ -106,6 +105,9 @@ public class GestionCita implements GestionCitaLocal, GestionCitaRemote{
 	}
 	
 	public List<ConteoCitas> contarCitasUsuario(String cedula){
+		/*List<ConteoCitas> lst = dao.contarCitasPorMesUsuario(cedula);
+		System.out.println("Tal vez funcione"+ lst.get(0).getContador());
+		System.out.println("mes"+lst.get(0).getMes());*/
 		
 		return dao.contarCitasPorMesUsuario(cedula);
 	}
@@ -115,9 +117,9 @@ public class GestionCita implements GestionCitaLocal, GestionCitaRemote{
 		return dao.contarCitasPorMesGeneral();
 	}
 	
-	public List<Cita> recuperarProximasCitas(Date fecha){
+	public List<Cita> recuperarProximasCitas(Date fecha, String cedula){
 		
-		return dao.getProximasCitas(fecha);
+		return dao.getCitasProximas(fecha, cedula);
 		
 	}
 	

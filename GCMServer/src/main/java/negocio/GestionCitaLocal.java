@@ -7,6 +7,7 @@ import javax.ejb.Local;
 
 import modelo.CertificadoAusencia;
 import modelo.Cita;
+import modelo.ConteoCitas;
 import modelo.ExamenLaboratorio;
 import modelo.HistoriaClinica;
 import modelo.Medico;
@@ -26,9 +27,11 @@ public interface GestionCitaLocal {
 	public void eliminar(int ci_codigo);
 	
 	
-	public List<Cita> recuperarProximasCitas(Date fecha);
+	public List<Cita> recuperarProximasCitas(Date fecha, String cedula);
 
 	public Cita getCita(int codigo);
 	
 	public List<Cita> recuperarCitasPasadas(Date fecha);
+	public List<ConteoCitas> contarCitasGeneral();
+	public List<ConteoCitas> contarCitasUsuario(String cedula);
 }

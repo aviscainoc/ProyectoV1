@@ -1,5 +1,6 @@
 package vista;
 
+import java.io.IOException;
 import java.sql.Timestamp;
 import java.util.Arrays;
 import java.util.Calendar;
@@ -13,6 +14,7 @@ import javax.inject.Inject;
 
 import modelo.CertificadoAusencia;
 import modelo.Cita;
+import modelo.ConteoCitas;
 import modelo.ExamenLaboratorio;
 import modelo.FacturaCabecera;
 import modelo.HistoriaClinica;
@@ -433,10 +435,11 @@ public class GestionCitasBean {
 		return citas;	
 	}
 	
-	public List<Cita> recuperarCitasPendientes() throws JRException{
+	public List<Cita> recuperarCitasPendientes() throws JRException, IOException{
 		citas=gl.getCitasPendientes();
-		
-		gul.guardarPdfUsuario();
+		System.out.println("a ver si se imprime el pdf");
+		//gul.guardarPdfUsuario();
+		//gul.downloadFile();
 		System.out.println(citas);
 		return citas;	
 	}
@@ -508,10 +511,12 @@ public class GestionCitasBean {
 		}
 	}
 	
-	public List<Cita> recuperarProximasCitas(){
+	public List<Cita> recuperarProximasCitas(String cedula){
 		Date fecha = new Date();
 		//citas=gl.getCitasPendientes();
-		return gl.recuperarProximasCitas(fecha);	
+		System.out.println("paso el codigo"+us_codigo);
+		System.out.println("paso la cedula"+cedula);
+		return gl.recuperarProximasCitas(fecha, cedula);	
 	}
 	
 	public List<Cita> recuperarCitasPasadas(){
@@ -585,6 +590,20 @@ public class GestionCitasBean {
 
 	public List<FacturaCabecera> recuperarFacturasCabecera(){
 		return glf.getFacturas();
+	}
+	
+	
+	public List<ConteoCitas> contarCitasUsuario(String cedula){
+		
+		System.out.println("Impresion de las citas con toString");
+		System.out.println(gl.contarCitasUsuario(cedula).toString());
+		System.out.println("Impresion de las citas solo");
+		System.out.println(gl.contarCitasUsuario(cedula));
+		//System.out.println("Impresion de las citas getters and setters");
+	//	System.out.println(gl.contarCitasUsuario(cedula).get(1));
+		System.out.println("tamano"+gl.contarCitasGeneral().size());
+		List<ConteoCitas> cantidad = gl.contarCitasUsuario(cedula); 
+		return cantidad;
 	}
 }
 
