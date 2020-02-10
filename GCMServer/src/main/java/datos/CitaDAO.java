@@ -1,5 +1,6 @@
 package datos;
 
+import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
@@ -69,13 +70,20 @@ public class CitaDAO {
 		return citas;
 	}
 	
-	public List<ConteoCitas> contarCitasPorMesUsuario(String cedula) {
-		
-		Query q = em.createNativeQuery("select count(*) AS contador FROM Cita u WHERE u.usuario_us_cedula like ?1 GROUP BY MONTH(ci_fecha_cita) ORDER BY YEAR(ci_fecha_cita), MONTH(ci_fecha_cita) ASC");
+	public String contarCitasPorMesUsuario(String cedula) {
+		Query q = em.createNativeQuery("select count(*) AS contador FROM Cita u WHERE u.usuario_us_cedula like ?1 AND MONTH(ci_fecha_cita) = ?2");
 		q.setParameter(1, cedula);
-		
-		
-		List<ConteoCitas> conteos =  q.getResultList();
+		q.setParameter(2, 1);
+		int conteo = ((BigInteger) q.getSingleResult()).intValue();
+		String count = Integer.toString(conteo);
+		for (int i = 1; i < 12; i++) {
+			q.setParameter(2, i+1);
+			conteo =  ((BigInteger) q.getSingleResult()).intValue();
+			System.out.println(conteo);
+			count = count + "," + Integer.toString(conteo);
+		}
+
+		System.out.println(count);
 		//Aqui intento convertir la lista de object[] a la lista de ConteoCita pero no mismo funciona ayudaaaaa :(
 		/*List<Object[]> res = q.getResultList(); 
 		List<ConteoCitas> list= new ArrayList<ConteoCitas>(); 
@@ -97,7 +105,7 @@ public class CitaDAO {
 		
 		}
 		*/
-		return conteos	;				
+		return count	;				
 	}
 	
 	public List<ConteoCitas> contarCitasPorMesGeneral() {

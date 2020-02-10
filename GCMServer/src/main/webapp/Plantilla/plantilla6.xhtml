@@ -221,7 +221,10 @@
 <script>
   $(function () {
     var barChartCanvas = $('#barChart').get(0).getContext('2d')
-
+	var dataStr = $('#count').val()
+	var dataInt = dataStr.split(',').map(function(item) {
+		return parseInt(item, 10);
+	});
     var barChartData = {
       labels  : ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
       datasets: [
@@ -234,7 +237,7 @@
           pointStrokeColor    : 'rgba(60,141,188,1)',
           pointHighlightFill  : '#fff',
           pointHighlightStroke: 'rgba(60,141,188,1)',
-          data                : [28, 48, 40, 19, 86, 27, 90, 40, 19, 86, 27, 90]
+          data                : dataInt
         },
       ]
     }

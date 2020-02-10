@@ -33,7 +33,6 @@ public class GestionFacturaCabecera implements GestionFacturaCabeceraLocal{
 		fc.setFac_cab_nombre(fac_cab_nombre);
 		fc.setFac_cab_direccion(fac_cab_direccion);
 		fc.setFac_cab_telefono(fac_cab_telefono);
-		fc.setFac_cab_telefono(fac_cab_telefono);
 		fc.setFac_cab_precio(0.0);
 		fc.setFac_cab_iva(0.0);
 		daoFc.insert(fc);

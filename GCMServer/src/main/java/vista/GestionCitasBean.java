@@ -72,6 +72,7 @@ public class GestionCitasBean {
 	private List<Cita> citas;
 	private String codigoPasable;
 	private Cita cita;
+	String cantidad;
 	
 	
 	private int hc_codigo;
@@ -189,6 +190,12 @@ public class GestionCitasBean {
 	}
 	public void setUs_codigo(String us_codigo) {
 		this.us_codigo = us_codigo;
+	}
+	public String getCantidad() {
+		return cantidad;
+	}
+	public void setCantidad(String cantidad) {
+		this.cantidad = cantidad;
 	}
 	public String getCi_estado() {
 		return ci_estado;
@@ -593,8 +600,8 @@ public class GestionCitasBean {
 			ExamenLaboratorio el = ge.getExamen(el_codigo);
 			RecetaMedica rm = gr.getReceta(rm_codigo);
 			CertificadoAusencia ca = gc.getCertificado(ca_codigo);
-			Cita c = recuperarCita(ci_codigo);
 			FacturaCabecera fc = glf.getFacturaCabecera(fac_cab_codigo);
+			Cita c = recuperarCita(ci_codigo);
 			c.setHistoria(hc);
 			c.setExamen(el);
 			c.setReceta(rm);
@@ -605,6 +612,7 @@ public class GestionCitasBean {
 			System.out.println("FACTURA CABECERA: " + fc.toString());
 			gl.updateCita(c);
 		}
+		recuperarFacturaCabecera();
 		return "/Factura/listar_cabecera";
 	}
 	
@@ -672,11 +680,6 @@ public class GestionCitasBean {
 		try {
 			fac_cab_codigo = glf.guardarFacturaCabecera(fac_cab_nombre, fac_cab_direccion, fac_cab_telefono, fac_cab_cedula, fac_cab_correo);
 			facturasCabecera = glf.getFacturas();
-			FacturaCabecera fc = glf.getFacturaCabecera(fac_cab_codigo);
-			cita = recuperarCita(cita.getCi_codigo());
-			cita.setFac_cab_factura(fc);
-			fac_cab_codigo = fc.getFac_cab_id();
-			System.out.println("### Cita ### " + cita.getCi_codigo());
 			return true;
 		}catch(Exception e) {
 			System.out.println("### Error Guardando Cabecera ### " + e + " " + cita + " " + ci_codigo);
@@ -688,10 +691,6 @@ public class GestionCitasBean {
 		try {
 			fac_cab_codigo = glf.guardarFacturaCabeceraConsumidorFinal();
 			facturasCabecera = glf.getFacturas();
-			FacturaCabecera fc = glf.getFacturaCabecera(fac_cab_codigo);
-			cita = recuperarCita(cita.getCi_codigo());
-			cita.setFac_cab_factura(fc);
-			fac_cab_codigo = fc.getFac_cab_id();
 			return true;
 		}catch(Exception e) {
 			System.out.println("### Error Guardando Cabecera ### " + e);
@@ -705,21 +704,26 @@ public class GestionCitasBean {
 
 	public FacturaCabecera recuperarFacturaCabecera(){
 		factura = glf.getFactura(fac_cab_codigo);
+		System.out.println("fac cabecera " + factura);
 		return factura;
 	}
 	
-	  
+	public FacturaCabecera getFactura() {
+		return factura;
+	}
+	public void setFactura(FacturaCabecera factura) {
+		this.factura = factura;
+	}
+	public List<FacturaDetalle> recuperarFacturasDetalle(){
+		facturasDetalle = gld.getFacturaDetalleCabecera(fac_cab_codigo);
+		System.out.println("fac detalle " + facturasDetalle);
+		return facturasDetalle;
+	}
 	 
-	public List<ConteoCitas> contarCitasUsuario(String cedula){
-		
+	public String contarCitasUsuario(String cedula){
 		System.out.println("Impresion de las citas con toString");
 		System.out.println(gl.contarCitasUsuario(cedula).toString());
-		System.out.println("Impresion de las citas solo");
-		System.out.println(gl.contarCitasUsuario(cedula));
-		//System.out.println("Impresion de las citas getters and setters");
-	//	System.out.println(gl.contarCitasUsuario(cedula).get(1));
-		System.out.println("tamano"+gl.contarCitasGeneral().size());
-		List<ConteoCitas> cantidad = gl.contarCitasUsuario(cedula); 
+		cantidad = gl.contarCitasUsuario(cedula); 
 		return cantidad;
 	}
 	
@@ -747,14 +751,12 @@ public class GestionCitasBean {
 			setIe_descripcion(fac_det_descripcion);
 			setIe_dinero(fac_det_precio);
 			guardarIngreso();
+			recuperarFacturaCabecera();
 			return "listar_cabecera";
 		}else {
 			System.out.println("########################## ! ! ! ERROR ! ! ! ############################");
 			return "error";
 		}
-	}
-	public List<FacturaDetalle> recuperarFacturasDetalle(){
-		return gld.getFacturaDetalleCabecera(fac_cab_codigo);
 	}
 	
 	public boolean guardarIngreso() {
