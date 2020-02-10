@@ -1,12 +1,15 @@
 package negocio;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 
+import datos.CitaDAO;
 import datos.ExamenLaboratorioDAO;
 import datos.HistoriaClinicaDAO;
+import datos.UsuarioDAO;
 import modelo.Cita;
 import modelo.ExamenLaboratorio;
 import modelo.HistoriaClinica;
@@ -19,23 +22,32 @@ public class GestionHistoriaClinica implements GestionHistoriaClinicaRemote, Ges
 
 	@Inject
 	private HistoriaClinicaDAO dao;
+	@Inject
+	private UsuarioDAO daoU;
+	@Inject
+	private CitaDAO daoC;
 
-	@Override
 	public int guardarHistoriaClinica(String hc_residencia, String hc_fecha, String hc_motivo_consulta,
-			String hc_enfermedad_actual, Usuario usuario) {
-		System.out.println("Entra a gestionH");
+			String hc_enfermedad_actual) {
+		Date fechas = new Date();
+		
 		HistoriaClinica hc = new HistoriaClinica();
-		hc.setHc_residencia(hc_residencia);
+		hc.setHc_residencia("Gualaceo");
 		hc.setHc_fecha(hc_fecha);
-		hc.setHc_movito_consulta(hc_motivo_consulta);
-		hc.setHc_enfermedad_actual(hc_enfermedad_actual);
-		System.out.println("problemas usuario");
-		hc.setUsuario(usuario);
-		System.out.println("recupera datos "+hc_enfermedad_actual);
+		hc.setHc_movito_consulta("no corre");
+		hc.setHc_enfermedad_actual("Diabe");
+		hc.setUsuario(daoU.read("0206171325"));
+		hc.setCita(daoC.read(2));
 		dao.insert(hc);
+
 		System.out.println(hc);
 		System.out.println("codigo de historia"+hc.getHc_codigo());
 		return hc.getHc_codigo();
+		
+		
+		
+		
+		
 	}
 
 	@Override

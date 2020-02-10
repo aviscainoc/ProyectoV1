@@ -103,7 +103,8 @@ public class GestionHistoriaClinicaBean {
 	public boolean guardarHistoriasClinicas() {
 		try {
 			System.out.println(hc_codigo + " "+ usuario);
-			hc_codigo = gl.guardarHistoriaClinica(hc_residencia, hc_fecha, hc_movito_consulta, hc_enfermedad_actual, usuario);
+			gl.guardarHistoriaClinica(hc_residencia, hc_fecha, hc_movito_consulta, hc_enfermedad_actual);
+			hc_codigo = gl.guardarHistoriaClinica(hc_residencia, hc_fecha, hc_movito_consulta, hc_enfermedad_actual);
 			System.out.println("En el beam"+hc_codigo);
 			historias = gl.getHistoriasClinicas();
 			return true;	
