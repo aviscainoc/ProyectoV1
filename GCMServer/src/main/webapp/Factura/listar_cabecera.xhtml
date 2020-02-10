@@ -38,7 +38,9 @@
 			<f:facet name="header">Precio Total(+12%)</f:facet>
 		</h:column>
 	
-		<h:column>
+	</h:dataTable>
+		<h:dataTable value="#{gestionCitasBean.recuperarFacturasCabecera()}" var= "cabecera" width="100%">
+			<h:column>
 			<h:dataTable value="#{cabecera.facs_det}" width="100%"  var="detalle" border="2" cellspacing="1" cellpadding="1">
 				<h:column>
 					#{detalle.fac_det_descripcion}
@@ -56,10 +58,10 @@
 					#{detalle.fac_cabecera.fac_cab_id}
 					<f:facet name="header">Cabecera</f:facet>
 				</h:column>
-	
 			</h:dataTable>
 		</h:column>
 	</h:dataTable>
+	
 	<h:dataTable value="#{gestionCitasBean.recuperarFacturasCabecera()}" width="80%" var="detalle" border="3" cellspacing="1" cellpadding="1">
 		<h:column>
 			<center>
