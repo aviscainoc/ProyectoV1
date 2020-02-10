@@ -785,7 +785,10 @@ public class GestionCitasBean {
 	}
 	
 	
-	public void imprimirCertificado() throws IOException {
-		gul.descargarCertificadoMedico("hola");
+	public void imprimirCertificado(int codigoCita) throws IOException {
+		int code=gl.getCita(codigoCita).getCi_codigo();
+		System.out.println("Codigo de la cita"+code);
+		String texto = gul.descargarCertificadoMedico();
+		gul.descargarCertificadoMedico(e );
 	}
 }
