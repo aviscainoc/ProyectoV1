@@ -1,11 +1,28 @@
-	package negocio;
+package negocio;
 
+
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.Date;
 import java.util.List;
 
 import javax.ejb.Stateless;
+import javax.faces.context.ExternalContext;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.persistence.OneToMany;
+import javax.servlet.ServletOutputStream;
+import javax.servlet.http.HttpServletResponse;
+
+import com.itextpdf.kernel.pdf.PdfDocument;
+import com.itextpdf.kernel.pdf.PdfWriter;
+import com.itextpdf.layout.Document;
+import com.itextpdf.layout.element.Paragraph;
 
 import datos.CitaDAO;
 import datos.ExamenLaboratorioDAO;
@@ -19,6 +36,7 @@ import modelo.Usuario;
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 import net.sf.jasperreports.engine.export.JRPdfExporter;
 import net.sf.jasperreports.export.SimpleExporterInput;
 import net.sf.jasperreports.export.SimpleOutputStreamExporterOutput;
@@ -121,23 +139,207 @@ public class GestionUsuario implements GestionUsuariosLocal, GestionUsuariosRemo
 		System.out.println("GestionUsuario " + u);
 	}
 	
-	public void guardarPdfUsuario() throws JRException {
-		JasperPrint jasperPrint = JasperFillManager.fillReport(
-				"C:\\Users\\PCX\\JaspersoftWorkspace\\Reportes\\Cherry.jasper", null,
-				Conexion.conectar());
-		JRPdfExporter exp = new JRPdfExporter();
-		exp.setExporterInput(new SimpleExporterInput(jasperPrint));
-		exp.setExporterOutput(new SimpleOutputStreamExporterOutput("ReporteAlumnos.pdf"));
-		System.out.println("El archivo ya se genero");
-		SimplePdfExporterConfiguration conf = new SimplePdfExporterConfiguration();
-		exp.setConfiguration(conf);
-		exp.exportReport();
-		System.out.println("El archivo ya se guardo");
-		
-	}
 	
 	
-}
+	private static final int DEFAULT_BUFFER_SIZE = 1024;
+	public void downloadFile() throws IOException {
+		  
+		  
+		  
+		// Creating a PdfWriter       
+			//String dest = "C:\\Users\\PCX\\Documents\\7mo Ciclo\\Plataformas Web\\addingParagraph.pdf";
+			String dest = "C:\\Users\\PCX\\eclipse-workspace\\ProyectoV1\\GCMServer\\ArchivosPDF\\CertificadoMedico.pdf";
+			PdfWriter writer = new PdfWriter(dest);           
+		    
+		    // Creating a PdfDocument       
+		    PdfDocument pdf = new PdfDocument(writer);              
+		    
+		    // Creating a Document        
+		    Document document = new Document(pdf);       
+		    
+		    
+		    String para0 = "CERTIFICA";
+		   
+		    
+		    String para1 = "Que la Sra."+" con cédula de\r\n" + 
+		    		"		    identidad no. 01CI205752-8 recibe tratamiento de hemodiálisis desde el 29 de\r\n" + 
+		    		"		    junio del 2012 en la Unidad Renal de Baxter los días lunes, miércoles y\r\n" + 
+		    		"		    viernes en el turno de 16h30 a 20h30 por adolecer de Enfermedad Renal\r\n" + 
+		    		"		    Crónica etiología Hipertensión Arterial.\r\n" + 
+		    		"		    Es cuanto informo a la verdad, autorizo al peticionario hacer del presente\r\n" + 
+		    		"		    certificado el uso legal que crea conveniente. ";  
+		    
+		    String para2 = "The journey commenced with a single tutorial on HTML in 2006 ";              
+		    
+		    // Creating Paragraphs       
+		    Paragraph paragraph1 = new Paragraph(para1);             
+		    Paragraph paragraph2 = new Paragraph(para2);              
+		    
+		    // Adding paragraphs to document
+		    
+		    document.add(paragraph1);       
+		    document.add(paragraph2);           
+		    
+		    // Closing the document       
+		    document.close();             
+		    System.out.println("Paragraph added"); 
+		  
+		  
+		  FacesContext context = FacesContext.getCurrentInstance();
+		  HttpServletResponse response =
+		  	        (HttpServletResponse) FacesContext.getCurrentInstance()
+		  	            .getExternalContext().getResponse();
+		  File file = new File("C:\\Users\\PCX\\eclipse-workspace\\ProyectoV1\\GCMServer\\ArchivosPDF\\CertificadoMedico.pdf");
+		  if(file.exists()){
+			  System.out.println("oye no esta encontrando");
+		      response.sendError(HttpServletResponse.SC_NOT_FOUND);
+		      //return;
+		  }
+		  response.reset();
+		  response.setBufferSize(DEFAULT_BUFFER_SIZE);
+		  response.setContentType("application/octet-stream");
+		  response.setHeader("Content-Length", String.valueOf(file.length()));
+		  response.setHeader("Content-Disposition","attachment;filename=instructions.pdf");
+		  System.out.println("aqui no llega");
+		  BufferedInputStream input = null;
+		  BufferedOutputStream output = null;
+
+		  try
+		  {
+		      input = new BufferedInputStream(new FileInputStream(file),DEFAULT_BUFFER_SIZE);
+		      output = new BufferedOutputStream(response.getOutputStream(), DEFAULT_BUFFER_SIZE);
+
+		      byte[] buffer = new byte[DEFAULT_BUFFER_SIZE];
+		      int length;
+		      while ((length = input.read(buffer)) > 0){
+		          output.write(buffer, 0, length);
+		      }
+
+		  }
+		  finally
+		  {
+		      input.close();
+		      output.close();
+		  }
+		  context.responseComplete();
+		  
+		  
+		  
+		  
+		  
+		  
+		  
+		  
+		  
+		  
+		  
+		  
+		  
+		  
+		  
+		  
+		  
+		  
+		  
+		  
+		  
+		  
+		  
+		  
+		  
+		  
+		  
+		  
+	    /* File file = new File("C:\\Users\\PCX\\Documents\\7mo Ciclo\\Plataformas Web\\cambiosGit.txt");
+	     System.out.println(file);
+	     InputStream fis = new FileInputStream(file);
+	     byte[] buf = new byte[1024];
+	     int offset = 0;
+	     int numRead = 0;
+	     while ((offset < buf.length) && ((numRead = fis.read(buf, offset, buf.length - offset)) >= 0)) 
+	     {
+	       offset += numRead;
+	     }
+	     fis.close();
+	     HttpServletResponse response =
+	        (HttpServletResponse) FacesContext.getCurrentInstance()
+	            .getExternalContext().getResponse();
+	    
+	    response.setContentType("application/octet-stream");
+	    response.setHeader("Content-Disposition", "attachment;filename=instructions.txt");
+	   /* response.getOutputStream().write(buf);
+	    
+	   */ 
+	   /* response.getOutputStream().write();
+	    response.getOutputStream().flush();
+	    response.getOutputStream().close();
+	    FacesContext.getCurrentInstance().responseComplete();
+		 /*
+		  InputStream input = new FileInputStream("c:\\data\\input-text.txt");
+
+		  int data = input.read();
+		  while(data != -1) {
+		    //do something with data...
+		    doSomethingWithData(data);
+
+		    data = input.read();
+		  }*/
+		  //input.close();*/
+		  
+		  
+		  /*
+		  
+		  
+		  final FacesContext fc = FacesContext.getCurrentInstance();
+		    final ExternalContext externalContext = fc.getExternalContext();
+
+		    //final File file = new File();
+		    final File file = new File("C:\\Users\\PCX\\Documents\\7mo Ciclo\\Plataformas Web\\cambiosGit.txt");
+		    externalContext.responseReset();
+		    externalContext.setResponseContentType("application/octet-stream");
+		    //externalContext.setResponseContentType(ContentType.APPLICATION_OCTET_STREAM.getMimeType());
+		    externalContext.setResponseContentLength(Long.valueOf(file.lastModified()).intValue());
+		    externalContext.setResponseHeader("Content-Disposition", "attachment;filename=" + file.getName());
+
+		    final HttpServletResponse response = (HttpServletResponse) externalContext.getResponse();
+
+		    FileInputStream input = new FileInputStream(file);
+		    byte[] buffer = new byte[1024];
+		    final ServletOutputStream out = response.getOutputStream();
+
+		    while ((input.read(buffer)) != -1) {
+		        out.write(buffer);
+		    }
+
+		    out.flush();
+		    fc.responseComplete();
+		}*/
+	  
+	
+	/*
+		  final FacesContext fc = FacesContext.getCurrentInstance();
+		    final ExternalContext externalContext = fc.getExternalContext();
+
+		    final File file = new File("C:\\Users\\PCX\\Documents\\7mo Ciclo\\Plataformas Web\\cambiosGit.txt");
+		    System.out.println(file.canRead()+"ver si vale");
+		    externalContext.responseReset();
+		    externalContext.setResponseContentType("application/octet-stream");
+		    externalContext.setResponseContentLength(Long.valueOf(file.lastModified()).intValue());
+		    externalContext.setResponseHeader("Content-Disposition", "attachment;filename=" + file.getName());
+
+		    final HttpServletResponse response = (HttpServletResponse) externalContext.getResponse();
+		    response.reset();
+		    FileInputStream input = new FileInputStream(file);
+		    byte[] buffer = new byte[1024];
+		    final ServletOutputStream out = response.getOutputStream();
+
+		    while ((input.read(buffer)) != -1) {
+		        out.write(buffer);
+		    }
+
+		    out.flush();
+		    fc.responseComplete();*/
+}}
 
 
 

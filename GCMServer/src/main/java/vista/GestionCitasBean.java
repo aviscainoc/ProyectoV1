@@ -1,5 +1,6 @@
 package vista;
 
+import java.io.IOException;
 import java.sql.Timestamp;
 import java.util.Arrays;
 import java.util.Calendar;
@@ -15,6 +16,7 @@ import javax.inject.Inject;
 import datos.UsuarioDAO;
 import modelo.CertificadoAusencia;
 import modelo.Cita;
+import modelo.ConteoCitas;
 import modelo.ExamenLaboratorio;
 import modelo.FacturaCabecera;
 import modelo.FacturaDetalle;
@@ -520,7 +522,7 @@ public class GestionCitasBean {
 		return citas;	
 	}
 	
-	public List<Cita> recuperarCitasPendientes() throws JRException{
+	public List<Cita> recuperarCitasPendientes() throws JRException, IOException{
 		citas=gl.getCitasPendientes();
 //		gul.guardarPdfUsuario();
 		System.out.println(citas);
@@ -697,6 +699,18 @@ public class GestionCitasBean {
 		return glf.getFacturas();
 	}
 	
+	
+	public List<ConteoCitas> contarCitasUsuario(String cedula){
+		
+		System.out.println("Impresion de las citas con toString");
+		System.out.println(gl.contarCitasUsuario(cedula).toString());
+		System.out.println("Impresion de las citas solo");
+		System.out.println(gl.contarCitasUsuario(cedula));
+		//System.out.println("Impresion de las citas getters and setters");
+	//	System.out.println(gl.contarCitasUsuario(cedula).get(1));
+		System.out.println("tamano"+gl.contarCitasGeneral().size());
+		List<ConteoCitas> cantidad = gl.contarCitasUsuario(cedula); 
+		return cantidad;
 	public FacturaCabecera recuperarFactura(int codigo) {
 		System.out.println(codigo);
 		if(codigo==0)

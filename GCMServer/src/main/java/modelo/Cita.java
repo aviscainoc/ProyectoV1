@@ -23,8 +23,6 @@ public class Cita {
 
 
 	@Temporal(javax.persistence.TemporalType.DATE)
-
-
 	private Date ci_fecha_agendacion;
 	@Temporal(javax.persistence.TemporalType.TIMESTAMP)
 	private Date ci_fecha_cita;
