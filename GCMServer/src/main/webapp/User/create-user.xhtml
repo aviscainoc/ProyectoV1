@@ -9,33 +9,44 @@
 	<ui:define name="titulo">Registrarme</ui:define>
 	<ui:define name="contenido">
 		<h:form>
+			<h:message for="ced" errorStyle="color:red;"/>
 			<div class="input-group mb-3">
-				<h:inputText pt:placeholder="Cédula" class="form-control form-control-navbar" value="#{gestionUsuariosBean.us_cedula}" placeholder="Cedula" />
+				<h:inputText id="ced" pt:placeholder="Cédula" class="form-control form-control-navbar" value="#{gestionUsuariosBean.us_cedula}" placeholder="Cedula" required="true" requiredMessage="Ingrese su número de cédula"/>
 			</div>
+			
+			<h:message for="nom" errorStyle="color:red; display:block"/>
 			<div class="input-group mb-3">
-				<h:inputText pt:placeholder="Nombres" class="form-control form-control-navbar" value="#{gestionUsuariosBean.us_nombres}" placeholder="Nombres" />
+				<h:inputText id="nom" pt:placeholder="Nombres" class="form-control form-control-navbar" value="#{gestionUsuariosBean.us_nombres}" placeholder="Nombres" required="true" requiredMessage="Ingrese sus nombres completos"/>
+			</div>
+				
+			<h:message for="ape" errorStyle="color:red; display:block"/>
+			<div class="input-group mb-3">
+				<h:inputText id="ape" pt:placeholder="Apellidos" class="form-control form-control-navbar" value="#{gestionUsuariosBean.us_apellidos}" placeholder="Apellidos" required="true" requiredMessage="Ingrese sus apellidos completos"/>
 			</div>
 				
 			<div class="input-group mb-3">
-				<h:inputText pt:placeholder="Apellidos" class="form-control form-control-navbar" value="#{gestionUsuariosBean.us_apellidos}" placeholder="Apellidos" />
+				<h:selectOneMenu value="#{gestionUsuariosBean.us_sexo}" class="form-control form-control-navbar">
+			  	    <f:selectItem itemValue="#{null}" itemLabel="--seleccionar sexo--" />
+				  	<f:selectItem itemValue="Masculino" itemLabel="Masculino" />
+				  	<f:selectItem itemValue="Femenino" itemLabel="Femenino" />
+			  	</h:selectOneMenu>
 			</div>
 				
+			<h:message for="nac" errorStyle="color:red; display:block"/>
 			<div class="input-group mb-3">
-				<h:inputText pt:placeholder="Sexo" class="form-control form-control-navbar" value="#{gestionUsuariosBean.us_sexo}" placeholder="Sexo" />
-			</div>
-				
-			<div class="input-group mb-3">
-				<h:inputText pt:placeholder="Fecha de nacimiento" class="form-control form-control-navbar" value="#{gestionUsuariosBean.us_fecha_nacimiento}" placeholder="Fecha de nacimiento" >
+				<h:inputText id="nac" pt:placeholder="Fecha de nacimiento" styleClass="form-control datepicker" value="#{gestionUsuariosBean.us_fecha_nacimiento}" placeholder="Fecha de nacimiento" required="true" requiredMessage="Ingrese su fecha de nacimiento">
 					<f:convertDateTime pattern = "dd-mm-yyyy" />
 				</h:inputText>
 			</div>
 				
+			<h:message for="cor" errorStyle="color:red; display:block"/>
 			<div class="input-group mb-3">
-				<h:inputText pt:placeholder="ejemplo@gmail.com" class="form-control form-control-navbar" value="#{gestionUsuariosBean.us_correo}" placeholder="Correo" />
+				<h:inputText id="cor" pt:placeholder="ejemplo@gmail.com" class="form-control form-control-navbar" value="#{gestionUsuariosBean.us_correo}" placeholder="Correo" required="true" requiredMessage="Ingrese su correo electrócino"/>
 			</div>
 				
+			<h:message for="con" errorStyle="color:red; display:block"/>
 			<div class="input-group mb-3">
-				<h:inputText pt:placeholder="Contraseña" class="form-control form-control-navbar" value="#{gestionUsuariosBean.us_contrasena}" placeholder="Contrasena" />
+				<h:inputText id="con" pt:placeholder="Contraseña" class="form-control form-control-navbar" value="#{gestionUsuariosBean.us_contrasena}" placeholder="Contrasena"  required="true" requiredMessage="Ingrese una contraseña"/>
 			</div>
 	
 			<div class="input-group mb-3">

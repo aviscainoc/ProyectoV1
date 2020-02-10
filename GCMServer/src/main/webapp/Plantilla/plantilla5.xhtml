@@ -21,6 +21,7 @@
   <link rel="stylesheet" href="../Plantilla/dist/css/adminlte.min.css"></link>
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet"></link>
+  <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" />
 </h:head>
 
 
@@ -48,6 +49,18 @@
 <script src="../Plantilla/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- AdminLTE App -->
 <script src="../Plantilla/dist/js/adminlte.min.js"></script>
+<script>
+$(document).ready(function() {
+	   $(".datepicker").datepicker({
+	      dateFormat: 'dd-mm-yy',
+	      changeMonth: true,
+	      changeYear: true,
+	      yearRange: "1920:2019"
+	   });
+	});
+</script>
+<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.js" />
+<script type="text/javascript" src="https://code.jquery.com/ui/1.12.1/jquery-ui.js" />
 
 </h:body>
 </html>

@@ -13,13 +13,13 @@
 		<br></br>
 		<center><div style="width: 400px; margin-left: 30%;" class="float-left">
 			<h:form>
-		      	<h:panelGrid columns="2" class="table">
+		      	<h:panelGrid columns="3" class="table">
 		      		<h:outputLabel>Número de cédula: </h:outputLabel>
-		      		<h:inputText pt:placeholder="9999999999" value="#{gestionCitasBean.us_codigo}" class="form-control form-control-navbar" f:placeholder="Ingresar número de cédula" aria-label="Search" required="true" size="10"></h:inputText>
+		      		<h:inputText id="ced" pt:placeholder="0999999999" value="#{gestionCitasBean.us_codigo}" class="form-control form-control-navbar" aria-label="Search" required="true" requiredMessage="Obligatorio"></h:inputText>
+		      		<h:message for="ced" errorStyle="color:red; display:block"/>
 		      		<h:outputLabel>Fecha de la cita: </h:outputLabel>
-					
-					<h:inputText value="#{gestionCitasBean.ci_fecha_cita}" styleClass="form-control datepicker" size="10">
-					</h:inputText>
+					<h:inputText id="fec" value="#{gestionCitasBean.ci_fecha_cita}" styleClass="form-control datepicker" size="10" required="true" requiredMessage="Obligatorio"></h:inputText>
+					<h:message for="fec" errorStyle="color:red; display:block"/>
 		      	</h:panelGrid>
 		      	<h:panelGrid columns="4" class="table">
 		      		<h:outputLabel>Hora de la cita: </h:outputLabel>

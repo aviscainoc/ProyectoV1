@@ -37,26 +37,49 @@ public class GestionUsuario implements GestionUsuariosLocal, GestionUsuariosRemo
 	public void guardarUsuarioPaciente(String us_cedula, String us_rol, int us_pa_registro, String  us_nombres, String  us_apellidos, String us_sexo, Date us_fecha_nacimiento,
 			String us_correo, String us_contrasena, String us_pa_estado_civil, String us_pa_nivel_estudio, String us_pa_ocupacion, String us_pa_etnia, 
 			String us_pa_religion, String us_pa_tipo_sangre, String us_pa_identidad_sexual, String us_pa_procedencia) {		
-		Usuario u = new Usuario();
-		u.setUs_cedula(us_cedula);
-		u.setUs_rol(us_rol);
-		u.setUs_pa_registro(us_pa_registro);
-		u.setUs_nombres(us_nombres);
-		u.setUs_apellidos(us_apellidos);
-		u.setUs_sexo(us_sexo);
-		u.setUs_fecha_nacimiento(us_fecha_nacimiento);
-		u.setUs_correo(us_correo);
-		u.setUs_contrasena(us_contrasena);
-		u.setUs_pa_estado_civil(us_pa_estado_civil);
-		u.setUs_pa_nivel_estudio(us_pa_nivel_estudio);
-		u.setUs_pa_ocupacion(us_pa_ocupacion);
-		u.setUs_pa_etnia(us_pa_etnia);
-		u.setUs_pa_religion(us_pa_religion);
-		u.setUs_pa_tipo_sangre(us_pa_tipo_sangre);
-		u.setUs_pa_identidad_sexual(us_pa_identidad_sexual);
-		u.setUs_pa_procedencia(us_pa_procedencia);
-		System.out.println(u);
-		daoU.insert(u);
+		if (daoU.read(us_cedula) == null) {
+			Usuario u = new Usuario();
+			u.setUs_cedula(us_cedula);
+			u.setUs_rol(us_rol);
+			u.setUs_pa_registro(us_pa_registro);
+			u.setUs_nombres(us_nombres);
+			u.setUs_apellidos(us_apellidos);
+			u.setUs_sexo(us_sexo);
+			u.setUs_fecha_nacimiento(us_fecha_nacimiento);
+			u.setUs_correo(us_correo);
+			u.setUs_contrasena(us_contrasena);
+			u.setUs_pa_estado_civil(us_pa_estado_civil);
+			u.setUs_pa_nivel_estudio(us_pa_nivel_estudio);
+			u.setUs_pa_ocupacion(us_pa_ocupacion);
+			u.setUs_pa_etnia(us_pa_etnia);
+			u.setUs_pa_religion(us_pa_religion);
+			u.setUs_pa_tipo_sangre(us_pa_tipo_sangre);
+			u.setUs_pa_identidad_sexual(us_pa_identidad_sexual);
+			u.setUs_pa_procedencia(us_pa_procedencia);
+			System.out.println(u);
+			daoU.insert(u);
+		}
+		else{
+			Usuario u = daoU.read(us_cedula);
+			u.setUs_rol(us_rol);
+			u.setUs_pa_registro(us_pa_registro);
+			u.setUs_nombres(us_nombres);
+			u.setUs_apellidos(us_apellidos);
+			u.setUs_sexo(us_sexo);
+			u.setUs_fecha_nacimiento(us_fecha_nacimiento);
+			u.setUs_correo(us_correo);
+			u.setUs_contrasena(us_contrasena);
+			u.setUs_pa_estado_civil(us_pa_estado_civil);
+			u.setUs_pa_nivel_estudio(us_pa_nivel_estudio);
+			u.setUs_pa_ocupacion(us_pa_ocupacion);
+			u.setUs_pa_etnia(us_pa_etnia);
+			u.setUs_pa_religion(us_pa_religion);
+			u.setUs_pa_tipo_sangre(us_pa_tipo_sangre);
+			u.setUs_pa_identidad_sexual(us_pa_identidad_sexual);
+			u.setUs_pa_procedencia(us_pa_procedencia);
+			System.out.println(u);
+			daoU.update(u);
+		}
 	}
 	
 	public void guardarUsuarioMedico(String us_cedula, String us_rol, String  us_nombres, String  us_apellidos, String us_sexo, Date us_fecha_nacimiento,
