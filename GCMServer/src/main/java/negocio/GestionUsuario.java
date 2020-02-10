@@ -165,247 +165,259 @@ public class GestionUsuario implements GestionUsuariosLocal, GestionUsuariosRemo
 	
 	
 	private static final int DEFAULT_BUFFER_SIZE = 1024;
-	public void downloadFile() throws IOException {
-		  
-		  
-		  
-		// Creating a PdfWriter       
-			//String dest = "C:\\Users\\PCX\\Documents\\7mo Ciclo\\Plataformas Web\\addingParagraph.pdf";
-			String dest = "C:\\Users\\PCX\\eclipse-workspace\\ProyectoV1\\GCMServer\\ArchivosPDF\\CertificadoMedico.pdf";
-			PdfWriter writer = new PdfWriter(dest);           
-		    
-		    // Creating a PdfDocument       
-		    PdfDocument pdf = new PdfDocument(writer);              
-		    
-		    // Creating a Document        
-		    Document document = new Document(pdf);       
-		    
-		    
-		    String para0 = "CERTIFICA";
-		   
-		    
-		    String para1 = "Que la Sra."+" con cédula de\r\n" + 
-		    		"		    identidad no. 01CI205752-8 recibe tratamiento de hemodiálisis desde el 29 de\r\n" + 
-		    		"		    junio del 2012 en la Unidad Renal de Baxter los días lunes, miércoles y\r\n" + 
-		    		"		    viernes en el turno de 16h30 a 20h30 por adolecer de Enfermedad Renal\r\n" + 
-		    		"		    Crónica etiología Hipertensión Arterial.\r\n" + 
-		    		"		    Es cuanto informo a la verdad, autorizo al peticionario hacer del presente\r\n" + 
-		    		"		    certificado el uso legal que crea conveniente. ";  
-		    
-		    String para2 = "The journey commenced with a single tutorial on HTML in 2006 ";              
-		    
-		    // Creating Paragraphs       
-		    Paragraph paragraph1 = new Paragraph(para1);             
-		    Paragraph paragraph2 = new Paragraph(para2);              
-		    
-		    // Adding paragraphs to document
-		    
-		    document.add(paragraph1);       
-		    document.add(paragraph2);           
-		    
-		    // Closing the document       
-		    document.close();             
-		    System.out.println("Paragraph added"); 
-		  
-		  
-		  FacesContext context = FacesContext.getCurrentInstance();
-		  HttpServletResponse response =
-		  	        (HttpServletResponse) FacesContext.getCurrentInstance()
-		  	            .getExternalContext().getResponse();
-		  File file = new File("C:\\Users\\PCX\\eclipse-workspace\\ProyectoV1\\GCMServer\\ArchivosPDF\\CertificadoMedico.pdf");
-		  if(file.exists()){
-			  System.out.println("oye no esta encontrando");
-		      response.sendError(HttpServletResponse.SC_NOT_FOUND);
-		      //return;
-		  }
-		  response.reset();
-		  response.setBufferSize(DEFAULT_BUFFER_SIZE);
-		  response.setContentType("application/octet-stream");
-		  response.setHeader("Content-Length", String.valueOf(file.length()));
-		  response.setHeader("Content-Disposition","attachment;filename=instructions.pdf");
-		  System.out.println("aqui no llega");
-		  BufferedInputStream input = null;
-		  BufferedOutputStream output = null;
 
-		  try
-		  {
-		      input = new BufferedInputStream(new FileInputStream(file),DEFAULT_BUFFER_SIZE);
-		      output = new BufferedOutputStream(response.getOutputStream(), DEFAULT_BUFFER_SIZE);
+	public void descargarCertificadoMedico(String texto) throws IOException {
 
-		      byte[] buffer = new byte[DEFAULT_BUFFER_SIZE];
-		      int length;
-		      while ((length = input.read(buffer)) > 0){
-		          output.write(buffer, 0, length);
-		      }
+		String dest = "C:\\Users\\PCX\\eclipse-workspace\\ProyectoV1\\GCMServer\\ArchivosPDF\\CertificadoMedico.pdf";
+		PdfWriter writer = new PdfWriter(dest);
+		PdfDocument pdf = new PdfDocument(writer);
+		Document document = new Document(pdf);
 
-		  }
-		  finally
-		  {
-		      input.close();
-		      output.close();
-		  }
-		  context.responseComplete();
-		  
-		  
-		  
-		  
-		  
-		  
-		  
-		  
-		  
-		  
-		  
-		  
-		  
-		  
-		  
-		  
-		  
-		  
-		  
-		  
-		  
-		  
-		  
-		  
-		  
-		  
-		  
-		  
-	    /* File file = new File("C:\\Users\\PCX\\Documents\\7mo Ciclo\\Plataformas Web\\cambiosGit.txt");
-	     System.out.println(file);
-	     InputStream fis = new FileInputStream(file);
-	     byte[] buf = new byte[1024];
-	     int offset = 0;
-	     int numRead = 0;
-	     while ((offset < buf.length) && ((numRead = fis.read(buf, offset, buf.length - offset)) >= 0)) 
-	     {
-	       offset += numRead;
-	     }
-	     fis.close();
-	     HttpServletResponse response =
-	        (HttpServletResponse) FacesContext.getCurrentInstance()
-	            .getExternalContext().getResponse();
-	    
-	    response.setContentType("application/octet-stream");
-	    response.setHeader("Content-Disposition", "attachment;filename=instructions.txt");
-	   /* response.getOutputStream().write(buf);
-	    
-	   */ 
-	   /* response.getOutputStream().write();
-	    response.getOutputStream().flush();
-	    response.getOutputStream().close();
-	    FacesContext.getCurrentInstance().responseComplete();
-		 /*
-		  InputStream input = new FileInputStream("c:\\data\\input-text.txt");
+		String para0 = "CERTIFICA";
+		String para1 = "Que la Sra." + " con cédula de\r\n"
+				+ "		    identidad no. 01CI205752-8 recibe tratamiento de hemodiálisis desde el 29 de\r\n"
+				+ "		    junio del 2012 en la Unidad Renal de Baxter los días lunes, miércoles y\r\n"
+				+ "		    viernes en el turno de 16h30 a 20h30 por adolecer de Enfermedad Renal\r\n"
+				+ "		    Crónica etiología Hipertensión Arterial.\r\n"
+				+ "		    Es cuanto informo a la verdad, autorizo al peticionario hacer del presente\r\n"
+				+ "		    certificado el uso legal que crea conveniente. ";
+		String para2 = "The journey commenced with a single tutorial on HTML in 2006 ";
 
-		  int data = input.read();
-		  while(data != -1) {
-		    //do something with data...
-		    doSomethingWithData(data);
+		Paragraph paragraph1 = new Paragraph(para1);
+		Paragraph paragraph2 = new Paragraph(para2);
+		document.add(paragraph1);
+		document.add(paragraph2);
+		document.close();
+		System.out.println("Paragraph added");
 
-		    data = input.read();
-		  }*/
-		  //input.close();*/
-		  
-		  
-		  /*
-		  
-		  
-		  final FacesContext fc = FacesContext.getCurrentInstance();
-		    final ExternalContext externalContext = fc.getExternalContext();
+		FacesContext context = FacesContext.getCurrentInstance();
+		HttpServletResponse response = (HttpServletResponse) FacesContext.getCurrentInstance().getExternalContext()
+				.getResponse();
+		File file = new File(
+				"C:\\Users\\PCX\\eclipse-workspace\\ProyectoV1\\GCMServer\\ArchivosPDF\\CertificadoMedico.pdf");
+		if (file.exists() == false) {
+			System.out.println("oye no esta encontrando");
+			response.sendError(HttpServletResponse.SC_NOT_FOUND);
+		}
+		response.reset();
+		response.setBufferSize(DEFAULT_BUFFER_SIZE);
+		response.setContentType("application/octet-stream");
+		response.setHeader("Content-Length", String.valueOf(file.length()));
+		response.setHeader("Content-Disposition", "attachment;filename=\""+file.getName() + "\"");
+		
+		System.out.println("aqui no llega");
+		BufferedInputStream input = null;
+		BufferedOutputStream output = null;
 
-		    //final File file = new File();
-		    final File file = new File("C:\\Users\\PCX\\Documents\\7mo Ciclo\\Plataformas Web\\cambiosGit.txt");
-		    externalContext.responseReset();
-		    externalContext.setResponseContentType("application/octet-stream");
-		    //externalContext.setResponseContentType(ContentType.APPLICATION_OCTET_STREAM.getMimeType());
-		    externalContext.setResponseContentLength(Long.valueOf(file.lastModified()).intValue());
-		    externalContext.setResponseHeader("Content-Disposition", "attachment;filename=" + file.getName());
+		try {
+			input = new BufferedInputStream(new FileInputStream(file), DEFAULT_BUFFER_SIZE);
+			output = new BufferedOutputStream(response.getOutputStream(), DEFAULT_BUFFER_SIZE);
 
-		    final HttpServletResponse response = (HttpServletResponse) externalContext.getResponse();
+			byte[] buffer = new byte[DEFAULT_BUFFER_SIZE];
+			int length;
+			while ((length = input.read(buffer)) > 0) {
+				output.write(buffer, 0, length);
+			}
 
-		    FileInputStream input = new FileInputStream(file);
-		    byte[] buffer = new byte[1024];
-		    final ServletOutputStream out = response.getOutputStream();
+		} finally {
+			input.close();
+			output.close();
+		}
+		context.responseComplete();
 
-		    while ((input.read(buffer)) != -1) {
-		        out.write(buffer);
-		    }
-
-		    out.flush();
-		    fc.responseComplete();
-		}*/
-	  
-	
-	/*
-		  final FacesContext fc = FacesContext.getCurrentInstance();
-		    final ExternalContext externalContext = fc.getExternalContext();
-
-		    final File file = new File("C:\\Users\\PCX\\Documents\\7mo Ciclo\\Plataformas Web\\cambiosGit.txt");
-		    System.out.println(file.canRead()+"ver si vale");
-		    externalContext.responseReset();
-		    externalContext.setResponseContentType("application/octet-stream");
-		    externalContext.setResponseContentLength(Long.valueOf(file.lastModified()).intValue());
-		    externalContext.setResponseHeader("Content-Disposition", "attachment;filename=" + file.getName());
-
-		    final HttpServletResponse response = (HttpServletResponse) externalContext.getResponse();
-		    response.reset();
-		    FileInputStream input = new FileInputStream(file);
-		    byte[] buffer = new byte[1024];
-		    final ServletOutputStream out = response.getOutputStream();
-
-		    while ((input.read(buffer)) != -1) {
-		        out.write(buffer);
-		    }
-
-		    out.flush();
-		    fc.responseComplete();*/
-}}
-
-
-
-/*
-
-
-@Stateless
-public class GestionCita implements GestionCitaLocal, GestionCitaRemote{
-	@Inject
-	private CitaDAO dao;
-	@Inject
-	private MedicoDAO daoM;
-	@Inject
-	private PacienteDAO daoP;
-
-	public void guardarCita(int ci_codigo, int codigoM, int codigoPa, String ci_fecha_agendacion, String ci_fecha_cita) {
-		Cita c = new Cita();
-		c.setCi_codigo(ci_codigo);
-		c.setMe_codigo(daoM.read(codigoM));
-		c.setPa_codigo(daoP.read(codigoPa));
-		c.setCi_fecha_agendacion(ci_fecha_agendacion);
-		c.setCi_fecha_cita(ci_fecha_cita);
-		dao.insert(c);
 	}
 	
-	public List<Cita> getCitas(){
-		return dao.getCitas();
-	}
 	
-	public void updateCita(int ci_codigo, int codigoM, int codigoPa, String ci_fecha_agendacion, String ci_fecha_cita) {
-		Cita c = new Cita();
-		c.setCi_codigo(ci_codigo);
-		c.setMe_codigo(daoM.read(codigoM));
-		c.setPa_codigo(daoP.read(codigoPa));
-		c.setCi_fecha_agendacion(ci_fecha_agendacion);
-		c.setCi_fecha_cita(ci_fecha_cita);
-		dao.update(c);
-	}
-	
-	/*public Medico Login(String usuario, String contrasena) {
-		return dao.login(usuario, contrasena);
-	}
+	public void descargarRecetaMedica(String texto) throws IOException {
 
-	public void eliminar(int ci_codigo) {
-		dao.remove(ci_codigo);
-	}*/
+		String dest = "C:\\Users\\PCX\\eclipse-workspace\\ProyectoV1\\GCMServer\\ArchivosPDF\\RecetaMedica.pdf";
+		PdfWriter writer = new PdfWriter(dest);
+		PdfDocument pdf = new PdfDocument(writer);
+		Document document = new Document(pdf);
+
+		String para0 = "CERTIFICA";
+		String para1 = "Que la Sra." + " con cédula de\r\n"
+				+ "		    identidad no. 01CI205752-8 recibe tratamiento de hemodiálisis desde el 29 de\r\n"
+				+ "		    junio del 2012 en la Unidad Renal de Baxter los días lunes, miércoles y\r\n"
+				+ "		    viernes en el turno de 16h30 a 20h30 por adolecer de Enfermedad Renal\r\n"
+				+ "		    Crónica etiología Hipertensión Arterial.\r\n"
+				+ "		    Es cuanto informo a la verdad, autorizo al peticionario hacer del presente\r\n"
+				+ "		    certificado el uso legal que crea conveniente. ";
+		String para2 = "The journey commenced with a single tutorial on HTML in 2006 ";
+
+		Paragraph paragraph1 = new Paragraph(para1);
+		Paragraph paragraph2 = new Paragraph(para2);
+		document.add(paragraph1);
+		document.add(paragraph2);
+		document.close();
+		System.out.println("Paragraph added");
+
+		FacesContext context = FacesContext.getCurrentInstance();
+		HttpServletResponse response = (HttpServletResponse) FacesContext.getCurrentInstance().getExternalContext()
+				.getResponse();
+		File file = new File(
+				"C:\\Users\\PCX\\eclipse-workspace\\ProyectoV1\\GCMServer\\ArchivosPDF\\RecetaMedica.pdf");
+		if (file.exists() == false) {
+			System.out.println("oye no esta encontrando");
+			response.sendError(HttpServletResponse.SC_NOT_FOUND);
+		}
+		response.reset();
+		response.setBufferSize(DEFAULT_BUFFER_SIZE);
+		response.setContentType("application/octet-stream");
+		response.setHeader("Content-Length", String.valueOf(file.length()));
+		response.setHeader("Content-Disposition", "attachment;filename=\""+file.getName() + "\"");
+		
+		System.out.println("aqui no llega");
+		BufferedInputStream input = null;
+		BufferedOutputStream output = null;
+
+		try {
+			input = new BufferedInputStream(new FileInputStream(file), DEFAULT_BUFFER_SIZE);
+			output = new BufferedOutputStream(response.getOutputStream(), DEFAULT_BUFFER_SIZE);
+
+			byte[] buffer = new byte[DEFAULT_BUFFER_SIZE];
+			int length;
+			while ((length = input.read(buffer)) > 0) {
+				output.write(buffer, 0, length);
+			}
+
+		} finally {
+			input.close();
+			output.close();
+		}
+		context.responseComplete();
+
+	}
+	
+	
+	public void descargarExamenes(String texto) throws IOException {
+
+		String dest = "C:\\Users\\PCX\\eclipse-workspace\\ProyectoV1\\GCMServer\\ArchivosPDF\\Examenes.pdf";
+		PdfWriter writer = new PdfWriter(dest);
+		PdfDocument pdf = new PdfDocument(writer);
+		Document document = new Document(pdf);
+
+		String para0 = "CERTIFICA";
+		String para1 = "Que la Sra." + " con cédula de\r\n"
+				+ "		    identidad no. 01CI205752-8 recibe tratamiento de hemodiálisis desde el 29 de\r\n"
+				+ "		    junio del 2012 en la Unidad Renal de Baxter los días lunes, miércoles y\r\n"
+				+ "		    viernes en el turno de 16h30 a 20h30 por adolecer de Enfermedad Renal\r\n"
+				+ "		    Crónica etiología Hipertensión Arterial.\r\n"
+				+ "		    Es cuanto informo a la verdad, autorizo al peticionario hacer del presente\r\n"
+				+ "		    certificado el uso legal que crea conveniente. ";
+		String para2 = "The journey commenced with a single tutorial on HTML in 2006 ";
+
+		Paragraph paragraph1 = new Paragraph(para1);
+		Paragraph paragraph2 = new Paragraph(para2);
+		document.add(paragraph1);
+		document.add(paragraph2);
+		document.close();
+		System.out.println("Paragraph added");
+
+		FacesContext context = FacesContext.getCurrentInstance();
+		HttpServletResponse response = (HttpServletResponse) FacesContext.getCurrentInstance().getExternalContext()
+				.getResponse();
+		File file = new File(
+				"C:\\Users\\PCX\\eclipse-workspace\\ProyectoV1\\GCMServer\\ArchivosPDF\\Examenes.pdf");
+		if (file.exists() == false) {
+			System.out.println("oye no esta encontrando");
+			response.sendError(HttpServletResponse.SC_NOT_FOUND);
+		}
+		response.reset();
+		response.setBufferSize(DEFAULT_BUFFER_SIZE);
+		response.setContentType("application/octet-stream");
+		response.setHeader("Content-Length", String.valueOf(file.length()));
+		response.setHeader("Content-Disposition", "attachment;filename=\""+file.getName() + "\"");
+		
+		System.out.println("aqui no llega");
+		BufferedInputStream input = null;
+		BufferedOutputStream output = null;
+
+		try {
+			input = new BufferedInputStream(new FileInputStream(file), DEFAULT_BUFFER_SIZE);
+			output = new BufferedOutputStream(response.getOutputStream(), DEFAULT_BUFFER_SIZE);
+
+			byte[] buffer = new byte[DEFAULT_BUFFER_SIZE];
+			int length;
+			while ((length = input.read(buffer)) > 0) {
+				output.write(buffer, 0, length);
+			}
+
+		} finally {
+			input.close();
+			output.close();
+		}
+		context.responseComplete();
+
+	}
+	
+	public void descargarFactura(String texto) throws IOException {
+
+		String dest = "C:\\Users\\PCX\\eclipse-workspace\\ProyectoV1\\GCMServer\\ArchivosPDF\\Factura.pdf";
+		PdfWriter writer = new PdfWriter(dest);
+		PdfDocument pdf = new PdfDocument(writer);
+		Document document = new Document(pdf);
+
+		String para0 = "CERTIFICA";
+		String para1 = "Que la Sra." + " con cédula de\r\n"
+				+ "		    identidad no. 01CI205752-8 recibe tratamiento de hemodiálisis desde el 29 de\r\n"
+				+ "		    junio del 2012 en la Unidad Renal de Baxter los días lunes, miércoles y\r\n"
+				+ "		    viernes en el turno de 16h30 a 20h30 por adolecer de Enfermedad Renal\r\n"
+				+ "		    Crónica etiología Hipertensión Arterial.\r\n"
+				+ "		    Es cuanto informo a la verdad, autorizo al peticionario hacer del presente\r\n"
+				+ "		    certificado el uso legal que crea conveniente. ";
+		String para2 = "The journey commenced with a single tutorial on HTML in 2006 ";
+
+		Paragraph paragraph1 = new Paragraph(para1);
+		Paragraph paragraph2 = new Paragraph(para2);
+		document.add(paragraph1);
+		document.add(paragraph2);
+		document.close();
+		System.out.println("Paragraph added");
+
+		FacesContext context = FacesContext.getCurrentInstance();
+		HttpServletResponse response = (HttpServletResponse) FacesContext.getCurrentInstance().getExternalContext()
+				.getResponse();
+		File file = new File(
+				"C:\\Users\\PCX\\eclipse-workspace\\ProyectoV1\\GCMServer\\ArchivosPDF\\Factura.pdf");
+		if (file.exists() == false) {
+			System.out.println("oye no esta encontrando");
+			response.sendError(HttpServletResponse.SC_NOT_FOUND);
+		}
+		response.reset();
+		response.setBufferSize(DEFAULT_BUFFER_SIZE);
+		response.setContentType("application/octet-stream");
+		response.setHeader("Content-Length", String.valueOf(file.length()));
+		response.setHeader("Content-Disposition", "attachment;filename=\""+file.getName() + "\"");
+		
+		System.out.println("aqui no llega");
+		BufferedInputStream input = null;
+		BufferedOutputStream output = null;
+
+		try {
+			input = new BufferedInputStream(new FileInputStream(file), DEFAULT_BUFFER_SIZE);
+			output = new BufferedOutputStream(response.getOutputStream(), DEFAULT_BUFFER_SIZE);
+
+			byte[] buffer = new byte[DEFAULT_BUFFER_SIZE];
+			int length;
+			while ((length = input.read(buffer)) > 0) {
+				output.write(buffer, 0, length);
+			}
+
+		} finally {
+			input.close();
+			output.close();
+		}
+		context.responseComplete();
+
+	}
+	
+	
+	
+	
+	
+	
+}
+
+
+
