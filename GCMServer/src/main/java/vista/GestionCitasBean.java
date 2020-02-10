@@ -105,19 +105,23 @@ public class GestionCitasBean {
 	private String rm_rx;
 	private List<RecetaMedica> recetas;
 	
+	
 	private int fac_cab_codigo;
 	private String fac_cab_nombre;
 	private String fac_cab_direccion;
 	private String fac_cab_telefono;
 	private String fac_cab_cedula;
 	private String fac_cab_correo;
+	private FacturaCabecera factura;
 	private List<FacturaCabecera> facturasCabecera;
+	
 	
 	private int fac_det_codigo;
 	private String fac_det_descripcion;
 	private double fac_det_precio;
 	private int fac_det_cantidad;
 	private List<FacturaDetalle> facturasDetalle;
+	
 	
 	private int ie_codigo;
 	private String ie_descripcion;
@@ -698,6 +702,11 @@ public class GestionCitasBean {
 	public List<FacturaCabecera> recuperarFacturasCabecera(){
 		return glf.getFacturas();
 	}
+
+	public FacturaCabecera recuperarFacturaCabecera(){
+		factura = glf.getFactura(fac_cab_codigo);
+		return factura;
+	}
 	
 	
 	public List<ConteoCitas> contarCitasUsuario(String cedula){
@@ -711,6 +720,8 @@ public class GestionCitasBean {
 		System.out.println("tamano"+gl.contarCitasGeneral().size());
 		List<ConteoCitas> cantidad = gl.contarCitasUsuario(cedula); 
 		return cantidad;
+	}
+	
 	public FacturaCabecera recuperarFactura(int codigo) {
 		System.out.println(codigo);
 		if(codigo==0)

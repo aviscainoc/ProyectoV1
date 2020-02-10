@@ -46,6 +46,11 @@ public class GestionFacturaCabecera implements GestionFacturaCabeceraLocal{
 	}
 
 	@Override
+	public FacturaCabecera getFactura(int codigo) {
+		return daoFc.getFacturaCab(codigo);
+	}
+
+	@Override
 	public int guardarFacturaCabeceraConsumidorFinal() {
 		FacturaCabecera fc = new FacturaCabecera();
 		fc.setFac_cab_cedula("9999999999");

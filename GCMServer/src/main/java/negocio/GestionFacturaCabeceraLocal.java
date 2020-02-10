@@ -13,4 +13,5 @@ public interface GestionFacturaCabeceraLocal {
 	public int guardarFacturaCabeceraConsumidorFinal();
 	public List<FacturaCabecera> getFacturas();	
 	public FacturaCabecera getFacturaCabecera(int codigo);
+	public FacturaCabecera getFactura(int codigo);
 }
