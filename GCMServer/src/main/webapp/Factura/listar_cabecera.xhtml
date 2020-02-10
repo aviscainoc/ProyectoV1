@@ -62,18 +62,18 @@
 	<h:column>
 		<h:panelGrid columns="4" rows="2">
 			<h:outputLabel value="Descripcion" />
-			<h:inputText value="#{gestionFacturaCabeceraBean.fac_det_descripcion}" placeholder="Descripcion" />
+			<h:inputText value="#{gestionCitasBean.fac_det_descripcion}" placeholder="Descripcion" />
 			
 			<h:outputLabel value="Precio" />
-			<h:inputText value="#{gestionFacturaCabeceraBean.fac_det_precio}" placeholder="Precio" />
+			<h:inputText value="#{gestionCitasBean.fac_det_precio}" placeholder="Precio" />
 			
 			<h:outputLabel value="Cantidad" />
 			<h:inputText value="#{gestionFacturaCabeceraBean.fac_det_cantidad}" placeholder="Cantidad" />
 			
 			<h:outputLabel value="Cabecera" />
-			<h:inputText value="#{gestionFacturaCabeceraBean.fac_cab_id}" placeholder="Cabecera" />
+			<h:inputText value="#{gestionCitasBean.fac_cab_codigo}" placeholder="Cabecera" />
 				
-			<h:commandButton action="#{gestionFacturaCabeceraBean.guardarDetalle()}" value="Insertar Detalle" />
+			<h:commandButton action="#{gestionCitasBean.guardarDetalle()}" value="Insertar Detalle" />
 			<h:commandButton action="crear_cabecera" value="Regresar"></h:commandButton>
 		</h:panelGrid>
 	</h:column>	

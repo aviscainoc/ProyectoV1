@@ -5,7 +5,7 @@
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:pt="http://xmlns.jcp.org/jsf/passthrough" 
       xmlns:p="http://primefaces.org/ui"> 
-
+       
 <h:head>
 	<f:metadata>
         <f:viewParam id="username" name="username" value="#{gestionUsuariosBean.us_cedula}"/>
@@ -68,6 +68,7 @@
 				<li class="nav-item"><a class="nav-link btn-xs" href="#examen" data-toggle="tab" style="padding-left: 10px; padding-right: 10px;">Enviar exámenes de laboratorio</a></li>
 				<li class="nav-item"><a class="nav-link btn-xs" href="#receta" data-toggle="tab" style="padding-left: 10px; padding-right: 10px;">Crear receta médica</a></li>
 				<li class="nav-item"><a class="nav-link btn-xs" href="#permiso" data-toggle="tab" style="padding-left: 10px; padding-right: 10px;">Redactar permiso médico</a></li>
+				<li class="nav-item"><a class="nav-link btn-xs" href="#factura" data-toggle="tab" style="padding-left: 10px; padding-right: 10px;">Datos de la factura</a></li>
 			</ul>
 		</div>
 		
@@ -190,15 +191,32 @@
 						</div>
 					</div>
 				</div>
-				
+				<!-- ========================================= FACTURACIÓN CABECERA ===================================== -->
+				<div class="tab-pane" id="factura">
+					<div class="card-body">
+						<h:panelGrid columns="2" class="table" style="font-size: 14px;">
+							<h:outputLabel value="Cédula del usuario" />
+							<h:inputText value="#{gestionCitasBean.fac_cab_cedula}" placeholder="Cédula del usuario" />
+							<h:outputLabel value="Nombre del usuario" />
+							<h:inputText value="#{gestionCitasBean.fac_cab_nombre}" placeholder="Nombre del usuario" />							
+							<h:outputLabel value="Dirección del usuario" />
+							<h:inputText value="#{gestionCitasBean.fac_cab_direccion}" placeholder="Direccion del usuario" />							
+							<h:outputLabel value="Telefono del usuario" />
+							<h:inputText value="#{gestionCitasBean.fac_cab_telefono}" placeholder="Telefono del usuario" />							
+							<h:outputLabel value="Correo del usuario" />
+							<h:inputText value="#{gestionCitasBean.fac_cab_correo}" placeholder="Correo del usuario" />
+						</h:panelGrid>
+					</div>
+				</div>
 				
 			</div>
 			<center><span style="color: #F58C08; font-size: 14px;">**Al guardar la cita médica no podrá editar el diagnóstico, ni agregar exámenes médicos, recetas o permisos**</span></center>
 			<br></br>
 			<div class="float-right" style="padding-right: 20px;">
 				<h:panelGrid columns="2">
-					<h:commandButton action="#{gestionCitasBean.terminarCita()}" value="    Guardar cita médica    " class="btn btn-block btn-outline-secondary btn-xs"/>
 					<h:commandButton action="#" value="   Cancelar    " class="btn btn-block btn-outline-secondary btn-xs"/>
+					<h:commandButton action="#{gestionCitasBean.terminarCita(1)}" value="    Guardar cita médica    " class="btn btn-block btn-outline-secondary btn-xs"/>
+					<h:commandButton action="#{gestionCitasBean.terminarCita(2)}" value="    Guardar cita médica Consumidor Final    " class="btn btn-block btn-outline-secondary btn-xs"/>
 				</h:panelGrid>
 			</div>
 			<br></br>

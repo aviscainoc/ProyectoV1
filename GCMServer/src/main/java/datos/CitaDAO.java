@@ -110,13 +110,12 @@ public class CitaDAO {
 	}
 	
 	
-	public List<Cita> getCitasProximas(Date fecha, String cedula){
-		
-		String jpql = "SELECT u FROM Cita u WHERE ci_fecha_cita > ?1 AND u.usuario.us_cedula LIKE ?2";
+	public List<Cita> getProximasCitas(String cedula, Date fecha){
+		String jpql = "SELECT u FROM Cita u WHERE ci_fecha_cita > ?1 AND usuario_us_cedula = ?2 AND ci_estado = ?3";
 		Query q = em.createQuery(jpql, Cita.class);
 		q.setParameter(1, fecha);
 		q.setParameter(2, cedula);
-		
+		q.setParameter(3, "pendiente");
 		List<Cita> citas = q.getResultList();
 		return citas;
 	}

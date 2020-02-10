@@ -9,7 +9,7 @@
 	<ui:define name="h1Titulo">Citas Médicas</ui:define>
 	<ui:define name="nombreUser">Dr. #{user.us_nombres} <br></br>#{user.us_apellidos}</ui:define>
 	<ui:define name="contenido">
-
+	<h:form>
 		<h:dataTable value="#{gestionCitasBean.recuperarCitasPendientes()}" var="cita" class="table  table-hover">
 			<h:column>
 				#{cita.usuario.us_cedula}
@@ -26,19 +26,22 @@
 				<f:facet name="header">Fecha de la cita</f:facet>
 			</h:column>
 			<h:column>
-				
-				<h:outputLabel value="#{cita.getHora()}" style="font-weight: normal">
-					<f:convertDateTime type="time" dateStyle="full"/>
-				</h:outputLabel>
-				<f:facet name="header">Hora de la cita</f:facet>
+					<h:outputLabel value="#{cita.getHora()}" style="font-weight: normal">
+						<f:convertDateTime type="time" dateStyle="full"/>
+					</h:outputLabel>
+					<f:facet name="header">Hora de la cita</f:facet>
 			</h:column>
 			<h:column>
-				<h:link value="Agregar diagnóstico" outcome="agregar_diagnostico">
+				<h:link value="Agregar diagnóstico" outcome="agregar-diagnostico">
 					<f:param name="username" value= " #{cita.usuario.us_cedula}" />
 					<f:param name="cita" value= "#{cita.ci_codigo}" />
 				</h:link>
 			</h:column>
+			<h:column>
+				<h:commandLink action="#{gestionCitasBean.cancelarCita(cita.ci_codigo)}" value="Cancelar cita" />
+			</h:column>
 		</h:dataTable>
+	</h:form>
 	</ui:define>
 </ui:composition>
 </html>
