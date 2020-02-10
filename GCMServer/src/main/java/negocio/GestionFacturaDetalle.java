@@ -39,7 +39,7 @@ public class GestionFacturaDetalle implements GestionFacturaDetalleLocal{
 			fc.setFac_cab_iva(Math.round((precio * 1.12) * 100) / 100d);
 			fc.addDetalle(fd);
 			daoFd.insert(fd);
-			System.out.println("Cabecera encontrada, " + fc.getFac_cab_nombre()); 
+			System.out.println("Cabecera encontrada 1, " + fc.getFac_cab_nombre()); 
 			return true;
 		}else{
 			FacturaCabecera fc1 = new FacturaCabecera();
