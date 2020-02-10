@@ -711,6 +711,7 @@ public class GestionCitasBean {
 		System.out.println("tamano"+gl.contarCitasGeneral().size());
 		List<ConteoCitas> cantidad = gl.contarCitasUsuario(cedula); 
 		return cantidad;
+	}
 	public FacturaCabecera recuperarFactura(int codigo) {
 		System.out.println(codigo);
 		if(codigo==0)

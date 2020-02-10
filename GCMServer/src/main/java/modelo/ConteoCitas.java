@@ -1,7 +1,16 @@
 package modelo;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+
 public class ConteoCitas {
-	
+
+   
+    private long idcuenta;
 	private int contador=0;
 	private int mes;
 	public int getContador() {
