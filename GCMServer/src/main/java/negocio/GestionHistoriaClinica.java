@@ -23,14 +23,18 @@ public class GestionHistoriaClinica implements GestionHistoriaClinicaRemote, Ges
 	@Override
 	public int guardarHistoriaClinica(String hc_residencia, String hc_fecha, String hc_motivo_consulta,
 			String hc_enfermedad_actual, Usuario usuario) {
+		System.out.println("Entra a gestionH");
 		HistoriaClinica hc = new HistoriaClinica();
 		hc.setHc_residencia(hc_residencia);
 		hc.setHc_fecha(hc_fecha);
 		hc.setHc_movito_consulta(hc_motivo_consulta);
 		hc.setHc_enfermedad_actual(hc_enfermedad_actual);
+		System.out.println("problemas usuario");
 		hc.setUsuario(usuario);
+		System.out.println("recupera datos "+hc_enfermedad_actual);
 		dao.insert(hc);
 		System.out.println(hc);
+		System.out.println("codigo de historia"+hc.getHc_codigo());
 		return hc.getHc_codigo();
 	}
 

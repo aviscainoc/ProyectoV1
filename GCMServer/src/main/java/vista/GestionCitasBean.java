@@ -579,6 +579,10 @@ public class GestionCitasBean {
 	}
 	
 	public String terminarCita(int cod) {
+		guardarHistoriasClinicas();
+		guardarExamenLaboratorios();
+		guardarRecetas();
+		guardarCertificado();
 		if (guardarHistoriasClinicas() && guardarExamenLaboratorios() && guardarRecetas() && guardarCertificado()) {
 			if(cod == 1) {
 				guardarFacturaCabeceraDatos();
@@ -606,6 +610,8 @@ public class GestionCitasBean {
 	
 	public boolean guardarHistoriasClinicas() {
 		try {
+			System.out.println("Llama a guardarBean");
+			gh.guardarHistoriaClinica(hc_residencia, hc_fecha, hc_movito_consulta, hc_enfermedad_actual, usuario);
 			hc_codigo = gh.guardarHistoriaClinica(hc_residencia, hc_fecha, hc_movito_consulta, hc_enfermedad_actual, usuario);
 			historias = gh.getHistoriasClinicas();
 			return true;	
