@@ -42,41 +42,45 @@
 	<ui:define name="actividad">
 		<center>
 		<h:form>
-			<h:dataTable width="50%" value="#{gestionCitasBean.recuperarIngresosEgresos()}" var="ingresosEgresos" border="4" cellspacing="1" cellpadding="1">
-				<h:column>
-					#{ingresosEgresos.ie_descripcion}
-					<f:facet name="header">Descripción</f:facet>
-				</h:column>
-				<h:column>
-					#{ingresosEgresos.ie_dinero}
-					<f:facet name="header">Monto</f:facet>
-				</h:column>	
-			</h:dataTable>
-			<h:dataTable width="50%" value="#{gestionCitasBean.us_dinero}" var="ingresosEgresos" border="4" cellspacing="1" cellpadding="1">
-				<h:column>
-					<h:outputLabel value="#{gestionCitasBean.us_dinero}"/>
-					<f:facet name="header">Total</f:facet>
-				</h:column>	
-			</h:dataTable>
-			
-			<h:panelGrid columns="2" >
-				<h:outputLabel value="Descripcion" />
-				<h:inputText value="#{gestionCitasBean.ie_descripcion}" placeholder="Descripcion" />
+			<div class="card-body" style="width: 50%">
+				<h:dataTable value="#{gestionCitasBean.recuperarIngresosEgresos()}" var="ingresosEgresos" class="table table-bordered">
+					<h:column>
+						#{ingresosEgresos.ie_descripcion}
+						<f:facet name="header">Descripción</f:facet>
+					</h:column>
+					<h:column>
+						#{ingresosEgresos.ie_dinero}
+						<f:facet name="header">Monto</f:facet>
+					</h:column>	
+					<h:column>
+						#{gestionCitasBean.tipo(ingresosEgresos.ie_dinero)}
+						<f:facet name="header">Tipo</f:facet>
+					</h:column>	
+				</h:dataTable>
 				
-				<h:outputLabel value="Monto" />
-				<h:inputText value="#{gestionCitasBean.ie_dinero}" placeholder="Monto" />
+				<h:panelGrid columns="2" class="table table-bordered">
+					<h:outputLabel value="Total"></h:outputLabel>
+					<h:outputLabel value="#{user.us_dinero}" />
+				</h:panelGrid>
+				
+				<h:panelGrid columns="8" class="table ">
+					<h:outputLabel value="Descripcion" />
+					<h:inputText value="#{gestionCitasBean.ie_descripcion}" class="form-control" placeholder="Descripcion" />
 					
-				<h:inputHidden value="#{user.us_cedula}" />
-					
-				<h:commandButton action="#{gestionCitasBean.guardarIngreso()}" value="Ingreso"/>
-				<f:view>  
-				    <h:commandButton id="mybutton" value="Egreso"
-				      binding="#{gestionCitasBean.mybutton}"
-				      action="#{gestionCitasBean.guardarEgreso()}" />
-				    <h:message for="mybutton" />
-				</f:view>
-				<h:commandButton action="/User/index" value="Regresar"></h:commandButton>
-			</h:panelGrid>
+					<h:outputLabel value="Monto" />
+					<h:inputText value="#{gestionCitasBean.ie_dinero}" class="form-control" placeholder="Monto" />
+						
+					<h:inputHidden value="#{user.us_cedula}" />
+						
+					<h:commandButton action="#{gestionCitasBean.guardarIngreso()}" class="btn btn-primary btn-block" value="Ingreso"/>
+					<f:view>  
+					    <h:commandButton id="mybutton" value="Egreso"
+					      binding="#{gestionCitasBean.mybutton}"
+					      action="#{gestionCitasBean.guardarEgreso()}" class="btn btn-primary btn-block" />
+					    <h:message for="mybutton" />
+					</f:view>
+				</h:panelGrid>
+			</div>
 		</h:form>
 		</center>
 	</ui:define>

@@ -886,7 +886,12 @@ public class GestionCitasBean {
 		gul.descargarExamenes(texto);
 	}
 	
-	
+	public String tipo(double valor) {
+		if (valor < 0.0)
+			return "Egreso";
+		else
+			return "Ingreso";
+	}
 	
 	
 	
