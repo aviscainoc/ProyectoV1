@@ -905,4 +905,9 @@ public class GestionCitasBean {
 		return gl.getSaldo();
 	}
 	
+   public String moveToPageDefecto() {
+      return "/User/index";
+   }
+	
+  
 }
