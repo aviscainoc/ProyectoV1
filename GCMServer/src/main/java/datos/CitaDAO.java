@@ -14,7 +14,6 @@ import javax.persistence.Query;
 import org.primefaces.json.JSONObject;
 
 import modelo.Cita;
-import modelo.ConteoCitas;
 
 @Stateless
 public class CitaDAO {

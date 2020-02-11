@@ -6,7 +6,6 @@ import javax.faces.bean.ManagedBean;
 import javax.inject.Inject;
 
 import modelo.Cita;
-import modelo.Paciente;
 import modelo.RecetaMedica;
 import negocio.GestionRecetaMedicaLocal;
 

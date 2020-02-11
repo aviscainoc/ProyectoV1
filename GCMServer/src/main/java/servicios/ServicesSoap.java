@@ -19,8 +19,6 @@ public class ServicesSoap {
 	@Inject 
 	private GestionFacturaDetalleLocal gld;
 	
-	@Inject
-	private GestionEstadoLocal gle;
 	
 	/*@WebMethod
 	public Respuesta CrearCabecera(String cedula){

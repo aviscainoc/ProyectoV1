@@ -7,11 +7,8 @@ import javax.ejb.Local;
 
 import modelo.CertificadoAusencia;
 import modelo.Cita;
-import modelo.ConteoCitas;
 import modelo.ExamenLaboratorio;
 import modelo.HistoriaClinica;
-import modelo.Medico;
-import modelo.Paciente;
 import modelo.RecetaMedica;
 
 @Local

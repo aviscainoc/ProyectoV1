@@ -6,7 +6,6 @@ import javax.ejb.Remote;
 import modelo.Cita;
 import modelo.ExamenLaboratorio;
 import modelo.HistoriaClinica;
-import modelo.Paciente;
 import modelo.Usuario;
 
 

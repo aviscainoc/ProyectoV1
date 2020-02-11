@@ -8,12 +8,10 @@ import javax.inject.Inject;
 import datos.FacturaCabeceraDAO;
 import datos.FacturaDetalleDAO;
 import datos.IngresoEgresoDAO;
-import datos.MedicoDAO;
 import datos.UsuarioDAO;
 import modelo.FacturaCabecera;
 import modelo.FacturaDetalle;
 import modelo.IngresosEgresos;
-import modelo.Medico;
 import modelo.Usuario;
 
 @Stateful
