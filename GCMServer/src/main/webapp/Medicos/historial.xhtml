@@ -37,13 +37,13 @@
 				
 				<h:column>
 					<f:facet name="header">Receta</f:facet>
-					<h:commandLink action="#{gestionCitasBean.imprimirCertificado(cita.ci_codigo)}" value="Descargar Receta " />
+					<h:commandLink action="#{gestionCitasBean.imprimirRecetaMedica(cita.ci_codigo)}" value="Descargar Receta " />
 					
 				</h:column>
 				
 				<h:column>
 					<f:facet name="header">Examenes Medicos</f:facet>
-					<h:commandLink action="#{gestionCitasBean.imprimirCertificado(cita.ci_codigo)}" value="Descargar Examenes " />
+					<h:commandLink action="#{gestionCitasBean.imprimirExamen(cita.ci_codigo)}" value="Descargar Examenes " />
 					
 				</h:column>
 				

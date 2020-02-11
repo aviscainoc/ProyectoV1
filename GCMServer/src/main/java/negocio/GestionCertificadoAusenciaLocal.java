@@ -17,5 +17,7 @@ public interface GestionCertificadoAusenciaLocal {
 	public void update(int ca_codigo, String ca_descripcion);
 	public void eliminar(int codigo);
 	public CertificadoAusencia getCertificado(int codigo);
+	public int obtenerCodigoCertificado(int codigo);
+	public String obtenerTexto(int codigoCA);
 	
 }

@@ -798,9 +798,50 @@ public class GestionCitasBean {
 	
 	
 	public void imprimirCertificado(int codigoCita) throws IOException {
-		int code=gl.getCita(codigoCita).getCi_codigo();
-		System.out.println("Codigo de la cita"+code);
-		String texto = gul.descargarCertificadoMedico();
-		gul.descargarCertificadoMedico(e );
+		//recuperar el texto del certificado
+		int codigoCA = gc.obtenerCodigoCertificado(codigoCita);
+		System.out.println("esto viene "+codigoCA);
+		
+		String texto = gc.obtenerTexto(codigoCA);
+		System.out.println(texto+"Texto que va al pdf");
+		
+		
+		//System.out.println("Codigo de la cita"+code);
+		//String texto = gc.getCertificado()//String texto = gul.descargarCertificadoMedico();
+		gul.descargarCertificadoMedico(texto);
 	}
+	
+	
+	public void imprimirRecetaMedica(int codigoCita) throws IOException {
+		//recuperar el texto del certificado
+		int codigoCA = gr.obtenerCodigoRM(codigoCita);
+		System.out.println("esto viene "+codigoCA);
+		
+		String texto = gr.obtenerTextoRM(codigoCA);
+		System.out.println(texto+"Texto que va al pdf");
+		
+		
+		//System.out.println("Codigo de la cita"+code);
+		//String texto = gc.getCertificado()//String texto = gul.descargarCertificadoMedico();
+		gul.descargarRecetaMedica(texto);
+	}
+	
+	public void imprimirExamen(int codigoCita) throws IOException {
+		//recuperar el texto del certificado
+		int codigoCA = ge.obtenerCodigoExamen(codigoCita);
+		System.out.println("esto viene "+codigoCA);
+		
+		String texto = ge.obtenerTextoEx(codigoCA);
+		System.out.println(texto+"Texto que va al pdf");
+		
+		
+		//System.out.println("Codigo de la cita"+code);
+		//String texto = gc.getCertificado()//String texto = gul.descargarCertificadoMedico();
+		gul.descargarExamenes(texto);
+	}
+	
+	
+	
+	
+	
 }

@@ -59,8 +59,11 @@ public class ExamenLaboratorio {
 	}
 	@Override
 	public String toString() {
-		return "ExamenLaboratorio [el_codigo=" + el_codigo + ", el_quimica=" + el_quimica
-				+ ", el_heces=" + el_heces + ", el_microbiologia=" + el_microbiologia + ", el_hematologia="
-				+ el_hematologia + ", el_orina=" + el_orina + "]";
+		return "ExamenLaboratorio \n\n\n "
+				+ "Examenes Quimicos = " + el_quimica
+				+ "\nExamenes de Heces = " + el_heces 
+				+ "\nMicrobiologia = " + el_microbiologia 
+				+ "Ematologia = "+ el_hematologia 
+				+ "Orina = " + el_orina + "]";
 	}	
 }

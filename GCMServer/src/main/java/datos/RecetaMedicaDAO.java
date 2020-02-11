@@ -44,5 +44,16 @@ public class RecetaMedicaDAO {
 		return receta;
 	}
 	
+	public String obtenerTextoRM(int codigoCA) {
+		// TODO Auto-generated method stub
+		String jpql = "SELECT u FROM RecetaMedica u WHERE u.rm_codigo = ?1";
+		Query q = em.createQuery(jpql, RecetaMedica.class);
+		q.setParameter(1, codigoCA);
+		
+		String texto = (String) q.getSingleResult().toString();
+		System.out.println(texto+"Texto en DAO");
+		return texto;
+	}
+	
 	
 }

@@ -5,6 +5,7 @@ import java.util.List;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 
+import datos.CitaDAO;
 import datos.ExamenLaboratorioDAO;
 import modelo.Cita;
 import modelo.ExamenLaboratorio;
@@ -16,6 +17,7 @@ public class GestionExamenLaboratorio implements GestionExamenLaboratorioRemote,
 
 	@Inject
 	private ExamenLaboratorioDAO dao;
+	@Inject CitaDAO daoC;
 	
 	
 	public int guardarExamenLaboratorio(String el_quimica, String el_heces, String el_microbiologia, String el_hematologia, String el_orina) {
@@ -51,5 +53,15 @@ public class GestionExamenLaboratorio implements GestionExamenLaboratorioRemote,
 	
 	public ExamenLaboratorio getExamen(int codigo) {
 		return dao.read(codigo);
+	}
+	
+	public int obtenerCodigoExamen(int codigo) {
+		System.out.println(daoC.obtenerCodigoCertificado(codigo));
+		return daoC.obtenerCodigoCertificado(codigo);
+	}
+	
+	public String obtenerTextoEx(int codigoCA) {
+		String texto = dao.obtenerTextoEX(codigoCA);
+		return texto;
 	}
 }

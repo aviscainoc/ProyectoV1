@@ -60,7 +60,7 @@ public class RecetaMedica {
 	}
 	@Override
 	public String toString() {
-		return "RecetaMedica [rm_codigo=" + rm_codigo + ", rm_peso=" + rm_peso + ", rm_talla="
-				+ rm_talla + ", rm_edad=" + rm_edad + ", rm_TA=" + rm_TA + ", rm_rx=" + rm_rx + "]";
+		return "RecetaMedica :\n\n\n "+ "Peso del paciente = " + rm_peso +"\n"+ " Talla del paciente = "
+				+ rm_talla + " \n Edad del paciente = " + rm_edad + "\n Duracion del Tratamiento=" + rm_TA + "\n\n Indicaciones =\n\n" + rm_rx + "]";
 	}
 }

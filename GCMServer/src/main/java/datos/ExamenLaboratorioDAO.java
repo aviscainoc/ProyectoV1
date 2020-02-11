@@ -44,4 +44,15 @@ public class ExamenLaboratorioDAO {
 		return examen;
 	}
 	
+	public String obtenerTextoEX(int codigoCA) {
+		// TODO Auto-generated method stub
+		String jpql = "SELECT u FROM ExamenLaboratorio u WHERE u.el_codigo = ?1";
+		Query q = em.createQuery(jpql, ExamenLaboratorio.class);
+		q.setParameter(1, codigoCA);
+		
+		String texto = (String) q.getSingleResult().toString();
+		System.out.println(texto+"Texto en DAO");
+		return texto;
+	}
+	
 }

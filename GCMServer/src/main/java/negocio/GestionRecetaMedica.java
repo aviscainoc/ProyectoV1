@@ -5,6 +5,7 @@ import java.util.List;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 
+import datos.CitaDAO;
 import datos.RecetaMedicaDAO;
 import modelo.Cita;
 import modelo.Paciente;
@@ -15,6 +16,9 @@ public class GestionRecetaMedica implements GestionRecetaMedicaLocal, GestionRec
 	
 	@Inject
 	private RecetaMedicaDAO dao;
+	
+	@Inject
+	private CitaDAO daoC;
 	
 	@Override
 	public int guardarRecetaMedica(String rm_peso, String rm_talla, String rm_edad, String rm_TA, String rm_rx) {
@@ -56,6 +60,16 @@ public class GestionRecetaMedica implements GestionRecetaMedicaLocal, GestionRec
 	
 	public RecetaMedica getReceta(int codigo) {
 		return dao.read(codigo);
+	}
+	
+	public int obtenerCodigoRM(int codigo) {
+		System.out.println(daoC.obtenerCodigoReceta(codigo));
+		return daoC.obtenerCodigoReceta(codigo);
+	}
+	
+	public String obtenerTextoRM(int codigoCA) {
+		String texto = dao.obtenerTextoRM(codigoCA);
+		return texto;
 	}
 
 }

@@ -1,5 +1,6 @@
 package datos;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.ejb.Stateless;
@@ -44,5 +45,18 @@ public class CertificadoAusenciaDAO {
 		
 		return certificadoAusencia;
 	}
+
+	public String obtenerTextoCA(int codigoCA) {
+		// TODO Auto-generated method stub
+		String jpql = "SELECT u.ca_descripcion FROM CertificadoAusencia u WHERE u.ca_codigo = ?1";
+		Query q = em.createQuery(jpql, String.class);
+		q.setParameter(1, codigoCA);
+		
+		String texto = (String) q.getSingleResult().toString();
+		System.out.println(texto+"Texto en DAO");
+		return texto;
+	}
+	
+	
 	
 }

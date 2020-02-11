@@ -128,12 +128,54 @@ public class CitaDAO {
 		return citas;
 	}
 	public List<Cita> getCitasPasadas(Date fecha){
-		String jpql = "SELECT u FROM Cita u WHERE ci_fecha_cita < ?1";
+		String jpql = "SELECT u FROM Cita u WHERE ci_estado = ?1";
 		Query q = em.createQuery(jpql, Cita.class);
-		q.setParameter(1, fecha);
+		q.setParameter(1, "terminada");
 		
 		List<Cita> citas = q.getResultList();
 		
 		return citas;
 	}
+	//metodo codigo certificado
+	public int obtenerCodigoCertificado(int codigo) {
+		String jpql = "SELECT u.certificado.ca_codigo FROM Cita u WHERE u.ci_codigo = ?1";
+		Query q = em.createQuery(jpql, Integer.class);
+		q.setParameter(1, codigo);
+			
+		int codCertificado =  (int) q.getSingleResult();
+		System.out.println(codCertificado+"esto habia");
+		return codCertificado;
+	}
+	//metodo codigo receta
+	public int obtenerCodigoReceta(int codigo) {
+		String jpql = "SELECT u.receta.rm_codigo FROM Cita u WHERE u.ci_codigo = ?1";
+		Query q = em.createQuery(jpql, Integer.class);
+		q.setParameter(1, codigo);
+			
+		int codReceta =  (int) q.getSingleResult();
+		System.out.println(codReceta+" :Codigo de receta");
+		return codReceta;
+	}
+	
+	//metodo codigo examenes
+		public int obtenerCodigoExamen(int codigo) {
+			String jpql = "SELECT u.examen.el_codigo FROM Cita u WHERE u.ci_codigo = ?1";
+			Query q = em.createQuery(jpql, Integer.class);
+			q.setParameter(1, codigo);
+				
+			int codEx =  (int) q.getSingleResult();
+			System.out.println(codEx+" :Codigo de receta");
+			return codEx;
+		}
+		
+		//metodo codigo factura
+		public int obtenerCodigoFactura(int codigo) {
+			String jpql = "SELECT u.fac_cab_factura.fac_cab_id FROM Cita u WHERE u.ci_codigo = ?1";
+			Query q = em.createQuery(jpql, Integer.class);
+			q.setParameter(1, codigo);
+				
+			int codReceta =  (int) q.getSingleResult();
+			System.out.println(codReceta+" :Codigo de receta");
+			return codReceta;
+		}
 }
