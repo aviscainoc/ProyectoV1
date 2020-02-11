@@ -14,6 +14,7 @@ import javax.persistence.Query;
 import org.primefaces.json.JSONObject;
 
 import modelo.Cita;
+import modelo.IngresosEgresos;
 
 @Stateless
 public class CitaDAO {
@@ -165,7 +166,12 @@ public class CitaDAO {
 		}
 		
 		public double getSaldo() {
-			Query q = em.createNativeQuery("SELECT SUM(ie_dinero) FROM ingresosegresos ie");
-			return (double) q.getSingleResult();
+			String jpql = "SELECT ie.ie_dinero FROM IngresosEgresos ie";
+			Query q = em.createQuery(jpql, Double.class);
+			List<Double> saldos = q.getResultList();
+			double saldo = 0.0;
+			for (double i: saldos)
+				saldo = saldo + i;
+			return saldo;
 		}
 }
