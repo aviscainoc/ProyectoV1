@@ -492,6 +492,7 @@ public class GestionCitasBean {
 	public void setUs_dinero(double us_dinero) {
 		this.us_dinero = us_dinero;
 	}
+	
 	public String guardarCita() {
 		String rol="pac";
 		int registro=0;
@@ -526,6 +527,31 @@ public class GestionCitasBean {
 			citas=gl.getCitas();
 			return "persuasiva";
 		}
+	}
+	
+	public String guardarCita(Usuario u) {
+		ci_fecha_agendacion = new Date();
+		ci_estado = "pendiente";
+		String[] fecha = ci_fecha_cita.split("-");
+		int dia = Integer.parseInt(fecha[0]);
+		int mes = Integer.parseInt(fecha[1]) - 1;
+		int anio = Integer.parseInt(fecha[2]);
+		
+		Calendar cal = Calendar.getInstance();
+		cal.set(Calendar.HOUR_OF_DAY, hora);
+		cal.set(Calendar.MINUTE, minuto);
+		cal.set(Calendar.SECOND, 00);
+		cal.set(Calendar.DATE, dia);
+		cal.set(Calendar.MONTH, mes);
+		cal.set(Calendar.YEAR, anio);
+		
+		Date fecha_cita = cal.getTime();
+		
+		gl.guardarCita(u.getUs_cedula(), ci_fecha_agendacion, fecha_cita, ci_estado);
+		System.out.println("aqui va la fecha");
+		System.out.println(fecha_cita);
+		citas=gl.getCitas();
+		return "perfil";
 	}
 		
 	public List<Cita> recuperarCitas(){
@@ -620,7 +646,6 @@ public class GestionCitasBean {
 		try {
 			System.out.println("Llama a guardarBean");
 			gh.guardarHistoriaClinica(hc_residencia, hc_fecha, hc_movito_consulta, hc_enfermedad_actual);
-			//gh.guardarHistoriaClinica(hc_residencia, hc_fecha, hc_movito_consulta, hc_enfermedad_actual, usuario);
 			hc_codigo = getHc_codigo();
 			historias = gh.getHistoriasClinicas();
 			return true;	
@@ -714,9 +739,11 @@ public class GestionCitasBean {
 	public FacturaCabecera getFactura() {
 		return factura;
 	}
+	
 	public void setFactura(FacturaCabecera factura) {
 		this.factura = factura;
 	}
+	
 	public List<FacturaDetalle> recuperarFacturasDetalle(){
 		facturasDetalle = gld.getFacturaDetalleCabecera(fac_cab_codigo);
 		System.out.println("fac detalle " + facturasDetalle);
@@ -724,9 +751,12 @@ public class GestionCitasBean {
 	}
 	 
 	public String contarCitasUsuario(String cedula){
-		System.out.println("Impresion de las citas con toString");
-		System.out.println(gl.contarCitasUsuario(cedula).toString());
 		cantidad = gl.contarCitasUsuario(cedula); 
+		return cantidad;
+	}
+	 
+	public String contarCitasGeneral(){
+		cantidad = gl.contarCitasGeneral(); 
 		return cantidad;
 	}
 	

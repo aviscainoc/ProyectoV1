@@ -11,14 +11,19 @@
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1"></meta>
 
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="../Plantilla/plugins/fontawesome-free/css/all.min.css"></link>
-  <!-- Ionicons -->
-  <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css"></link>
-  <!-- Theme style -->
-  <link rel="stylesheet" href="../Plantilla/dist/css/adminlte.min.css"></link>
-  <!-- Google Font: Source Sans Pro -->
-  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet"></link>
+	<!-- Font Awesome Icons -->
+	<link rel="stylesheet" href="../Plantilla/plugins/fontawesome-free/css/all.min.css"></link>
+  	<!-- Ionicons -->
+  	<link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css"></link>
+  	<!-- daterange picker -->
+  	<link rel="stylesheet" href="../Plantilla/plugins/daterangepicker/daterangepicker.css"></link>
+  	<!-- Tempusdominus Bbootstrap 4 -->
+  	<link rel="stylesheet" href="../Plantilla/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css"></link>
+	<!-- Theme style -->
+	<link rel="stylesheet" href="../Plantilla/dist/css/adminlte.min.css"></link>
+	<!-- Google Font: Source Sans Pro -->
+	<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet"></link>
+	<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" />
 </h:head>
 
 <h:body class="hold-transition sidebar-mini">
@@ -79,14 +84,6 @@
                 <a href="#" class="nav-link active">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Historial Médico</p>
-                </a>
-              </li>
-            </ul>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="#" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Agendar cita</p>
                 </a>
               </li>
             </ul>
@@ -229,7 +226,7 @@
       labels  : ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
       datasets: [
         {
-          label               : 'Digital Goods',
+          label               : 'Número de citas',
           backgroundColor     : 'rgba(60,141,188,0.9)',
           borderColor         : 'rgba(60,141,188,0.8)',
           pointRadius          : false,
@@ -271,5 +268,18 @@
     
   })
 </script>
+
+<script>
+$(document).ready(function() {
+	   $(".datepicker").datepicker({
+	      dateFormat: 'dd-mm-yy',
+	      changeMonth: true,
+	      changeYear: true,
+	      yearRange: "2020:2025"
+	   });
+	});
+</script>
+<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.js" />
+<script type="text/javascript" src="https://code.jquery.com/ui/1.12.1/jquery-ui.js" />
 </h:body>
 </html>

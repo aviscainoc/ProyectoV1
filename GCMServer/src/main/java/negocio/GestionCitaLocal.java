@@ -32,6 +32,6 @@ public interface GestionCitaLocal {
 	public Cita getCita(int codigo);
 	
 	public List<Cita> recuperarCitasPasadas(Date fecha);
-	public List<ConteoCitas> contarCitasGeneral();
+	public String contarCitasGeneral();
 	public String contarCitasUsuario(String cedula);
 }

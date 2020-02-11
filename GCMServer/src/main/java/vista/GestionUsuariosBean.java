@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
+import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
@@ -13,6 +14,8 @@ import modelo.Cita;
 import modelo.HistoriaClinica;
 import modelo.Usuario;
 import negocio.GestionUsuariosLocal;
+
+import javax.faces.component.UIInput;
 
 @ManagedBean
 public class GestionUsuariosBean {
@@ -230,6 +233,58 @@ public class GestionUsuariosBean {
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
 	}
+	
+	
+	
+	
+	
+
+	public void validarCedula(FacesContext context, UIComponent comp, Object value) {
+		System.out.println("inside validate method");
+		String cedula = (String) value;
+		boolean cedulaCorrecta = false;
+		
+		try {
+			 
+			if (cedula.length() == 10) {
+				int tercerDigito = Integer.parseInt(cedula.substring(2, 3));
+				if (tercerDigito < 6) {
+					// Coeficientes de validación cédula
+					// El decimo digito se lo considera dígito verificador
+					int[] coefValCedula = { 2, 1, 2, 1, 2, 1, 2, 1, 2 };
+					int verificador = Integer.parseInt(cedula.substring(9,10));
+					int suma = 0;
+					int digito = 0;
+					for (int i = 0; i < (cedula.length() - 1); i++) {
+						digito = Integer.parseInt(cedula.substring(i, i + 1))* coefValCedula[i];
+						suma += ((digito % 10) + (digito / 10));
+					}
+					if ((suma % 10 == 0) && (suma % 10 == verificador))
+						cedulaCorrecta = true;
+					else if ((10 - (suma % 10)) == verificador)
+						cedulaCorrecta = true;
+					else
+						cedulaCorrecta = false;
+				} else 
+					cedulaCorrecta = false;
+			} else
+				cedulaCorrecta = false;
+			
+		} catch (NumberFormatException nfe) {
+			cedulaCorrecta = false;
+		} catch (Exception err) {
+			System.out.println("Una excepcion ocurrio en el proceso de validadcion");
+			cedulaCorrecta = false;
+		}
+		
+		if (!cedulaCorrecta) {
+			((UIInput) comp).setValid(false);
+			FacesMessage message = new FacesMessage(
+					"Cédula ecuatoriana no válida");
+			context.addMessage(comp.getClientId(context), message);
+		}
+
+	}
 
 	public String guardarUsuariosPaciente() {
 		String rol="pac";
@@ -255,23 +310,17 @@ public class GestionUsuariosBean {
 		usuarios = gl.getUsuarios();
 		return usuarios;
 	}
-	/*public void eliminar() {
-		gl.eliminar(us_cedula);
-	}*/
 	
 	public String login() {
-		Usuario user;
 		try {
 			usuario = gl.login(us_correo, us_contrasena);
 			System.out.println(usuario);
 			if(usuario.getUs_rol().equals("pac")) {
-				//usuario = user;
 				FacesContext context = FacesContext.getCurrentInstance();
 		        HttpSession session = (HttpSession) context.getExternalContext().getSession(true);
 		        session.setAttribute("user", usuario);
 				return "/User/perfil";
 			}else {
-				//usuario = user;
 				FacesContext context = FacesContext.getCurrentInstance();
 		        HttpSession session = (HttpSession) context.getExternalContext().getSession(true);
 		        session.setAttribute("user", usuario);

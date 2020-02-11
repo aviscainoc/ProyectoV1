@@ -105,16 +105,10 @@ public class GestionCita implements GestionCitaLocal, GestionCitaRemote{
 	}
 	
 	public String contarCitasUsuario(String cedula){
-		/*List<ConteoCitas> lst = dao.contarCitasPorMesUsuario(cedula);
-		System.out.println("Tal vez funcione"+ lst.get(0).getContador());
-		System.out.println("mes"+lst.get(0).getMes());*/
-		/*List<Object[]> objetos = dao.contarCitasPorMesUsuario(cedula);
-		*/
 		return dao.contarCitasPorMesUsuario(cedula);
 	}
 	
-	public List<ConteoCitas> contarCitasGeneral(){
-		
+	public String contarCitasGeneral(){
 		return dao.contarCitasPorMesGeneral();
 	}
 	
