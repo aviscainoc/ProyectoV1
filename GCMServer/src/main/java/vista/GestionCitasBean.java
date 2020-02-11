@@ -788,7 +788,7 @@ public class GestionCitasBean {
 	public String guardarDetalle(Usuario u) {
 		if(gld.guardarFacturaDetalle(fac_det_descripcion, fac_det_precio, fac_det_cantidad, fac_cab_codigo)) {
 			setIe_descripcion(fac_det_descripcion);
-			setIe_dinero(fac_det_precio);
+			setIe_dinero(fac_det_precio*fac_det_cantidad);
 			guardarIngreso(u);
 			recuperarFacturaCabecera();
 			return "listar_cabecera";
@@ -803,7 +803,6 @@ public class GestionCitasBean {
 			ie_codigo = glie.guardarIngresosEgresos(ie_descripcion, ie_dinero, u.getUs_cedula());
 			ingresosEgresos = glie.getIngresosEgresos();
 			Usuario usu = gul.recuperarUsuario(u.getUs_cedula()); 
-			us_dinero = usu.getUs_dinero();
 			IngresosEgresos ie = glie.getIngresoEgreso(ie_codigo);
 			System.out.println("### Ingreso ### " + ie);
 			return true;
@@ -818,7 +817,6 @@ public class GestionCitasBean {
 			ie_codigo = glie.guardarIngresosEgresos(ie_descripcion, (ie_dinero*-1), u.getUs_cedula());
 			ingresosEgresos = glie.getIngresosEgresos();
 			Usuario usu = gul.recuperarUsuario(u.getUs_cedula()); 
-			us_dinero = usu.getUs_dinero();
 			IngresosEgresos ie = glie.getIngresoEgreso(ie_codigo);
 			System.out.println("### Ingreso ### " + ie);
 			
