@@ -22,6 +22,7 @@
 </h:head>
 
 <h:body class="hold-transition sidebar-mini">
+<f:event listener = "#{gestionUsuariosBean.sesion}" type = "preRenderView" />
 <div class="wrapper">
 
 	<!-- Navbar -->
@@ -116,6 +117,9 @@
                 <!-- >span class="right badge badge-danger">New</span-->
               </p>
             </a>
+          </li>
+          <li class="nav-item">
+            <h:form><h:commandButton  action="#{gestionUsuariosBean.logout()}" class="btn btn-primary btn-block" value="Cerrar sesion"/></h:form>
           </li>
         </ul>
       </nav>

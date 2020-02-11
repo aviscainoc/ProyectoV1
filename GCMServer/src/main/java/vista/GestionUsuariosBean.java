@@ -1,5 +1,6 @@
 package vista;
 
+import java.io.IOException;
 import java.util.Date;
 import java.util.List;
 
@@ -7,6 +8,7 @@ import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
+import javax.faces.event.ComponentSystemEvent;
 import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
 
@@ -238,6 +240,18 @@ public class GestionUsuariosBean {
 	
 	
 	
+	public void sesion(ComponentSystemEvent event) {
+		FacesContext context = FacesContext.getCurrentInstance();
+        HttpSession session = (HttpSession) context.getExternalContext().getSession(true);
+        System.out.println("prueba sesión " + session.getAttribute("user"));
+        if (session.getAttribute("user") == null) {
+			try {
+				FacesContext.getCurrentInstance().getExternalContext().redirect("../User/index.xhtml");
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+        }
+	}
 
 	public void validarCedula(FacesContext context, UIComponent comp, Object value) {
 		System.out.println("inside validate method");
@@ -331,6 +345,14 @@ public class GestionUsuariosBean {
 			e.printStackTrace();
 		}
 		return "null";
+	}
+	
+	public String logout() {
+		FacesContext context = FacesContext.getCurrentInstance();
+        HttpSession session = (HttpSession) context.getExternalContext().getSession(true);
+        session.setAttribute("user", null);
+        System.out.println("logout " + session.getAttribute("user"));
+		return "/User/index";
 	}
 	
 	public void recuperarUsuario(String us_cedula) {
