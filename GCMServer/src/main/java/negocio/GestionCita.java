@@ -10,19 +10,13 @@ import javax.ejb.Stateless;
 import javax.inject.Inject;
 
 import datos.CitaDAO;
-import datos.MedicoDAO;
-import datos.PacienteDAO;
 import datos.UsuarioDAO;
 import modelo.CertificadoAusencia;
 import modelo.Cita;
 
-import modelo.ConteoCitas;
-
 import modelo.ExamenLaboratorio;
 import modelo.HistoriaClinica;
 
-import modelo.Medico;
-import modelo.Paciente;
 import modelo.RecetaMedica;
 
 
@@ -115,14 +109,14 @@ public class GestionCita implements GestionCitaLocal, GestionCitaRemote{
 
 	public List<Cita> recuperarProximasCitas(String cedula, Date fecha){
 		return dao.getProximasCitas(cedula, fecha);
-
 	}
 	
 	public List<Cita> recuperarCitasPasadas(Date fecha){
-		
 		return dao.getCitasPasadas(fecha);
-		
 	}
 	
+	public double getSaldo() {
+		return dao.getSaldo();
+	}
 
 }

@@ -17,14 +17,11 @@ import javax.inject.Inject;
 import datos.UsuarioDAO;
 import modelo.CertificadoAusencia;
 import modelo.Cita;
-import modelo.ConteoCitas;
 import modelo.ExamenLaboratorio;
 import modelo.FacturaCabecera;
 import modelo.FacturaDetalle;
 import modelo.HistoriaClinica;
 import modelo.IngresosEgresos;
-import modelo.Medico;
-import modelo.Paciente;
 import modelo.RecetaMedica;
 import modelo.Usuario;
 import negocio.GestionCertificadoAusenciaLocal;
@@ -34,7 +31,6 @@ import negocio.GestionFacturaCabeceraLocal;
 import negocio.GestionFacturaDetalleLocal;
 import negocio.GestionHistoriaClinicaLocal;
 import negocio.GestionIngresosEgresosLocal;
-import negocio.GestionMedicosLocal;
 import negocio.GestionRecetaMedicaLocal;
 import negocio.GestionUsuariosLocal;
 import net.sf.jasperreports.engine.JRException;
@@ -789,11 +785,11 @@ public class GestionCitasBean {
 	
 	
 	
-	public String guardarDetalle() {
+	public String guardarDetalle(Usuario u) {
 		if(gld.guardarFacturaDetalle(fac_det_descripcion, fac_det_precio, fac_det_cantidad, fac_cab_codigo)) {
 			setIe_descripcion(fac_det_descripcion);
 			setIe_dinero(fac_det_precio);
-			guardarIngreso();
+			guardarIngreso(u);
 			recuperarFacturaCabecera();
 			return "listar_cabecera";
 		}else {
@@ -802,11 +798,11 @@ public class GestionCitasBean {
 		}
 	}
 	
-	public boolean guardarIngreso() {
+	public boolean guardarIngreso(Usuario u) {
 		try {
-			ie_codigo = glie.guardarIngresosEgresos(ie_descripcion, ie_dinero, usuario.getUs_cedula());
+			ie_codigo = glie.guardarIngresosEgresos(ie_descripcion, ie_dinero, u.getUs_cedula());
 			ingresosEgresos = glie.getIngresosEgresos();
-			Usuario usu = gul.recuperarUsuario(usuario.getUs_cedula()); 
+			Usuario usu = gul.recuperarUsuario(u.getUs_cedula()); 
 			us_dinero = usu.getUs_dinero();
 			IngresosEgresos ie = glie.getIngresoEgreso(ie_codigo);
 			System.out.println("### Ingreso ### " + ie);
@@ -817,11 +813,11 @@ public class GestionCitasBean {
 		}
 	}
 	
-	public boolean guardarEgreso() {
+	public boolean guardarEgreso(Usuario u) {
 		try {
-			ie_codigo = glie.guardarIngresosEgresos(ie_descripcion, (ie_dinero*-1), usuario.getUs_cedula());
+			ie_codigo = glie.guardarIngresosEgresos(ie_descripcion, (ie_dinero*-1), u.getUs_cedula());
 			ingresosEgresos = glie.getIngresosEgresos();
-			Usuario usu = gul.recuperarUsuario(usuario.getUs_cedula()); 
+			Usuario usu = gul.recuperarUsuario(u.getUs_cedula()); 
 			us_dinero = usu.getUs_dinero();
 			IngresosEgresos ie = glie.getIngresoEgreso(ie_codigo);
 			System.out.println("### Ingreso ### " + ie);
@@ -893,6 +889,8 @@ public class GestionCitasBean {
 			return "Ingreso";
 	}
 	
-	
+	public double getSaldo() {
+		return gl.getSaldo();
+	}
 	
 }

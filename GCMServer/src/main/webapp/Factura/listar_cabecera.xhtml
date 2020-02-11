@@ -72,7 +72,7 @@
 				<h:outputLabel value="Cantidad" />
 				<h:inputText value="#{gestionCitasBean.fac_det_cantidad}" placeholder="Cantidad" class="form-control" />
 					
-				<h:commandButton action="#{gestionCitasBean.guardarDetalle()}" value="Insertar Detalle" class="btn btn-block btn-outline-secondary btn-xs" />
+				<h:commandButton action="#{gestionCitasBean.guardarDetalle(user)}" value="Insertar Detalle" class="btn btn-block btn-outline-secondary btn-xs" />
 			</h:panelGrid>
 		</div>
 	</h:form>

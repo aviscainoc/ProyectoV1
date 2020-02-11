@@ -20,8 +20,6 @@ public class ServicesSoap {
 	@Inject 
 	private GestionFacturaDetalleLocal gld;
 	
-	@Inject
-	private GestionEstadoLocal gle;
 	
 	@Inject
 	private GestionCitaLocal glci;
