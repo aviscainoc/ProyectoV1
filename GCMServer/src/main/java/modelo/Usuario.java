@@ -38,7 +38,6 @@ public class Usuario {
 	@OneToMany
 	private List<IngresosEgresos> ingresosEgresos;
 	
-	double us_dinero;
 	/*@OneToMany
 	private List<HistoriaClinica> historias_clinica;
 	
@@ -209,12 +208,6 @@ public class Usuario {
 			ingresosEgresos = new ArrayList<IngresosEgresos>();
 		ingresosEgresos.add(ie);
 	}	
-	public double getUs_dinero() {
-		return us_dinero;
-	}
-	public void setUs_dinero(double us_dinero) {
-		this.us_dinero = us_dinero;
-	}
 	@Override
 	public String toString() {
 		return "Usuario [us_cedula=" + us_cedula + ", us_rol=" + us_rol + ", us_nombres=" + us_nombres

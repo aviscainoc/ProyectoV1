@@ -98,9 +98,14 @@ public class FacturaCabecera {
 	
 	@Override
 	public String toString() {
-		return "FacturaCabecera [fac_cab_id=" + fac_cab_id + ", facs_det=" + facs_det
-				+ ", fac_cab_precio=" + fac_cab_precio + ", fac_cab_iva=" + fac_cab_iva + ", fac_cab_nombre="
-				+ fac_cab_nombre + ", fac_cab_direccion=" + fac_cab_direccion + ", fac_cab_telefono=" + fac_cab_telefono
-				+ ", fac_cab_cedula=" + fac_cab_cedula + "]";
+		return "Factura  \n\n\n"
+				+ "Codigo de la factura = " + fac_cab_id + 
+				"\nDescripciones = " + facs_det
+				+"\nPrecio del producto = " + fac_cab_precio + 
+				"\nIVA = " + fac_cab_iva + 
+				"\nDATOS DEL CLIENTE\n\n"
+				+ "Nombres = "+ fac_cab_nombre + "Direccion = " + fac_cab_direccion + 
+				"\nTelefono = " + fac_cab_telefono
+				+ ", Cedula=" + fac_cab_cedula + "]";
 	}
 }

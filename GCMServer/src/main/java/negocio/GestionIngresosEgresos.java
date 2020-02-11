@@ -28,8 +28,6 @@ public class GestionIngresosEgresos implements GestionIngresosEgresosLocal{
 		Usuario u = daoU.read(md_codigo);
 		ie.setIe_descripcion(ie_descripcion);
 		ie.setIe_dinero(ie_dinero);
-		double dinero = (Math.round((u.getUs_dinero() + ie_dinero) * 100) / 100d);
-		u.setUs_dinero(dinero);
 		u.addIngresoEgreso(ie);
 		daoIe.insert(ie);
 		daoU.update(u);

@@ -788,7 +788,7 @@ public class GestionCitasBean {
 	public String guardarDetalle(Usuario u) {
 		if(gld.guardarFacturaDetalle(fac_det_descripcion, fac_det_precio, fac_det_cantidad, fac_cab_codigo)) {
 			setIe_descripcion(fac_det_descripcion);
-			setIe_dinero(fac_det_precio);
+			setIe_dinero(fac_det_precio*fac_det_cantidad);
 			guardarIngreso(u);
 			recuperarFacturaCabecera();
 			return "listar_cabecera";
@@ -803,7 +803,6 @@ public class GestionCitasBean {
 			ie_codigo = glie.guardarIngresosEgresos(ie_descripcion, ie_dinero, u.getUs_cedula());
 			ingresosEgresos = glie.getIngresosEgresos();
 			Usuario usu = gul.recuperarUsuario(u.getUs_cedula()); 
-			us_dinero = usu.getUs_dinero();
 			IngresosEgresos ie = glie.getIngresoEgreso(ie_codigo);
 			System.out.println("### Ingreso ### " + ie);
 			return true;
@@ -818,7 +817,6 @@ public class GestionCitasBean {
 			ie_codigo = glie.guardarIngresosEgresos(ie_descripcion, (ie_dinero*-1), u.getUs_cedula());
 			ingresosEgresos = glie.getIngresosEgresos();
 			Usuario usu = gul.recuperarUsuario(u.getUs_cedula()); 
-			us_dinero = usu.getUs_dinero();
 			IngresosEgresos ie = glie.getIngresoEgreso(ie_codigo);
 			System.out.println("### Ingreso ### " + ie);
 			
@@ -866,6 +864,20 @@ public class GestionCitasBean {
 		//System.out.println("Codigo de la cita"+code);
 		//String texto = gc.getCertificado()//String texto = gul.descargarCertificadoMedico();
 		gul.descargarRecetaMedica(texto);
+	}
+	
+	public void imprimirFactura(int codigoCita) throws IOException {
+		//recuperar el texto del certificado
+		int codigoCA = glf.obtenerCodigoFactura(codigoCita);
+		System.out.println("esto viene "+codigoCA);
+		
+		String texto = glf.obtenerTexto(codigoCA);
+		System.out.println(texto+"Texto que va al pdf");
+		
+		
+		//System.out.println("Codigo de la cita"+code);
+		//String texto = gc.getCertificado()//String texto = gul.descargarCertificadoMedico();
+		gul.descargarExamenes(texto);
 	}
 	
 	public void imprimirExamen(int codigoCita) throws IOException {

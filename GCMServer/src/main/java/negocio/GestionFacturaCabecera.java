@@ -5,6 +5,7 @@ import java.util.List;
 import javax.ejb.Stateful;
 import javax.inject.Inject;
 
+import datos.CitaDAO;
 import datos.FacturaCabeceraDAO;
 import datos.FacturaDetalleDAO;
 import datos.UsuarioDAO;
@@ -20,6 +21,9 @@ public class GestionFacturaCabecera implements GestionFacturaCabeceraLocal{
 	
 	@Inject
 	private FacturaDetalleDAO daoFd;
+	
+	@Inject
+	private CitaDAO daoCi;
 	
 	@Inject
 	private UsuarioDAO daoU;
@@ -66,6 +70,16 @@ public class GestionFacturaCabecera implements GestionFacturaCabeceraLocal{
 	@Override
 	public FacturaCabecera getFacturaCabecera(int codigo) {
 		return daoFc.read(codigo);
+	}
+	
+	public int obtenerCodigoFactura(int codigo) {
+		System.out.println(daoCi.obtenerCodigoFactura(codigo));
+		return daoCi.obtenerCodigoFactura(codigo);
+	}
+	
+	public String obtenerTexto(int codigoCA) {
+		String texto = daoFc.obtenerTextoPdf(codigoCA);
+		return texto;
 	}
 
 	
