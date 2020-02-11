@@ -1,5 +1,6 @@
 package servicios;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -14,13 +15,16 @@ import negocio.*;
 public class ServicesSoap {
 
 	@Inject
-	private GestionFacturaCabeceraLocal glc;
+	private GestionUsuariosLocal glu;
 	
 	@Inject 
 	private GestionFacturaDetalleLocal gld;
 	
 	@Inject
 	private GestionEstadoLocal gle;
+	
+	@Inject
+	private GestionCitaLocal glci;
 	
 	/*@WebMethod
 	public Respuesta CrearCabecera(String cedula){
@@ -35,7 +39,7 @@ public class ServicesSoap {
 		}
 		return res;
 	}*/
-	
+	/*
 	@WebMethod
 	public Respuesta CrearDetalle (String fac_det_descripcion, double fac_det_precio, int fac_det_cantidad, int fac_cab_id) {
 		Respuesta res = new Respuesta();
@@ -52,37 +56,49 @@ public class ServicesSoap {
 			res.setMensaje("Error insertando detalle2");
 		}
 		return res;
-	}
+	}*/
 	/*
 	@WebMethod
-	public Respuesta CrearEstado (String nombre) {
+	public Respuesta GenerarCita (String codigoU, Date ci_fecha) {
 		Respuesta res = new Respuesta();
 		try {		
-			gle.guardarEstado(nombre);
+			Date d = new Date();
+			String ci_estado = "pendiente";
+			glci.guardarCita(codigoU, d, ci_fecha, ci_estado);
 			res.setCodigo(1);
-			res.setMensaje("Estado guardado Correctamente");
+			res.setMensaje("Cita guardado Correctamente");
 		}catch(Exception e) {
 			res.setCodigo(505);
-			res.setMensaje("Error insertando Estado");
+			res.setMensaje("Error insertando Cita");
 		}
 		return res;
 	}
 	
-	
 	@WebMethod
-	public List<Persona> getPersonas(){
-		return glp.getPersonas();
+	public List<Cita> getCitas(String cedula){
+		Date fecha = new Date();
+		return glci.recuperarProximasCitas(cedula, fecha);
 	}
 	
+	@WebMethod
+	public Usuario login(String correo, String contraseña) {
+		try {
+			return glu.login(correo, contraseña);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}*/
+	/*
 	@WebMethod
 	public List<Estado> getEstados(){
 		return gle.getEstados();
 	}
 	*/
-	@WebMethod
+	/*@WebMethod
 	public List<FacturaCabecera> getCabeceras(){
 		return glc.getFacturas();
-	}
+	}*/
 	/*
 	@WebMethod
 	public List<Titulo> getTituloNombre(String nombre){
