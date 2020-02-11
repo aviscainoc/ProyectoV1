@@ -40,7 +40,13 @@
 	<h:inputHidden value="#{user.us_cedula}" />
 		
 	<h:commandButton action="#{gestionCitasBean.guardarIngreso()}" value="Ingreso"/>
-	<h:commandButton action="#{gestionCitasBean.guardarEgreso()}" value="Egreso"/>
+	<f:view>  
+	    <h:commandButton id="mybutton" value="Egreso"
+	      binding="#{gestionCitasBean.mybutton}"
+	      action="#{gestionCitasBean.guardarEgreso()}" />
+	    <h:message for="mybutton" />
+	</f:view> 
+	<!-- <h:commandButton action="#{gestionCitasBean.guardarEgreso()}" value="Egreso"/> -->
 	
 	<h:commandButton action="/User/index" value="Regresar"></h:commandButton>
 </h:panelGrid>
