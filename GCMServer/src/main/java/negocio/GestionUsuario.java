@@ -164,9 +164,15 @@ public class GestionUsuario implements GestionUsuariosLocal, GestionUsuariosRemo
 	private static final int DEFAULT_BUFFER_SIZE = 1024;
 
 	public void descargarCertificadoMedico(String texto) throws IOException {
-
-		String dest = "C:\\Users\\PCX\\eclipse-workspace\\ProyectoV1\\GCMServer\\ArchivosPDF\\CertificadoMedico.pdf";
-		PdfWriter writer = new PdfWriter(dest);
+		
+		//String path = new File(".").getCanonicalPath();
+		//Date fecha = new Date();
+		//String str = fecha.toGMTString();
+		//String FILE_NAME = "certificado.pdf";
+		//String dest = "C:\\Users\\PCX\\eclipse-workspace\\ProyectoV1\\GCMServer\\ArchivosPDF\\CertificadoMedico.pdf";
+		//PdfWriter writer = new PdfWriter(dest);
+		String ruta = "certificado.pdf";
+		PdfWriter writer = new PdfWriter(ruta);
 		PdfDocument pdf = new PdfDocument(writer);
 		Document document = new Document(pdf);
 
@@ -182,8 +188,8 @@ public class GestionUsuario implements GestionUsuariosLocal, GestionUsuariosRemo
 		FacesContext context = FacesContext.getCurrentInstance();
 		HttpServletResponse response = (HttpServletResponse) FacesContext.getCurrentInstance().getExternalContext()
 				.getResponse();
-		File file = new File(
-				"C:\\Users\\PCX\\eclipse-workspace\\ProyectoV1\\GCMServer\\ArchivosPDF\\CertificadoMedico.pdf");
+		//File file = new File("C:\\Users\\PCX\\eclipse-workspace\\ProyectoV1\\GCMServer\\ArchivosPDF\\CertificadoMedico.pdf");
+		File file = new File(ruta);
 		if (file.exists() == false) {
 			System.out.println("oye no esta encontrando");
 			response.sendError(HttpServletResponse.SC_NOT_FOUND);
@@ -219,8 +225,14 @@ public class GestionUsuario implements GestionUsuariosLocal, GestionUsuariosRemo
 	
 	public void descargarRecetaMedica(String texto) throws IOException {
 
-		String dest = "C:\\Users\\PCX\\eclipse-workspace\\ProyectoV1\\GCMServer\\ArchivosPDF\\RecetaMedica.pdf";
-		PdfWriter writer = new PdfWriter(dest);
+		//String path = new File(".").getCanonicalPath();
+		//Date fecha = new Date();
+		//String str = fecha.toGMTString();
+		//String FILE_NAME = path +"/Reportes/receta_"+"receta"+".pdf";
+		//String dest = "C:\\Users\\PCX\\eclipse-workspace\\ProyectoV1\\GCMServer\\ArchivosPDF\\CertificadoMedico.pdf";
+		String ruta = "certificado.pdf";
+		PdfWriter writer = new PdfWriter(ruta);
+		//PdfWriter writer = new PdfWriter(dest);
 		PdfDocument pdf = new PdfDocument(writer);
 		Document document = new Document(pdf);
 
@@ -244,8 +256,8 @@ public class GestionUsuario implements GestionUsuariosLocal, GestionUsuariosRemo
 		FacesContext context = FacesContext.getCurrentInstance();
 		HttpServletResponse response = (HttpServletResponse) FacesContext.getCurrentInstance().getExternalContext()
 				.getResponse();
-		File file = new File(
-				"C:\\Users\\PCX\\eclipse-workspace\\ProyectoV1\\GCMServer\\ArchivosPDF\\RecetaMedica.pdf");
+		//File file = new File("C:\\Users\\PCX\\eclipse-workspace\\ProyectoV1\\GCMServer\\ArchivosPDF\\CertificadoMedico.pdf");
+		File file = new File(ruta);
 		if (file.exists() == false) {
 			System.out.println("oye no esta encontrando");
 			response.sendError(HttpServletResponse.SC_NOT_FOUND);
@@ -281,9 +293,16 @@ public class GestionUsuario implements GestionUsuariosLocal, GestionUsuariosRemo
 	
 	public void descargarExamenes(String texto) throws IOException {
 
-		String dest = "C:\\Users\\PCX\\eclipse-workspace\\ProyectoV1\\GCMServer\\ArchivosPDF\\Examenes.pdf";
-		PdfWriter writer = new PdfWriter(dest);
+		//String path = new File(".").getCanonicalPath();
+		//Date fecha = new Date();
+		//String str = fecha.toGMTString();
+		//String FILE_NAME = path +"/Reportes/examen_"+"examen"+".pdf";
+		//String dest = "C:\\Users\\PCX\\eclipse-workspace\\ProyectoV1\\GCMServer\\ArchivosPDF\\ExamenMedico.pdf";
+		String ruta = "certificado.pdf";
+		PdfWriter writer = new PdfWriter(ruta);
+		//PdfWriter writer = new PdfWriter(dest);
 		PdfDocument pdf = new PdfDocument(writer);
+		
 		Document document = new Document(pdf);
 
 		
@@ -298,8 +317,9 @@ public class GestionUsuario implements GestionUsuariosLocal, GestionUsuariosRemo
 		FacesContext context = FacesContext.getCurrentInstance();
 		HttpServletResponse response = (HttpServletResponse) FacesContext.getCurrentInstance().getExternalContext()
 				.getResponse();
-		File file = new File(
-				"C:\\Users\\PCX\\eclipse-workspace\\ProyectoV1\\GCMServer\\ArchivosPDF\\Examenes.pdf");
+		//File file = new File("C:\\Users\\PCX\\eclipse-workspace\\ProyectoV1\\GCMServer\\ArchivosPDF\\ExamenMedico.pdf");
+
+		File file = new File(ruta);
 		if (file.exists() == false) {
 			System.out.println("oye no esta encontrando");
 			response.sendError(HttpServletResponse.SC_NOT_FOUND);
@@ -334,8 +354,14 @@ public class GestionUsuario implements GestionUsuariosLocal, GestionUsuariosRemo
 	
 	public void descargarFactura(String texto) throws IOException {
 
-		String dest = "C:\\Users\\PCX\\eclipse-workspace\\ProyectoV1\\GCMServer\\ArchivosPDF\\Factura.pdf";
-		PdfWriter writer = new PdfWriter(dest);
+		//String path = new File(".").getCanonicalPath();
+		//Date fecha = new Date();
+		//String str = fecha.toGMTString();
+		//String FILE_NAME = path +"/Reportes/factura_"+"factura"+".pdf";
+		//String dest = "C:\\Users\\PCX\\eclipse-workspace\\ProyectoV1\\GCMServer\\ArchivosPDF\\FacturaMedico.pdf";
+		//PdfWriter writer = new PdfWriter(dest);
+		String ruta = "certificado.pdf";
+		PdfWriter writer = new PdfWriter(ruta);
 		PdfDocument pdf = new PdfDocument(writer);
 		Document document = new Document(pdf);
 
@@ -349,18 +375,18 @@ public class GestionUsuario implements GestionUsuariosLocal, GestionUsuariosRemo
 				+ "		    certificado el uso legal que crea conveniente. ";
 		String para2 = "The journey commenced with a single tutorial on HTML in 2006 ";
 
-		Paragraph paragraph1 = new Paragraph(para1);
-		Paragraph paragraph2 = new Paragraph(para2);
+		Paragraph paragraph1 = new Paragraph(texto);
+		
 		document.add(paragraph1);
-		document.add(paragraph2);
+		
 		document.close();
 		System.out.println("Paragraph added");
 
 		FacesContext context = FacesContext.getCurrentInstance();
 		HttpServletResponse response = (HttpServletResponse) FacesContext.getCurrentInstance().getExternalContext()
 				.getResponse();
-		File file = new File(
-				"C:\\Users\\PCX\\eclipse-workspace\\ProyectoV1\\GCMServer\\ArchivosPDF\\Factura.pdf");
+		//File file = new File("C:\\Users\\PCX\\eclipse-workspace\\ProyectoV1\\GCMServer\\ArchivosPDF\\FacturaMedico.pdf");
+		File file = new File(ruta);
 		if (file.exists() == false) {
 			System.out.println("oye no esta encontrando");
 			response.sendError(HttpServletResponse.SC_NOT_FOUND);
