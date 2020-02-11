@@ -10,6 +10,7 @@ import java.util.List;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 
@@ -131,6 +132,15 @@ public class GestionCitasBean {
 	public double us_dinero;
 	private List<IngresosEgresos> ingresosEgresos;
 		
+	private UIComponent mybutton;
+	
+	public void setMybutton(UIComponent mybutton) {
+        this.mybutton = mybutton;
+    }
+	public UIComponent getMybutton() {
+		return mybutton;
+    }
+	
 	public int getHora() {
 		return hora;
 	}
@@ -815,6 +825,12 @@ public class GestionCitasBean {
 			us_dinero = usu.getUs_dinero();
 			IngresosEgresos ie = glie.getIngresoEgreso(ie_codigo);
 			System.out.println("### Ingreso ### " + ie);
+			
+			if (us_dinero - ie.getIe_dinero() < 0) {
+				FacesMessage message = new FacesMessage("¡Egresos superan los ingresos!");
+	            FacesContext context = FacesContext.getCurrentInstance();
+	            context.addMessage(mybutton.getClientId(context), message);
+			}
 			return true;
 		}catch(Exception e) {
 			System.out.println("### Error Guardando Ingreso ### " + e);
@@ -827,7 +843,51 @@ public class GestionCitasBean {
 	}
 	
 	
-	public void imprimirCertificado() throws IOException {
-		gul.descargarCertificadoMedico("hola");
+	public void imprimirCertificado(int codigoCita) throws IOException {
+		//recuperar el texto del certificado
+		int codigoCA = gc.obtenerCodigoCertificado(codigoCita);
+		System.out.println("esto viene "+codigoCA);
+		
+		String texto = gc.obtenerTexto(codigoCA);
+		System.out.println(texto+"Texto que va al pdf");
+		
+		
+		//System.out.println("Codigo de la cita"+code);
+		//String texto = gc.getCertificado()//String texto = gul.descargarCertificadoMedico();
+		gul.descargarCertificadoMedico(texto);
 	}
+	
+	
+	public void imprimirRecetaMedica(int codigoCita) throws IOException {
+		//recuperar el texto del certificado
+		int codigoCA = gr.obtenerCodigoRM(codigoCita);
+		System.out.println("esto viene "+codigoCA);
+		
+		String texto = gr.obtenerTextoRM(codigoCA);
+		System.out.println(texto+"Texto que va al pdf");
+		
+		
+		//System.out.println("Codigo de la cita"+code);
+		//String texto = gc.getCertificado()//String texto = gul.descargarCertificadoMedico();
+		gul.descargarRecetaMedica(texto);
+	}
+	
+	public void imprimirExamen(int codigoCita) throws IOException {
+		//recuperar el texto del certificado
+		int codigoCA = ge.obtenerCodigoExamen(codigoCita);
+		System.out.println("esto viene "+codigoCA);
+		
+		String texto = ge.obtenerTextoEx(codigoCA);
+		System.out.println(texto+"Texto que va al pdf");
+		
+		
+		//System.out.println("Codigo de la cita"+code);
+		//String texto = gc.getCertificado()//String texto = gul.descargarCertificadoMedico();
+		gul.descargarExamenes(texto);
+	}
+	
+	
+	
+	
+	
 }

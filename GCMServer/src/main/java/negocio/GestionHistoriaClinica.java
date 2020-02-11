@@ -29,15 +29,12 @@ public class GestionHistoriaClinica implements GestionHistoriaClinicaRemote, Ges
 
 	public int guardarHistoriaClinica(String hc_residencia, String hc_fecha, String hc_motivo_consulta,
 			String hc_enfermedad_actual) {
-		Date fechas = new Date();
 		
 		HistoriaClinica hc = new HistoriaClinica();
-		hc.setHc_residencia("Gualaceo");
+		hc.setHc_residencia(hc_residencia);
 		hc.setHc_fecha(hc_fecha);
-		hc.setHc_movito_consulta("no corre");
-		hc.setHc_enfermedad_actual("Diabe");
-		hc.setUsuario(daoU.read("0206171325"));
-		hc.setCita(daoC.read(2));
+		hc.setHc_movito_consulta(hc_motivo_consulta);
+		hc.setHc_enfermedad_actual(hc_enfermedad_actual);
 		dao.insert(hc);
 
 		System.out.println(hc);
@@ -66,7 +63,6 @@ public class GestionHistoriaClinica implements GestionHistoriaClinicaRemote, Ges
 		hc.setHc_fecha(hc_fecha);
 		hc.setHc_movito_consulta(hc_motivo_consulta);
 		hc.setHc_enfermedad_actual(hc_enfermedad_actual);
-		hc.setUsuario(usuario);
 		dao.update(hc);
 		
 	}

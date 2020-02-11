@@ -17,4 +17,7 @@ public interface GestionExamenLaboratorioLocal {
 	public void eliminar(int codigo);
 	public ExamenLaboratorio getExamen(int codigo);
 	
+	public int obtenerCodigoExamen(int codigo);
+	public String obtenerTextoEx(int codigoCA);
+	
 }

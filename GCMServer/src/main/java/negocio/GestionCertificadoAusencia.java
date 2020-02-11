@@ -6,6 +6,7 @@ import javax.ejb.Stateless;
 import javax.inject.Inject;
 
 import datos.CertificadoAusenciaDAO;
+import datos.CitaDAO;
 import modelo.CertificadoAusencia;
 import modelo.Cita;
 
@@ -17,6 +18,8 @@ public class GestionCertificadoAusencia implements GestionCertificadoAusenciaRem
 
 	@Inject
 	private CertificadoAusenciaDAO dao;
+	@Inject
+	private CitaDAO daoC;
 	
 	
 	public int guardarCertificadoAusencia(String ca_descripcion) {
@@ -45,5 +48,15 @@ public class GestionCertificadoAusencia implements GestionCertificadoAusenciaRem
 	
 	public CertificadoAusencia getCertificado(int codigo) {
 		return dao.read(codigo);
+	}
+	
+	public int obtenerCodigoCertificado(int codigo) {
+		System.out.println(daoC.obtenerCodigoCertificado(codigo));
+		return daoC.obtenerCodigoCertificado(codigo);
+	}
+	
+	public String obtenerTexto(int codigoCA) {
+		String texto = dao.obtenerTextoCA(codigoCA);
+		return texto;
 	}
 }

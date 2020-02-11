@@ -174,19 +174,11 @@ public class GestionUsuario implements GestionUsuariosLocal, GestionUsuariosRemo
 		Document document = new Document(pdf);
 
 		String para0 = "CERTIFICA";
-		String para1 = "Que la Sra." + " con cédula de\r\n"
-				+ "		    identidad no. 01CI205752-8 recibe tratamiento de hemodiálisis desde el 29 de\r\n"
-				+ "		    junio del 2012 en la Unidad Renal de Baxter los días lunes, miércoles y\r\n"
-				+ "		    viernes en el turno de 16h30 a 20h30 por adolecer de Enfermedad Renal\r\n"
-				+ "		    Crónica etiología Hipertensión Arterial.\r\n"
-				+ "		    Es cuanto informo a la verdad, autorizo al peticionario hacer del presente\r\n"
-				+ "		    certificado el uso legal que crea conveniente. ";
-		String para2 = "The journey commenced with a single tutorial on HTML in 2006 ";
-
-		Paragraph paragraph1 = new Paragraph(para1);
-		Paragraph paragraph2 = new Paragraph(para2);
+		
+		Paragraph paragraph0 = new Paragraph(para0);
+		Paragraph paragraph1 = new Paragraph(texto);
+		document.add(paragraph0);
 		document.add(paragraph1);
-		document.add(paragraph2);
 		document.close();
 		System.out.println("Paragraph added");
 
@@ -235,7 +227,7 @@ public class GestionUsuario implements GestionUsuariosLocal, GestionUsuariosRemo
 		PdfDocument pdf = new PdfDocument(writer);
 		Document document = new Document(pdf);
 
-		String para0 = "CERTIFICA";
+		/*String para0 = "CERTIFICA";
 		String para1 = "Que la Sra." + " con cédula de\r\n"
 				+ "		    identidad no. 01CI205752-8 recibe tratamiento de hemodiálisis desde el 29 de\r\n"
 				+ "		    junio del 2012 en la Unidad Renal de Baxter los días lunes, miércoles y\r\n"
@@ -243,12 +235,12 @@ public class GestionUsuario implements GestionUsuariosLocal, GestionUsuariosRemo
 				+ "		    Crónica etiología Hipertensión Arterial.\r\n"
 				+ "		    Es cuanto informo a la verdad, autorizo al peticionario hacer del presente\r\n"
 				+ "		    certificado el uso legal que crea conveniente. ";
-		String para2 = "The journey commenced with a single tutorial on HTML in 2006 ";
+		String para2 = "The journey commenced with a single tutorial on HTML in 2006 ";*/
 
-		Paragraph paragraph1 = new Paragraph(para1);
-		Paragraph paragraph2 = new Paragraph(para2);
+		Paragraph paragraph1 = new Paragraph(texto);
+		//Paragraph paragraph2 = new Paragraph(para2);
 		document.add(paragraph1);
-		document.add(paragraph2);
+		//document.add(paragraph2);
 		document.close();
 		System.out.println("Paragraph added");
 
@@ -297,22 +289,14 @@ public class GestionUsuario implements GestionUsuariosLocal, GestionUsuariosRemo
 		PdfDocument pdf = new PdfDocument(writer);
 		Document document = new Document(pdf);
 
-		String para0 = "CERTIFICA";
-		String para1 = "Que la Sra." + " con cédula de\r\n"
-				+ "		    identidad no. 01CI205752-8 recibe tratamiento de hemodiálisis desde el 29 de\r\n"
-				+ "		    junio del 2012 en la Unidad Renal de Baxter los días lunes, miércoles y\r\n"
-				+ "		    viernes en el turno de 16h30 a 20h30 por adolecer de Enfermedad Renal\r\n"
-				+ "		    Crónica etiología Hipertensión Arterial.\r\n"
-				+ "		    Es cuanto informo a la verdad, autorizo al peticionario hacer del presente\r\n"
-				+ "		    certificado el uso legal que crea conveniente. ";
-		String para2 = "The journey commenced with a single tutorial on HTML in 2006 ";
+		
 
-		Paragraph paragraph1 = new Paragraph(para1);
-		Paragraph paragraph2 = new Paragraph(para2);
+		Paragraph paragraph1 = new Paragraph(texto);
+		//Paragraph paragraph2 = new Paragraph(para2);
 		document.add(paragraph1);
-		document.add(paragraph2);
+		//document.add(paragraph2);
 		document.close();
-		System.out.println("Paragraph added");
+		//System.out.println("Paragraph added");
 
 		FacesContext context = FacesContext.getCurrentInstance();
 		HttpServletResponse response = (HttpServletResponse) FacesContext.getCurrentInstance().getExternalContext()
