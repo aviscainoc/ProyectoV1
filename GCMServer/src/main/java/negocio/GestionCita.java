@@ -109,14 +109,14 @@ public class GestionCita implements GestionCitaLocal, GestionCitaRemote{
 
 	public List<Cita> recuperarProximasCitas(String cedula, Date fecha){
 		return dao.getProximasCitas(cedula, fecha);
-
 	}
 	
 	public List<Cita> recuperarCitasPasadas(Date fecha){
-		
 		return dao.getCitasPasadas(fecha);
-		
 	}
 	
+	public double getSaldo() {
+		return dao.getSaldo();
+	}
 
 }

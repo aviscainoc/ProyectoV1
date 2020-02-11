@@ -163,4 +163,9 @@ public class CitaDAO {
 			System.out.println(codReceta+" :Codigo de receta");
 			return codReceta;
 		}
+		
+		public double getSaldo() {
+			Query q = em.createNativeQuery("SELECT SUM(ie_dinero) FROM ingresosegresos ie");
+			return (double) q.getSingleResult();
+		}
 }

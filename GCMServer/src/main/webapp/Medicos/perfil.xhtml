@@ -60,7 +60,7 @@
 				
 				<h:panelGrid columns="2" class="table table-bordered">
 					<h:outputLabel value="Total"></h:outputLabel>
-					<h:outputLabel value="#{user.us_dinero}" />
+					<h:outputLabel value="#{gestionCitasBean.getSaldo()}" />
 				</h:panelGrid>
 				
 				<h:panelGrid columns="8" class="table ">
@@ -76,7 +76,7 @@
 					<f:view>  
 					    <h:commandButton id="mybutton" value="Egreso"
 					      binding="#{gestionCitasBean.mybutton}"
-					      action="#{gestionCitasBean.guardarEgreso()}" class="btn btn-primary btn-block" />
+					      action="#{gestionCitasBean.guardarEgreso(user)}" class="btn btn-primary btn-block" />
 					    <h:message for="mybutton" />
 					</f:view>
 				</h:panelGrid>
