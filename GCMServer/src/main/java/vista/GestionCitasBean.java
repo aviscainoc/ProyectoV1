@@ -793,13 +793,14 @@ public class GestionCitasBean {
 			ingresosEgresos = glie.getIngresosEgresos();
 			Usuario usu = gul.recuperarUsuario(usuario.getUs_cedula()); 
 			us_dinero = usu.getUs_dinero();
-			if (us_dinero - ie_dinero < 0) {
+			IngresosEgresos ie = glie.getIngresoEgreso(ie_codigo);
+			System.out.println("### Ingreso ### " + ie);
+			
+			if (us_dinero - ie.getIe_dinero() < 0) {
 				FacesMessage message = new FacesMessage("¡Egresos superan los ingresos!");
 	            FacesContext context = FacesContext.getCurrentInstance();
 	            context.addMessage(mybutton.getClientId(context), message);
 			}
-			IngresosEgresos ie = glie.getIngresoEgreso(ie_codigo);
-			System.out.println("### Ingreso ### " + ie);
 			return true;
 		}catch(Exception e) {
 			System.out.println("### Error Guardando Ingreso ### " + e);
