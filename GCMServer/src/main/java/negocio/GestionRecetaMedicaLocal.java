@@ -5,7 +5,6 @@ import java.util.List;
 import javax.ejb.Local;
 
 import modelo.Cita;
-import modelo.Paciente;
 import modelo.RecetaMedica;
 
 @Local

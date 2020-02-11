@@ -14,7 +14,6 @@ import javax.persistence.Query;
 import org.primefaces.json.JSONObject;
 
 import modelo.Cita;
-import modelo.ConteoCitas;
 
 @Stateless
 public class CitaDAO {
@@ -51,7 +50,7 @@ public class CitaDAO {
 	}
 	
 	public List<Cita> getCitasPendientes(){
-		String jpql = "SELECT u FROM Cita u WHERE ci_estado = ?1";
+		String jpql = "SELECT u FROM Cita u WHERE ci_estado = ?1 ORDER BY ci_fecha_cita";
 		Query q = em.createQuery(jpql, Cita.class);
 		q.setParameter(1, "pendiente");
 		
@@ -84,42 +83,28 @@ public class CitaDAO {
 		}
 
 		System.out.println(count);
-		//Aqui intento convertir la lista de object[] a la lista de ConteoCita pero no mismo funciona ayudaaaaa :(
-		/*List<Object[]> res = q.getResultList(); 
-		List<ConteoCitas> list= new ArrayList<ConteoCitas>(); 
-		System.out.println("Lleg 1");
-		Iterator it = res.iterator();
-		System.out.println("Llega 2");
-		while(it.hasNext()){
-			System.out.println("Llega 3");
-		     Object[] line =  it.next();
-		     System.out.println("valor "+line[0]);
-		     System.out.println("Llega");
-		     ConteoCitas eq = new ConteoCitas();
-		     //eq.setContador(contador);;
-		     //eq.setMes((int)line[1]);
-		    // eq.setDescription(line[2]);
-
-		     list.add(eq);
-		
-		
-		}
-		*/
-		return count	;				
+		return count;				
 	}
 	
-	public List<ConteoCitas> contarCitasPorMesGeneral() {
-		
-		Query q = em.createNativeQuery("select count(*) AS contador FROM Cita GROUP BY MONTH(ci_fecha_cita) ORDER BY YEAR(ci_fecha_cita), MONTH(ci_fecha_cita) ASC");
-		
-		List<ConteoCitas> conteos =  q.getResultList();
-	
-		return conteos	;				
+	public String contarCitasPorMesGeneral() {
+		Query q = em.createNativeQuery("select count(*) AS contador FROM Cita u WHERE MONTH(ci_fecha_cita) = ?1");
+		q.setParameter(1, 1);
+		int conteo = ((BigInteger) q.getSingleResult()).intValue();
+		String count = Integer.toString(conteo);
+		for (int i = 1; i < 12; i++) {
+			q.setParameter(1, i+1);
+			conteo =  ((BigInteger) q.getSingleResult()).intValue();
+			System.out.println(conteo);
+			count = count + "," + Integer.toString(conteo);
+		}
+
+		System.out.println(count);
+		return count;				
 	}
 	
 	
 	public List<Cita> getProximasCitas(String cedula, Date fecha){
-		String jpql = "SELECT u FROM Cita u WHERE ci_fecha_cita > ?1 AND usuario_us_cedula = ?2 AND ci_estado = ?3";
+		String jpql = "SELECT u FROM Cita u WHERE ci_fecha_cita > ?1 AND usuario_us_cedula = ?2 AND ci_estado = ?3 ORDER BY ci_fecha_cita";
 		Query q = em.createQuery(jpql, Cita.class);
 		q.setParameter(1, fecha);
 		q.setParameter(2, cedula);
@@ -177,5 +162,10 @@ public class CitaDAO {
 			int codReceta =  (int) q.getSingleResult();
 			System.out.println(codReceta+" :Codigo de receta");
 			return codReceta;
+		}
+		
+		public double getSaldo() {
+			Query q = em.createNativeQuery("SELECT SUM(ie_dinero) FROM ingresosegresos ie");
+			return (double) q.getSingleResult();
 		}
 }

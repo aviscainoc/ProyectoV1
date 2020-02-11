@@ -7,7 +7,6 @@ import javax.inject.Inject;
 
 import modelo.Cita;
 import modelo.HistoriaClinica;
-import modelo.Paciente;
 import modelo.RecetaMedica;
 import modelo.Usuario;
 import negocio.GestionHistoriaClinicaLocal;

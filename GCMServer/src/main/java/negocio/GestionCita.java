@@ -10,19 +10,13 @@ import javax.ejb.Stateless;
 import javax.inject.Inject;
 
 import datos.CitaDAO;
-import datos.MedicoDAO;
-import datos.PacienteDAO;
 import datos.UsuarioDAO;
 import modelo.CertificadoAusencia;
 import modelo.Cita;
 
-import modelo.ConteoCitas;
-
 import modelo.ExamenLaboratorio;
 import modelo.HistoriaClinica;
 
-import modelo.Medico;
-import modelo.Paciente;
 import modelo.RecetaMedica;
 
 
@@ -105,30 +99,24 @@ public class GestionCita implements GestionCitaLocal, GestionCitaRemote{
 	}
 	
 	public String contarCitasUsuario(String cedula){
-		/*List<ConteoCitas> lst = dao.contarCitasPorMesUsuario(cedula);
-		System.out.println("Tal vez funcione"+ lst.get(0).getContador());
-		System.out.println("mes"+lst.get(0).getMes());*/
-		/*List<Object[]> objetos = dao.contarCitasPorMesUsuario(cedula);
-		*/
 		return dao.contarCitasPorMesUsuario(cedula);
 	}
 	
-	public List<ConteoCitas> contarCitasGeneral(){
-		
+	public String contarCitasGeneral(){
 		return dao.contarCitasPorMesGeneral();
 	}
 	
 
 	public List<Cita> recuperarProximasCitas(String cedula, Date fecha){
 		return dao.getProximasCitas(cedula, fecha);
-
 	}
 	
 	public List<Cita> recuperarCitasPasadas(Date fecha){
-		
 		return dao.getCitasPasadas(fecha);
-		
 	}
 	
+	public double getSaldo() {
+		return dao.getSaldo();
+	}
 
 }

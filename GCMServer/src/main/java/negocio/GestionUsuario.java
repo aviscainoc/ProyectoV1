@@ -26,11 +26,8 @@ import com.itextpdf.layout.element.Paragraph;
 
 import datos.CitaDAO;
 import datos.ExamenLaboratorioDAO;
-import datos.MedicoDAO;
-import datos.PacienteDAO;
 import datos.UsuarioDAO;
 import modelo.Cita;
-import modelo.Conexion;
 import modelo.HistoriaClinica;
 import modelo.Usuario;
 import net.sf.jasperreports.engine.JRException;

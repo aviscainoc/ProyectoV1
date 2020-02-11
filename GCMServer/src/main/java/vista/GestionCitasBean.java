@@ -17,14 +17,11 @@ import javax.inject.Inject;
 import datos.UsuarioDAO;
 import modelo.CertificadoAusencia;
 import modelo.Cita;
-import modelo.ConteoCitas;
 import modelo.ExamenLaboratorio;
 import modelo.FacturaCabecera;
 import modelo.FacturaDetalle;
 import modelo.HistoriaClinica;
 import modelo.IngresosEgresos;
-import modelo.Medico;
-import modelo.Paciente;
 import modelo.RecetaMedica;
 import modelo.Usuario;
 import negocio.GestionCertificadoAusenciaLocal;
@@ -34,7 +31,6 @@ import negocio.GestionFacturaCabeceraLocal;
 import negocio.GestionFacturaDetalleLocal;
 import negocio.GestionHistoriaClinicaLocal;
 import negocio.GestionIngresosEgresosLocal;
-import negocio.GestionMedicosLocal;
 import negocio.GestionRecetaMedicaLocal;
 import negocio.GestionUsuariosLocal;
 import net.sf.jasperreports.engine.JRException;
@@ -502,6 +498,7 @@ public class GestionCitasBean {
 	public void setUs_dinero(double us_dinero) {
 		this.us_dinero = us_dinero;
 	}
+	
 	public String guardarCita() {
 		String rol="pac";
 		int registro=0;
@@ -536,6 +533,31 @@ public class GestionCitasBean {
 			citas=gl.getCitas();
 			return "persuasiva";
 		}
+	}
+	
+	public String guardarCita(Usuario u) {
+		ci_fecha_agendacion = new Date();
+		ci_estado = "pendiente";
+		String[] fecha = ci_fecha_cita.split("-");
+		int dia = Integer.parseInt(fecha[0]);
+		int mes = Integer.parseInt(fecha[1]) - 1;
+		int anio = Integer.parseInt(fecha[2]);
+		
+		Calendar cal = Calendar.getInstance();
+		cal.set(Calendar.HOUR_OF_DAY, hora);
+		cal.set(Calendar.MINUTE, minuto);
+		cal.set(Calendar.SECOND, 00);
+		cal.set(Calendar.DATE, dia);
+		cal.set(Calendar.MONTH, mes);
+		cal.set(Calendar.YEAR, anio);
+		
+		Date fecha_cita = cal.getTime();
+		
+		gl.guardarCita(u.getUs_cedula(), ci_fecha_agendacion, fecha_cita, ci_estado);
+		System.out.println("aqui va la fecha");
+		System.out.println(fecha_cita);
+		citas=gl.getCitas();
+		return "perfil";
 	}
 		
 	public List<Cita> recuperarCitas(){
@@ -630,7 +652,6 @@ public class GestionCitasBean {
 		try {
 			System.out.println("Llama a guardarBean");
 			gh.guardarHistoriaClinica(hc_residencia, hc_fecha, hc_movito_consulta, hc_enfermedad_actual);
-			//gh.guardarHistoriaClinica(hc_residencia, hc_fecha, hc_movito_consulta, hc_enfermedad_actual, usuario);
 			hc_codigo = getHc_codigo();
 			historias = gh.getHistoriasClinicas();
 			return true;	
@@ -724,9 +745,11 @@ public class GestionCitasBean {
 	public FacturaCabecera getFactura() {
 		return factura;
 	}
+	
 	public void setFactura(FacturaCabecera factura) {
 		this.factura = factura;
 	}
+	
 	public List<FacturaDetalle> recuperarFacturasDetalle(){
 		facturasDetalle = gld.getFacturaDetalleCabecera(fac_cab_codigo);
 		System.out.println("fac detalle " + facturasDetalle);
@@ -734,9 +757,12 @@ public class GestionCitasBean {
 	}
 	 
 	public String contarCitasUsuario(String cedula){
-		System.out.println("Impresion de las citas con toString");
-		System.out.println(gl.contarCitasUsuario(cedula).toString());
 		cantidad = gl.contarCitasUsuario(cedula); 
+		return cantidad;
+	}
+	 
+	public String contarCitasGeneral(){
+		cantidad = gl.contarCitasGeneral(); 
 		return cantidad;
 	}
 	
@@ -759,11 +785,11 @@ public class GestionCitasBean {
 	
 	
 	
-	public String guardarDetalle() {
+	public String guardarDetalle(Usuario u) {
 		if(gld.guardarFacturaDetalle(fac_det_descripcion, fac_det_precio, fac_det_cantidad, fac_cab_codigo)) {
 			setIe_descripcion(fac_det_descripcion);
-			setIe_dinero(fac_det_precio);
-			guardarIngreso();
+			setIe_dinero(fac_det_precio*fac_det_cantidad);
+			guardarIngreso(u);
 			recuperarFacturaCabecera();
 			return "listar_cabecera";
 		}else {
@@ -772,12 +798,11 @@ public class GestionCitasBean {
 		}
 	}
 	
-	public boolean guardarIngreso() {
+	public boolean guardarIngreso(Usuario u) {
 		try {
-			ie_codigo = glie.guardarIngresosEgresos(ie_descripcion, ie_dinero, usuario.getUs_cedula());
+			ie_codigo = glie.guardarIngresosEgresos(ie_descripcion, ie_dinero, u.getUs_cedula());
 			ingresosEgresos = glie.getIngresosEgresos();
-			Usuario usu = gul.recuperarUsuario(usuario.getUs_cedula()); 
-			us_dinero = usu.getUs_dinero();
+			Usuario usu = gul.recuperarUsuario(u.getUs_cedula()); 
 			IngresosEgresos ie = glie.getIngresoEgreso(ie_codigo);
 			System.out.println("### Ingreso ### " + ie);
 			return true;
@@ -787,12 +812,11 @@ public class GestionCitasBean {
 		}
 	}
 	
-	public boolean guardarEgreso() {
+	public boolean guardarEgreso(Usuario u) {
 		try {
-			ie_codigo = glie.guardarIngresosEgresos(ie_descripcion, (ie_dinero*-1), usuario.getUs_cedula());
+			ie_codigo = glie.guardarIngresosEgresos(ie_descripcion, (ie_dinero*-1), u.getUs_cedula());
 			ingresosEgresos = glie.getIngresosEgresos();
-			Usuario usu = gul.recuperarUsuario(usuario.getUs_cedula()); 
-			us_dinero = usu.getUs_dinero();
+			Usuario usu = gul.recuperarUsuario(u.getUs_cedula()); 
 			IngresosEgresos ie = glie.getIngresoEgreso(ie_codigo);
 			System.out.println("### Ingreso ### " + ie);
 			
@@ -870,8 +894,15 @@ public class GestionCitasBean {
 		gul.descargarExamenes(texto);
 	}
 	
+	public String tipo(double valor) {
+		if (valor < 0.0)
+			return "Egreso";
+		else
+			return "Ingreso";
+	}
 	
-	
-	
+	public double getSaldo() {
+		return gl.getSaldo();
+	}
 	
 }

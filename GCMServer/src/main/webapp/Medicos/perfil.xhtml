@@ -13,44 +13,74 @@
 	<ui:define name="h1Titulo">Perfil</ui:define>
 	<ui:define name="nombreUser">Dr. #{user.us_nombres} <br></br>#{user.us_apellidos}</ui:define>
 	
+	<ui:define name="timeline">
+	    <!-- Main content -->
+	    <section class="content">
+	            <!-- AREA CHART -->
+            <div class="card card-primary" style="width: 90%;">
+              <div class="card-header">
+                <h3 class="card-title">Citas médicas por mes</h3>
+
+                <div class="card-tools">
+                  <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>
+                  </button>
+                  <button type="button" class="btn btn-tool" data-card-widget="remove"><i class="fas fa-times"></i></button>
+                </div>
+              </div>
+              <div class="card-body">
+                <div class="chart">
+                  <canvas id="barChart" style="min-height: 350px; height: 350px; max-height: 350px; max-width: 100%;"></canvas>
+                </div>
+              </div>
+              <!-- /.card-body -->
+            </div>
+	    </section>
+	    
+	    <h:inputHidden id="count" value="#{gestionCitasBean.contarCitasGeneral()}" />
+	</ui:define>
+	
 	<ui:define name="actividad">
-	<center>
-	<h:form>
-		<h:dataTable width="50%" value="#{gestionCitasBean.recuperarIngresosEgresos()}" var="ingresosEgresos" border="4" cellspacing="1" cellpadding="1">
-		<h:column>
-			#{ingresosEgresos.ie_descripcion}
-			<f:facet name="header">Descripción</f:facet>
-		</h:column>
-		<h:column>
-			#{ingresosEgresos.ie_dinero}
-			<f:facet name="header">Monto</f:facet>
-		</h:column>	
-		</h:dataTable>
-		<h:dataTable width="50%" value="#{gestionCitasBean.us_dinero}" var="ingresosEgresos" border="4" cellspacing="1" cellpadding="1">
-			<h:column>
-				<h:outputLabel value="#{gestionCitasBean.us_dinero}"/>
-				<f:facet name="header">Total</f:facet>
-			</h:column>	
-		</h:dataTable>
-		
-		<h:panelGrid columns="2" >
-			<h:outputLabel value="Descripcion" />
-			<h:inputText value="#{gestionCitasBean.ie_descripcion}" placeholder="Descripcion" />
-			
-			<h:outputLabel value="Monto" />
-			<h:inputText value="#{gestionCitasBean.ie_dinero}" placeholder="Monto" />
+		<center>
+		<h:form>
+			<div class="card-body" style="width: 50%">
+				<h:dataTable value="#{gestionCitasBean.recuperarIngresosEgresos()}" var="ingresosEgresos" class="table table-bordered">
+					<h:column>
+						#{ingresosEgresos.ie_descripcion}
+						<f:facet name="header">Descripción</f:facet>
+					</h:column>
+					<h:column>
+						#{ingresosEgresos.ie_dinero}
+						<f:facet name="header">Monto</f:facet>
+					</h:column>	
+					<h:column>
+						#{gestionCitasBean.tipo(ingresosEgresos.ie_dinero)}
+						<f:facet name="header">Tipo</f:facet>
+					</h:column>	
+				</h:dataTable>
 				
-			<h:inputHidden value="#{user.us_cedula}" />
+				<h:panelGrid columns="2" class="table table-bordered">
+					<h:outputLabel value="Total"></h:outputLabel>
+					<h:outputLabel value="#{gestionCitasBean.getSaldo()}" />
+				</h:panelGrid>
 				
-			<h:commandButton action="#{gestionCitasBean.guardarIngreso()}" value="Ingreso"/>
-			<f:view>  
-			    <h:commandButton id="mybutton" value="Egreso"
-			      binding="#{gestionCitasBean.mybutton}"
-			      action="#{gestionCitasBean.guardarEgreso()}" />
-			    <h:message for="mybutton" />
-			</f:view>
-			<h:commandButton action="/User/index" value="Regresar"></h:commandButton>
-		</h:panelGrid>
+				<h:panelGrid columns="8" class="table ">
+					<h:outputLabel value="Descripcion" />
+					<h:inputText value="#{gestionCitasBean.ie_descripcion}" class="form-control" placeholder="Descripcion" />
+					
+					<h:outputLabel value="Monto" />
+					<h:inputText value="#{gestionCitasBean.ie_dinero}" class="form-control" placeholder="Monto" />
+						
+					<h:inputHidden value="#{user.us_cedula}" />
+						
+					<h:commandButton action="#{gestionCitasBean.guardarIngreso()}" class="btn btn-primary btn-block" value="Ingreso"/>
+					<f:view>  
+					    <h:commandButton id="mybutton" value="Egreso"
+					      binding="#{gestionCitasBean.mybutton}"
+					      action="#{gestionCitasBean.guardarEgreso(user)}" class="btn btn-primary btn-block" />
+					    <h:message for="mybutton" />
+					</f:view>
+				</h:panelGrid>
+			</div>
 		</h:form>
 		</center>
 	</ui:define>

@@ -30,7 +30,30 @@
 				<b>Estado civil</b> <a class="float-right">#{user.us_pa_estado_civil}</a>
 			</li>
 		</ul>
-		<a href="#" class="btn btn-primary btn-block"><b>Agendar Cita</b></a>
+		<h:form>
+			<h:panelGrid columns="2" class="table">
+				<h:outputLabel>Fecha:</h:outputLabel>
+				<h:inputText id="fec" value="#{gestionCitasBean.ci_fecha_cita}" styleClass="form-control datepicker" size="10" required="true" requiredMessage="Obligatorio"></h:inputText>
+			</h:panelGrid>
+			<h:panelGrid columns="3" class="table">
+	      		<h:outputLabel>Hora:</h:outputLabel>
+	      		<h:selectOneMenu value="#{gestionCitasBean.hora}" class="form-control form-control-navbar">
+	      			<f:selectItem itemValue="9" itemLabel="9"/>
+	      			<f:selectItem itemValue="10" itemLabel="10"/>
+	      			<f:selectItem itemValue="11" itemLabel="11"/>
+	      			<f:selectItem itemValue="12" itemLabel="12"/>
+	      			<f:selectItem itemValue="15" itemLabel="15"/>
+	      			<f:selectItem itemValue="16" itemLabel="16"/>
+	      			<f:selectItem itemValue="17" itemLabel="17"/>
+	      			<f:selectItem itemValue="18" itemLabel="18"/>
+	      		</h:selectOneMenu>
+	      		<h:selectOneMenu value="#{gestionCitasBean.minuto}" class="form-control form-control-navbar">
+	      			<f:selectItem itemValue="00" itemLabel="00"/>
+	      			<f:selectItem itemValue="30" itemLabel="30"/>
+	      		</h:selectOneMenu>
+	      	</h:panelGrid>
+		<h:commandButton action="#{gestionCitasBean.guardarCita(user)}" value="Agendar Cita" class="btn btn-primary btn-block"></h:commandButton>
+		</h:form>
 	</ui:define>
 	
 	<ui:define name="acerca">
@@ -118,7 +141,7 @@
 	            </div>
 	    </section>
 	    
-	    <h:inputText id="count" value="#{gestionCitasBean.contarCitasUsuario(user.us_cedula)}" />
+	    <h:inputHidden id="count" value="#{gestionCitasBean.contarCitasUsuario(user.us_cedula)}" />
 	    
 	</ui:define>
 	

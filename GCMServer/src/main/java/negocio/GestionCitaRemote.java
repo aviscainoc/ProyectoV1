@@ -9,8 +9,6 @@ import modelo.CertificadoAusencia;
 import modelo.Cita;
 import modelo.ExamenLaboratorio;
 import modelo.HistoriaClinica;
-import modelo.Medico;
-import modelo.Paciente;
 import modelo.RecetaMedica;
 
 @Remote

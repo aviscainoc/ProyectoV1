@@ -39,6 +39,7 @@ public class GestionFacturaDetalle implements GestionFacturaDetalleLocal{
 			fc.setFac_cab_iva(Math.round((precio * 1.12) * 100) / 100d);
 			fc.addDetalle(fd);
 			daoFd.insert(fd);
+			daoFc.update(fc);
 			System.out.println("Cabecera encontrada 1, " + fc.getFac_cab_nombre()); 
 			return true;
 		}else{
@@ -55,6 +56,7 @@ public class GestionFacturaDetalle implements GestionFacturaDetalleLocal{
 			fc1.setFac_cab_iva(Math.round((precio * 1.12) * 100) / 100d);
 			fc1.addDetalle(fd);
 			daoFd.insert(fd);
+			daoFc.update(fc);
 			System.out.println("Cabecera encontrada, " + fc1.getFac_cab_nombre()); 
 			return true;
 		}

@@ -8,7 +8,6 @@ import javax.inject.Inject;
 import datos.CitaDAO;
 import datos.RecetaMedicaDAO;
 import modelo.Cita;
-import modelo.Paciente;
 import modelo.RecetaMedica;
 
 @Stateless

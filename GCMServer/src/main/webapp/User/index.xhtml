@@ -15,7 +15,7 @@
 			<h:form>
 		      	<h:panelGrid columns="3" class="table">
 		      		<h:outputLabel>Número de cédula: </h:outputLabel>
-		      		<h:inputText id="ced" pt:placeholder="0999999999" value="#{gestionCitasBean.us_codigo}" class="form-control form-control-navbar" aria-label="Search" required="true" requiredMessage="Obligatorio"></h:inputText>
+		      		<h:inputText id="ced" pt:placeholder="0999999999" value="#{gestionCitasBean.us_codigo}" validator="#{gestionUsuariosBean.validarCedula}" class="form-control form-control-navbar" aria-label="Search" required="true" requiredMessage="Obligatorio"></h:inputText>
 		      		<h:message for="ced" errorStyle="color:red; display:block"/>
 		      		<h:outputLabel>Fecha de la cita: </h:outputLabel>
 					<h:inputText id="fec" value="#{gestionCitasBean.ci_fecha_cita}" styleClass="form-control datepicker" size="10" required="true" requiredMessage="Obligatorio"></h:inputText>

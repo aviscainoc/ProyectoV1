@@ -11,7 +11,7 @@
 		<h:form>
 			<h:message for="ced" errorStyle="color:red;"/>
 			<div class="input-group mb-3">
-				<h:inputText id="ced" pt:placeholder="Cédula" class="form-control form-control-navbar" value="#{gestionUsuariosBean.us_cedula}" placeholder="Cedula" required="true" requiredMessage="Ingrese su número de cédula"/>
+				<h:inputText id="ced" pt:placeholder="Cédula" class="form-control form-control-navbar" value="#{gestionUsuariosBean.us_cedula}" validator="#{gestionUsuariosBean.validarCedula}" placeholder="Cedula" required="true" requiredMessage="Ingrese su número de cédula"/>
 			</div>
 			
 			<h:message for="nom" errorStyle="color:red; display:block"/>
