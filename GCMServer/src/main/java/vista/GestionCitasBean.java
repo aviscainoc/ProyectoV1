@@ -842,6 +842,20 @@ public class GestionCitasBean {
 		gul.descargarRecetaMedica(texto);
 	}
 	
+	public void imprimirFactura(int codigoCita) throws IOException {
+		//recuperar el texto del certificado
+		int codigoCA = glf.obtenerCodigoFactura(codigoCita);
+		System.out.println("esto viene "+codigoCA);
+		
+		String texto = glf.obtenerTexto(codigoCA);
+		System.out.println(texto+"Texto que va al pdf");
+		
+		
+		//System.out.println("Codigo de la cita"+code);
+		//String texto = gc.getCertificado()//String texto = gul.descargarCertificadoMedico();
+		gul.descargarExamenes(texto);
+	}
+	
 	public void imprimirExamen(int codigoCita) throws IOException {
 		//recuperar el texto del certificado
 		int codigoCA = ge.obtenerCodigoExamen(codigoCita);

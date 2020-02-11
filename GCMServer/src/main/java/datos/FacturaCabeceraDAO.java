@@ -7,6 +7,7 @@ import javax.inject.Inject;
 import javax.persistence.Query;
 import javax.persistence.EntityManager;
 
+import modelo.ExamenLaboratorio;
 import modelo.FacturaCabecera;
 
 @Stateless
@@ -41,6 +42,17 @@ public class FacturaCabeceraDAO {
 		q.setParameter(1, codigo);
 		FacturaCabecera factura = (FacturaCabecera) q.getSingleResult();
 		return factura;
+	}
+	
+	public String obtenerTextoPdf(int codigoCA) {
+		// TODO Auto-generated method stub
+		String jpql = "SELECT u FROM FacturaCabecera u WHERE u.fac_cab_id = ?1";
+		Query q = em.createQuery(jpql, FacturaCabecera.class);
+		q.setParameter(1, codigoCA);
+		
+		String texto = (String) q.getSingleResult().toString();
+		System.out.println(texto+"Texto en DAO");
+		return texto;
 	}
 	
 }

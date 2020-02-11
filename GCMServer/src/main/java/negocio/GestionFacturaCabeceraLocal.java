@@ -14,4 +14,6 @@ public interface GestionFacturaCabeceraLocal {
 	public List<FacturaCabecera> getFacturas();	
 	public FacturaCabecera getFacturaCabecera(int codigo);
 	public FacturaCabecera getFactura(int codigo);
+	public int obtenerCodigoFactura(int codigo); 
+	public String obtenerTexto(int codigoCA);
 }
