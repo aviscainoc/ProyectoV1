@@ -49,7 +49,7 @@ public class GestionUsuario implements GestionUsuariosLocal, GestionUsuariosRemo
 	@Inject
 	private CitaDAO daoC;
 	
-	public void guardarUsuarioPaciente(String us_cedula, String us_rol, int us_pa_registro, String  us_nombres, String  us_apellidos, String us_sexo, Date us_fecha_nacimiento,
+	public boolean guardarUsuarioPaciente(String us_cedula, String us_rol, int us_pa_registro, String  us_nombres, String  us_apellidos, String us_sexo, Date us_fecha_nacimiento,
 			String us_correo, String us_contrasena, String us_pa_estado_civil, String us_pa_nivel_estudio, String us_pa_ocupacion, String us_pa_etnia, 
 			String us_pa_religion, String us_pa_tipo_sangre, String us_pa_identidad_sexual, String us_pa_procedencia) {		
 		if (daoU.read(us_cedula) == null) {
@@ -73,8 +73,11 @@ public class GestionUsuario implements GestionUsuariosLocal, GestionUsuariosRemo
 			u.setUs_pa_procedencia(us_pa_procedencia);
 			System.out.println(u);
 			daoU.insert(u);
+			return true;
+		}else if(daoU.read(us_cedula).getUs_correo() != null){
+			return false;
 		}
-		else{
+		else {
 			Usuario u = daoU.read(us_cedula);
 			u.setUs_rol(us_rol);
 			u.setUs_pa_registro(us_pa_registro);
@@ -94,6 +97,7 @@ public class GestionUsuario implements GestionUsuariosLocal, GestionUsuariosRemo
 			u.setUs_pa_procedencia(us_pa_procedencia);
 			System.out.println(u);
 			daoU.update(u);
+			return true;
 		}
 	}
 	
