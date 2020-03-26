@@ -1,0 +1,52 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"> 
+
+<h:head></h:head> 
+<body>
+<h1>Registrar Votacion</h1>
+
+<h:form>
+	<h:panelGrid columns="2">
+		<!-- <h:outputLabel value="Código: " />
+		<h:inputText value="#{gestionCitasBean.ci_codigo}" placeholder="Código" /> -->
+		
+		<h:outputLabel value="Titulo de la eleccion" />
+		<h:inputText value="#{gestionRegistroBean.re_titulo}" placeholder="Codigo del usuario" />
+		
+		<h:outputLabel value="Fecha de la eleccion" />
+		<h:inputText value="#{gestionRegistroBean.re_fecha}" placeholder="Codigo del usuario" />
+				
+	</h:panelGrid>
+	
+	<h:commandButton action="#{gestionRegistroBean.guardarRegistro()}" value="Guardar" />
+</h:form>	
+<h:form>
+	<h:panelGrid columns="5">
+	
+		
+		<h:outputLabel value="Cedula" />
+		<h:inputText value="#{gestionRegistroBean.us_cedula}" placeholder="Codigo del usuario" />
+		
+		<h:outputLabel value="Nombres" />
+		<h:inputText value="#{gestionRegistroBean.us_nombres}" placeholder="Codigo del usuario" />
+		
+		<h:outputLabel value="Numero de lista" />
+		<h:inputText value="#{gestionRegistroBean.us_num_lista}" placeholder="Codigo del usuario" />
+		
+		<h:outputLabel value="Titulo Universitario" />
+		<h:inputText value="#{gestionRegistroBean.us_titulo_universitario}" placeholder="Codigo del usuario" />
+		
+	
+			
+		
+		
+	</h:panelGrid>
+	
+	<h:commandButton action="#{gestionRegistroBean.agregarCandidato()}" value="Agregar" />
+
+</h:form>
+</body>   
+</html>
